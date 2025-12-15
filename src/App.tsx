@@ -1,0 +1,80 @@
+import { ThemeProvider, createTheme, CssBaseline, Box } from '@mui/material';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Servicios from './components/Servicios';
+import Contacto from './components/Contacto';
+import Footer from './components/Footer';
+
+// Tema personalizado Prende
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#000000',
+    },
+    secondary: {
+      main: '#FFEB5D',
+    },
+    background: {
+      default: '#FFFFFF',
+      paper: '#FFFFFF',
+    },
+    text: {
+      primary: '#000000',
+      secondary: '#666666',
+    },
+  },
+  typography: {
+    fontFamily: '"Montserrat", "Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    h1: {
+      fontWeight: 700,
+    },
+    h2: {
+      fontWeight: 700,
+    },
+    h3: {
+      fontWeight: 700,
+    },
+    button: {
+      textTransform: 'none',
+      fontWeight: 600,
+    },
+  },
+  shape: {
+    borderRadius: 8,
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          fontWeight: 600,
+          textTransform: 'none',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+        },
+      },
+    },
+  },
+});
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box sx={{ bgcolor: 'background.default' }}>
+        <Header />
+        <Hero />
+        <Servicios />
+        <Contacto />
+        <Footer />
+      </Box>
+    </ThemeProvider>
+  );
+}
+
+export default App;
