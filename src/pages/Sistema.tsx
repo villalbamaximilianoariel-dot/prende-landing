@@ -128,7 +128,7 @@ const Sistema = () => {
         <Container maxWidth="lg">
           <Button
             component={RouterLink}
-            to="/"
+            to="/#servicios"
             startIcon={<ArrowBackIcon />}
             sx={{ 
               color: '#FFEB5D',
@@ -136,7 +136,7 @@ const Sistema = () => {
               '&:hover': { bgcolor: 'rgba(255, 235, 93, 0.1)' }
             }}
           >
-            Volver al inicio
+            Volver a servicios
           </Button>
           
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 4, alignItems: 'center' }}>
