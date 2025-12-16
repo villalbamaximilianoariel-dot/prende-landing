@@ -176,15 +176,20 @@ const Servicios = () => {
                   {/* Precio */}
                   <Box
                     sx={{
-                      bgcolor: '#FFEB5D',
-                      color: '#000000',
-                      px: 3,
-                      py: 1.5,
-                      borderRadius: 1,
+                      display: 'flex',
+                      justifyContent: 'center',
                       mt: 'auto',
-                      display: 'inline-block',
                     }}
                   >
+                    <Box
+                      sx={{
+                        bgcolor: '#FFEB5D',
+                        color: '#000000',
+                        px: 2.5,
+                        py: 1.2,
+                        borderRadius: 1,
+                      }}
+                    >
                     <Typography
                       variant="h4"
                       sx={{
@@ -195,6 +200,7 @@ const Servicios = () => {
                     >
                       {servicio.price}
                     </Typography>
+                    </Box>
                   </Box>
                 </CardContent>
               </Card>
@@ -202,19 +208,7 @@ const Servicios = () => {
           ))}
         </Box>
 
-        {/* Badge adicional */}
-        <Box sx={{ textAlign: 'center', mt: { xs: 6, md: 8 } }}>
-          <Typography
-            variant="body2"
-            sx={{
-              fontSize: { xs: '0.875rem', md: '0.9375rem' },
-              color: '#666666',
-              fontWeight: 500,
-            }}
-          >
-            Auditorías presenciales y remotas · Sistema simple y accionable · Enfoque 100% práctico
-          </Typography>
-        </Box>
+
       </Container>
     </Box>
   );

@@ -11,7 +11,7 @@ const Hero = () => {
     <Box
       sx={{
         position: 'relative',
-        minHeight: { xs: 'calc(100vh - 80px)', md: '90vh' },
+        height: { xs: 'calc(100vh - 64px)', md: '90vh' },
         display: 'flex',
         alignItems: 'center',
         bgcolor: '#000000',
@@ -132,23 +132,45 @@ const Hero = () => {
               Ver Servicios
             </Button>
           </Box>
-
-          {/* Badge de ubicación */}
-          <Box sx={{ mt: { xs: 6, md: 8 } }}>
-            <Typography
-              variant="body2"
-              sx={{
-                color: '#FFFFFF',
-                fontSize: { xs: '0.875rem', md: '0.9375rem' },
-                fontWeight: 500,
-                opacity: 0.8,
-              }}
-            >
-              Buenos Aires, Argentina (AMBA)
-            </Typography>
-          </Box>
         </Box>
       </Container>
+
+      {/* Hint visual de scroll */}
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: { xs: 24, md: 32 },
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 2,
+          animation: 'bounce 2s infinite',
+          '@keyframes bounce': {
+            '0%, 100%': { transform: 'translateX(-50%) translateY(0)' },
+            '50%': { transform: 'translateX(-50%) translateY(10px)' },
+          },
+        }}
+      >
+        <Box
+          sx={{
+            width: 30,
+            height: 50,
+            border: '2px solid rgba(255, 235, 93, 0.5)',
+            borderRadius: 20,
+            position: 'relative',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 8,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: 4,
+              height: 8,
+              bgcolor: '#FFEB5D',
+              borderRadius: 2,
+            },
+          }}
+        />
+      </Box>
     </Box>
   );
 };

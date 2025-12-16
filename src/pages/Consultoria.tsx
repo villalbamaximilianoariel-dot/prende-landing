@@ -164,6 +164,9 @@ const Consultoria = () => {
         sx={{ 
           bgcolor: '#000000',
           color: '#FFFFFF',
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
           pt: { xs: 12, md: 16 },
           pb: { xs: 8, md: 12 },
           position: 'relative',
