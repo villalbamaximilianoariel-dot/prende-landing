@@ -1,4 +1,5 @@
 import { Box, Container, Typography, Card, CardContent } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -9,6 +10,7 @@ interface Servicio {
   title: string;
   description: string;
   price: string;
+  route: string;
 }
 
 const servicios: Servicio[] = [
@@ -19,6 +21,7 @@ const servicios: Servicio[] = [
     description:
       'Evaluación presencial o remota del cumplimiento operativo, atención al cliente y estándares comerciales.',
     price: 'desde $79.999',
+    route: '/auditorias',
   },
   {
     id: 2,
@@ -27,6 +30,7 @@ const servicios: Servicio[] = [
     description:
       'Plataforma para registrar auditorías, generar puntajes, informes y KPIs de forma simple.',
     price: 'desde $39.999',
+    route: '/sistema',
   },
   {
     id: 3,
@@ -35,10 +39,18 @@ const servicios: Servicio[] = [
     description:
       'Análisis de resultados, recomendaciones prácticas y acompañamiento para mejorar ventas y procesos.',
     price: 'desde $129.999',
+    route: '/consultoria',
   },
 ];
 
 const Servicios = () => {
+  const navigate = useNavigate();
+
+  const handleServicioClick = (route: string) => {
+    navigate(route);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <Box
       id="servicios"
@@ -86,7 +98,11 @@ const Servicios = () => {
           }}
         >
           {servicios.map((servicio) => (
-            <Box key={servicio.id}>
+            <Box 
+              key={servicio.id}
+              onClick={() => handleServicioClick(servicio.route)}
+              sx={{ cursor: 'pointer' }}
+            >
               <Card
                 sx={{
                   height: '100%',
@@ -100,6 +116,7 @@ const Servicios = () => {
                   '&:hover': {
                     transform: 'translateY(-8px)',
                     boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+                    borderColor: '#FFEB5D',
                   },
                 }}
               >

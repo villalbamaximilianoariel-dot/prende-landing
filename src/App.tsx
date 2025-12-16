@@ -1,9 +1,13 @@
 import { ThemeProvider, createTheme, CssBaseline, Box } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Servicios from './components/Servicios';
 import Contacto from './components/Contacto';
 import Footer from './components/Footer';
+import Auditorias from './pages/Auditorias';
+import Sistema from './pages/Sistema';
+import Consultoria from './pages/Consultoria';
 
 // Tema personalizado Prende
 const theme = createTheme({
@@ -62,17 +66,29 @@ const theme = createTheme({
   },
 });
 
+// Componente Home
+const Home = () => (
+  <Box sx={{ bgcolor: 'background.default' }}>
+    <Header />
+    <Hero />
+    <Servicios />
+    <Contacto />
+    <Footer />
+  </Box>
+);
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ bgcolor: 'background.default' }}>
-        <Header />
-        <Hero />
-        <Servicios />
-        <Contacto />
-        <Footer />
-      </Box>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/auditorias" element={<Auditorias />} />
+          <Route path="/sistema" element={<Sistema />} />
+          <Route path="/consultoria" element={<Consultoria />} />
+        </Routes>
+      </Router>
     </ThemeProvider>
   );
 }
