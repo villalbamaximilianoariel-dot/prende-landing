@@ -1,13 +1,27 @@
 import { AppBar, Toolbar, Container, Button, Box } from '@mui/material';
+import { useState, useEffect } from 'react';
 
 const Header = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <AppBar
       position="fixed"
-      elevation={0}
+      elevation={scrolled ? 2 : 0}
       sx={{
-        bgcolor: '#FFFFFF',
-        borderBottom: '1px solid #E0E0E0',
+        bgcolor: scrolled ? '#000000' : 'rgba(0, 0, 0, 0.3)',
+        backdropFilter: scrolled ? 'none' : 'blur(10px)',
+        borderBottom: scrolled ? 'none' : '1px solid rgba(255, 255, 255, 0.1)',
+        transition: 'all 0.3s ease',
       }}
     >
       <Container maxWidth="lg">
@@ -50,13 +64,13 @@ const Header = () => {
             <Button
               href="#servicios"
               sx={{
-                color: '#000000',
+                color: '#FFFFFF',
                 fontSize: { sm: '0.9375rem', md: '1rem' },
                 fontWeight: 500,
                 textTransform: 'none',
                 '&:hover': {
                   bgcolor: 'transparent',
-                  color: '#666666',
+                  color: '#FFEB5D',
                 },
               }}
             >

@@ -55,7 +55,7 @@ const Servicios = () => {
     <Box
       id="servicios"
       sx={{
-        bgcolor: '#F5F5F5',
+        bgcolor: '#E0E0E0',
         py: { xs: 8, md: 12 },
       }}
     >
@@ -174,17 +174,28 @@ const Servicios = () => {
                   </Typography>
 
                   {/* Precio */}
-                  <Typography
-                    variant="h4"
+                  <Box
                     sx={{
-                      fontSize: { xs: '1.125rem', md: '1.25rem' },
-                      fontWeight: 700,
+                      bgcolor: '#FFEB5D',
                       color: '#000000',
+                      px: 3,
+                      py: 1.5,
+                      borderRadius: 1,
                       mt: 'auto',
+                      display: 'inline-block',
                     }}
                   >
-                    {servicio.price}
-                  </Typography>
+                    <Typography
+                      variant="h4"
+                      sx={{
+                        fontSize: { xs: '1.125rem', md: '1.25rem' },
+                        fontWeight: 700,
+                        color: '#000000',
+                      }}
+                    >
+                      {servicio.price}
+                    </Typography>
+                  </Box>
                 </CardContent>
               </Card>
             </Box>
@@ -197,11 +208,11 @@ const Servicios = () => {
             variant="body2"
             sx={{
               fontSize: { xs: '0.875rem', md: '0.9375rem' },
-              color: '#999999',
+              color: '#666666',
               fontWeight: 500,
             }}
           >
-            💼 Auditorías presenciales y remotas · Sistema simple y accionable · Enfoque 100% práctico
+            Auditorías presenciales y remotas · Sistema simple y accionable · Enfoque 100% práctico
           </Typography>
         </Box>
       </Container>

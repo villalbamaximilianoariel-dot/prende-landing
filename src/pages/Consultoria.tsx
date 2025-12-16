@@ -217,9 +217,21 @@ const Consultoria = () => {
                 Estrategia + implementación + resultados. No solo te decimos qué hacer, trabajamos juntos hasta que funcione
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 3 }}>
-                <Typography variant="h6" sx={{ color: '#FFEB5D' }}>
-                  desde $129.999
-                </Typography>
+                <Box
+                  sx={{
+                    bgcolor: '#FFEB5D',
+                    color: '#000000',
+                    px: 3,
+                    py: 1.5,
+                    borderRadius: 1,
+                    display: 'inline-block',
+                    alignSelf: 'flex-start',
+                  }}
+                >
+                  <Typography variant="h6" sx={{ color: '#000000', fontWeight: 700 }}>
+                    desde $129.999
+                  </Typography>
+                </Box>
                 <Typography variant="body2" sx={{ color: '#F5F5F5' }}>
                   Duración: 3-6 meses • Reuniones semanales • Soporte ilimitado
                 </Typography>
@@ -240,7 +252,7 @@ const Consultoria = () => {
                   }
                 }}
               >
-                Solicitar Consultoría
+                Probar Gratis 15 Días
               </Button>
             </Box>
             
@@ -296,7 +308,7 @@ const Consultoria = () => {
       </Container>
 
       {/* Qué Incluye */}
-      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
             ¿Qué incluye el servicio?
@@ -438,7 +450,7 @@ const Consultoria = () => {
       </Container>
 
       {/* Para Quién Es */}
-      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
             ¿Para quién es este servicio?
@@ -531,7 +543,7 @@ const Consultoria = () => {
                 }
               }}
             >
-              Solicitar Primera Reunión
+              Probar Gratis 15 Días
             </Button>
           </Box>
         </Container>

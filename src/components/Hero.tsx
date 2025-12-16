@@ -10,15 +10,29 @@ const Hero = () => {
   return (
     <Box
       sx={{
+        position: 'relative',
         minHeight: { xs: 'calc(100vh - 80px)', md: '90vh' },
         display: 'flex',
         alignItems: 'center',
-        bgcolor: '#FFFFFF',
+        bgcolor: '#000000',
         pt: { xs: 12, md: 8 },
         pb: { xs: 8, md: 6 },
+        backgroundImage: 'url(https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&h=1080&fit=crop)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          bgcolor: 'rgba(0, 0, 0, 0.7)',
+          zIndex: 1,
+        },
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
         <Box
           sx={{
             textAlign: 'center',
@@ -32,12 +46,12 @@ const Hero = () => {
             sx={{
               fontSize: { xs: '2rem', sm: '2.75rem', md: '3.5rem' },
               fontWeight: 700,
-              color: '#000000',
+              color: '#FFFFFF',
               mb: { xs: 2, md: 3 },
               lineHeight: 1.2,
             }}
           >
-            Controlá tu negocio con datos reales
+            Gestiona tu negocio con datos reales
           </Typography>
 
           {/* Subtítulo */}
@@ -46,7 +60,7 @@ const Hero = () => {
             sx={{
               fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem' },
               fontWeight: 400,
-              color: '#666666',
+              color: '#F5F5F5',
               mb: { xs: 4, md: 5 },
               lineHeight: 1.6,
               maxWidth: '800px',
@@ -90,29 +104,28 @@ const Hero = () => {
                 },
               }}
             >
-              Solicitar Demo
+              Probar Gratis 15 Días
             </Button>
 
             {/* CTA Secundario */}
             <Button
-              variant="outlined"
+              variant="contained"
               size="large"
               href="#servicios"
               sx={{
-                borderColor: '#000000',
-                color: '#000000',
+                bgcolor: '#000000',
+                color: '#FFFFFF',
                 px: { xs: 4, md: 6 },
                 py: { xs: 1.5, md: 2 },
                 fontSize: { xs: '1rem', md: '1.125rem' },
                 fontWeight: 600,
                 borderRadius: 1,
-                borderWidth: 2,
                 textTransform: 'none',
                 minWidth: { xs: '280px', sm: 'auto' },
+                border: '2px solid #FFFFFF',
                 '&:hover': {
-                  borderWidth: 2,
-                  borderColor: '#000000',
-                  bgcolor: 'rgba(0, 0, 0, 0.04)',
+                  bgcolor: '#333333',
+                  borderColor: '#FFEB5D',
                 },
               }}
             >
@@ -125,12 +138,13 @@ const Hero = () => {
             <Typography
               variant="body2"
               sx={{
-                color: '#999999',
+                color: '#FFFFFF',
                 fontSize: { xs: '0.875rem', md: '0.9375rem' },
                 fontWeight: 500,
+                opacity: 0.8,
               }}
             >
-              📍 Buenos Aires, Argentina (AMBA)
+              Buenos Aires, Argentina (AMBA)
             </Typography>
           </Box>
         </Box>

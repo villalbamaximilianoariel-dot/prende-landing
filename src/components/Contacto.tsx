@@ -96,23 +96,22 @@ const Contacto = () => {
           {/* Email */}
           <Button
             fullWidth
-            variant="outlined"
+            variant="contained"
             size="large"
             startIcon={<EmailIcon sx={{ fontSize: '28px !important' }} />}
             onClick={handleEmailClick}
             sx={{
-              borderColor: '#000000',
-              color: '#000000',
+              bgcolor: '#000000',
+              color: '#FFFFFF',
               py: { xs: 2, md: 2.5 },
               fontSize: { xs: '1rem', md: '1.125rem' },
               fontWeight: 600,
               borderRadius: 2,
-              borderWidth: 2,
               textTransform: 'none',
+              boxShadow: 'none',
               '&:hover': {
-                borderWidth: 2,
-                borderColor: '#000000',
-                bgcolor: 'rgba(0, 0, 0, 0.04)',
+                bgcolor: '#333333',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
               },
             }}
           >
@@ -153,7 +152,7 @@ const Contacto = () => {
           >
             {/* Instagram */}
             <Button
-              variant="outlined"
+              variant="contained"
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -161,14 +160,13 @@ const Contacto = () => {
                 minWidth: { xs: 56, md: 64 },
                 minHeight: { xs: 56, md: 64 },
                 borderRadius: 2,
-                borderColor: '#000000',
-                borderWidth: 2,
+                bgcolor: '#FFEB5D',
                 color: '#000000',
                 p: 0,
+                boxShadow: 'none',
                 '&:hover': {
-                  borderWidth: 2,
-                  borderColor: '#000000',
-                  bgcolor: 'rgba(0, 0, 0, 0.04)',
+                  bgcolor: '#FFE135',
+                  boxShadow: '0 4px 12px rgba(255, 235, 93, 0.4)',
                 },
               }}
             >
@@ -177,7 +175,7 @@ const Contacto = () => {
 
             {/* LinkedIn */}
             <Button
-              variant="outlined"
+              variant="contained"
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -185,14 +183,13 @@ const Contacto = () => {
                 minWidth: { xs: 56, md: 64 },
                 minHeight: { xs: 56, md: 64 },
                 borderRadius: 2,
-                borderColor: '#000000',
-                borderWidth: 2,
-                color: '#000000',
+                bgcolor: '#000000',
+                color: '#FFFFFF',
                 p: 0,
+                boxShadow: 'none',
                 '&:hover': {
-                  borderWidth: 2,
-                  borderColor: '#000000',
-                  bgcolor: 'rgba(0, 0, 0, 0.04)',
+                  bgcolor: '#333333',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
                 },
               }}
             >

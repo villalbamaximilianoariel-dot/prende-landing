@@ -124,9 +124,21 @@ const Auditorias = () => {
                 Descubrí qué está fallando en tu negocio y cómo mejorarlo con una auditoría presencial profesional
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 3 }}>
-                <Typography variant="h6" sx={{ color: '#FFEB5D' }}>
-                  desde $79.999
-                </Typography>
+                <Box
+                  sx={{
+                    bgcolor: '#FFEB5D',
+                    color: '#000000',
+                    px: 3,
+                    py: 1.5,
+                    borderRadius: 1,
+                    display: 'inline-block',
+                    alignSelf: 'flex-start',
+                  }}
+                >
+                  <Typography variant="h6" sx={{ color: '#000000', fontWeight: 700 }}>
+                    desde $79.999
+                  </Typography>
+                </Box>
                 <Typography variant="body2" sx={{ color: '#F5F5F5' }}>
                   Duración: 2-3 semanas • Incluye seguimiento de 30 días
                 </Typography>
@@ -147,7 +159,7 @@ const Auditorias = () => {
                   }
                 }}
               >
-                Solicitar Auditoría
+                Probar Gratis 15 Días
               </Button>
             </Box>
             
@@ -198,7 +210,7 @@ const Auditorias = () => {
       </Container>
 
       {/* Qué NO Incluye */}
-      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 8 } }}>
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 8 } }}>
         <Container maxWidth="lg">
           <Typography variant="h4" sx={{ fontWeight: 700, mb: 4, textAlign: 'center' }}>
             Qué NO incluye
@@ -349,7 +361,7 @@ const Auditorias = () => {
                 }
               }}
             >
-              Solicitar Información
+              Probar Gratis 15 Días
             </Button>
           </Box>
         </Container>

@@ -169,9 +169,21 @@ const Sistema = () => {
                 Tu negocio bajo control con el sistema web que usamos nosotros: formularios personalizables, modo offline y reportes automáticos
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 3 }}>
-                <Typography variant="h6" sx={{ color: '#FFEB5D' }}>
-                  desde $39.999/mes
-                </Typography>
+                <Box
+                  sx={{
+                    bgcolor: '#FFEB5D',
+                    color: '#000000',
+                    px: 3,
+                    py: 1.5,
+                    borderRadius: 1,
+                    display: 'inline-block',
+                    alignSelf: 'flex-start',
+                  }}
+                >
+                  <Typography variant="h6" sx={{ color: '#000000', fontWeight: 700 }}>
+                    desde $39.999/mes
+                  </Typography>
+                </Box>
                 <Typography variant="body2" sx={{ color: '#F5F5F5' }}>
                   Incluye 5 usuarios • Formularios ilimitados • Soporte
                 </Typography>
@@ -192,7 +204,7 @@ const Sistema = () => {
                   }
                 }}
               >
-                Solicitar Demo
+                Probar Gratis 15 Días
               </Button>
             </Box>
             
@@ -248,7 +260,7 @@ const Sistema = () => {
       </Container>
 
       {/* Qué Incluye */}
-      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
             ¿Qué incluye el plan?
@@ -375,7 +387,7 @@ const Sistema = () => {
       </Container>
 
       {/* FAQs */}
-      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
             Preguntas Frecuentes
@@ -442,7 +454,7 @@ const Sistema = () => {
                 }
               }}
             >
-              Agendar Demo Gratis
+              Probar Gratis 15 Días
             </Button>
           </Box>
         </Container>
