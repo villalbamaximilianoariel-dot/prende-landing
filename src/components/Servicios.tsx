@@ -16,21 +16,21 @@ interface Servicio {
 const servicios: Servicio[] = [
   {
     id: 1,
-    icon: <AssignmentIcon sx={{ fontSize: 48 }} />,
-    title: 'Auditorías comerciales y operativas',
-    description:
-      'Evaluación presencial o remota del cumplimiento operativo, atención al cliente y estándares comerciales.',
-    price: 'desde $79.999',
-    route: '/auditorias',
-  },
-  {
-    id: 2,
     icon: <DashboardIcon sx={{ fontSize: 48 }} />,
     title: 'Sistema de auditoría Prende',
     description:
       'Plataforma para registrar auditorías, generar puntajes, informes y KPIs de forma simple.',
-    price: 'desde $39.999',
+    price: 'desde 39990',
     route: '/sistema',
+  },
+  {
+    id: 2,
+    icon: <AssignmentIcon sx={{ fontSize: 48 }} />,
+    title: 'Auditorías comerciales y operativas',
+    description:
+      'Evaluación presencial o remota del cumplimiento operativo, atención al cliente y estándares comerciales.',
+    price: 'desde 79990',
+    route: '/auditorias',
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const servicios: Servicio[] = [
     title: 'Consultoría comercial aplicada',
     description:
       'Análisis de resultados, recomendaciones prácticas y acompañamiento para mejorar ventas y procesos.',
-    price: 'desde $129.999',
+    price: 'desde 129990',
     route: '/consultoria',
   },
 ];

@@ -11,12 +11,10 @@ const Hero = () => {
     <Box
       sx={{
         position: 'relative',
-        height: { xs: 'calc(100vh - 64px)', md: '90vh' },
+        height: '100vh',
         display: 'flex',
         alignItems: 'center',
         bgcolor: '#000000',
-        pt: { xs: 12, md: 8 },
-        pb: { xs: 8, md: 6 },
         backgroundImage: 'url(https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&h=1080&fit=crop)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -134,43 +132,6 @@ const Hero = () => {
           </Box>
         </Box>
       </Container>
-
-      {/* Hint visual de scroll */}
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: { xs: 24, md: 32 },
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 2,
-          animation: 'bounce 2s infinite',
-          '@keyframes bounce': {
-            '0%, 100%': { transform: 'translateX(-50%) translateY(0)' },
-            '50%': { transform: 'translateX(-50%) translateY(10px)' },
-          },
-        }}
-      >
-        <Box
-          sx={{
-            width: 30,
-            height: 50,
-            border: '2px solid rgba(255, 235, 93, 0.5)',
-            borderRadius: 20,
-            position: 'relative',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              top: 8,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: 4,
-              height: 8,
-              bgcolor: '#FFEB5D',
-              borderRadius: 2,
-            },
-          }}
-        />
-      </Box>
     </Box>
   );
 };
