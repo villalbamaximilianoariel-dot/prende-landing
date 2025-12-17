@@ -287,28 +287,133 @@ const Consultoria = () => {
               elevation={0}
               sx={{ 
                 p: 4,
-                border: '1px solid #F5F5F5',
+                bgcolor: '#000000',
+                color: '#FFFFFF',
+                border: '2px solid #000000',
                 transition: 'all 0.3s',
                 '&:hover': {
                   borderColor: '#FFEB5D',
                   transform: 'translateY(-4px)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.1)'
+                  boxShadow: '0 8px 24px rgba(255, 235, 93, 0.3)'
                 }
               }}
             >
               <Box sx={{ color: '#FFEB5D', mb: 2 }}>
                 {area.icon}
               </Box>
-              <Typography variant="h5" sx={{ fontWeight: 600, mb: 2 }}>
+              <Typography variant="h5" sx={{ fontWeight: 600, mb: 2, color: '#FFFFFF' }}>
                 {area.titulo}
               </Typography>
-              <Typography variant="body1" sx={{ color: '#757575', lineHeight: 1.7 }}>
+              <Typography variant="body1" sx={{ color: '#E0E0E0', lineHeight: 1.7 }}>
                 {area.descripcion}
               </Typography>
             </Paper>
           ))}
         </Box>
       </Container>
+
+      {/* Galería de Fotos */}
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
+        <Container maxWidth="lg">
+          <Typography variant="h3" sx={{ fontWeight: 700, mb: 2, textAlign: 'center' }}>
+            Consultoría en acción
+          </Typography>
+          <Typography variant="body1" sx={{ color: '#757575', mb: 6, textAlign: 'center', maxWidth: 700, mx: 'auto' }}>
+            Trabajando juntos para hacer crecer tu negocio
+          </Typography>
+          
+          <Box sx={{ 
+            display: 'grid', 
+            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
+            gap: 3
+          }}>
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
+              alt="Sesión de estrategia"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop"
+              alt="Análisis de datos"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop"
+              alt="Capacitación equipo"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop"
+              alt="Reunión de seguimiento"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=400&fit=crop"
+              alt="Implementación de mejoras"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop"
+              alt="Resultados y crecimiento"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+          </Box>
+        </Container>
+      </Box>
 
       {/* Qué Incluye */}
       <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>

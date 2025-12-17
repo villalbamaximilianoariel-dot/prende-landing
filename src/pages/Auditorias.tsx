@@ -182,6 +182,109 @@ const Auditorias = () => {
         </Container>
       </Box>
 
+      {/* Galería de Fotos */}
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
+        <Container maxWidth="lg">
+          <Typography variant="h3" sx={{ fontWeight: 700, mb: 2, textAlign: 'center' }}>
+            Auditorías en acción
+          </Typography>
+          <Typography variant="body1" sx={{ color: '#757575', mb: 6, textAlign: 'center', maxWidth: 700, mx: 'auto' }}>
+            Así trabajamos en negocios como el tuyo
+          </Typography>
+          
+          <Box sx={{ 
+            display: 'grid', 
+            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
+            gap: 3
+          }}>
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"
+              alt="Restaurante auditado"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop"
+              alt="Local comercial"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop"
+              alt="Gimnasio auditado"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1556740758-90de374c12ad?w=600&h=400&fit=crop"
+              alt="Equipo en auditoría"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop"
+              alt="Checklist operativo"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+            <Box
+              component="img"
+              src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop"
+              alt="Informe de auditoría"
+              sx={{
+                width: '100%',
+                height: 280,
+                objectFit: 'cover',
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                cursor: 'pointer',
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            />
+          </Box>
+        </Container>
+      </Box>
+
       {/* Qué Incluye */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
         <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
