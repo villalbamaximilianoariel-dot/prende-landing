@@ -44,7 +44,7 @@ const Header = () => {
           >
             <Box
               component="img"
-              src={`${import.meta.env.BASE_URL}logo-title.png`}
+              src={`${import.meta.env.BASE_URL}logo.png`}
               alt="Prende"
               sx={{
                 height: { xs: 40, md: 50 },
