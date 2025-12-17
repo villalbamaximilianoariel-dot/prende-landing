@@ -122,7 +122,7 @@ const Servicios = () => {
               >
                 <CardContent
                   sx={{
-                    p: { xs: 3, md: 4 },
+                    p: { xs: 2.5, md: 4 },
                     display: 'flex',
                     flexDirection: 'column',
                     flexGrow: 1,
@@ -134,11 +134,11 @@ const Servicios = () => {
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      width: 80,
-                      height: 80,
+                      width: { xs: 64, md: 80 },
+                      height: { xs: 64, md: 80 },
                       bgcolor: '#FFEB5D',
                       borderRadius: 2,
-                      mb: 3,
+                      mb: { xs: 2, md: 3 },
                       color: '#000000',
                     }}
                   >
@@ -149,11 +149,12 @@ const Servicios = () => {
                   <Typography
                     variant="h3"
                     sx={{
-                      fontSize: { xs: '1.25rem', md: '1.5rem' },
+                      fontSize: { xs: '1.125rem', md: '1.5rem' },
                       fontWeight: 700,
                       color: '#000000',
-                      mb: 2,
+                      mb: { xs: 1.5, md: 2 },
                       minHeight: { md: '60px' },
+                      lineHeight: 1.3,
                     }}
                   >
                     {servicio.title}
@@ -163,45 +164,17 @@ const Servicios = () => {
                   <Typography
                     variant="body2"
                     sx={{
-                      fontSize: { xs: '0.9375rem', md: '1rem' },
+                      fontSize: { xs: '0.875rem', md: '1rem' },
                       color: '#666666',
-                      mb: 3,
+                      mb: 0,
                       flexGrow: 1,
-                      lineHeight: 1.6,
+                      lineHeight: 1.5,
                     }}
                   >
                     {servicio.description}
                   </Typography>
 
-                  {/* Precio */}
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      mt: 'auto',
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        bgcolor: '#FFEB5D',
-                        color: '#000000',
-                        px: 2.5,
-                        py: 1.2,
-                        borderRadius: 1,
-                      }}
-                    >
-                    <Typography
-                      variant="h4"
-                      sx={{
-                        fontSize: { xs: '1.125rem', md: '1.25rem' },
-                        fontWeight: 700,
-                        color: '#000000',
-                      }}
-                    >
-                      {servicio.price}
-                    </Typography>
-                    </Box>
-                  </Box>
+
                 </CardContent>
               </Card>
             </Box>
