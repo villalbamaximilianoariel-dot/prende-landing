@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Box, Button, Container, Typography, Paper, Accordion, AccordionSummary, AccordionDetails, Chip } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -14,6 +15,23 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const Sistema = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+  
+  const carouselImages = [
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
+    'https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=800&h=600&fit=crop',
+    'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop',
+    'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop'
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % carouselImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
+
   const handleWhatsAppClick = () => {
     const whatsappNumber = '5491100000000';
     const message = encodeURIComponent('Hola! Me interesa el Sistema de Auditoría Prende. ¿Podrían darme una demo?');
@@ -211,18 +229,49 @@ const Sistema = () => {
               </Button>
             </Box>
             
-            <Box 
-              component="img"
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
-              alt="Dashboard del sistema"
-              sx={{
-                width: '100%',
-                height: { xs: 250, md: 400 },
-                objectFit: 'cover',
-                borderRadius: 2,
-                boxShadow: '0 8px 32px rgba(255, 235, 93, 0.2)'
-              }}
-            />
+            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 2, boxShadow: '0 8px 32px rgba(255, 235, 93, 0.2)' }}>
+              {carouselImages.map((img, index) => (
+                <Box
+                  key={index}
+                  component="img"
+                  src={img}
+                  alt={`Sistema Prende ${index + 1}`}
+                  sx={{
+                    width: '100%',
+                    height: { xs: 250, md: 400 },
+                    objectFit: 'cover',
+                    position: index === 0 ? 'relative' : 'absolute',
+                    top: 0,
+                    left: 0,
+                    opacity: currentImage === index ? 1 : 0,
+                    transition: 'opacity 1s ease-in-out'
+                  }}
+                />
+              ))}
+              <Box sx={{ 
+                position: 'absolute', 
+                bottom: 16, 
+                left: '50%', 
+                transform: 'translateX(-50%)',
+                display: 'flex',
+                gap: 1
+              }}>
+                {carouselImages.map((_, index) => (
+                  <Box
+                    key={index}
+                    onClick={() => setCurrentImage(index)}
+                    sx={{
+                      width: 10,
+                      height: 10,
+                      borderRadius: '50%',
+                      bgcolor: currentImage === index ? '#FFEB5D' : 'rgba(255,255,255,0.5)',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s'
+                    }}
+                  />
+                ))}
+              </Box>
+            </Box>
           </Box>
         </Container>
       </Box>
@@ -239,133 +288,30 @@ const Sistema = () => {
               elevation={0}
               sx={{ 
                 p: 4,
-                bgcolor: '#000000',
-                color: '#FFFFFF',
-                border: '2px solid #000000',
+                bgcolor: '#F5F5F5',
+                border: '2px solid #E0E0E0',
                 transition: 'all 0.3s',
                 '&:hover': {
                   borderColor: '#FFEB5D',
                   transform: 'translateY(-4px)',
-                  boxShadow: '0 8px 24px rgba(255, 235, 93, 0.3)'
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                  bgcolor: '#FFFFFF'
                 }
               }}
             >
-              <Box sx={{ color: '#FFEB5D', mb: 2 }}>
+              <Box sx={{ color: '#000000', mb: 2 }}>
                 {func.icon}
               </Box>
-              <Typography variant="h6" sx={{ fontWeight: 600, mb: 1, color: '#FFFFFF' }}>
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, color: '#000000' }}>
                 {func.titulo}
               </Typography>
-              <Typography variant="body2" sx={{ color: '#E0E0E0', lineHeight: 1.7 }}>
+              <Typography variant="body2" sx={{ color: '#424242', lineHeight: 1.7 }}>
                 {func.descripcion}
               </Typography>
             </Paper>
           ))}
         </Box>
       </Container>
-
-      {/* Galería de Fotos */}
-      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
-        <Container maxWidth="lg">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 2, textAlign: 'center' }}>
-            El sistema en acción
-          </Typography>
-          <Typography variant="body1" sx={{ color: '#757575', mb: 6, textAlign: 'center', maxWidth: 700, mx: 'auto' }}>
-            Mirá cómo funciona Prende en negocios reales
-          </Typography>
-          
-          <Box sx={{ 
-            display: 'grid', 
-            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
-            gap: 3
-          }}>
-            <Box
-              component="img"
-              src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=600&h=400&fit=crop"
-              alt="Dashboard de auditorías"
-              sx={{
-                width: '100%',
-                height: 280,
-                objectFit: 'cover',
-                borderRadius: 2,
-                transition: 'transform 0.3s',
-                cursor: 'pointer',
-                '&:hover': { transform: 'scale(1.05)' }
-              }}
-            />
-            <Box
-              component="img"
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
-              alt="Reportes y analíticas"
-              sx={{
-                width: '100%',
-                height: 280,
-                objectFit: 'cover',
-                borderRadius: 2,
-                transition: 'transform 0.3s',
-                cursor: 'pointer',
-                '&:hover': { transform: 'scale(1.05)' }
-              }}
-            />
-            <Box
-              component="img"
-              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop"
-              alt="Equipo usando el sistema"
-              sx={{
-                width: '100%',
-                height: 280,
-                objectFit: 'cover',
-                borderRadius: 2,
-                transition: 'transform 0.3s',
-                cursor: 'pointer',
-                '&:hover': { transform: 'scale(1.05)' }
-              }}
-            />
-            <Box
-              component="img"
-              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"
-              alt="Negocio auditado"
-              sx={{
-                width: '100%',
-                height: 280,
-                objectFit: 'cover',
-                borderRadius: 2,
-                transition: 'transform 0.3s',
-                cursor: 'pointer',
-                '&:hover': { transform: 'scale(1.05)' }
-              }}
-            />
-            <Box
-              component="img"
-              src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop"
-              alt="Formularios personalizados"
-              sx={{
-                width: '100%',
-                height: 280,
-                objectFit: 'cover',
-                borderRadius: 2,
-                transition: 'transform 0.3s',
-                cursor: 'pointer',
-                '&:hover': { transform: 'scale(1.05)' }
-              }}
-            />
-            <Box
-              component="img"
-              src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop"
-              alt="Evidencias fotográficas"
-              sx={{
-                width: '100%',
-                height: 280,
-                objectFit: 'cover',
-                borderRadius: 2,
-                transition: 'transform 0.3s',
-                cursor: 'pointer',
-                '&:hover': { transform: 'scale(1.05)' }
-              }}
-            />
-          </Box>
-        </Container>
-      </Box>
 
       {/* Qué Incluye */}
       <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
