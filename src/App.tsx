@@ -81,7 +81,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router basename="/prende-landing">
+      <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auditorias" element={<Auditorias />} />
