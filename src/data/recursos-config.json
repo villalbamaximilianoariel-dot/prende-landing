@@ -1,0 +1,36 @@
+{
+  "rssFeeds": [
+    {
+      "name": "Harvard Business Review en Español",
+      "url": "https://www.hbritalia.it/rss",
+      "category": "Negocios",
+      "enabled": true
+    },
+    {
+      "name": "Entrepreneur",
+      "url": "https://www.entrepreneur.com/feed",
+      "category": "Emprendimiento",
+      "enabled": true
+    },
+    {
+      "name": "Forbes",
+      "url": "https://www.forbes.com/real-time/feed2/",
+      "category": "Negocios",
+      "enabled": true
+    }
+  ],
+  "destacados": [
+    {
+      "title": "Ejemplo de recurso destacado",
+      "url": "https://example.com",
+      "description": "Descripción del recurso que quieres destacar manualmente",
+      "image": "https://example.com/image.jpg",
+      "category": "Destacado",
+      "date": "2025-12-20"
+    }
+  ],
+  "_instrucciones": {
+    "rssFeeds": "Para AGREGAR un feed RSS: copia un bloque existente, cambia name/url/category y enabled:true. Para DESACTIVAR temporalmente: cambia enabled a false. Para ELIMINAR: borra el bloque completo.",
+    "destacados": "Para AGREGAR recurso manual: copia un bloque, cambia todos los campos. Máximo recomendado: 5-6 recursos para mantener la página limpia. Ordena por fecha (más reciente arriba)."
+  }
+}

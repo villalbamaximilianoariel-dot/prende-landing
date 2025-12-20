@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Servicios from './components/Servicios';
 import Contacto from './components/Contacto';
 import Footer from './components/Footer';
+import RecursosRecomendados from './components/RecursosRecomendados';
 import Auditorias from './pages/Auditorias';
 import Sistema from './pages/Sistema';
 import Consultoria from './pages/Consultoria';
@@ -87,6 +88,7 @@ function App() {
           <Route path="/auditorias" element={<Auditorias />} />
           <Route path="/sistema" element={<Sistema />} />
           <Route path="/consultoria" element={<Consultoria />} />
+          <Route path="/recursos" element={<RecursosRecomendados />} />
         </Routes>
       </Router>
     </ThemeProvider>
