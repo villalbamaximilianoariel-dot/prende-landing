@@ -48,9 +48,10 @@ Los archivos se generan en `/dist`
 
 ## 🌐 Deploy
 
-Deploy automático a GitHub Pages mediante GitHub Actions cuando se hace push a `main` con cambios en la carpeta `/landing`.
+Deploy automático a GitHub Pages con dominio personalizado.
 
-**URL Producción**: https://villalbamaximilianoariel-dot.github.io/Audit-v2/landing/
+**URL Producción**: https://prende.com.ar
+**GitHub Pages**: https://villalbamaximilianoariel-dot.github.io/
 
 ## 📝 Secciones
 
