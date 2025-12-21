@@ -36,14 +36,14 @@ export default function RecursosCarousel() {
     try {
       setLoading(true);
       
-      // Obtener RSS items
-      const rssItems = await fetchAllFeeds(recursosConfig.rssFeeds, 5);
+      // Obtener más RSS items (3 items por feed = 9 total)
+      const rssItems = await fetchAllFeeds(recursosConfig.rssFeeds, 3);
       
       // Obtener destacados
       const destacados = recursosConfig.destacados as RecursoDestacado[];
       
       // Combinar y transformar a formato uniforme
-      const recursosRSS = rssItems.slice(0, 2).map((item: RSSItem) => ({
+      const recursosRSS = rssItems.map((item: RSSItem) => ({
         title: item.title,
         url: item.link,
         description: item.description,
@@ -52,12 +52,12 @@ export default function RecursosCarousel() {
         date: item.pubDate,
       }));
 
-      const recursosDestacados = destacados.slice(0, 1);
+      const recursosDestacados = destacados;
       
-      // Mezclar: 1 destacado + 2 RSS
+      // Mezclar: destacados + RSS (hasta 9 items)
       const todosCombinados = [...recursosDestacados, ...recursosRSS];
       
-      setRecursos(todosCombinados.slice(0, 3));
+      setRecursos(todosCombinados.slice(0, 9));
     } catch (error) {
       console.error('Error cargando recursos:', error);
       setRecursos([]);

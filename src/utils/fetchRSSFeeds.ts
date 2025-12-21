@@ -94,10 +94,14 @@ function parseAtomFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RS
     const summary = entry.querySelector('summary, content')?.textContent || '';
     const published = entry.querySelector('published, updated')?.textContent || new Date().toISOString();
     
-    // Intentar obtener imagen
+    // Intentar obtener imagen (YouTube usa media:thumbnail)
     let thumbnail = '';
+    const mediaThumbnail = entry.querySelector('media\\:thumbnail, thumbnail');
     const mediaContent = entry.querySelector('media\\:content, content[type^="image"]');
-    if (mediaContent) {
+    
+    if (mediaThumbnail) {
+      thumbnail = mediaThumbnail.getAttribute('url') || '';
+    } else if (mediaContent) {
       thumbnail = mediaContent.getAttribute('url') || mediaContent.getAttribute('src') || '';
     }
     
@@ -134,8 +138,8 @@ export async function fetchSingleFeed(
   maxItems: number = 5
 ): Promise<RSSItem[]> {
   try {
-    // Usar corsproxy.io como CORS proxy
-    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(feed.url)}`;
+    // Usar allorigins.win con get endpoint para mejor compatibilidad
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(feed.url)}`;
     
     const response = await fetch(proxyUrl);
     
@@ -143,7 +147,8 @@ export async function fetchSingleFeed(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     
-    const xmlText = await response.text();
+    const data = await response.json();
+    const xmlText = data.contents;
     return parseRSSFromXML(xmlText, feed, maxItems);
     
   } catch (error) {
