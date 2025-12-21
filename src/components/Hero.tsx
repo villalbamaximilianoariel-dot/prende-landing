@@ -7,6 +7,11 @@ const Hero = () => {
     window.open('https://wa.me/5491100000000?text=Hola%20Prende%2C%20quiero%20solicitar%20una%20demo', '_blank');
   };
 
+  const scrollToServicios = () => {
+    const element = document.getElementById('servicios');
+    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <Box
       sx={{
@@ -109,7 +114,7 @@ const Hero = () => {
             <Button
               variant="contained"
               size="large"
-              href="#servicios"
+              onClick={scrollToServicios}
               sx={{
                 bgcolor: '#000000',
                 color: '#FFFFFF',
@@ -121,6 +126,7 @@ const Hero = () => {
                 textTransform: 'none',
                 minWidth: { xs: '280px', sm: 'auto' },
                 border: '2px solid #FFFFFF',
+                cursor: 'pointer',
                 '&:hover': {
                   bgcolor: '#333333',
                   borderColor: '#FFEB5D',
