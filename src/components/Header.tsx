@@ -1,8 +1,11 @@
 import { AppBar, Toolbar, Container, Button, Box } from '@mui/material';
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,6 +15,21 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      // Si no estamos en home, navegar primero
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    } else {
+      // Si ya estamos en home, solo hacer scroll
+      const element = document.getElementById(sectionId);
+      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <AppBar
@@ -62,12 +80,13 @@ const Header = () => {
             }}
           >
             <Button
-              href="/#servicios"
+              onClick={() => scrollToSection('servicios')}
               sx={{
                 color: '#FFFFFF',
                 fontSize: { sm: '0.9375rem', md: '1rem' },
                 fontWeight: 500,
                 textTransform: 'none',
+                cursor: 'pointer',
                 '&:hover': {
                   bgcolor: 'transparent',
                   color: '#FFEB5D',
@@ -94,7 +113,7 @@ const Header = () => {
             </Button>
 
             <Button
-              href="/#contacto"
+              onClick={() => scrollToSection('contacto')}
               variant="contained"
               sx={{
                 bgcolor: '#FFEB5D',
@@ -106,6 +125,7 @@ const Header = () => {
                 borderRadius: 1,
                 textTransform: 'none',
                 boxShadow: 'none',
+                cursor: 'pointer',
                 '&:hover': {
                   bgcolor: '#FFE135',
                   boxShadow: 'none',
@@ -118,7 +138,7 @@ const Header = () => {
 
           {/* Mobile CTA */}
           <Button
-            href="/#contacto"
+            onClick={() => scrollToSection('contacto')}
             variant="contained"
             size="small"
             sx={{
@@ -132,6 +152,7 @@ const Header = () => {
               borderRadius: 1,
               textTransform: 'none',
               boxShadow: 'none',
+              cursor: 'pointer',
               '&:hover': {
                 bgcolor: '#FFE135',
                 boxShadow: 'none',
