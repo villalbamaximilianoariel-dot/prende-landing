@@ -131,30 +131,46 @@ function stripHtml(html: string): string {
 }
 
 /**
- * Obtiene items de un feed RSS individual usando CORS proxy
+ * Obtiene items de un feed RSS individual, intenta directo primero, luego con proxy
  */
 export async function fetchSingleFeed(
   feed: FeedSource,
   maxItems: number = 5
 ): Promise<RSSItem[]> {
-  try {
-    // Usar allorigins.win con get endpoint para mejor compatibilidad
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(feed.url)}`;
-    
-    const response = await fetch(proxyUrl);
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+  // Lista de proxies CORS para intentar
+  const corsProxies = [
+    '', // Intento directo sin proxy
+    'https://api.allorigins.win/raw?url=',
+    'https://corsproxy.io/?',
+  ];
+
+  for (const proxy of corsProxies) {
+    try {
+      const url = proxy ? `${proxy}${encodeURIComponent(feed.url)}` : feed.url;
+      const response = await fetch(url, {
+        signal: AbortSignal.timeout(8000), // 8 segundos timeout
+      });
+      
+      if (!response.ok) {
+        continue; // Intentar siguiente proxy
+      }
+      
+      const xmlText = await response.text();
+      const items = parseRSSFromXML(xmlText, feed, maxItems);
+      
+      if (items.length > 0) {
+        return items; // Éxito
+      }
+      
+    } catch (error) {
+      // Continuar con el siguiente proxy
+      if (proxy === corsProxies[corsProxies.length - 1]) {
+        console.error(`Error fetching feed ${feed.name} after all attempts:`, error);
+      }
     }
-    
-    const data = await response.json();
-    const xmlText = data.contents;
-    return parseRSSFromXML(xmlText, feed, maxItems);
-    
-  } catch (error) {
-    console.error(`Error fetching feed ${feed.name}:`, error);
-    return [];
   }
+  
+  return []; // Todos los intentos fallaron
 }
 
 /**
