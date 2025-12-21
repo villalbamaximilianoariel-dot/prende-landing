@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Prende - Redireccionando...</title>
+    <script>
+      // Redirigir a la página principal con la ruta como hash
+      const path = window.location.pathname.slice(1);
+      if (path) {
+        window.location.replace('/#' + path);
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
