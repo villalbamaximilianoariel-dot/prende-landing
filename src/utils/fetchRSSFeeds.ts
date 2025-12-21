@@ -131,25 +131,31 @@ function stripHtml(html: string): string {
 }
 
 /**
- * Obtiene items de un feed RSS individual, intenta directo primero, luego con proxy
+ * Obtiene items de un feed RSS individual usando proxy CORS
  */
 export async function fetchSingleFeed(
   feed: FeedSource,
   maxItems: number = 5
 ): Promise<RSSItem[]> {
-  // Lista de proxies CORS para intentar
+  // Lista de proxies CORS ordenados por confiabilidad
   const corsProxies = [
-    '', // Intento directo sin proxy
     'https://api.allorigins.win/raw?url=',
     'https://corsproxy.io/?',
   ];
 
-  for (const proxy of corsProxies) {
+  for (let i = 0; i < corsProxies.length; i++) {
+    const proxy = corsProxies[i];
     try {
-      const url = proxy ? `${proxy}${encodeURIComponent(feed.url)}` : feed.url;
+      const url = `${proxy}${encodeURIComponent(feed.url)}`;
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 segundos
+      
       const response = await fetch(url, {
-        signal: AbortSignal.timeout(8000), // 8 segundos timeout
+        signal: controller.signal,
+        mode: 'cors',
       });
+      
+      clearTimeout(timeoutId);
       
       if (!response.ok) {
         continue; // Intentar siguiente proxy
@@ -163,10 +169,11 @@ export async function fetchSingleFeed(
       }
       
     } catch (error) {
-      // Continuar con el siguiente proxy
-      if (proxy === corsProxies[corsProxies.length - 1]) {
-        console.error(`Error fetching feed ${feed.name} after all attempts:`, error);
+      // Silenciar errores intermedios, solo mostrar el último
+      if (i === corsProxies.length - 1) {
+        console.warn(`Feed ${feed.name} no disponible temporalmente`);
       }
+      continue;
     }
   }
   
