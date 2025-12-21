@@ -35,7 +35,7 @@ const Header = () => {
           {/* Logo */}
           <Box
             component="a"
-            href="#"
+            href="/#"
             sx={{
               display: 'flex',
               alignItems: 'center',
@@ -62,7 +62,7 @@ const Header = () => {
             }}
           >
             <Button
-              href="#servicios"
+              href="/#servicios"
               sx={{
                 color: '#FFFFFF',
                 fontSize: { sm: '0.9375rem', md: '1rem' },
@@ -78,7 +78,7 @@ const Header = () => {
             </Button>
 
             <Button
-              href="#blog"
+              href="/#/blog"
               sx={{
                 color: '#FFFFFF',
                 fontSize: { sm: '0.9375rem', md: '1rem' },
@@ -94,7 +94,7 @@ const Header = () => {
             </Button>
 
             <Button
-              href="#contacto"
+              href="/#contacto"
               variant="contained"
               sx={{
                 bgcolor: '#FFEB5D',
@@ -118,7 +118,7 @@ const Header = () => {
 
           {/* Mobile CTA */}
           <Button
-            href="#contacto"
+            href="/#contacto"
             variant="contained"
             size="small"
             sx={{

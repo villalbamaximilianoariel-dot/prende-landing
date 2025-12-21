@@ -93,6 +93,7 @@ export default function RecursosRecomendados() {
           minHeight: '100vh',
           bgcolor: '#FFFFFF',
           py: 8,
+          pt: { xs: 12, md: 14 },
         }}
       >
       <Container maxWidth="lg">
