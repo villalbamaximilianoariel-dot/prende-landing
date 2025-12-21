@@ -305,7 +305,7 @@ export default function RecursosCarousel() {
         {/* CTA Button */}
         <Box sx={{ textAlign: 'center', mt: 4 }}>
           <Button
-            href="/blog"
+            href="/#/blog"
             variant="contained"
             endIcon={<ArrowForward />}
             sx={{
