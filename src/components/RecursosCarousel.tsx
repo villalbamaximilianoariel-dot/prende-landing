@@ -135,10 +135,10 @@ export default function RecursosCarousel() {
               }}
             >
               {recursos.map((recurso, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide key={index} style={{ height: 'auto' }}>
                   <Card
                     sx={{
-                      height: '100%',
+                      height: '480px',
                       display: 'flex',
                       flexDirection: 'column',
                       borderRadius: 2,
@@ -164,12 +164,21 @@ export default function RecursosCarousel() {
                     >
                       <CardMedia
                         component="img"
-                        height="220"
+                        height="200"
                         image={recurso.image}
                         alt={recurso.title}
-                        sx={{ objectFit: 'cover' }}
+                        sx={{ 
+                          objectFit: 'cover',
+                          flexShrink: 0,
+                        }}
                       />
-                      <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                      <CardContent sx={{ 
+                        flexGrow: 1, 
+                        p: 3,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        overflow: 'hidden',
+                      }}>
                         <Chip
                           label={recurso.category}
                           size="small"
@@ -178,6 +187,7 @@ export default function RecursosCarousel() {
                             color: '#000000',
                             fontWeight: 600,
                             mb: 2,
+                            alignSelf: 'flex-start',
                           }}
                         />
                         <Typography
@@ -188,6 +198,12 @@ export default function RecursosCarousel() {
                             mb: 1,
                             fontSize: '1.1rem',
                             lineHeight: 1.3,
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            minHeight: '2.6rem',
                           }}
                         >
                           {recurso.title}
@@ -202,6 +218,7 @@ export default function RecursosCarousel() {
                             display: '-webkit-box',
                             WebkitLineClamp: 3,
                             WebkitBoxOrient: 'vertical',
+                            flexGrow: 1,
                           }}
                         >
                           {recurso.description}
