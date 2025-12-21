@@ -78,7 +78,7 @@ const Header = () => {
             </Button>
 
             <Button
-              href="/prende-landing/recursos"
+              href="#recursos"
               sx={{
                 color: '#FFFFFF',
                 fontSize: { sm: '0.9375rem', md: '1rem' },

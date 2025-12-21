@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Servicios from './components/Servicios';
 import Contacto from './components/Contacto';
+import RecursosCarousel from './components/RecursosCarousel';
 import Footer from './components/Footer';
 import RecursosRecomendados from './components/RecursosRecomendados';
 import Auditorias from './pages/Auditorias';
@@ -73,6 +74,7 @@ const Home = () => (
     <Header />
     <Hero />
     <Servicios />
+    <RecursosCarousel />
     <Contacto />
     <Footer />
   </Box>
@@ -82,7 +84,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router basename="/prende-landing">
+      <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auditorias" element={<Auditorias />} />
