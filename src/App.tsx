@@ -90,7 +90,7 @@ function App() {
           <Route path="/auditorias" element={<Auditorias />} />
           <Route path="/sistema" element={<Sistema />} />
           <Route path="/consultoria" element={<Consultoria />} />
-          <Route path="/recursos" element={<RecursosRecomendados />} />
+          <Route path="/blog" element={<RecursosRecomendados />} />
         </Routes>
       </Router>
     </ThemeProvider>

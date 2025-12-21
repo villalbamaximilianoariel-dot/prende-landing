@@ -1,36 +1,28 @@
 {
   "rssFeeds": [
     {
-      "name": "Harvard Business Review en Español",
-      "url": "https://www.hbritalia.it/rss",
-      "category": "Negocios",
+      "name": "Empresarios con Impacto",
+      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCDFajagyC0Rq7l5mRSdUnIA",
+      "category": "YouTube",
       "enabled": true
     },
     {
-      "name": "Entrepreneur",
-      "url": "https://www.entrepreneur.com/feed",
-      "category": "Emprendimiento",
+      "name": "La Fábrica Del Podcast",
+      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCj_sy8Cm1-VzrfnfGHTFDbA",
+      "category": "Podcast",
       "enabled": true
     },
     {
-      "name": "Forbes",
-      "url": "https://www.forbes.com/real-time/feed2/",
-      "category": "Negocios",
+      "name": "Ipsos Argentina",
+      "url": "https://www.ipsos.com/es-ar/rss.xml",
+      "category": "Insights",
       "enabled": true
     }
   ],
-  "destacados": [
-    {
-      "title": "Ejemplo de recurso destacado",
-      "url": "https://example.com",
-      "description": "Descripción del recurso que quieres destacar manualmente",
-      "image": "https://example.com/image.jpg",
-      "category": "Destacado",
-      "date": "2025-12-20"
-    }
-  ],
+  "destacados": [],
   "_instrucciones": {
     "rssFeeds": "Para AGREGAR un feed RSS: copia un bloque existente, cambia name/url/category y enabled:true. Para DESACTIVAR temporalmente: cambia enabled a false. Para ELIMINAR: borra el bloque completo.",
-    "destacados": "Para AGREGAR recurso manual: copia un bloque, cambia todos los campos. Máximo recomendado: 5-6 recursos para mantener la página limpia. Ordena por fecha (más reciente arriba)."
+    "destacados": "Para AGREGAR recurso manual: copia un bloque, cambia todos los campos. Máximo recomendado: 5-6 recursos para mantener la página limpia. Ordena por fecha (más reciente arriba).",
+    "youtube": "Para YouTube necesitas el Channel ID (no el @handle). Una vez lo tengas, usa: https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID"
   }
 }

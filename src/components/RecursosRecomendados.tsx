@@ -103,7 +103,7 @@ export default function RecursosRecomendados() {
               mb: 2,
             }}
           >
-            Recursos Recomendados
+            Blog
           </Typography>
           <Typography
             variant="h6"

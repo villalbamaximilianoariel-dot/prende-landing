@@ -68,7 +68,7 @@ export default function RecursosCarousel() {
 
   return (
     <Box
-      id="recursos"
+      id="blog"
       sx={{
         bgcolor: '#F5F5F5',
         py: 8,
@@ -85,7 +85,7 @@ export default function RecursosCarousel() {
               mb: 2,
             }}
           >
-            Recursos Recomendados
+            Blogs recomendados
           </Typography>
           <Typography
             variant="h6"
@@ -108,10 +108,13 @@ export default function RecursosCarousel() {
               modules={[Navigation, Autoplay, Pagination]}
               spaceBetween={30}
               slidesPerView={1}
+              loop={true}
               autoplay={{
-                delay: 5000,
+                delay: 3000,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true,
               }}
+              speed={800}
               pagination={{
                 clickable: true,
                 dynamicBullets: true,
@@ -140,10 +143,11 @@ export default function RecursosCarousel() {
                       flexDirection: 'column',
                       borderRadius: 2,
                       overflow: 'hidden',
-                      transition: 'transform 0.2s, box-shadow 0.2s',
+                      boxShadow: 'none',
+                      border: '1px solid #E0E0E0',
+                      transition: 'transform 0.2s',
                       '&:hover': {
-                        transform: 'translateY(-8px)',
-                        boxShadow: '0 12px 28px rgba(0,0,0,0.15)',
+                        transform: 'translateY(-4px)',
                       },
                     }}
                   >
@@ -233,11 +237,11 @@ export default function RecursosCarousel() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                  border: '1px solid #E0E0E0',
                   transition: 'all 0.2s',
                   '&:hover': {
                     bgcolor: '#FFE135',
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.05)',
                   },
                 }}
               >
@@ -265,11 +269,11 @@ export default function RecursosCarousel() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                  border: '1px solid #E0E0E0',
                   transition: 'all 0.2s',
                   '&:hover': {
                     bgcolor: '#FFE135',
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.05)',
                   },
                 }}
               >
@@ -282,7 +286,7 @@ export default function RecursosCarousel() {
         {/* CTA Button */}
         <Box sx={{ textAlign: 'center', mt: 4 }}>
           <Button
-            href="/recursos"
+            href="/blog"
             variant="contained"
             endIcon={<ArrowForward />}
             sx={{
@@ -294,11 +298,9 @@ export default function RecursosCarousel() {
               fontWeight: 600,
               borderRadius: 2,
               textTransform: 'none',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
               '&:hover': {
                 bgcolor: '#333333',
                 transform: 'translateY(-2px)',
-                boxShadow: '0 6px 16px rgba(0,0,0,0.3)',
               },
               transition: 'all 0.2s',
             }}

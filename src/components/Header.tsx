@@ -78,7 +78,7 @@ const Header = () => {
             </Button>
 
             <Button
-              href="#recursos"
+              href="#blog"
               sx={{
                 color: '#FFFFFF',
                 fontSize: { sm: '0.9375rem', md: '1rem' },
@@ -90,7 +90,7 @@ const Header = () => {
                 },
               }}
             >
-              Recursos
+              Blog
             </Button>
 
             <Button
