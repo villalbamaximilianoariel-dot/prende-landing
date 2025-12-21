@@ -83,6 +83,7 @@ export default function RecursosCarousel() {
               fontWeight: 700,
               color: '#000000',
               mb: 2,
+              fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' }
             }}
           >
             Blogs recomendados
@@ -94,6 +95,7 @@ export default function RecursosCarousel() {
               maxWidth: '700px',
               mx: 'auto',
               mb: 4,
+              fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.25rem' }
             }}
           >
             Contenidos seleccionados sobre negocios, gestión y emprendimiento

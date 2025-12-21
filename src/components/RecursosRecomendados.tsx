@@ -94,13 +94,13 @@ export default function RecursosRecomendados() {
       <Container maxWidth="lg">
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <RssFeed sx={{ fontSize: 60, color: '#FFEB5D', mb: 2 }} />
           <Typography
-            variant="h2"
+            variant="h3"
             sx={{
               fontWeight: 700,
               color: '#000000',
               mb: 2,
+              fontSize: { xs: '2rem', md: '2.5rem' }
             }}
           >
             Blogs Recomendados
@@ -109,12 +109,14 @@ export default function RecursosRecomendados() {
             variant="h6"
             sx={{
               color: '#666666',
-              maxWidth: '800px',
+              maxWidth: '700px',
               mx: 'auto',
+              mb: 4,
+              fontSize: { xs: '1rem', md: '1.25rem' }
             }}
           >
             Contenidos seleccionados sobre negocios, gestión y emprendimiento
-            que pueden ayudarte a tomar mejores decisiones.
+            para ayudarte a tomar mejores decisiones
           </Typography>
         </Box>
 
