@@ -18,6 +18,8 @@ import { RssFeed, Star } from '@mui/icons-material';
 import { fetchAllFeeds, formatDate } from '../utils/fetchRSSFeeds';
 import type { RSSItem } from '../utils/fetchRSSFeeds';
 import recursosConfig from '../data/recursos-config.json';
+import Header from './Header';
+import Footer from './Footer';
 
 interface RecursoDestacado {
   title: string;
@@ -84,13 +86,15 @@ export default function RecursosRecomendados() {
   const filteredData = getFilteredItems();
 
   return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        bgcolor: '#FFFFFF',
-        py: 8,
-      }}
-    >
+    <>
+      <Header />
+      <Box
+        sx={{
+          minHeight: '100vh',
+          bgcolor: '#FFFFFF',
+          py: 8,
+        }}
+      >
       <Container maxWidth="lg">
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
@@ -374,5 +378,7 @@ export default function RecursosRecomendados() {
         )}
       </Container>
     </Box>
+    <Footer />
+    </>
   );
 }
