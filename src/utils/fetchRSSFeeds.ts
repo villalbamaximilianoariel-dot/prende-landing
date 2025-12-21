@@ -61,6 +61,14 @@ function parseRSSFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RSS
       thumbnail = enclosure.getAttribute('url') || '';
     }
     
+    // Si no hay thumbnail, extraer de description HTML (caso Ipsos)
+    if (!thumbnail && description.includes('<img')) {
+      const imgMatch = description.match(/src=["']([^"']+)["']/);
+      if (imgMatch) {
+        thumbnail = imgMatch[1];
+      }
+    }
+    
     // Limpiar HTML de la descripción
     const cleanDescription = stripHtml(description).substring(0, 200);
     

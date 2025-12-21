@@ -14,7 +14,7 @@ import {
   CircularProgress,
   Alert,
 } from '@mui/material';
-import { RssFeed, Star, OpenInNew } from '@mui/icons-material';
+import { RssFeed, Star } from '@mui/icons-material';
 import { fetchAllFeeds, formatDate } from '../utils/fetchRSSFeeds';
 import type { RSSItem } from '../utils/fetchRSSFeeds';
 import recursosConfig from '../data/recursos-config.json';
@@ -176,13 +176,16 @@ export default function RecursosRecomendados() {
                     <Grid item xs={12} sm={6} md={4} key={index}>
                       <Card
                         sx={{
-                          height: '100%',
+                          height: '480px',
                           display: 'flex',
                           flexDirection: 'column',
-                          transition: 'transform 0.2s, box-shadow 0.2s',
+                          borderRadius: 2,
+                          overflow: 'hidden',
+                          boxShadow: 'none',
+                          border: '1px solid #E0E0E0',
+                          transition: 'transform 0.2s',
                           '&:hover': {
                             transform: 'translateY(-4px)',
-                            boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
                           },
                         }}
                       >
@@ -198,32 +201,51 @@ export default function RecursosRecomendados() {
                               height="200"
                               image={recurso.image}
                               alt={recurso.title}
-                              sx={{ objectFit: 'cover' }}
+                              sx={{ objectFit: 'cover', flexShrink: 0 }}
                             />
                           )}
-                          <CardContent sx={{ flexGrow: 1 }}>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', mb: 1 }}>
-                              <Chip
-                                label={recurso.category}
-                                size="small"
-                                sx={{
-                                  bgcolor: '#FFEB5D',
-                                  color: '#000000',
-                                  fontWeight: 600,
-                                }}
-                              />
-                              <OpenInNew sx={{ fontSize: 18, color: '#999' }} />
-                            </Box>
+                          <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', p: 3 }}>
+                            <Chip
+                              label={recurso.category}
+                              size="small"
+                              sx={{
+                                bgcolor: '#FFEB5D',
+                                color: '#000000',
+                                fontWeight: 600,
+                                mb: 2,
+                                alignSelf: 'flex-start',
+                              }}
+                            />
                             <Typography
                               variant="h6"
-                              sx={{ fontWeight: 600, mb: 1, color: '#000000' }}
+                              sx={{ 
+                                fontWeight: 600, 
+                                mb: 1, 
+                                color: '#000000',
+                                fontSize: '1.1rem',
+                                lineHeight: 1.3,
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                display: '-webkit-box',
+                                WebkitLineClamp: 2,
+                                WebkitBoxOrient: 'vertical',
+                                minHeight: '2.6rem',
+                              }}
                             >
                               {recurso.title}
                             </Typography>
                             <Typography
                               variant="body2"
                               color="text.secondary"
-                              sx={{ mb: 2 }}
+                              sx={{ 
+                                mb: 2,
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                display: '-webkit-box',
+                                WebkitLineClamp: 3,
+                                WebkitBoxOrient: 'vertical',
+                                flexGrow: 1,
+                              }}
                             >
                               {recurso.description}
                             </Typography>
@@ -253,13 +275,16 @@ export default function RecursosRecomendados() {
                     <Grid item xs={12} sm={6} md={4} key={index}>
                       <Card
                         sx={{
-                          height: '100%',
+                          height: '480px',
                           display: 'flex',
                           flexDirection: 'column',
-                          transition: 'transform 0.2s, box-shadow 0.2s',
+                          borderRadius: 2,
+                          overflow: 'hidden',
+                          boxShadow: 'none',
+                          border: '1px solid #E0E0E0',
+                          transition: 'transform 0.2s',
                           '&:hover': {
                             transform: 'translateY(-4px)',
-                            boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
                           },
                         }}
                       >
@@ -275,25 +300,36 @@ export default function RecursosRecomendados() {
                               height="200"
                               image={item.thumbnail}
                               alt={item.title}
-                              sx={{ objectFit: 'cover' }}
+                              sx={{ objectFit: 'cover', flexShrink: 0 }}
                             />
                           )}
-                          <CardContent sx={{ flexGrow: 1 }}>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', mb: 1 }}>
-                              <Chip
-                                label={item.source}
-                                size="small"
-                                sx={{
-                                  bgcolor: '#F5F5F5',
-                                  color: '#000000',
-                                  fontWeight: 600,
-                                }}
-                              />
-                              <OpenInNew sx={{ fontSize: 18, color: '#999' }} />
-                            </Box>
+                          <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', p: 3 }}>
+                            <Chip
+                              label={item.source}
+                              size="small"
+                              sx={{
+                                bgcolor: '#FFEB5D',
+                                color: '#000000',
+                                fontWeight: 600,
+                                mb: 2,
+                                alignSelf: 'flex-start',
+                              }}
+                            />
                             <Typography
                               variant="h6"
-                              sx={{ fontWeight: 600, mb: 1, color: '#000000', fontSize: '1rem' }}
+                              sx={{ 
+                                fontWeight: 600, 
+                                mb: 1, 
+                                color: '#000000', 
+                                fontSize: '1.1rem',
+                                lineHeight: 1.3,
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                display: '-webkit-box',
+                                WebkitLineClamp: 2,
+                                WebkitBoxOrient: 'vertical',
+                                minHeight: '2.6rem',
+                              }}
                             >
                               {item.title}
                             </Typography>
@@ -307,6 +343,7 @@ export default function RecursosRecomendados() {
                                 display: '-webkit-box',
                                 WebkitLineClamp: 3,
                                 WebkitBoxOrient: 'vertical',
+                                flexGrow: 1,
                               }}
                             >
                               {item.description}
