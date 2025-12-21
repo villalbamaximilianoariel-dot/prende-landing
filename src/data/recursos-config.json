@@ -1,15 +1,15 @@
 {
   "rssFeeds": [
     {
-      "name": "Empresarios con Impacto",
+      "name": "La Fábrica del Podcast",
       "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCDFajagyC0Rq7l5mRSdUnIA",
-      "category": "YouTube",
+      "category": "Podcast",
       "enabled": true
     },
     {
-      "name": "La Fábrica Del Podcast",
+      "name": "Empresarios Con Impacto",
       "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCj_sy8Cm1-VzrfnfGHTFDbA",
-      "category": "Podcast",
+      "category": "YouTube",
       "enabled": true
     },
     {
