@@ -108,7 +108,7 @@ export default function RecursosCarousel() {
               modules={[Navigation, Autoplay, Pagination]}
               spaceBetween={30}
               slidesPerView={1}
-              loop={true}
+              loop={recursos.length > 3}
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
@@ -121,11 +121,11 @@ export default function RecursosCarousel() {
               }}
               breakpoints={{
                 640: {
-                  slidesPerView: 2,
+                  slidesPerView: Math.min(2, recursos.length),
                   spaceBetween: 20,
                 },
                 1024: {
-                  slidesPerView: 3,
+                  slidesPerView: Math.min(3, recursos.length),
                   spaceBetween: 30,
                 },
               }}

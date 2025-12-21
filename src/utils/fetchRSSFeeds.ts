@@ -134,8 +134,8 @@ export async function fetchSingleFeed(
   maxItems: number = 5
 ): Promise<RSSItem[]> {
   try {
-    // Usar allorigins.win como CORS proxy gratuito
-    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(feed.url)}`;
+    // Usar corsproxy.io como CORS proxy
+    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(feed.url)}`;
     
     const response = await fetch(proxyUrl);
     
