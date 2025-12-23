@@ -74,8 +74,8 @@ const Home = () => (
     <Header />
     <Hero />
     <Servicios />
-    <RecursosCarousel />
     <Contacto />
+    <RecursosCarousel />
     <Footer />
   </Box>
 );
