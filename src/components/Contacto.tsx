@@ -25,7 +25,7 @@ const Contacto = () => {
     <Box
       id="contacto"
       sx={{
-        bgcolor: '#FFFFFF',
+        bgcolor: '#000000',
         py: { xs: 8, md: 12 },
       }}
     >
@@ -37,7 +37,7 @@ const Contacto = () => {
             sx={{
               fontSize: { xs: '1.75rem', sm: '2.25rem', md: '2.75rem' },
               fontWeight: 700,
-              color: '#000000',
+              color: '#FFFFFF',
               mb: 2,
             }}
           >
@@ -47,7 +47,7 @@ const Contacto = () => {
             variant="body1"
             sx={{
               fontSize: { xs: '1rem', md: '1.125rem' },
-              color: '#666666',
+              color: '#CCCCCC',
               maxWidth: '500px',
               mx: 'auto',
             }}
@@ -101,8 +101,8 @@ const Contacto = () => {
             startIcon={<EmailIcon sx={{ fontSize: '28px !important' }} />}
             onClick={handleEmailClick}
             sx={{
-              bgcolor: '#000000',
-              color: '#FFFFFF',
+              bgcolor: '#FFFFFF',
+              color: '#000000',
               py: { xs: 2, md: 2.5 },
               fontSize: { xs: '1rem', md: '1.125rem' },
               fontWeight: 600,
@@ -110,8 +110,8 @@ const Contacto = () => {
               textTransform: 'none',
               boxShadow: 'none',
               '&:hover': {
-                bgcolor: '#333333',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                bgcolor: '#F5F5F5',
+                boxShadow: '0 4px 12px rgba(255, 255, 255, 0.3)',
               },
             }}
           >
@@ -123,7 +123,7 @@ const Contacto = () => {
         <Box
           sx={{
             height: 1,
-            bgcolor: '#E0E0E0',
+            bgcolor: '#333333',
             my: { xs: 5, md: 6 },
           }}
         />
@@ -135,7 +135,7 @@ const Contacto = () => {
             sx={{
               fontSize: { xs: '1rem', md: '1.125rem' },
               fontWeight: 600,
-              color: '#000000',
+              color: '#FFFFFF',
               mb: 3,
               textAlign: 'center',
             }}
@@ -183,13 +183,13 @@ const Contacto = () => {
                 minWidth: { xs: 56, md: 64 },
                 minHeight: { xs: 56, md: 64 },
                 borderRadius: 2,
-                bgcolor: '#000000',
-                color: '#FFFFFF',
+                bgcolor: '#FFEB5D',
+                color: '#000000',
                 p: 0,
                 boxShadow: 'none',
                 '&:hover': {
-                  bgcolor: '#333333',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                  bgcolor: '#FFE135',
+                  boxShadow: '0 4px 12px rgba(255, 235, 93, 0.4)',
                 },
               }}
             >
