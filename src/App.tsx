@@ -2,6 +2,7 @@ import { ThemeProvider, createTheme, CssBaseline, Box } from '@mui/material';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import PorQuePrente from './components/PorQuePrente';
 import Servicios from './components/Servicios';
 import Contacto from './components/Contacto';
 import RecursosCarousel from './components/RecursosCarousel';
@@ -73,6 +74,7 @@ const Home = () => (
   <Box sx={{ bgcolor: 'background.default' }}>
     <Header />
     <Hero />
+    <PorQuePrente />
     <Servicios />
     <Contacto />
     <RecursosCarousel />

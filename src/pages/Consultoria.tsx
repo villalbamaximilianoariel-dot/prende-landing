@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Box, Button, Container, Typography, Paper, Accordion, AccordionSummary, AccordionDetails, Chip } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
@@ -14,6 +14,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const Consultoria = () => {
+  const navigate = useNavigate();
   const [currentImage, setCurrentImage] = useState(0);
   
   const carouselImages = [
@@ -35,6 +36,14 @@ const Consultoria = () => {
     const whatsappNumber = '5491100000000';
     const message = encodeURIComponent('Hola! Me interesa el servicio de Consultoría Comercial Aplicada. ¿Podrían darme más información?');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+  };
+
+  const handleVolverServicios = () => {
+    navigate('/');
+    setTimeout(() => {
+      const element = document.getElementById('servicios');
+      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
   const areas = [
@@ -193,8 +202,7 @@ const Consultoria = () => {
       >
         <Container maxWidth="lg">
           <Button
-            component={RouterLink}
-            to="/#servicios"
+            onClick={handleVolverServicios}
             startIcon={<ArrowBackIcon />}
             sx={{ 
               color: '#FFEB5D',

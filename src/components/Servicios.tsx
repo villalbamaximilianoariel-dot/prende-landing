@@ -20,7 +20,7 @@ const servicios: Servicio[] = [
     title: 'Sistema de auditoría Prende',
     description:
       'Plataforma para registrar auditorías, generar puntajes, informes y KPIs de forma simple.',
-    price: 'desde 39990',
+    price: 'desde $39990/mes',
     route: '/sistema',
   },
   {
@@ -29,7 +29,7 @@ const servicios: Servicio[] = [
     title: 'Auditorías comerciales y operativas',
     description:
       'Evaluación presencial o remota del cumplimiento operativo, atención al cliente y estándares comerciales.',
-    price: 'desde 79990',
+    price: 'desde $79990/mes',
     route: '/auditorias',
   },
   {
@@ -38,7 +38,7 @@ const servicios: Servicio[] = [
     title: 'Consultoría comercial aplicada',
     description:
       'Análisis de resultados, recomendaciones prácticas y acompañamiento para mejorar ventas y procesos.',
-    price: 'desde 129990',
+    price: 'desde $129990',
     route: '/consultoria',
   },
 ];
@@ -112,6 +112,8 @@ const Servicios = () => {
                   border: '2px solid #000000',
                   borderRadius: 2,
                   boxShadow: 'none',
+                  position: 'relative',
+                  overflow: 'visible',
                   transition: 'all 0.3s ease',
                   '&:hover': {
                     transform: 'translateY(-8px)',
@@ -120,6 +122,34 @@ const Servicios = () => {
                   },
                 }}
               >
+                {/* Badge de precio en la esquina */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: -12,
+                    right: 16,
+                    bgcolor: '#FFEB5D',
+                    color: '#000000',
+                    px: 2,
+                    py: 0.75,
+                    borderRadius: 1,
+                    border: '2px solid #000000',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                    zIndex: 1,
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontSize: { xs: '0.75rem', md: '0.875rem' },
+                      fontWeight: 700,
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {servicio.price}
+                  </Typography>
+                </Box>
+
                 <CardContent
                   sx={{
                     p: { xs: 2.5, md: 4 },
@@ -166,7 +196,7 @@ const Servicios = () => {
                     sx={{
                       fontSize: { xs: '0.875rem', md: '1rem' },
                       color: '#666666',
-                      mb: 0,
+                      mb: 2,
                       flexGrow: 1,
                       lineHeight: 1.5,
                     }}
@@ -174,7 +204,21 @@ const Servicios = () => {
                     {servicio.description}
                   </Typography>
 
-
+                  {/* Texto CTA */}
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontSize: { xs: '0.875rem', md: '0.95rem' },
+                      fontWeight: 600,
+                      color: '#000000',
+                      textAlign: 'center',
+                      mt: 'auto',
+                      pt: 2,
+                      borderTop: '1px solid #E0E0E0',
+                    }}
+                  >
+                    Ver detalles →
+                  </Typography>
                 </CardContent>
               </Card>
             </Box>
