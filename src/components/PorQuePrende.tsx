@@ -2,7 +2,7 @@ import { Box, Container, Typography, Grid, Card, CardContent, Button } from '@mu
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 
-const PorQuePrente = () => {
+const PorQuePrende = () => {
   const scrollToServicios = () => {
     const element = document.getElementById('servicios');
     element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -280,4 +280,4 @@ const PorQuePrente = () => {
   );
 };
 
-export default PorQuePrente;
+export default PorQuePrende;

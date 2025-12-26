@@ -3,7 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Dolor from './components/Dolor';
-import PorQuePrente from './components/PorQuePrente';
+import PorQuePrende from './components/PorQuePrende';
 import Servicios from './components/Servicios';
 import Contacto from './components/Contacto';
 import Blog from './components/Blog';
@@ -76,7 +76,7 @@ const Home = () => (
     <Header />
     <Hero />
     <Dolor />
-    <PorQuePrente />
+    <PorQuePrende />
     <Servicios />
     <Contacto />
     <Blog />
