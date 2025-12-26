@@ -1,6 +1,4 @@
-import React from 'react';
 import { Box, Container, Typography, Grid, Card, CardContent, Button } from '@mui/material';
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 
@@ -11,138 +9,11 @@ const PorQuePrente = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: '#FFFFFF' }}>
-      {/* BLOQUE 1 - OPCIÓN C: DISEÑO MINIMALISTA CON FOCO EN BULLETS */}
-      <Box
-        sx={{
-          bgcolor: '#F5F5F5',
-          py: { xs: 8, md: 12 },
-        }}
-      >
-        <Container maxWidth="lg">
-          {/* Header simplificado */}
-          <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography
-              variant="h2"
-              sx={{
-                fontSize: { xs: '1.75rem', sm: '2.25rem', md: '2.75rem' },
-                fontWeight: 700,
-                color: '#000000',
-                mb: 4,
-                lineHeight: 1.2,
-              }}
-            >
-              Cuando el negocio crece, el control se vuelve más difícil
-            </Typography>
-            
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: { xs: '1.125rem', md: '1.25rem' },
-                color: '#333333',
-                maxWidth: '700px',
-                mx: 'auto',
-                lineHeight: 1.7,
-                fontWeight: 400,
-              }}
-            >
-              A medida que una pyme avanza, aparecen problemas comunes que limitan el crecimiento y sobrecargan al dueño.
-            </Typography>
-          </Box>
-
-          {/* 3 tarjetas de dolor destacadas - verticales */}
-          <Grid container spacing={4}>
-            {[
-              { 
-                icon: <WarningAmberIcon />, 
-                title: 'Dependencia excesiva del dueño',
-                description: 'El negocio no puede funcionar sin vos. Cada decisión requiere tu intervención directa.'
-              },
-              { 
-                icon: <WarningAmberIcon />, 
-                title: 'Baja calidad en la atención al cliente',
-                description: 'Sin controles claros, el servicio se vuelve inconsistente y los reclamos aumentan.'
-              },
-              { 
-                icon: <WarningAmberIcon />, 
-                title: 'Sensación de desorden general',
-                description: 'Falta de procesos estandarizados. Las decisiones se toman sin información clara.'
-              },
-            ].map((item, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <Card
-                  sx={{
-                    bgcolor: '#FFFFFF',
-                    boxShadow: 'none',
-                    border: '2px solid #E0E0E0',
-                    borderRadius: 3,
-                    height: '100%',
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      borderColor: '#FFEB5D',
-                      transform: 'translateY(-4px)',
-                      boxShadow: '0 8px 24px rgba(255, 235, 93, 0.15)',
-                    },
-                  }}
-                >
-                  <CardContent
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      p: { xs: 4, md: 5 },
-                      gap: 2,
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        bgcolor: '#FFEB5D',
-                        borderRadius: '50%',
-                        width: { xs: 72, md: 80 },
-                        height: { xs: 72, md: 80 },
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                        mb: 2,
-                      }}
-                    >
-                      {React.cloneElement(item.icon, { sx: { fontSize: { xs: 36, md: 40 }, color: '#000000' } })}
-                    </Box>
-                    
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontSize: { xs: '1.125rem', md: '1.25rem' },
-                        fontWeight: 700,
-                        color: '#000000',
-                        mb: 1,
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      {item.title}
-                    </Typography>
-
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        fontSize: { xs: '0.9rem', md: '0.95rem' },
-                        color: '#666666',
-                        lineHeight: 1.6,
-                      }}
-                    >
-                      {item.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* BLOQUE 2 UNIFICADO - QUÉ OFRECEMOS + PROMESA */}
+    <Box 
+      id="por-que-prende-bloque-2"
+      sx={{ bgcolor: '#FFFFFF' }}
+    >
+      {/* BLOQUE 2 - QUÉ OFRECEMOS + PROMESA */}
       <Box
         sx={{
           bgcolor: '#FFFFFF',
