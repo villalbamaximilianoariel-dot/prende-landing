@@ -23,7 +23,7 @@ interface RecursoDestacado {
   date: string;
 }
 
-export default function RecursosCarousel() {
+export default function Blog() {
   const [recursos, setRecursos] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);

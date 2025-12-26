@@ -2,11 +2,11 @@ import { ThemeProvider, createTheme, CssBaseline, Box } from '@mui/material';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import ProblemasCarousel from './components/ProblemasCarousel';
+import Dolor from './components/Dolor';
 import PorQuePrente from './components/PorQuePrente';
 import Servicios from './components/Servicios';
 import Contacto from './components/Contacto';
-import RecursosCarousel from './components/RecursosCarousel';
+import Blog from './components/Blog';
 import Footer from './components/Footer';
 import RecursosRecomendados from './components/RecursosRecomendados';
 import Auditorias from './pages/Auditorias';
@@ -75,11 +75,11 @@ const Home = () => (
   <Box sx={{ bgcolor: 'background.default' }}>
     <Header />
     <Hero />
-    <ProblemasCarousel />
+    <Dolor />
     <PorQuePrente />
     <Servicios />
     <Contacto />
-    <RecursosCarousel />
+    <Blog />
     <Footer />
   </Box>
 );

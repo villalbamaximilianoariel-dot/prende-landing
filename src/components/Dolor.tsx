@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 // @ts-ignore
 import 'swiper/css/pagination';
 
-const ProblemasCarousel = () => {
+const Dolor = () => {
   const slides = [
     {
       nombre: 'Desorden silencioso',
@@ -205,4 +205,4 @@ const ProblemasCarousel = () => {
   );
 };
 
-export default ProblemasCarousel;
+export default Dolor;
