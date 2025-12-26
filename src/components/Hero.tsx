@@ -54,7 +54,7 @@ const Hero = () => {
               lineHeight: 1.2,
             }}
           >
-            Gestiona tu negocio con datos reales
+            Gestioná tu negocio con información clara
           </Typography>
 
           {/* Subtítulo */}
@@ -70,8 +70,7 @@ const Hero = () => {
               mx: 'auto',
             }}
           >
-            Auditorías operativas, sistema propio y consultoría comercial para pymes
-            que quieren vender mejor y ordenar su operación.
+            Te ayudamos a entender qué pasa realmente en tu negocio para tomar mejores decisiones.
           </Typography>
 
           {/* CTAs */}
