@@ -86,7 +86,7 @@ export default function Blog() {
               fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' }
             }}
           >
-            Blogs recomendados
+            Contenidos que suman
           </Typography>
           <Typography
             variant="h6"

@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Card, CardContent, Button } from '@mui/material';
+import { Box, Container, Typography, Card, CardContent, Button, Grid } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 // @ts-ignore
@@ -11,36 +11,78 @@ import 'swiper/css/pagination';
 const Dolor = () => {
   const slides = [
     {
-      nombre: 'Desorden silencioso',
-      titulo: 'El desorden no siempre se ve',
-      puntos: [
-        'Los números parecen bien, pero hay pagos que se atrasan, materiales que faltan y productos que se pierden sin que nadie sepa por qué.',
-        'Nadie controla realmente lo que pasa, y cuando algo falla, la respuesta es siempre la misma: "no sé qué pasó".'
-      ]
-    },
-    {
-      nombre: 'Calidad y experiencia',
-      titulo: 'La calidad no siempre es pareja',
-      puntos: [
-        'El resultado depende de quién esté trabajando ese día. A veces sale perfecto, otras veces hay que rehacer todo.',
-        'Los clientes no saben qué esperar, y eso termina afectando tu reputación.'
-      ]
-    },
-    {
-      nombre: 'Falta de control',
-      titulo: 'Poco control, muchas decisiones',
-      puntos: [
-        'Decidís por intuición porque no tenés datos claros. No sabés qué funciona, qué falla o dónde estás perdiendo plata.',
-        'Los problemas aparecen cuando ya es tarde, y cada solución es una urgencia.',
-        'El negocio crece, pero sentís que todo el tiempo estás apagando incendios.'
-      ]
-    },
-    {
       nombre: 'Dependencia del dueño',
-      titulo: 'Si no estás, nada funciona del todo',
-      puntos: [
-        'Sos el único que sabe cómo resolver los problemas. Si no estás, todo se traba o se hace mal.',
-        'Tu equipo espera que vos decidas todo, porque no hay claridad sobre cómo hacer las cosas.'
+      titulo: 'Todo depende de vos',
+      textoPrincipal: 'El negocio funciona, pero solo cuando estás presente.',
+      comoSeSiente: [
+        'Tenés que estar en todo',
+        'Cuesta delegar con tranquilidad',
+        'Si te ausentás, algo se desordena'
+      ],
+      consecuencias: [
+        'Cansancio constante',
+        'Falta de previsibilidad',
+        'Crecimiento limitado'
+      ]
+    },
+    {
+      nombre: 'Falta de control real',
+      titulo: 'No todo está bajo control',
+      textoPrincipal: 'Se trabaja mucho, pero no siempre se mide lo que pasa.',
+      comoSeSiente: [
+        'Sensación de estar "a ciegas"',
+        'Problemas que aparecen tarde',
+        'Decisiones tomadas por intuición'
+      ],
+      consecuencias: [
+        'Errores que se repiten',
+        'Poco aprendizaje',
+        'Dificultad para mejorar'
+      ]
+    },
+    {
+      nombre: 'Calidad irregular',
+      titulo: 'La calidad cambia según quién esté',
+      textoPrincipal: 'La experiencia del cliente no siempre es la misma.',
+      comoSeSiente: [
+        'Algunos días todo sale bien',
+        'Otros días aparecen reclamos',
+        'No hay un criterio claro y compartido'
+      ],
+      consecuencias: [
+        'Clientes insatisfechos',
+        'Imagen poco consistente',
+        'Pérdida de oportunidades'
+      ]
+    },
+    {
+      nombre: 'Desorden operativo silencioso',
+      titulo: 'Funciona, pero no está ordenado',
+      textoPrincipal: 'No es un caos, pero tampoco hay claridad.',
+      comoSeSiente: [
+        'Tareas poco definidas',
+        'Retrabajo constante',
+        'Falta de prioridades claras'
+      ],
+      consecuencias: [
+        'Pérdida de tiempo',
+        'Costos ocultos',
+        'Desgaste diario'
+      ]
+    },
+    {
+      nombre: 'Decisiones con incertidumbre',
+      titulo: 'Decidir sin información desgasta',
+      textoPrincipal: 'Tomar decisiones sin datos claros genera dudas.',
+      comoSeSiente: [
+        'Inseguridad al decidir',
+        'Cambios de rumbo frecuentes',
+        'Sensación de improvisar'
+      ],
+      consecuencias: [
+        'Estrés',
+        'Resultados irregulares',
+        'Falta de foco'
       ]
     }
   ];
@@ -54,7 +96,7 @@ const Dolor = () => {
     <Box
       sx={{
         py: 8,
-        backgroundColor: '#f5f5f5'
+        backgroundColor: '#F5F5F5'
       }}
     >
       <Container maxWidth="lg">
@@ -63,17 +105,9 @@ const Dolor = () => {
           component="h2"
           textAlign="center"
           gutterBottom
-          sx={{ fontWeight: 'bold', mb: 1 }}
+          sx={{ fontWeight: 'bold', mb: 6 }}
         >
-          Cuando el negocio crece, el control se vuelve más difícil
-        </Typography>
-        <Typography
-          variant="h6"
-          textAlign="center"
-          color="text.secondary"
-          sx={{ mb: 6 }}
-        >
-          Problemas comunes que enfrentan los dueños de negocio
+          Crecer trae nuevos desafíos en el día a día
         </Typography>
 
         <Box sx={{ position: 'relative', mb: 4 }}>
@@ -82,7 +116,7 @@ const Dolor = () => {
             spaceBetween={30}
             slidesPerView={1}
             autoplay={{
-              delay: 7000,
+              delay: 10000,
               disableOnInteraction: false,
             }}
             navigation
@@ -100,43 +134,177 @@ const Dolor = () => {
               <SwiperSlide key={index}>
                 <Card
                   sx={{
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    boxShadow: 3,
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: 3,
+                    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
+                    p: { xs: 4, md: 6 },
                     transition: 'all 0.3s ease',
                     '&:hover': {
-                      boxShadow: 6,
-                      transform: 'translateY(-4px)',
+                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.12)',
+                      transform: 'translateY(-2px)',
                     },
                   }}
                 >
-                  <CardContent sx={{ flexGrow: 1, p: 4 }}>
+                  <CardContent sx={{ p: 0 }}>
+                    {/* Título - Jerarquía máxima */}
                     <Typography 
-                      variant="h5" 
+                      variant="h3" 
                       component="h3" 
-                      gutterBottom
-                      sx={{ fontWeight: 'bold', mb: 3 }}
+                      textAlign="center"
+                      sx={{ 
+                        fontWeight: 700,
+                        mb: 3,
+                        fontSize: { xs: '1.75rem', md: '2.5rem' },
+                        lineHeight: 1.2,
+                        color: '#000',
+                      }}
                     >
                       {slide.titulo}
                     </Typography>
-                    <Box component="ul" sx={{ pl: 2, m: 0 }}>
-                      {slide.puntos.map((punto, idx) => (
-                        <Box 
-                          component="li" 
-                          key={idx}
-                          sx={{ 
-                            mb: 2,
-                            '&:last-child': { mb: 0 },
-                            lineHeight: 1.7
+
+                    {/* Texto principal - Segunda jerarquía */}
+                    <Typography 
+                      variant="h6"
+                      textAlign="center"
+                      sx={{ 
+                        mb: 5,
+                        fontSize: { xs: '1.1rem', md: '1.3rem' },
+                        lineHeight: 1.5,
+                        color: '#333',
+                        fontWeight: 500,
+                      }}
+                    >
+                      {slide.textoPrincipal}
+                    </Typography>
+
+                    {/* Dos columnas: Cómo se siente | Consecuencias */}
+                    <Grid container spacing={3}>
+                      {/* Columna izquierda: Cómo se siente */}
+                      <Grid item xs={12} md={6}>
+                        <Box
+                          sx={{
+                            backgroundColor: '#F8F8F8',
+                            borderRadius: 2,
+                            p: 3,
+                            height: '100%',
                           }}
                         >
-                          <Typography variant="body1">
-                            {punto}
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              fontWeight: 700,
+                              mb: 2,
+                              fontSize: { xs: '1rem', md: '1.1rem' },
+                              color: '#666',
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.5px',
+                            }}
+                          >
+                            Cómo se siente
                           </Typography>
+                          <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none' }}>
+                            {slide.comoSeSiente.map((item, idx) => (
+                              <Box
+                                key={idx}
+                                component="li"
+                                sx={{
+                                  mb: 1.5,
+                                  '&:last-child': { mb: 0 },
+                                  display: 'flex',
+                                  alignItems: 'flex-start',
+                                  gap: 1.5,
+                                }}
+                              >
+                                <Box
+                                  sx={{
+                                    width: 6,
+                                    height: 6,
+                                    borderRadius: '50%',
+                                    backgroundColor: '#999',
+                                    mt: 1,
+                                    flexShrink: 0,
+                                  }}
+                                />
+                                <Typography
+                                  variant="body1"
+                                  sx={{
+                                    fontSize: { xs: '0.95rem', md: '1rem' },
+                                    lineHeight: 1.6,
+                                    color: '#444',
+                                  }}
+                                >
+                                  {item}
+                                </Typography>
+                              </Box>
+                            ))}
+                          </Box>
                         </Box>
-                      ))}
-                    </Box>
+                      </Grid>
+
+                      {/* Columna derecha: Consecuencias */}
+                      <Grid item xs={12} md={6}>
+                        <Box
+                          sx={{
+                            backgroundColor: '#FFFEF5',
+                            border: '2px solid #FFEB5D',
+                            borderRadius: 2,
+                            p: 3,
+                            height: '100%',
+                          }}
+                        >
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              fontWeight: 700,
+                              mb: 2,
+                              fontSize: { xs: '1rem', md: '1.1rem' },
+                              color: '#000',
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.5px',
+                            }}
+                          >
+                            Cómo se manifiesta
+                          </Typography>
+                          <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none' }}>
+                            {slide.consecuencias.map((item, idx) => (
+                              <Box
+                                key={idx}
+                                component="li"
+                                sx={{
+                                  mb: 1.5,
+                                  '&:last-child': { mb: 0 },
+                                  display: 'flex',
+                                  alignItems: 'flex-start',
+                                  gap: 1.5,
+                                }}
+                              >
+                                <Box
+                                  sx={{
+                                    width: 6,
+                                    height: 6,
+                                    borderRadius: '50%',
+                                    backgroundColor: '#000',
+                                    mt: 1,
+                                    flexShrink: 0,
+                                  }}
+                                />
+                                <Typography
+                                  variant="body1"
+                                  sx={{
+                                    fontSize: { xs: '0.95rem', md: '1rem' },
+                                    lineHeight: 1.6,
+                                    color: '#000',
+                                    fontWeight: 500,
+                                  }}
+                                >
+                                  {item}
+                                </Typography>
+                              </Box>
+                            ))}
+                          </Box>
+                        </Box>
+                      </Grid>
+                    </Grid>
                   </CardContent>
                 </Card>
               </SwiperSlide>

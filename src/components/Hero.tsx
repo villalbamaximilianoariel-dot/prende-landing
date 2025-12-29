@@ -54,7 +54,7 @@ const Hero = () => {
               lineHeight: 1.2,
             }}
           >
-            Gestioná tu negocio con información clara
+            Entender el negocio cambia la forma de decidir
           </Typography>
 
           {/* Subtítulo */}
@@ -70,7 +70,7 @@ const Hero = () => {
               mx: 'auto',
             }}
           >
-            Te ayudamos a entender qué pasa realmente en tu negocio para tomar mejores decisiones.
+            Trabajamos con vos para ordenar la información y acompañarte a tomar mejores decisiones.
           </Typography>
 
           {/* CTAs */}
