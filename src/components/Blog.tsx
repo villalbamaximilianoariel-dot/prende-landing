@@ -309,8 +309,8 @@ export default function Blog() {
             variant="contained"
             endIcon={<ArrowForward />}
             sx={{
-              bgcolor: '#000000',
-              color: '#FFFFFF',
+              bgcolor: '#FFEB5D',
+              color: '#000000',
               px: 4,
               py: 1.5,
               fontSize: '1rem',
@@ -318,7 +318,7 @@ export default function Blog() {
               borderRadius: 2,
               textTransform: 'none',
               '&:hover': {
-                bgcolor: '#333333',
+                bgcolor: '#FFE135',
                 transform: 'translateY(-2px)',
               },
               transition: 'all 0.2s',

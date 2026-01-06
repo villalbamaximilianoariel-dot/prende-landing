@@ -17,28 +17,28 @@ const servicios: Servicio[] = [
   {
     id: 1,
     icon: <DashboardIcon sx={{ fontSize: 48 }} />,
-    title: 'Sistema de auditoría Prende',
+    title: 'Sistema de Auditoría Prende',
     description:
-      'Plataforma para registrar auditorías, generar puntajes, informes y KPIs de forma simple.',
-    price: 'desde $39990/mes',
+      'Nuestro sistema de Auditoría Prende te permite relevar, registrar y visualizar lo que pasa en tus locales a través de formularios flexibles, carga simple y reportes automáticos.',
+    price: 'desde $39990 por mes',
     route: '/sistema',
   },
   {
     id: 2,
     icon: <AssignmentIcon sx={{ fontSize: 48 }} />,
-    title: 'Auditorías comerciales y operativas',
+    title: 'Auditorías Operativas',
     description:
-      'Evaluación presencial o remota del cumplimiento operativo, atención al cliente y estándares comerciales.',
-    price: 'desde $79990/mes',
+      'Realizamos auditorías apoyadas en nuestro sistema, observando la operacion real para detectar oportunidades de mejora y devolverte información clara y accionable.',
+    price: 'desde $79990 por mes',
     route: '/auditorias',
   },
   {
     id: 3,
     icon: <TrendingUpIcon sx={{ fontSize: 48 }} />,
-    title: 'Consultoría comercial aplicada',
+    title: 'Consultoría Personalizada',
     description:
-      'Análisis de resultados, recomendaciones prácticas y acompañamiento para mejorar ventas y procesos.',
-    price: 'desde $129990',
+      'No se trata solo de diagnósticos o recomendaciones: trabajamos junto a vos para ordenar procesos, mejorar resultados y encarar nuevos proyectos de manera concreta y realista.',
+    price: 'desde $129990 por proyecto',
     route: '/consultoria',
   },
 ];
@@ -95,6 +95,7 @@ const Servicios = () => {
               md: 'repeat(3, 1fr)',
             },
             gap: { xs: 3, md: 4 },
+            mt: 2,
           }}
         >
           {servicios.map((servicio) => (

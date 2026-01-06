@@ -45,7 +45,7 @@ const PorQuePrende = () => {
                 mx: 'auto',
               }}
             >
-              Actuamos como el área de auditoría y calidad que muchas pymes no pueden tener internamente. Combinamos sistema y criterio profesional para ordenar, medir y mejorar tu negocio.
+              Somos el socio externo que te ayuda a ver lo que no ves cuando estás metido en el día a día. Te damos el sistema para auditar y el criterio profesional para interpretar y mejorar.
             </Typography>
           </Box>
 

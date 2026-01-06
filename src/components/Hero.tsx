@@ -1,13 +1,17 @@
 import { Box, Container, Typography, Button } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { trackWhatsAppClick, trackServicesScroll } from '../utils/analytics';
 
 const Hero = () => {
   const handleWhatsAppClick = () => {
+    // Track conversion
+    trackWhatsAppClick('Homepage', 'Hero');
     // Placeholder - actualizar con número real
     window.open('https://wa.me/5491100000000?text=Hola%20Prende%2C%20quiero%20solicitar%20una%20demo', '_blank');
   };
 
   const scrollToServicios = () => {
+    trackServicesScroll();
     const element = document.getElementById('servicios');
     element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -45,6 +49,7 @@ const Hero = () => {
         >
           {/* Título principal */}
           <Typography
+            component="h1"
             variant="h1"
             sx={{
               fontSize: { xs: '2rem', sm: '2.75rem', md: '3.5rem' },
@@ -70,7 +75,7 @@ const Hero = () => {
               mx: 'auto',
             }}
           >
-            Trabajamos con vos para ordenar la información y acompañarte a tomar mejores decisiones.
+            Auditamos, analizamos y ordenamos la información de tu negocio para que decidas con claridad.
           </Typography>
 
           {/* CTAs */}

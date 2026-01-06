@@ -12,10 +12,16 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import SchoolIcon from '@mui/icons-material/School';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
 
 const Consultoria = () => {
   const navigate = useNavigate();
   const [currentImage, setCurrentImage] = useState(0);
+  
+  // Track page view on mount
+  useEffect(() => {
+    trackServicePageView('Consultoría Personalizada');
+  }, []);
   
   const carouselImages = [
     'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
@@ -32,8 +38,7 @@ const Consultoria = () => {
     return () => clearInterval(interval);
   }, [carouselImages.length]);
 
-  const handleWhatsAppClick = () => {
-    const whatsappNumber = '5491100000000';
+  const handleWhatsAppClick = () => {    trackWhatsAppClick('Consultoría', 'Hero');    const whatsappNumber = '5491100000000';
     const message = encodeURIComponent('Hola! Me interesa el servicio de Consultoría Comercial Aplicada. ¿Podrían darme más información?');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
@@ -154,31 +159,31 @@ const Consultoria = () => {
   const faqs = [
     {
       pregunta: '¿Trabajan conmigo o lo hacen por mí?',
-      respuesta: 'Trabajamos juntos. No somos un servicio "llave en mano". Nosotros aportamos la estrategia, metodología y acompañamiento, pero vos y tu equipo ejecutan con nuestro apoyo. Esto garantiza que cuando terminemos, tengan las capacidades instaladas.'
+      respuesta: 'Trabajamos juntos. Aportamos estrategia y acompañamiento, pero vos y tu equipo ejecutan. Así cuando terminemos, tienen capacidades instaladas.'
     },
     {
       pregunta: '¿Cuánto dura el proyecto?',
-      respuesta: 'El proyecto estándar es de 3-6 meses dependiendo de los objetivos. Los primeros 3 meses son intensivos (reuniones semanales) y los últimos 3 son de consolidación (reuniones quincenales). Podemos adaptar la duración según necesidades.'
+      respuesta: '3-6 meses según objetivos. Primeros 3 meses intensivos (reuniones semanales), últimos 3 de consolidación (quincenales).'
     },
     {
       pregunta: '¿Qué pasa si no veo resultados?',
-      respuesta: 'Los resultados dependen de la implementación conjunta. En el primer mes hacemos diagnóstico y plan. Si al mes 2 no ves avances, revisamos el enfoque sin costo adicional. No garantizamos resultados mágicos, pero sí compromiso total.'
+      respuesta: 'Si al mes 2 no ves avances, revisamos el enfoque sin costo adicional. No garantizamos magia, pero sí compromiso total.'
     },
     {
       pregunta: '¿Es presencial o remoto?',
-      respuesta: 'Híbrido. Primera reunión presencial obligatoria para diagnóstico. Luego, reuniones semanales por videollamada y 1-2 visitas presenciales por mes. Para negocios fuera de CABA/GBA, se cotizan viáticos.'
+      respuesta: 'Híbrido. Primera reunión presencial, luego videollamadas semanales y 1-2 visitas/mes. Fuera de CABA/GBA se cotizan viáticos.'
     },
     {
       pregunta: '¿Puedo combinar con otros servicios?',
-      respuesta: 'Sí, de hecho es recomendable. Muchos clientes arrancan con una Auditoría para identificar problemas, luego Consultoría para implementar mejoras, y finalmente adoptan nuestro Sistema para mantener el control.'
+      respuesta: 'Sí, es recomendable. Muchos arrancan con Auditoría, luego Consultoría y finalmente adoptan el Sistema.'
     },
     {
       pregunta: '¿Incluye capacitación al equipo?',
-      respuesta: 'Sí, incluye capacitación práctica al equipo comercial en técnicas de venta, atención al cliente y uso de herramientas. No son capacitaciones teóricas, sino aplicadas a tu negocio específico.'
+      respuesta: 'Sí, capacitación práctica en ventas, atención al cliente y herramientas. Aplicada a tu negocio específico.'
     },
     {
       pregunta: '¿Qué industrias atienden?',
-      respuesta: 'Especializados en pymes de gastronomía, retail y servicios. Tenemos experiencia en restaurantes, locales comerciales, gimnasios, clínicas y empresas de servicios. Si tu rubro es distinto, consultanos disponibilidad.'
+      respuesta: 'Especializados en gastronomía, retail y servicios. Si tu rubro es distinto, consultanos disponibilidad.'
     }
   ];
 
@@ -194,8 +199,8 @@ const Consultoria = () => {
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
-          pt: { xs: 12, md: 16 },
-          pb: { xs: 8, md: 12 },
+          pt: { xs: 14, md: 18 },
+          pb: { xs: 10, md: 14 },
           position: 'relative',
           overflow: 'hidden'
         }}
@@ -225,6 +230,7 @@ const Consultoria = () => {
                 }} 
               />
               <Typography 
+                component="h1"
                 variant="h2" 
                 sx={{ 
                   fontWeight: 700,
@@ -232,7 +238,7 @@ const Consultoria = () => {
                   fontSize: { xs: '2rem', md: '3rem' }
                 }}
               >
-                Consultoría Comercial Aplicada
+                Consultoría Personalizada
               </Typography>
               <Typography 
                 variant="h5" 
@@ -243,7 +249,7 @@ const Consultoria = () => {
                   lineHeight: 1.6
                 }}
               >
-                Estrategia + implementación + resultados. No solo te decimos qué hacer, trabajamos juntos hasta que funcione
+                No se trata solo de diagnósticos o recomendaciones: trabajamos junto a vos para ordenar procesos, mejorar resultados y encarar nuevos proyectos de manera concreta y realista.
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 3 }}>
                 <Box
@@ -258,11 +264,11 @@ const Consultoria = () => {
                   }}
                 >
                   <Typography variant="h6" sx={{ color: '#000000', fontWeight: 700 }}>
-                    desde 129990
+                    desde $129990 por proyecto
                   </Typography>
                 </Box>
                 <Typography variant="body2" sx={{ color: '#F5F5F5' }}>
-                  Duración: 3-6 meses • Reuniones semanales • Soporte ilimitado
+                  Reuniones semanales • Soporte ilimitado
                 </Typography>
               </Box>
               <Button
@@ -281,7 +287,7 @@ const Consultoria = () => {
                   }
                 }}
               >
-                Probar Gratis 15 Días
+                Agendar Reunión Inicial
               </Button>
             </Box>
             
@@ -334,8 +340,8 @@ const Consultoria = () => {
 
       {/* Áreas de Trabajo */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
-          En qué trabajamos juntos
+        <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+          En qué podemos trabajar juntos
         </Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
           {areas.map((area, index) => (
@@ -361,7 +367,7 @@ const Consultoria = () => {
               <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: '#000000' }}>
                 {area.titulo}
               </Typography>
-              <Typography variant="body1" sx={{ color: '#424242', lineHeight: 1.7 }}>
+              <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.7 }}>
                 {area.descripcion}
               </Typography>
             </Paper>
@@ -372,51 +378,48 @@ const Consultoria = () => {
       {/* Qué Incluye */}
       <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             ¿Qué incluye el servicio?
           </Typography>
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 2 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
             {incluye.map((item, index) => (
-              <Paper 
+              <Box 
                 key={index}
-                elevation={0}
                 sx={{ 
-                  p: 2.5,
                   display: 'flex',
                   alignItems: 'center',
                   gap: 2,
-                  bgcolor: '#FFFFFF'
                 }}
               >
-                <CheckCircleOutlineIcon sx={{ color: '#FFEB5D', fontSize: 28 }} />
-                <Typography variant="body1">{item}</Typography>
-              </Paper>
+                <CheckCircleOutlineIcon sx={{ color: '#FFEB5D', fontSize: 28, flexShrink: 0 }} />
+                <Typography variant="body1" sx={{ color: '#000', fontWeight: 500 }}>{item}</Typography>
+              </Box>
             ))}
           </Box>
         </Container>
       </Box>
 
-      {/* Qué NO Incluye */}
+      {/* Servicios adicionales */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
-        <Typography variant="h4" sx={{ fontWeight: 700, mb: 4, textAlign: 'center' }}>
-          Qué NO incluye
+        <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+          ¿Qué más podés sumar?
         </Typography>
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 2, maxWidth: 1000, mx: 'auto' }}>
+        <Typography variant="body1" sx={{ mb: 4, textAlign: 'center', color: '#666', maxWidth: '600px', mx: 'auto' }}>
+          Estos servicios se cotizan aparte según lo que necesites
+        </Typography>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3, maxWidth: 1000, mx: 'auto' }}>
           {noIncluye.map((item, index) => (
-            <Paper 
+            <Box 
               key={index}
-              elevation={0}
               sx={{ 
-                p: 2.5,
                 display: 'flex',
                 alignItems: 'center',
                 gap: 2,
-                border: '1px solid #F5F5F5'
               }}
             >
-              <CancelOutlinedIcon sx={{ color: '#757575', fontSize: 28 }} />
-              <Typography variant="body2" sx={{ color: '#757575' }}>{item}</Typography>
-            </Paper>
+              <CancelOutlinedIcon sx={{ color: '#757575', fontSize: 28, flexShrink: 0 }} />
+              <Typography variant="body1" sx={{ color: '#666' }}>{item}</Typography>
+            </Box>
           ))}
         </Box>
       </Container>
@@ -424,7 +427,7 @@ const Consultoria = () => {
       {/* Cómo Funciona */}
       <Box sx={{ bgcolor: '#000000', color: '#FFFFFF', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             ¿Cómo funciona el proceso?
           </Typography>
           <Box sx={{ position: 'relative', maxWidth: 900, mx: 'auto' }}>
@@ -471,10 +474,11 @@ const Consultoria = () => {
       </Box>
 
       {/* Resultados Esperados */}
-      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
-          Resultados que buscamos juntos
-        </Typography>
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+        <Container maxWidth="lg">
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+            Resultados que buscamos juntos
+          </Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3, maxWidth: 900, mx: 'auto' }}>
           {resultadosEsperados.map((resultado, index) => (
             <Paper 
@@ -509,54 +513,55 @@ const Consultoria = () => {
         >
           *Los resultados dependen del compromiso en la implementación y condiciones del mercado. No garantizamos números específicos, pero sí metodología probada y acompañamiento total.
         </Typography>
-      </Container>
-
-      {/* Para Quién Es */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
-        <Container maxWidth="lg">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
-            ¿Para quién es este servicio?
-          </Typography>
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
-            {paraQuien.map((item, index) => (
-              <Paper 
-                key={index}
-                elevation={0}
-                sx={{ 
-                  p: 4,
-                  bgcolor: '#FFFFFF',
-                  border: '1px solid #E0E0E0'
-                }}
-              >
-                <Typography variant="h5" sx={{ fontWeight: 600, mb: 2, color: '#FFEB5D' }}>
-                  {item.perfil}
-                </Typography>
-                <Typography variant="body1" sx={{ color: '#757575', lineHeight: 1.7 }}>
-                  {item.descripcion}
-                </Typography>
-              </Paper>
-            ))}
-          </Box>
         </Container>
       </Box>
 
-      {/* FAQs */}
+      {/* Para Quién Es */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
-          Preguntas Frecuentes
+        <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+          ¿Para quién es este servicio?
         </Typography>
-        <Box sx={{ maxWidth: 900, mx: 'auto' }}>
-          {faqs.map((faq, index) => (
-            <Accordion 
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
+          {paraQuien.map((item, index) => (
+            <Paper 
               key={index}
               elevation={0}
               sx={{ 
-                mb: 2,
-                border: '1px solid #F5F5F5',
-                '&:before': { display: 'none' },
-                borderRadius: '8px !important'
+                p: 4,
+                bgcolor: '#F5F5F5',
+                border: '1px solid #E0E0E0'
               }}
             >
+              <Typography variant="h5" sx={{ fontWeight: 600, mb: 2, color: '#FFEB5D' }}>
+                {item.perfil}
+              </Typography>
+              <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.7 }}>
+                {item.descripcion}
+              </Typography>
+            </Paper>
+          ))}
+        </Box>
+      </Container>
+
+      {/* FAQs */}
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+        <Container maxWidth="lg">
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+            Preguntas Frecuentes
+          </Typography>
+          <Box sx={{ maxWidth: 900, mx: 'auto' }}>
+            {faqs.map((faq, index) => (
+              <Accordion 
+                key={index}
+                elevation={0}
+                sx={{ 
+                  mb: 2,
+                  bgcolor: '#FFFFFF',
+                  border: '1px solid #E0E0E0',
+                  '&:before': { display: 'none' },
+                  borderRadius: '8px !important'
+                }}
+              >
               <AccordionSummary 
                 expandIcon={<ExpandMoreIcon />}
                 sx={{ 
@@ -569,7 +574,7 @@ const Consultoria = () => {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails sx={{ pt: 0, pb: 3 }}>
-                <Typography variant="body1" sx={{ color: '#757575', lineHeight: 1.7 }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.7 }}>
                   {faq.respuesta}
                 </Typography>
               </AccordionDetails>
@@ -577,11 +582,12 @@ const Consultoria = () => {
           ))}
         </Box>
       </Container>
+      </Box>
 
       {/* CTA Final */}
       <Box sx={{ bgcolor: '#FFEB5D', py: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 3, textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 3, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             ¿Listo para hacer crecer tu negocio?
           </Typography>
           <Typography variant="h6" sx={{ mb: 4, textAlign: 'center', fontWeight: 300 }}>
@@ -605,7 +611,7 @@ const Consultoria = () => {
                 }
               }}
             >
-              Probar Gratis 15 Días
+              Agendar Reunión Inicial
             </Button>
           </Box>
         </Container>

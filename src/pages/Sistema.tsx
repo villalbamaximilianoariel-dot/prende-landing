@@ -13,10 +13,16 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
 
 const Sistema = () => {
   const navigate = useNavigate();
   const [currentImage, setCurrentImage] = useState(0);
+  
+  // Track page view on mount
+  useEffect(() => {
+    trackServicePageView('Sistema de Auditoría');
+  }, []);
   
   const carouselImages = [
     'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
@@ -34,6 +40,7 @@ const Sistema = () => {
   }, [carouselImages.length]);
 
   const handleWhatsAppClick = () => {
+    trackWhatsAppClick('Sistema', 'Hero');
     const whatsappNumber = '5491100000000';
     const message = encodeURIComponent('Hola! Me interesa el Sistema de Auditoría Prende. ¿Podrían darme una demo?');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
@@ -48,11 +55,11 @@ const Sistema = () => {
   };
 
   const funcionalidades = [
-    { icon: <DashboardIcon />, titulo: 'Dashboard con KPIs', descripcion: 'Visualizá indicadores clave en tiempo real: auditorías completadas, problemas detectados, tendencias' },
-    { icon: <AssignmentIcon />, titulo: 'Formularios personalizables', descripcion: 'Creá checklists adaptados a tu negocio con 8 tipos de preguntas (texto, sí/no, opciones múltiples, etc.)' },
-    { icon: <CloudOffIcon />, titulo: 'Modo offline', descripcion: 'Completá auditorías sin internet y sincronizá automáticamente cuando vuelvas online' },
-    { icon: <PhotoCameraIcon />, titulo: 'Evidencias fotográficas', descripcion: 'Capturá fotos directamente desde el móvil y asocialas a cada hallazgo' },
-    { icon: <PictureAsPdfIcon />, titulo: 'Reportes automáticos', descripcion: 'Generá PDFs profesionales y exportaciones a Excel con un click' },
+    { icon: <DashboardIcon />, titulo: 'Tablero de control', descripcion: 'Mirá todo lo importante en pantalla: cuántas revisiones se hicieron hoy, qué problemas se repiten más, cómo viene la semana' },
+    { icon: <AssignmentIcon />, titulo: 'Formularios personalizables', descripcion: 'Armá tus propias listas de control según lo que necesités revisar. Con 8 tipos de preguntas diferentes (texto, sí/no, opciones, etc.)' },
+    { icon: <CloudOffIcon />, titulo: 'Modo sin internet', descripcion: 'Completá tus revisiones aunque no haya conexión. Cuando vuelva internet, se actualiza todo automáticamente' },
+    { icon: <PhotoCameraIcon />, titulo: 'Registro con fotos', descripcion: 'Tomá fotos con el celular y asocialas a cada punto: un baño sucio, un producto mal exhibido, una máquina rota' },
+    { icon: <PictureAsPdfIcon />, titulo: 'Reportes automáticos', descripcion: 'Bajá informes en PDF o Excel con un solo click' },
     { icon: <CheckCircleOutlineIcon />, titulo: 'Gestión de roles', descripcion: 'Administradores, auditores y clientes con permisos específicos' }
   ];
 
@@ -98,39 +105,39 @@ const Sistema = () => {
   const proceso = [
     { numero: '1', titulo: 'Demo y capacitación', descripcion: 'Te mostramos el sistema y capacitamos a tu equipo (1 hora virtual)' },
     { numero: '2', titulo: 'Configuración inicial', descripcion: 'Creamos usuarios, personalizamos formularios y configuramos tu dashboard' },
-    { numero: '3', titulo: 'Período de prueba', descripcion: 'Empezás a usar el sistema con soporte activo durante 15 días' },
-    { numero: '4', titulo: 'Go-live', descripcion: 'Sistema en producción con tu equipo operando de forma autónoma' },
-    { numero: '5', titulo: 'Soporte continuo', descripcion: 'Asistencia por email y actualizaciones automáticas sin costo adicional' }
+    { numero: '3', titulo: 'Período de prueba gratuito', descripcion: 'Empezás a usar el sistema con soporte activo durante 15 días' },
+    { numero: '4', titulo: 'Go-live', descripcion: 'Sistema en funcionamiento con tu equipo operando en forma autónoma' },
+    { numero: '5', titulo: 'Soporte continuo', descripcion: 'Asistencia por Whatsapp sin costo adicional' }
   ];
 
   const faqs = [
     {
       pregunta: '¿Funciona sin internet?',
-      respuesta: 'Sí, el sistema tiene modo offline completo. Podés completar auditorías sin conexión y cuando vuelvas a tener internet, se sincroniza automáticamente. Ideal para locales con WiFi inestable o auditorías en campo.'
+      respuesta: 'Sí, tiene modo offline completo. Completás auditorías sin conexión y cuando vuelve internet, se sincroniza automáticamente.'
     },
     {
       pregunta: '¿Puedo personalizar los formularios?',
-      respuesta: 'Totalmente. Tenés 8 tipos de preguntas disponibles: texto corto/largo, sí/no, opción múltiple, escala numérica, fecha, hora y evidencia fotográfica. Podés crear formularios ilimitados adaptados a tus procesos.'
+      respuesta: 'Totalmente. Tenés 8 tipos de preguntas disponibles y podés crear formularios ilimitados adaptados a tus procesos.'
     },
     {
       pregunta: '¿Incluye capacitación?',
-      respuesta: 'Sí, incluye 1 hora de capacitación virtual para tu equipo. Además, el sistema es intuitivo y tiene tooltips en cada sección. Si necesitás capacitación adicional, podemos cotizarla.'
+      respuesta: 'Sí, incluye 1 hora virtual para tu equipo. El sistema es intuitivo y tiene tooltips. Capacitación adicional se cotiza aparte.'
     },
     {
       pregunta: '¿Es mensual o anual el pago?',
-      respuesta: 'El precio base de $39.999 es mensual. Ofrecemos 2 meses de regalo si pagás anual (10 meses por el precio de 12). Sin compromiso de permanencia, podés cancelar cuando quieras.'
+      respuesta: 'Mensual sin compromiso. Si pagás anual, te regalamos 2 meses (10 por el precio de 12).'
     },
     {
       pregunta: '¿Qué pasa si necesito más de 5 usuarios?',
-      respuesta: 'Cada usuario adicional tiene un costo de $5.999/mes. También tenemos un plan Pro con 15 usuarios por $79.999/mes que incluye soporte prioritario.'
+      respuesta: 'Cada usuario adicional cuesta $5.999/mes. También tenemos plan Pro con 15 usuarios por $79.999/mes.'
     },
     {
       pregunta: '¿Los datos están seguros?',
-      respuesta: 'Sí, usamos encriptación de datos, backups diarios automáticos y servidores seguros. Cada usuario tiene su propio login y los permisos se manejan por roles.'
+      respuesta: 'Sí, usamos encriptación, backups diarios automáticos y servidores seguros. Cada usuario tiene login y permisos por rol.'
     },
     {
       pregunta: '¿Desde qué dispositivos puedo usarlo?',
-      respuesta: 'Desde cualquier dispositivo con navegador web: computadoras (Windows/Mac), tablets y celulares (iOS/Android). Responsive y optimizado para móviles.'
+      respuesta: 'Desde cualquier dispositivo con navegador web: computadoras, tablets y celulares. Responsive y optimizado para móviles.'
     }
   ];
 
@@ -146,8 +153,8 @@ const Sistema = () => {
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
-          pt: { xs: 12, md: 16 },
-          pb: { xs: 8, md: 12 },
+          pt: { xs: 14, md: 18 },
+          pb: { xs: 10, md: 14 },
           position: 'relative',
           overflow: 'hidden'
         }}
@@ -177,6 +184,7 @@ const Sistema = () => {
                 }} 
               />
               <Typography 
+                component="h1"
                 variant="h2" 
                 sx={{ 
                   fontWeight: 700,
@@ -195,7 +203,7 @@ const Sistema = () => {
                   lineHeight: 1.6
                 }}
               >
-                Tu negocio bajo control con el sistema web que usamos nosotros: formularios personalizables, modo offline y reportes automáticos
+                Nuestro sistema de Auditoría Prende te permite relevar, registrar y visualizar lo que pasa en tus locales a través de formularios flexibles, carga simple y reportes automáticos listos para analizar y decidir.
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 3 }}>
                 <Box
@@ -210,7 +218,7 @@ const Sistema = () => {
                   }}
                 >
                   <Typography variant="h6" sx={{ color: '#000000', fontWeight: 700 }}>
-                    desde 39990/mes
+                    desde $39990 por mes
                   </Typography>
                 </Box>
                 <Typography variant="body2" sx={{ color: '#F5F5F5' }}>
@@ -286,7 +294,7 @@ const Sistema = () => {
 
       {/* Funcionalidades Principales */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
+        <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
           Funcionalidades principales
         </Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
@@ -313,7 +321,7 @@ const Sistema = () => {
               <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, color: '#000000' }}>
                 {func.titulo}
               </Typography>
-              <Typography variant="body2" sx={{ color: '#424242', lineHeight: 1.7 }}>
+              <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.7 }}>
                 {func.descripcion}
               </Typography>
             </Paper>
@@ -324,51 +332,48 @@ const Sistema = () => {
       {/* Qué Incluye */}
       <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             ¿Qué incluye el plan?
           </Typography>
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 2 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
             {incluye.map((item, index) => (
-              <Paper 
+              <Box 
                 key={index}
-                elevation={0}
                 sx={{ 
-                  p: 2.5,
                   display: 'flex',
                   alignItems: 'center',
                   gap: 2,
-                  bgcolor: '#FFFFFF'
                 }}
               >
-                <CheckCircleOutlineIcon sx={{ color: '#FFEB5D', fontSize: 28 }} />
-                <Typography variant="body1">{item}</Typography>
-              </Paper>
+                <CheckCircleOutlineIcon sx={{ color: '#FFEB5D', fontSize: 28, flexShrink: 0 }} />
+                <Typography variant="body1" sx={{ color: '#000', fontWeight: 500 }}>{item}</Typography>
+              </Box>
             ))}
           </Box>
         </Container>
       </Box>
 
-      {/* Qué NO Incluye */}
+      {/* Servicios adicionales */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
-        <Typography variant="h4" sx={{ fontWeight: 700, mb: 4, textAlign: 'center' }}>
-          Qué NO incluye
+        <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+          ¿Qué más podés sumar?
         </Typography>
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 2 }}>
+        <Typography variant="body1" sx={{ mb: 4, textAlign: 'center', color: '#666', maxWidth: '600px', mx: 'auto' }}>
+          Estos servicios se cotizan aparte según lo que necesites
+        </Typography>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
           {noIncluye.map((item, index) => (
-            <Paper 
+            <Box 
               key={index}
-              elevation={0}
               sx={{ 
-                p: 2.5,
                 display: 'flex',
                 alignItems: 'center',
                 gap: 2,
-                border: '1px solid #F5F5F5'
               }}
             >
-              <CancelOutlinedIcon sx={{ color: '#757575', fontSize: 28 }} />
-              <Typography variant="body2" sx={{ color: '#757575' }}>{item}</Typography>
-            </Paper>
+              <CancelOutlinedIcon sx={{ color: '#757575', fontSize: 28, flexShrink: 0 }} />
+              <Typography variant="body1" sx={{ color: '#666' }}>{item}</Typography>
+            </Box>
           ))}
         </Box>
       </Container>
@@ -376,7 +381,7 @@ const Sistema = () => {
       {/* Casos de Uso */}
       <Box sx={{ bgcolor: '#000000', color: '#FFFFFF', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             ¿Cómo lo usan otros negocios?
           </Typography>
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 4 }}>
@@ -404,7 +409,7 @@ const Sistema = () => {
 
       {/* Cómo Empezar */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
+        <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
           ¿Cómo empezar?
         </Typography>
         <Box sx={{ position: 'relative', maxWidth: 900, mx: 'auto' }}>
@@ -451,7 +456,7 @@ const Sistema = () => {
       {/* FAQs */}
       <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             Preguntas Frecuentes
           </Typography>
           <Box sx={{ maxWidth: 900, mx: 'auto' }}>
@@ -492,7 +497,7 @@ const Sistema = () => {
       {/* CTA Final */}
       <Box sx={{ bgcolor: '#FFEB5D', py: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 3, textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 3, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             ¿Querés ver el sistema en acción?
           </Typography>
           <Typography variant="h6" sx={{ mb: 4, textAlign: 'center', fontWeight: 300 }}>

@@ -8,10 +8,16 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
 
 const Auditorias = () => {
   const navigate = useNavigate();
   const [currentImage, setCurrentImage] = useState(0);
+  
+  // Track page view on mount
+  useEffect(() => {
+    trackServicePageView('Auditorías Operativas');
+  }, []);
   
   const carouselImages = [
     'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
@@ -28,8 +34,7 @@ const Auditorias = () => {
     return () => clearInterval(interval);
   }, [carouselImages.length]);
 
-  const handleWhatsAppClick = () => {
-    const whatsappNumber = '5491100000000';
+  const handleWhatsAppClick = () => {    trackWhatsAppClick('Auditorías', 'Hero');    const whatsappNumber = '5491100000000';
     const message = encodeURIComponent('Hola! Me interesa el servicio de Auditorías Comerciales y Operativas. ¿Podrían darme más información?');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
@@ -74,27 +79,27 @@ const Auditorias = () => {
   const faqs = [
     {
       pregunta: '¿Cuánto dura la auditoría?',
-      respuesta: 'El proceso completo toma 2-3 semanas desde el contacto inicial hasta la entrega del informe. La visita presencial dura entre 4-6 horas dependiendo del tamaño del negocio.'
+      respuesta: 'Proceso completo: 2-3 semanas. La visita presencial dura 4-6 horas según tamaño del negocio.'
     },
     {
       pregunta: '¿Vienen realmente a mi local?',
-      respuesta: 'Sí, es fundamental estar en el lugar para observar la operación real, flujos de trabajo, interacción con clientes y procesos operativos. No hacemos auditorías remotas para este servicio.'
+      respuesta: 'Sí, es fundamental estar en el lugar para observar la operación real y procesos. No hacemos auditorías remotas.'
     },
     {
       pregunta: '¿Para qué rubros funciona?',
-      respuesta: 'Especializados en gastronomía (restaurantes, bares, cafeterías), retail (locales comerciales, boutiques) y gimnasios/centros deportivos. También trabajamos con otros rubros consultando disponibilidad.'
+      respuesta: 'Especializados en gastronomía, retail y gimnasios. También trabajamos otros rubros consultando disponibilidad.'
     },
     {
       pregunta: '¿Qué pasa si no puedo implementar todas las mejoras?',
-      respuesta: 'El informe prioriza las recomendaciones por impacto y urgencia. Podés implementar de a poco, empezando por las críticas. Nuestro seguimiento de 30 días te ayuda a arrancar.'
+      respuesta: 'El informe prioriza por impacto. Podés implementar de a poco. Nuestro seguimiento de 30 días te ayuda a arrancar.'
     },
     {
       pregunta: '¿Incluye la implementación de cambios?',
-      respuesta: 'No, el servicio se enfoca en diagnóstico y planificación. Si necesitás ayuda con la implementación, podemos cotizarte nuestro servicio de Consultoría Comercial Aplicada.'
+      respuesta: 'No, se enfoca en diagnóstico. Si necesitás implementación, te cotizamos Consultoría Personalizada.'
     },
     {
       pregunta: '¿Puedo contratar auditorías recurrentes?',
-      respuesta: 'Sí, recomendamos auditorías cada 3-6 meses para negocios en mejora continua. Ofrecemos descuentos por paquetes anuales.'
+      respuesta: 'Sí, recomendamos cada 3-6 meses. Ofrecemos descuentos por paquetes anuales.'
     }
   ];
 
@@ -110,8 +115,8 @@ const Auditorias = () => {
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
-          pt: { xs: 12, md: 16 },
-          pb: { xs: 8, md: 12 },
+          pt: { xs: 14, md: 18 },
+          pb: { xs: 10, md: 14 },
           position: 'relative',
           overflow: 'hidden'
         }}
@@ -132,6 +137,7 @@ const Auditorias = () => {
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 4, alignItems: 'center' }}>
             <Box>
               <Typography 
+                component="h1"
                 variant="h2" 
                 sx={{ 
                   fontWeight: 700,
@@ -139,7 +145,7 @@ const Auditorias = () => {
                   fontSize: { xs: '2rem', md: '3rem' }
                 }}
               >
-                Auditorías Comerciales y Operativas
+                Auditorías Operativas
               </Typography>
               <Typography 
                 variant="h5" 
@@ -150,7 +156,7 @@ const Auditorias = () => {
                   lineHeight: 1.6
                 }}
               >
-                Descubrí qué está fallando en tu negocio y cómo mejorarlo con una auditoría presencial profesional
+                Realizamos auditorías apoyadas en nuestro sistema, observando la operacion real para detectar oportunidades de mejora y devolverte información clara y accionable.
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 3 }}>
                 <Box
@@ -165,11 +171,11 @@ const Auditorias = () => {
                   }}
                 >
                   <Typography variant="h6" sx={{ color: '#000000', fontWeight: 700 }}>
-                    desde 79990
+                    desde $79990 por mes
                   </Typography>
                 </Box>
                 <Typography variant="body2" sx={{ color: '#F5F5F5' }}>
-                  Duración: 2-3 semanas • Incluye seguimiento de 30 días
+                  Incluye seguimiento de 30 días
                 </Typography>
               </Box>
               <Button
@@ -188,7 +194,7 @@ const Auditorias = () => {
                   }
                 }}
               >
-                Probar Gratis 15 Días
+                Agendar Primera Auditoría
               </Button>
             </Box>
             
@@ -240,68 +246,61 @@ const Auditorias = () => {
       </Box>
 
       {/* Qué Incluye */}
-      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
-          ¿Qué incluye el servicio?
-        </Typography>
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 2 }}>
-          {incluye.map((item, index) => (
-            <Paper 
-              key={index}
-              elevation={0}
-              sx={{ 
-                p: 2.5,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 2,
-                border: '1px solid #F5F5F5',
-                transition: 'all 0.3s',
-                '&:hover': {
-                  borderColor: '#FFEB5D',
-                  transform: 'translateY(-2px)'
-                }
-              }}
-            >
-              <CheckCircleOutlineIcon sx={{ color: '#FFEB5D', fontSize: 28 }} />
-              <Typography variant="body1">{item}</Typography>
-            </Paper>
-          ))}
-        </Box>
-      </Container>
-
-      {/* Qué NO Incluye */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 8 } }}>
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
-          <Typography variant="h4" sx={{ fontWeight: 700, mb: 4, textAlign: 'center' }}>
-            Qué NO incluye
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+            ¿Qué incluye el servicio?
           </Typography>
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 2 }}>
-            {noIncluye.map((item, index) => (
-              <Paper 
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
+            {incluye.map((item, index) => (
+              <Box 
                 key={index}
-                elevation={0}
                 sx={{ 
-                  p: 2.5,
                   display: 'flex',
                   alignItems: 'center',
                   gap: 2,
-                  bgcolor: '#FFFFFF'
                 }}
               >
-                <CancelOutlinedIcon sx={{ color: '#757575', fontSize: 28 }} />
-                <Typography variant="body2" sx={{ color: '#757575' }}>{item}</Typography>
-              </Paper>
+                <CheckCircleOutlineIcon sx={{ color: '#FFEB5D', fontSize: 28, flexShrink: 0 }} />
+                <Typography variant="body1" sx={{ color: '#000', fontWeight: 500 }}>{item}</Typography>
+              </Box>
             ))}
           </Box>
         </Container>
       </Box>
 
-      {/* Cómo Funciona */}
-      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
-          ¿Cómo funciona?
+      {/* Servicios adicionales */}
+      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
+        <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+          ¿Qué más podés sumar?
         </Typography>
-        <Box sx={{ position: 'relative' }}>
+        <Typography variant="body1" sx={{ mb: 4, textAlign: 'center', color: '#666', maxWidth: '600px', mx: 'auto' }}>
+          Estos servicios se cotizan aparte según lo que necesites
+        </Typography>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
+          {noIncluye.map((item, index) => (
+            <Box 
+              key={index}
+              sx={{ 
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2,
+              }}
+            >
+              <CancelOutlinedIcon sx={{ color: '#757575', fontSize: 28, flexShrink: 0 }} />
+              <Typography variant="body1" sx={{ color: '#666' }}>{item}</Typography>
+            </Box>
+          ))}
+        </Box>
+      </Container>
+
+      {/* Cómo Funciona */}
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+        <Container maxWidth="lg">
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+            ¿Cómo funciona?
+          </Typography>
+          <Box sx={{ position: 'relative', maxWidth: 900, mx: 'auto' }}>
           {proceso.map((step, index) => (
             <Box 
               key={index}
@@ -333,19 +332,20 @@ const Auditorias = () => {
                 <Typography variant="h5" sx={{ fontWeight: 600, mb: 1 }}>
                   {step.titulo}
                 </Typography>
-                <Typography variant="body1" sx={{ color: '#757575', lineHeight: 1.7 }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.7 }}>
                   {step.descripcion}
                 </Typography>
               </Box>
             </Box>
           ))}
         </Box>
-      </Container>
+        </Container>
+      </Box>
 
       {/* Para Quién Es */}
       <Box sx={{ bgcolor: '#000000', color: '#FFFFFF', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 4, textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 4, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             ¿Para quién es este servicio?
           </Typography>
           <Typography variant="h6" sx={{ textAlign: 'center', maxWidth: 800, mx: 'auto', lineHeight: 1.8, fontWeight: 300 }}>
@@ -357,22 +357,24 @@ const Auditorias = () => {
       </Box>
 
       {/* FAQs */}
-      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 6, textAlign: 'center' }}>
-          Preguntas Frecuentes
-        </Typography>
-        <Box sx={{ maxWidth: 900, mx: 'auto' }}>
-          {faqs.map((faq, index) => (
-            <Accordion 
-              key={index}
-              elevation={0}
-              sx={{ 
-                mb: 2,
-                border: '1px solid #F5F5F5',
-                '&:before': { display: 'none' },
-                borderRadius: '8px !important'
-              }}
-            >
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+        <Container maxWidth="lg">
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+            Preguntas Frecuentes
+          </Typography>
+          <Box sx={{ maxWidth: 900, mx: 'auto' }}>
+            {faqs.map((faq, index) => (
+              <Accordion 
+                key={index}
+                elevation={0}
+                sx={{ 
+                  mb: 2,
+                  bgcolor: '#FFFFFF',
+                  border: '1px solid #E0E0E0',
+                  '&:before': { display: 'none' },
+                  borderRadius: '8px !important'
+                }}
+              >
               <AccordionSummary 
                 expandIcon={<ExpandMoreIcon />}
                 sx={{ 
@@ -385,7 +387,7 @@ const Auditorias = () => {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails sx={{ pt: 0, pb: 3 }}>
-                <Typography variant="body1" sx={{ color: '#757575', lineHeight: 1.7 }}>
+                <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.7 }}>
                   {faq.respuesta}
                 </Typography>
               </AccordionDetails>
@@ -393,11 +395,12 @@ const Auditorias = () => {
           ))}
         </Box>
       </Container>
+      </Box>
 
       {/* CTA Final */}
       <Box sx={{ bgcolor: '#FFEB5D', py: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
-          <Typography variant="h3" sx={{ fontWeight: 700, mb: 3, textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 3, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             ¿Listo para mejorar tu negocio?
           </Typography>
           <Typography variant="h6" sx={{ mb: 4, textAlign: 'center', fontWeight: 300 }}>
