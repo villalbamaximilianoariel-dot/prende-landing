@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Button, Container, Typography, Paper, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+import { Box, Button, Container, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
