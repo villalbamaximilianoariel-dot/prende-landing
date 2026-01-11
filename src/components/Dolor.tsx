@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Card, CardContent, Button, Grid } from '@mui/material';
+import { Box, Container, Typography, Card, CardContent, Button } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -16,77 +16,52 @@ const Dolor = () => {
   const slides = [
     {
       nombre: 'Dependencia del dueño',
-      titulo: 'Todo depende de vos',
-      textoPrincipal: 'El negocio funciona, pero solo cuando estás presente.',
-      comoSeSiente: [
+      pregunta: '¿Sentís que el negocio funciona solo cuando estás presente?',
+      subtitulo: 'Es una señal de crecimiento, no de fracaso. Pasa cuando:',
+      puntos: [
         'Tenés que estar en todo',
         'Cuesta delegar con tranquilidad',
         'Si te ausentás, algo se desordena'
-      ],
-      consecuencias: [
-        'Cansancio constante',
-        'Falta de previsibilidad',
-        'Crecimiento limitado'
       ]
     },
     {
       nombre: 'Falta de control real',
-      titulo: 'No todo está bajo control',
-      textoPrincipal: 'Se trabaja mucho, pero no siempre se mide lo que pasa.',
-      comoSeSiente: [
-        'Sensación de estar "a ciegas"',
-        'Problemas que aparecen tarde',
-        'Decisiones tomadas por intuición'
-      ],
-      consecuencias: [
-        'Errores que se repiten',
-        'Poco aprendizaje',
-        'Dificultad para mejorar'
+      pregunta: '¿Trabajás mucho pero no sabés bien qué está pasando?',
+      subtitulo: 'La intuición te trajo hasta acá, pero ahora necesitás datos. Esto se nota cuando:',
+      puntos: [
+        'Tomás decisiones sin información clara',
+        'Los problemas aparecen tarde',
+        'Te cuesta anticiparte'
       ]
     },
     {
       nombre: 'Calidad irregular',
-      titulo: 'La calidad cambia según quién esté',
-      textoPrincipal: 'La experiencia del cliente no siempre es la misma.',
-      comoSeSiente: [
-        'Algunos días todo sale bien',
-        'Otros días aparecen reclamos',
-        'No hay un criterio claro y compartido'
-      ],
-      consecuencias: [
-        'Clientes insatisfechos',
-        'Imagen poco consistente',
-        'Pérdida de oportunidades'
+      pregunta: '¿La experiencia del cliente cambia según quién atiende?',
+      subtitulo: 'No es culpa del equipo, es falta de criterio compartido. Se ve en:',
+      puntos: [
+        'Algunos días todo sale bien, otros no',
+        'Aparecen reclamos inesperados',
+        'No hay un estándar claro'
       ]
     },
     {
       nombre: 'Desorden operativo silencioso',
-      titulo: 'Funciona, pero no está ordenado',
-      textoPrincipal: 'No es un caos, pero tampoco hay claridad.',
-      comoSeSiente: [
+      pregunta: '¿Funciona pero no está ordenado?',
+      subtitulo: 'No es caos, pero tampoco hay claridad. Esto genera:',
+      puntos: [
         'Tareas poco definidas',
         'Retrabajo constante',
-        'Falta de prioridades claras'
-      ],
-      consecuencias: [
-        'Pérdida de tiempo',
-        'Costos ocultos',
-        'Desgaste diario'
+        'Pérdida de tiempo'
       ]
     },
     {
       nombre: 'Decisiones con incertidumbre',
-      titulo: 'Decidir sin información desgasta',
-      textoPrincipal: 'Tomar decisiones sin datos claros genera dudas.',
-      comoSeSiente: [
+      pregunta: '¿Decidir te genera más dudas que certezas?',
+      subtitulo: 'Sin información clara, cada decisión cuesta. Se manifiesta en:',
+      puntos: [
         'Inseguridad al decidir',
         'Cambios de rumbo frecuentes',
-        'Sensación de improvisar'
-      ],
-      consecuencias: [
-        'Estrés',
-        'Resultados irregulares',
-        'Falta de foco'
+        'Sensación de estar improvisando'
       ]
     }
   ];
@@ -156,7 +131,7 @@ const Dolor = () => {
                   }}
                 >
                   <CardContent sx={{ p: 0 }}>
-                    {/* Título negro coherente con Blog */}
+                    {/* Pregunta interpeladora como título */}
                     <Typography 
                       variant="h4" 
                       component="h3" 
@@ -164,194 +139,82 @@ const Dolor = () => {
                       sx={{ 
                         fontWeight: 700,
                         mb: 3,
-                        fontSize: { xs: '1.5rem', md: '1.75rem' },
-                        lineHeight: 1.2,
+                        fontSize: { xs: '1.4rem', md: '1.75rem' },
+                        lineHeight: 1.3,
                         color: '#000',
+                        px: { xs: 1, md: 2 }
                       }}
                     >
-                      {slide.titulo}
+                      {slide.pregunta}
                     </Typography>
 
-                    {/* Texto principal con líneas decorativas */}
-                    <Box 
+                    {/* Subtítulo empático */}
+                    <Typography 
+                      variant="body1"
+                      textAlign="center"
                       sx={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: 2, 
-                        mb: 5,
-                        px: { xs: 0, md: 4 }
+                        fontSize: { xs: '1rem', md: '1.05rem' },
+                        lineHeight: 1.6,
+                        color: '#666',
+                        fontWeight: 400,
+                        mb: 4,
+                        px: { xs: 2, md: 4 },
                       }}
                     >
-                      <Box 
-                        sx={{ 
-                          flex: 1, 
-                          height: '2px', 
-                          background: 'linear-gradient(to right, transparent, #FFEB5D)',
-                          display: { xs: 'none', md: 'block' }
-                        }} 
-                      />
-                      <Typography 
-                        variant="body1"
-                        textAlign="center"
-                        sx={{ 
-                          fontSize: { xs: '1rem', md: '1.1rem' },
-                          lineHeight: 1.5,
-                          color: '#666',
-                          fontWeight: 400,
-                          flexShrink: 0,
-                        }}
-                      >
-                        {slide.textoPrincipal}
-                      </Typography>
-                      <Box 
-                        sx={{ 
-                          flex: 1, 
-                          height: '2px', 
-                          background: 'linear-gradient(to left, transparent, #FFEB5D)',
-                          display: { xs: 'none', md: 'block' }
-                        }} 
-                      />
+                      {slide.subtitulo}
+                    </Typography>
+
+                    {/* Lista simple y limpia */}
+                    <Box
+                      sx={{
+                        maxWidth: '600px',
+                        mx: 'auto',
+                        px: { xs: 2, md: 4 },
+                      }}
+                    >
+                      <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none' }}>
+                        {slide.puntos.map((item, idx) => (
+                          <Box
+                            key={idx}
+                            component="li"
+                            sx={{
+                              mb: 2.5,
+                              '&:last-child': { mb: 0 },
+                              display: 'flex',
+                              alignItems: 'flex-start',
+                              gap: 2,
+                              transition: 'all 0.2s ease',
+                              '&:hover': {
+                                transform: 'translateX(4px)',
+                              }
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontSize: '1.3rem',
+                                flexShrink: 0,
+                                color: '#FFEB5D',
+                                fontWeight: 'bold',
+                                mt: 0.2,
+                              }}
+                            >
+                              •
+                            </Typography>
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                fontSize: { xs: '1rem', md: '1.1rem' },
+                                lineHeight: 1.6,
+                                color: '#333',
+                                fontWeight: 400,
+                              }}
+                            >
+                              {item}
+                            </Typography>
+                          </Box>
+                        ))}
+                      </Box>
                     </Box>
-
-                    {/* Dos columnas: Cómo se siente | Consecuencias */}
-                    <Grid container spacing={3}>
-                      {/* Columna izquierda: Cómo se siente */}
-                      <Grid item xs={12} md={6}>
-                        <Box
-                          sx={{
-                            backgroundColor: '#F8F8F8',
-                            borderRadius: 2,
-                            p: 3,
-                            height: '100%',
-                          }}
-                        >
-                          <Typography
-                            variant="subtitle1"
-                            sx={{
-                              fontWeight: 700,
-                              mb: 2,
-                              fontSize: { xs: '1rem', md: '1.1rem' },
-                              color: '#666',
-                              textTransform: 'uppercase',
-                              letterSpacing: '0.5px',
-                            }}
-                          >
-                            Cómo se siente
-                          </Typography>
-                          <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none' }}>
-                            {slide.comoSeSiente.map((item, idx) => (
-                              <Box
-                                key={idx}
-                                component="li"
-                                sx={{
-                                  mb: 1.5,
-                                  '&:last-child': { mb: 0 },
-                                  display: 'flex',
-                                  alignItems: 'flex-start',
-                                  gap: 1.5,
-                                  transition: 'all 0.2s ease',
-                                  '&:hover': {
-                                    transform: 'translateX(4px)',
-                                  }
-                                }}
-                              >
-                                <Typography
-                                  sx={{
-                                    fontSize: '1.2rem',
-                                    flexShrink: 0,
-                                    color: '#999',
-                                    fontWeight: 'bold',
-                                    mt: 0.1,
-                                  }}
-                                >
-                                  ✓
-                                </Typography>
-                                <Typography
-                                  variant="body1"
-                                  sx={{
-                                    fontSize: { xs: '0.95rem', md: '1rem' },
-                                    lineHeight: 1.6,
-                                    color: '#444',
-                                  }}
-                                >
-                                  {item}
-                                </Typography>
-                              </Box>
-                            ))}
-                          </Box>
-                        </Box>
-                      </Grid>
-
-                      {/* Columna derecha: Consecuencias */}
-                      <Grid item xs={12} md={6}>
-                        <Box
-                          sx={{
-                            backgroundColor: '#FFFEF5',
-                            border: '2px solid #FFEB5D',
-                            borderLeft: '6px solid #FFEB5D',
-                            borderRadius: 2,
-                            p: 3,
-                            height: '100%',
-                          }}
-                        >
-                          <Typography
-                            variant="subtitle1"
-                            sx={{
-                              fontWeight: 700,
-                              mb: 2,
-                              fontSize: { xs: '1rem', md: '1.1rem' },
-                              color: '#000',
-                              textTransform: 'uppercase',
-                              letterSpacing: '0.5px',
-                            }}
-                          >
-                            Cómo se manifiesta
-                          </Typography>
-                          <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none' }}>
-                            {slide.consecuencias.map((item, idx) => (
-                              <Box
-                                key={idx}
-                                component="li"
-                                sx={{
-                                  mb: 1.5,
-                                  '&:last-child': { mb: 0 },
-                                  display: 'flex',
-                                  alignItems: 'flex-start',
-                                  gap: 1.5,
-                                  transition: 'all 0.2s ease',
-                                  '&:hover': {
-                                    transform: 'translateX(4px)',
-                                  }
-                                }}
-                              >
-                                <Typography
-                                  sx={{
-                                    fontSize: '1.2rem',
-                                    flexShrink: 0,
-                                    color: '#000',
-                                    fontWeight: 'bold',
-                                    mt: 0.1,
-                                  }}
-                                >
-                                  ✓
-                                </Typography>
-                                <Typography
-                                  variant="body1"
-                                  sx={{
-                                    fontSize: { xs: '0.95rem', md: '1rem' },
-                                    lineHeight: 1.6,
-                                    color: '#000',
-                                    fontWeight: 500,
-                                  }}
-                                >
-                                  {item}
-                                </Typography>
-                              </Box>
-                            ))}
-                          </Box>
-                        </Box>
-                      </Grid>
-                    </Grid>
                   </CardContent>
                 </Card>
               </SwiperSlide>
