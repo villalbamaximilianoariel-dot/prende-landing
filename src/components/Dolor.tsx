@@ -74,7 +74,7 @@ const Dolor = () => {
   return (
     <Box
       sx={{
-        py: 8,
+        py: 6,
         backgroundColor: '#F5F5F5'
       }}
     >
@@ -84,7 +84,7 @@ const Dolor = () => {
           component="h2"
           textAlign="center"
           gutterBottom
-          sx={{ fontWeight: 'bold', mb: 6 }}
+          sx={{ fontWeight: 'bold', mb: 4 }}
         >
           El crecimiento trae nuevos desafíos
         </Typography>
@@ -116,7 +116,7 @@ const Dolor = () => {
                     backgroundColor: '#FFFFFF',
                     borderRadius: 3,
                     boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
-                    p: { xs: 4, md: 6 },
+                    p: { xs: 3, md: 4 },
                     transition: 'all 0.3s ease',
                     opacity: 0,
                     animation: 'fadeIn 0.6s ease-in-out forwards',
@@ -138,7 +138,7 @@ const Dolor = () => {
                       textAlign="center"
                       sx={{ 
                         fontWeight: 700,
-                        mb: 3,
+                        mb: 2,
                         fontSize: { xs: '1.4rem', md: '1.75rem' },
                         lineHeight: 1.3,
                         color: '#000',
@@ -157,8 +157,8 @@ const Dolor = () => {
                         lineHeight: 1.6,
                         color: '#666',
                         fontWeight: 400,
-                        mb: 4,
-                        px: { xs: 2, md: 4 },
+                        mb: 3,
+                        px: { xs: 2, md: 3 },
                       }}
                     >
                       {slide.subtitulo}
@@ -167,9 +167,9 @@ const Dolor = () => {
                     {/* Lista simple y limpia */}
                     <Box
                       sx={{
-                        maxWidth: '600px',
+                        maxWidth: '550px',
                         mx: 'auto',
-                        px: { xs: 2, md: 4 },
+                        px: { xs: 2, md: 3 },
                       }}
                     >
                       <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none' }}>
@@ -178,7 +178,7 @@ const Dolor = () => {
                             key={idx}
                             component="li"
                             sx={{
-                              mb: 2.5,
+                              mb: 1.5,
                               '&:last-child': { mb: 0 },
                               display: 'flex',
                               alignItems: 'flex-start',
