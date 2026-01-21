@@ -38,7 +38,7 @@ const Consultoria = () => {
     return () => clearInterval(interval);
   }, [carouselImages.length]);
 
-  const handleWhatsAppClick = () => {    trackWhatsAppClick('Consultoría', 'Hero');    const whatsappNumber = '5491100000000';
+  const handleWhatsAppClick = () => {    trackWhatsAppClick('Consultoría', 'Hero');    const whatsappNumber = '5491125453990';
     const message = encodeURIComponent('Hola! Me interesa el servicio de Consultoría Comercial Aplicada. ¿Podrían darme más información?');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };

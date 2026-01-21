@@ -5,7 +5,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const Contacto = () => {
-  const whatsappNumber = '5491100000000'; // Placeholder
+  const whatsappNumber = '5491125453990';
   const email = 'hola@prende.com.ar'; // Placeholder
   const instagramUrl = 'https://instagram.com/prende.ar';
   const linkedinUrl = 'https://linkedin.com/company/prende.ar'; // Placeholder

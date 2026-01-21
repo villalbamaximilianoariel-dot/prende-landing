@@ -34,7 +34,7 @@ const Auditorias = () => {
     return () => clearInterval(interval);
   }, [carouselImages.length]);
 
-  const handleWhatsAppClick = () => {    trackWhatsAppClick('Auditorías', 'Hero');    const whatsappNumber = '5491100000000';
+  const handleWhatsAppClick = () => {    trackWhatsAppClick('Auditorías', 'Hero');    const whatsappNumber = '5491125453990';
     const message = encodeURIComponent('Hola! Me interesa el servicio de Auditorías Comerciales y Operativas. ¿Podrían darme más información?');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };

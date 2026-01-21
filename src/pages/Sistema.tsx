@@ -41,7 +41,7 @@ const Sistema = () => {
 
   const handleWhatsAppClick = () => {
     trackWhatsAppClick('Sistema', 'Hero');
-    const whatsappNumber = '5491100000000';
+    const whatsappNumber = '5491125453990';
     const message = encodeURIComponent('Hola! Me interesa el Sistema de Auditoría Prende. ¿Podrían darme una demo?');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };

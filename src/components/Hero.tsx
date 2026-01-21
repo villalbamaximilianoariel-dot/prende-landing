@@ -7,7 +7,7 @@ const Hero = () => {
     // Track conversion
     trackWhatsAppClick('Homepage', 'Hero');
     // Placeholder - actualizar con número real
-    window.open('https://wa.me/5491100000000?text=Hola%20Prende%2C%20quiero%20solicitar%20una%20demo', '_blank');
+    window.open('https://wa.me/5491125453990?text=Hola%20Prende%2C%20quiero%20solicitar%20una%20demo', '_blank');
   };
 
   const scrollToServicios = () => {
