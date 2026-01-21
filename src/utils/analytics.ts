@@ -21,6 +21,10 @@ declare global {
  * @param ubicacion - Ubicación del botón (hero, cta-final, contacto, etc.)
  */
 export const trackWhatsAppClick = (servicio: string, ubicacion: string) => {
+  console.log(`[Analytics] trackWhatsAppClick called: ${servicio} - ${ubicacion}`);
+  console.log(`[Analytics] window.fbq available: ${!!window.fbq}`);
+  console.log(`[Analytics] window.gtag available: ${!!window.gtag}`);
+  
   // Google Analytics 4
   if (window.gtag) {
     window.gtag('event', 'generate_lead', {
@@ -31,15 +35,20 @@ export const trackWhatsAppClick = (servicio: string, ubicacion: string) => {
       servicio: servicio,
       ubicacion: ubicacion,
     });
+    console.log(`[Analytics] GA4 generate_lead event sent`);
   }
 
   // Meta Pixel
   if (window.fbq) {
+    console.log(`[Analytics] Attempting to send Meta Pixel Lead event...`);
     window.fbq('track', 'Lead', {
       content_name: servicio,
       content_category: 'WhatsApp Click',
       source: ubicacion,
     });
+    console.log(`[Analytics] Meta Pixel Lead event sent successfully`);
+  } else {
+    console.warn(`[Analytics] Meta Pixel (fbq) not available - event not sent`);
   }
 
   // Google Ads Conversion (opcional)
