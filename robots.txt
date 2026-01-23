@@ -1,0 +1,22 @@
+# Robots.txt para Prende
+# Permite que todos los bots de búsqueda indexen el sitio
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://prende.com.ar/sitemap.xml
+
+# Optimizaciones
+# Evitar indexar archivos de sistema
+Disallow: /assets/
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Permitir Googlebot específicamente
+User-agent: Googlebot
+Allow: /
+
+# Permitir Bingbot
+User-agent: Bingbot
+Allow: /
