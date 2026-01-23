@@ -1,10 +1,10 @@
 /**
  * Analytics Tracking Utilities
  * 
- * Para configurar:
- * 1. Google Analytics 4: Reemplazar G-XXXXXXXXXX en index.html
- * 2. Meta Pixel: Reemplazar YOUR_PIXEL_ID en index.html
- * 3. Google Ads: Agregar AW-CONVERSION_ID abajo
+ * Configuración completada:
+ * 1. Google Analytics 4: G-HGH6BFCHW9
+ * 2. Meta Pixel: 2353397001844472
+ * 3. Google Ads: Agregar AW-CONVERSION_ID si usas Google Ads
  */
 
 // Declaraciones TypeScript para las funciones globales
