@@ -27,15 +27,22 @@ export const trackWhatsAppClick = (servicio: string, ubicacion: string) => {
   
   // Google Analytics 4
   if (window.gtag) {
+    // Evento recomendado de GA4 para leads
     window.gtag('event', 'generate_lead', {
+      value: 1,
       currency: 'ARS',
-      value: 0,
-      event_category: 'WhatsApp',
+    });
+    
+    // También enviar evento personalizado con más detalles
+    window.gtag('event', 'whatsapp_click', {
+      event_category: 'engagement',
       event_label: `${servicio} - ${ubicacion}`,
       servicio: servicio,
       ubicacion: ubicacion,
     });
+    
     console.log(`[Analytics] GA4 generate_lead event sent`);
+    console.log(`[Analytics] GA4 whatsapp_click event sent`);
   }
 
   // Meta Pixel
