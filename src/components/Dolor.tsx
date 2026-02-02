@@ -164,33 +164,36 @@ const Dolor = () => {
                       {slide.pregunta}
                     </Typography>
 
-                    {/* Lista con iconos modernos */}
+                    {/* Lista con iconos modernos en 2 columnas */}
                     <Box
                       sx={{
-                        maxWidth: '600px',
+                        maxWidth: '900px',
                         mx: 'auto',
                         px: { xs: 1, md: 2 },
                       }}
                     >
-                      <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none' }}>
+                      <Box 
+                        sx={{ 
+                          display: 'grid',
+                          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+                          gap: { xs: 2.5, md: 3 },
+                        }}
+                      >
                         {slide.puntos.map((item, idx) => (
                           <Box
                             key={idx}
-                            component="li"
                             sx={{
-                              mb: 2.5,
-                              '&:last-child': { mb: 0 },
                               display: 'flex',
                               alignItems: 'flex-start',
                               gap: 2,
-                              p: 2,
+                              p: 2.5,
                               borderRadius: 2,
                               backgroundColor: 'rgba(255, 235, 93, 0.08)',
                               transition: 'all 0.25s ease',
                               '&:hover': {
                                 backgroundColor: 'rgba(255, 235, 93, 0.15)',
-                                transform: 'translateX(6px)',
-                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
+                                transform: 'translateY(-4px)',
+                                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
                               }
                             }}
                           >
@@ -205,7 +208,7 @@ const Dolor = () => {
                             <Typography
                               variant="body1"
                               sx={{
-                                fontSize: { xs: '1.05rem', md: '1.15rem' },
+                                fontSize: { xs: '1.05rem', md: '1.1rem' },
                                 lineHeight: 1.7,
                                 color: '#2c2c2c',
                                 fontWeight: 400,
