@@ -13,55 +13,71 @@ import { useState } from 'react';
 
 const Dolor = () => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  
+  // Función para renderizar texto con negritas
+  const renderTextWithBold = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return (
+          <Box key={index} component="span" sx={{ fontWeight: 700 }}>
+            {part.slice(2, -2)}
+          </Box>
+        );
+      }
+      return part;
+    });
+  };
+
   const slides = [
     {
+      nombre: 'Experiencia del cliente',
+      pregunta: '¿Tus clientes reciben siempre la misma experiencia?',
+      puntos: [
+        'La **atención** depende de quién esté atendiendo en ese momento.',
+        'Hay días en que todo funciona bien y otros en los que aparecen **quejas** o reclamos.',
+        'No está **claro** qué se hace bien y qué se hace distinto entre turnos o sucursales.',
+        'Falta una **mirada objetiva** sobre cómo vive el cliente la experiencia real.'
+      ]
+    },
+    {
+      nombre: 'Control y supervisión',
+      pregunta: '¿Sabés realmente qué está pasando en tu negocio?',
+      puntos: [
+        'Hay mucha información, pero está **dispersa** o no queda registrada.',
+        'Te enterás de los problemas cuando ya **impactaron** en ventas o en el equipo.',
+        'Las decisiones se toman más por **percepción** que por datos concretos.',
+        'No hay una **foto clara** del funcionamiento diario del negocio.'
+      ]
+    },
+    {
+      nombre: 'Toma de decisiones',
+      pregunta: '¿Te cuesta decidir sin tener información clara?',
+      puntos: [
+        'Surgen ideas de mejora, pero no sabés **por dónde empezar**.',
+        'Cambiás cosas sin poder **medir** si realmente funcionan.',
+        'Falta **información confiable** para priorizar qué ajustar primero.',
+        'Decidir implica **riesgo** porque no hay datos que acompañen.'
+      ]
+    },
+    {
+      nombre: 'Orden y organización',
+      pregunta: '¿Falta orden aunque las cosas funcionen?',
+      puntos: [
+        'El negocio avanza, pero con procesos **poco claros** o poco documentados.',
+        'Cada persona resuelve a su manera y eso genera **desorden** con el tiempo.',
+        'Lo **urgente** tapa lo importante y no se revisan formas de trabajar.',
+        'Funciona, pero podría funcionar **mejor** y con menos esfuerzo.'
+      ]
+    },
+    {
       nombre: 'Dependencia del dueño',
-      pregunta: '¿Sentís que el negocio funciona solo cuando estás presente?',
-      subtitulo: 'Es una señal de crecimiento, no de fracaso. Pasa cuando:',
+      pregunta: '¿El negocio funciona mejor si estás presente?',
       puntos: [
-        'Tenés que estar en todo',
-        'Cuesta delegar con tranquilidad',
-        'Si te ausentás, algo se desordena'
-      ]
-    },
-    {
-      nombre: 'Falta de control real',
-      pregunta: '¿Trabajás mucho pero no sabés bien qué está pasando?',
-      subtitulo: 'La intuición te trajo hasta acá, pero ahora necesitás datos. Esto se nota cuando:',
-      puntos: [
-        'Tomás decisiones sin información clara',
-        'Los problemas aparecen tarde',
-        'Te cuesta anticiparte'
-      ]
-    },
-    {
-      nombre: 'Calidad irregular',
-      pregunta: '¿La experiencia del cliente cambia según quién atiende?',
-      subtitulo: 'No es culpa del equipo, es falta de criterio compartido. Se ve en:',
-      puntos: [
-        'Algunos días todo sale bien, otros no',
-        'Aparecen reclamos inesperados',
-        'No hay un estándar claro'
-      ]
-    },
-    {
-      nombre: 'Desorden operativo silencioso',
-      pregunta: '¿Funciona pero no está ordenado?',
-      subtitulo: 'No es caos, pero tampoco hay claridad. Esto genera:',
-      puntos: [
-        'Tareas poco definidas',
-        'Retrabajo constante',
-        'Pérdida de tiempo'
-      ]
-    },
-    {
-      nombre: 'Decisiones con incertidumbre',
-      pregunta: '¿Decidir te genera más dudas que certezas?',
-      subtitulo: 'Sin información clara, cada decisión cuesta. Se manifiesta en:',
-      puntos: [
-        'Inseguridad al decidir',
-        'Cambios de rumbo frecuentes',
-        'Sensación de estar improvisando'
+        'Cuando no estás, aparecen **errores** que no se dan cuando supervisás.',
+        'El equipo **depende** demasiado de vos para resolver situaciones simples.',
+        'Te cuesta delegar porque no tenés **visibilidad** de lo que pasa.',
+        'El negocio avanza, pero con una carga operativa muy **alta** para vos.'
       ]
     }
   ];
@@ -138,7 +154,7 @@ const Dolor = () => {
                       textAlign="center"
                       sx={{ 
                         fontWeight: 700,
-                        mb: 2,
+                        mb: 4,
                         fontSize: { xs: '1.4rem', md: '1.75rem' },
                         lineHeight: 1.3,
                         color: '#000',
@@ -146,22 +162,6 @@ const Dolor = () => {
                       }}
                     >
                       {slide.pregunta}
-                    </Typography>
-
-                    {/* Subtítulo empático */}
-                    <Typography 
-                      variant="body1"
-                      textAlign="center"
-                      sx={{ 
-                        fontSize: { xs: '1rem', md: '1.05rem' },
-                        lineHeight: 1.6,
-                        color: '#666',
-                        fontWeight: 400,
-                        mb: 3,
-                        px: { xs: 2, md: 3 },
-                      }}
-                    >
-                      {slide.subtitulo}
                     </Typography>
 
                     {/* Lista simple y limpia */}
@@ -209,7 +209,7 @@ const Dolor = () => {
                                 fontWeight: 400,
                               }}
                             >
-                              {item}
+                              {renderTextWithBold(item)}
                             </Typography>
                           </Box>
                         ))}
