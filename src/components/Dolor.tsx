@@ -1,5 +1,5 @@
 import { Box, Container, Typography, Card, CardContent, Button } from '@mui/material';
-import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import { ChevronLeft, ChevronRight, CheckCircle } from '@mui/icons-material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
@@ -130,9 +130,9 @@ const Dolor = () => {
                 <Card
                   sx={{
                     backgroundColor: '#FFFFFF',
-                    borderRadius: 3,
-                    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
-                    p: { xs: 3, md: 4 },
+                    borderRadius: 4,
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+                    p: { xs: 4, md: 5 },
                     transition: 'all 0.3s ease',
                     opacity: 0,
                     animation: 'fadeIn 0.6s ease-in-out forwards',
@@ -141,8 +141,8 @@ const Dolor = () => {
                       to: { opacity: 1, transform: 'translateY(0)' }
                     },
                     '&:hover': {
-                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.12)',
-                      transform: 'translateY(-2px)',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                      transform: 'translateY(-4px)',
                     },
                   }}
                 >
@@ -154,22 +154,22 @@ const Dolor = () => {
                       textAlign="center"
                       sx={{ 
                         fontWeight: 700,
-                        mb: 4,
-                        fontSize: { xs: '1.4rem', md: '1.75rem' },
+                        mb: 5,
+                        fontSize: { xs: '1.5rem', md: '1.85rem' },
                         lineHeight: 1.3,
-                        color: '#000',
+                        color: '#1a1a1a',
                         px: { xs: 1, md: 2 }
                       }}
                     >
                       {slide.pregunta}
                     </Typography>
 
-                    {/* Lista simple y limpia */}
+                    {/* Lista con iconos modernos */}
                     <Box
                       sx={{
-                        maxWidth: '550px',
+                        maxWidth: '600px',
                         mx: 'auto',
-                        px: { xs: 2, md: 3 },
+                        px: { xs: 1, md: 2 },
                       }}
                     >
                       <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none' }}>
@@ -178,34 +178,36 @@ const Dolor = () => {
                             key={idx}
                             component="li"
                             sx={{
-                              mb: 1.5,
+                              mb: 2.5,
                               '&:last-child': { mb: 0 },
                               display: 'flex',
                               alignItems: 'flex-start',
                               gap: 2,
-                              transition: 'all 0.2s ease',
+                              p: 2,
+                              borderRadius: 2,
+                              backgroundColor: 'rgba(255, 235, 93, 0.08)',
+                              transition: 'all 0.25s ease',
                               '&:hover': {
-                                transform: 'translateX(4px)',
+                                backgroundColor: 'rgba(255, 235, 93, 0.15)',
+                                transform: 'translateX(6px)',
+                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
                               }
                             }}
                           >
-                            <Typography
+                            <CheckCircle
                               sx={{
-                                fontSize: '1.3rem',
+                                fontSize: '1.5rem',
                                 flexShrink: 0,
                                 color: '#FFEB5D',
-                                fontWeight: 'bold',
-                                mt: 0.2,
+                                mt: 0.1,
                               }}
-                            >
-                              •
-                            </Typography>
+                            />
                             <Typography
                               variant="body1"
                               sx={{
-                                fontSize: { xs: '1rem', md: '1.1rem' },
-                                lineHeight: 1.6,
-                                color: '#333',
+                                fontSize: { xs: '1.05rem', md: '1.15rem' },
+                                lineHeight: 1.7,
+                                color: '#2c2c2c',
                                 fontWeight: 400,
                               }}
                             >
