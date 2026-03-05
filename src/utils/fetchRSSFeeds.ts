@@ -11,24 +11,19 @@ export interface RSSItem {
 export interface FeedSource {
   name: string;
   url: string;
+  type?: string;       // 'youtube' | 'rss' (por defecto 'rss')
+  channelId?: string;  // solo para type === 'youtube'
   category: string;
   enabled: boolean;
 }
 
-/**
- * Parsea un feed RSS usando DOMParser nativo del navegador
- */
+// ─── parsers XML ────────────────────────────────────────────────────────────
+
 function parseRSSFromXML(xmlText: string, feed: FeedSource, maxItems: number): RSSItem[] {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-
   const isAtom = xmlDoc.querySelector('feed') !== null;
-
-  if (isAtom) {
-    return parseAtomFeed(xmlDoc, feed, maxItems);
-  } else {
-    return parseRSSFeed(xmlDoc, feed, maxItems);
-  }
+  return isAtom ? parseAtomFeed(xmlDoc, feed, maxItems) : parseRSSFeed(xmlDoc, feed, maxItems);
 }
 
 function parseRSSFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RSSItem[] {
@@ -44,9 +39,9 @@ function parseRSSFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RSS
     const pubDate = item.querySelector('pubDate')?.textContent || new Date().toISOString();
 
     let thumbnail = '';
-    const enclosure = item.querySelector('enclosure');
     const mediaThumbnail = item.querySelector('media\\:thumbnail, thumbnail');
     const mediaContent = item.querySelector('media\\:content, content');
+    const enclosure = item.querySelector('enclosure');
 
     if (mediaThumbnail) {
       thumbnail = mediaThumbnail.getAttribute('url') || '';
@@ -122,37 +117,60 @@ function stripHtml(html: string): string {
   return tmp.textContent || tmp.innerText || '';
 }
 
+// ─── YouTube Data API v3 ────────────────────────────────────────────────────
+
 /**
- * Intenta cargar el feed vía rss2json.com (devuelve JSON, soporta YouTube/Ipsos).
+ * Obtiene los últimos videos de un canal usando YouTube Data API v3.
+ * Requiere VITE_YOUTUBE_API_KEY en el archivo .env.local
  */
-async function fetchViaRss2Json(feed: FeedSource, maxItems: number): Promise<RSSItem[]> {
-  const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}&count=${maxItems}`;
+async function fetchViaYouTubeAPI(feed: FeedSource, maxItems: number): Promise<RSSItem[]> {
+  const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
+  if (!apiKey) {
+    throw new Error('VITE_YOUTUBE_API_KEY no configurada');
+  }
+  if (!feed.channelId) {
+    throw new Error(`Feed "${feed.name}" no tiene channelId configurado`);
+  }
+
+  const params = new URLSearchParams({
+    part: 'snippet',
+    channelId: feed.channelId,
+    maxResults: String(maxItems),
+    order: 'date',
+    type: 'video',
+    key: apiKey,
+  });
+
+  const url = `https://www.googleapis.com/youtube/v3/search?${params}`;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), 8000);
 
-  const response = await fetch(url, { signal: controller.signal, mode: 'cors' });
+  const response = await fetch(url, { signal: controller.signal });
   clearTimeout(id);
 
-  if (!response.ok) throw new Error(`rss2json HTTP ${response.status}`);
+  if (!response.ok) {
+    const body = await response.text().catch(() => '');
+    throw new Error(`YouTube API HTTP ${response.status}: ${body.substring(0, 200)}`);
+  }
 
   const data = await response.json();
-  if (data.status !== 'ok' || !Array.isArray(data.items)) throw new Error('rss2json status not ok');
 
-  return data.items.slice(0, maxItems).map((item: any) => {
-    // thumbnail: rss2json lo expone directamente o dentro de enclosure
+  if (!Array.isArray(data.items)) throw new Error('YouTube API: formato inesperado');
+
+  return data.items.map((item: any) => {
+    const snippet = item.snippet || {};
+    const videoId = item.id?.videoId || '';
     const thumbnail =
-      item.thumbnail ||
-      item.enclosure?.link ||
-      extractFirstImage(item.description || item.content || '') ||
+      snippet.thumbnails?.high?.url ||
+      snippet.thumbnails?.medium?.url ||
+      snippet.thumbnails?.default?.url ||
       '';
 
-    const cleanDescription = stripHtml(item.description || item.content || '').substring(0, 200);
-
     return {
-      title: item.title || 'Sin título',
-      link: item.link || '#',
-      description: cleanDescription ? cleanDescription + '...' : '',
-      pubDate: item.pubDate || new Date().toISOString(),
+      title: snippet.title || 'Sin título',
+      link: videoId ? `https://www.youtube.com/watch?v=${videoId}` : '#',
+      description: (snippet.description || '').substring(0, 200) + ((snippet.description?.length ?? 0) > 200 ? '...' : ''),
+      pubDate: snippet.publishedAt || new Date().toISOString(),
       thumbnail,
       source: feed.name,
       category: feed.category,
@@ -160,14 +178,43 @@ async function fetchViaRss2Json(feed: FeedSource, maxItems: number): Promise<RSS
   });
 }
 
-function extractFirstImage(html: string): string {
-  const match = html.match(/src=["']([^"']+\.(?:jpg|jpeg|png|webp|gif)[^"']*?)["']/i);
-  return match ? match[1] : '';
-}
+// ─── allorigins /get (maneja Cloudflare con base64) ─────────────────────────
 
 /**
- * Intenta cargar el feed vía proxy CORS que devuelve XML.
+ * Obtiene un feed RSS via allorigins /get?url= que devuelve JSON con el
+ * contenido en base64 o text/plain. Funciona cuando el proxy raw (corsproxy,
+ * allorigins/raw) es bloqueado por Cloudflare.
  */
+async function fetchViaAlloriginsGet(feed: FeedSource, maxItems: number): Promise<RSSItem[]> {
+  const url = `https://api.allorigins.win/get?url=${encodeURIComponent(feed.url)}`;
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), 10000);
+
+  const response = await fetch(url, { signal: controller.signal, mode: 'cors' });
+  clearTimeout(id);
+
+  if (!response.ok) throw new Error(`allorigins/get HTTP ${response.status}`);
+
+  const json = await response.json();
+  let contents: string = json.contents || '';
+
+  // allorigins puede devolver base64 data URI cuando el content-type no es texto
+  // Ej: "data:application/rss+xml; charset=utf-8;base64,PD94bWw..."
+  if (contents.startsWith('data:') && contents.includes('base64,')) {
+    const b64 = contents.split('base64,')[1];
+    contents = atob(b64);
+  }
+
+  if (!contents) throw new Error('allorigins/get: contenido vacío');
+
+  const items = parseRSSFromXML(contents, feed, maxItems);
+  if (items.length === 0) throw new Error('no items parsed');
+
+  return items;
+}
+
+// ─── proxy XML genérico ─────────────────────────────────────────────────────
+
 async function fetchViaXmlProxy(proxyBase: string, feed: FeedSource, maxItems: number): Promise<RSSItem[]> {
   const url = `${proxyBase}${encodeURIComponent(feed.url)}`;
   const controller = new AbortController();
@@ -185,20 +232,33 @@ async function fetchViaXmlProxy(proxyBase: string, feed: FeedSource, maxItems: n
   return items;
 }
 
+// ─── lógica principal ────────────────────────────────────────────────────────
+
 /**
  * Obtiene items de un feed RSS individual.
- * Prueba en orden: rss2json → allorigins → corsproxy.
+ * - Para feeds YouTube: usa YouTube Data API v3 directamente.
+ * - Para feeds RSS: prueba allorigins/get → allorigins/raw → corsproxy.
  */
 export async function fetchSingleFeed(feed: FeedSource, maxItems = 5): Promise<RSSItem[]> {
-  // 1. rss2json (mejor soporte para YouTube e Ipsos)
-  try {
-    const items = await fetchViaRss2Json(feed, maxItems);
-    if (items.length > 0) return items;
-  } catch (_) {
-    // continuar con siguiente proxy
+  if (feed.type === 'youtube') {
+    try {
+      return await fetchViaYouTubeAPI(feed, maxItems);
+    } catch (err) {
+      console.warn(`Feed YouTube "${feed.name}" falló:`, err);
+      return [];
+    }
   }
 
-  // 2. allorigins (XML)
+  // Feed RSS genérico — cascada de proxies
+  // 1. allorigins /get (maneja Cloudflare con base64)
+  try {
+    const items = await fetchViaAlloriginsGet(feed, maxItems);
+    if (items.length > 0) return items;
+  } catch (_) {
+    // continuar
+  }
+
+  // 2. allorigins /raw
   try {
     const items = await fetchViaXmlProxy('https://api.allorigins.win/raw?url=', feed, maxItems);
     if (items.length > 0) return items;
@@ -206,7 +266,7 @@ export async function fetchSingleFeed(feed: FeedSource, maxItems = 5): Promise<R
     // continuar
   }
 
-  // 3. corsproxy.io (XML)
+  // 3. corsproxy.io
   try {
     const items = await fetchViaXmlProxy('https://corsproxy.io/?', feed, maxItems);
     if (items.length > 0) return items;
@@ -257,4 +317,3 @@ export function formatDate(dateString: string): string {
     day: 'numeric',
   });
 }
-

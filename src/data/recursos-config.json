@@ -2,18 +2,23 @@
   "rssFeeds": [
     {
       "name": "La Fábrica del Podcast",
-      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCDFajagyC0Rq7l5mRSdUnIA",
+      "type": "youtube",
+      "channelId": "UCDFajagyC0Rq7l5mRSdUnIA",
+      "url": "",
       "category": "Podcast",
       "enabled": true
     },
     {
       "name": "Empresarios Con Impacto",
-      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCj_sy8Cm1-VzrfnfGHTFDbA",
+      "type": "youtube",
+      "channelId": "UCj_sy8Cm1-VzrfnfGHTFDbA",
+      "url": "",
       "category": "YouTube",
       "enabled": true
     },
     {
       "name": "Ipsos Argentina",
+      "type": "rss",
       "url": "https://www.ipsos.com/es-ar/rss.xml",
       "category": "Insights",
       "enabled": true
