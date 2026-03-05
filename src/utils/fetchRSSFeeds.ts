@@ -21,10 +21,9 @@ export interface FeedSource {
 function parseRSSFromXML(xmlText: string, feed: FeedSource, maxItems: number): RSSItem[] {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-  
-  // Detectar si es RSS o Atom
+
   const isAtom = xmlDoc.querySelector('feed') !== null;
-  
+
   if (isAtom) {
     return parseAtomFeed(xmlDoc, feed, maxItems);
   } else {
@@ -32,27 +31,23 @@ function parseRSSFromXML(xmlText: string, feed: FeedSource, maxItems: number): R
   }
 }
 
-/**
- * Parsea un feed RSS 2.0
- */
 function parseRSSFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RSSItem[] {
   const items = xmlDoc.querySelectorAll('item');
   const results: RSSItem[] = [];
-  
+
   for (let i = 0; i < Math.min(items.length, maxItems); i++) {
     const item = items[i];
-    
+
     const title = item.querySelector('title')?.textContent || 'Sin título';
     const link = item.querySelector('link')?.textContent || '#';
     const description = item.querySelector('description')?.textContent || '';
     const pubDate = item.querySelector('pubDate')?.textContent || new Date().toISOString();
-    
-    // Intentar obtener imagen
+
     let thumbnail = '';
     const enclosure = item.querySelector('enclosure');
     const mediaThumbnail = item.querySelector('media\\:thumbnail, thumbnail');
     const mediaContent = item.querySelector('media\\:content, content');
-    
+
     if (mediaThumbnail) {
       thumbnail = mediaThumbnail.getAttribute('url') || '';
     } else if (mediaContent) {
@@ -60,18 +55,14 @@ function parseRSSFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RSS
     } else if (enclosure && enclosure.getAttribute('type')?.startsWith('image')) {
       thumbnail = enclosure.getAttribute('url') || '';
     }
-    
-    // Si no hay thumbnail, extraer de description HTML (caso Ipsos)
+
     if (!thumbnail && description.includes('<img')) {
       const imgMatch = description.match(/src=["']([^"']+)["']/);
-      if (imgMatch) {
-        thumbnail = imgMatch[1];
-      }
+      if (imgMatch) thumbnail = imgMatch[1];
     }
-    
-    // Limpiar HTML de la descripción
+
     const cleanDescription = stripHtml(description).substring(0, 200);
-    
+
     results.push({
       title,
       link,
@@ -82,39 +73,35 @@ function parseRSSFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RSS
       category: feed.category,
     });
   }
-  
+
   return results;
 }
 
-/**
- * Parsea un feed Atom
- */
 function parseAtomFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RSSItem[] {
   const entries = xmlDoc.querySelectorAll('entry');
   const results: RSSItem[] = [];
-  
+
   for (let i = 0; i < Math.min(entries.length, maxItems); i++) {
     const entry = entries[i];
-    
+
     const title = entry.querySelector('title')?.textContent || 'Sin título';
     const linkEl = entry.querySelector('link[rel="alternate"], link');
     const link = linkEl?.getAttribute('href') || '#';
     const summary = entry.querySelector('summary, content')?.textContent || '';
     const published = entry.querySelector('published, updated')?.textContent || new Date().toISOString();
-    
-    // Intentar obtener imagen (YouTube usa media:thumbnail)
+
     let thumbnail = '';
     const mediaThumbnail = entry.querySelector('media\\:thumbnail, thumbnail');
     const mediaContent = entry.querySelector('media\\:content, content[type^="image"]');
-    
+
     if (mediaThumbnail) {
       thumbnail = mediaThumbnail.getAttribute('url') || '';
     } else if (mediaContent) {
       thumbnail = mediaContent.getAttribute('url') || mediaContent.getAttribute('src') || '';
     }
-    
+
     const cleanDescription = stripHtml(summary).substring(0, 200);
-    
+
     results.push({
       title,
       link,
@@ -125,13 +112,10 @@ function parseAtomFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RS
       category: feed.category,
     });
   }
-  
+
   return results;
 }
 
-/**
- * Elimina tags HTML de una cadena
- */
 function stripHtml(html: string): string {
   const tmp = document.createElement('div');
   tmp.innerHTML = html;
@@ -139,86 +123,123 @@ function stripHtml(html: string): string {
 }
 
 /**
- * Obtiene items de un feed RSS individual usando proxy CORS
+ * Intenta cargar el feed vía rss2json.com (devuelve JSON, soporta YouTube/Ipsos).
  */
-export async function fetchSingleFeed(
-  feed: FeedSource,
-  maxItems: number = 5
-): Promise<RSSItem[]> {
-  // Lista de proxies CORS ordenados por confiabilidad
-  const corsProxies = [
-    'https://api.allorigins.win/raw?url=',
-    'https://corsproxy.io/?',
-  ];
+async function fetchViaRss2Json(feed: FeedSource, maxItems: number): Promise<RSSItem[]> {
+  const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}&count=${maxItems}`;
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), 8000);
 
-  for (let i = 0; i < corsProxies.length; i++) {
-    const proxy = corsProxies[i];
-    try {
-      const url = `${proxy}${encodeURIComponent(feed.url)}`;
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 segundos
-      
-      const response = await fetch(url, {
-        signal: controller.signal,
-        mode: 'cors',
-      });
-      
-      clearTimeout(timeoutId);
-      
-      if (!response.ok) {
-        continue; // Intentar siguiente proxy
-      }
-      
-      const xmlText = await response.text();
-      const items = parseRSSFromXML(xmlText, feed, maxItems);
-      
-      if (items.length > 0) {
-        return items; // Éxito
-      }
-      
-    } catch (error) {
-      // Silenciar errores intermedios, solo mostrar el último
-      if (i === corsProxies.length - 1) {
-        console.warn(`Feed ${feed.name} no disponible temporalmente`);
-      }
-      continue;
-    }
-  }
-  
-  return []; // Todos los intentos fallaron
+  const response = await fetch(url, { signal: controller.signal, mode: 'cors' });
+  clearTimeout(id);
+
+  if (!response.ok) throw new Error(`rss2json HTTP ${response.status}`);
+
+  const data = await response.json();
+  if (data.status !== 'ok' || !Array.isArray(data.items)) throw new Error('rss2json status not ok');
+
+  return data.items.slice(0, maxItems).map((item: any) => {
+    // thumbnail: rss2json lo expone directamente o dentro de enclosure
+    const thumbnail =
+      item.thumbnail ||
+      item.enclosure?.link ||
+      extractFirstImage(item.description || item.content || '') ||
+      '';
+
+    const cleanDescription = stripHtml(item.description || item.content || '').substring(0, 200);
+
+    return {
+      title: item.title || 'Sin título',
+      link: item.link || '#',
+      description: cleanDescription ? cleanDescription + '...' : '',
+      pubDate: item.pubDate || new Date().toISOString(),
+      thumbnail,
+      source: feed.name,
+      category: feed.category,
+    } as RSSItem;
+  });
+}
+
+function extractFirstImage(html: string): string {
+  const match = html.match(/src=["']([^"']+\.(?:jpg|jpeg|png|webp|gif)[^"']*?)["']/i);
+  return match ? match[1] : '';
 }
 
 /**
- * Obtiene items de múltiples feeds RSS
+ * Intenta cargar el feed vía proxy CORS que devuelve XML.
  */
-export async function fetchAllFeeds(
-  feeds: FeedSource[],
-  maxItemsPerFeed: number = 5
-): Promise<RSSItem[]> {
-  const enabledFeeds = feeds.filter((feed) => feed.enabled);
-  
+async function fetchViaXmlProxy(proxyBase: string, feed: FeedSource, maxItems: number): Promise<RSSItem[]> {
+  const url = `${proxyBase}${encodeURIComponent(feed.url)}`;
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), 6000);
+
+  const response = await fetch(url, { signal: controller.signal, mode: 'cors' });
+  clearTimeout(id);
+
+  if (!response.ok) throw new Error(`proxy HTTP ${response.status}`);
+
+  const xmlText = await response.text();
+  const items = parseRSSFromXML(xmlText, feed, maxItems);
+  if (items.length === 0) throw new Error('no items parsed');
+
+  return items;
+}
+
+/**
+ * Obtiene items de un feed RSS individual.
+ * Prueba en orden: rss2json → allorigins → corsproxy.
+ */
+export async function fetchSingleFeed(feed: FeedSource, maxItems = 5): Promise<RSSItem[]> {
+  // 1. rss2json (mejor soporte para YouTube e Ipsos)
+  try {
+    const items = await fetchViaRss2Json(feed, maxItems);
+    if (items.length > 0) return items;
+  } catch (_) {
+    // continuar con siguiente proxy
+  }
+
+  // 2. allorigins (XML)
+  try {
+    const items = await fetchViaXmlProxy('https://api.allorigins.win/raw?url=', feed, maxItems);
+    if (items.length > 0) return items;
+  } catch (_) {
+    // continuar
+  }
+
+  // 3. corsproxy.io (XML)
+  try {
+    const items = await fetchViaXmlProxy('https://corsproxy.io/?', feed, maxItems);
+    if (items.length > 0) return items;
+  } catch (_) {
+    // todos fallaron
+  }
+
+  console.warn(`Feed "${feed.name}" no disponible temporalmente.`);
+  return [];
+}
+
+/**
+ * Obtiene items de múltiples feeds RSS en paralelo.
+ */
+export async function fetchAllFeeds(feeds: FeedSource[], maxItemsPerFeed = 5): Promise<RSSItem[]> {
+  const enabledFeeds = feeds.filter((f) => f.enabled);
+
   const results = await Promise.allSettled(
     enabledFeeds.map((feed) => fetchSingleFeed(feed, maxItemsPerFeed))
   );
 
   const allItems: RSSItem[] = [];
-  
   results.forEach((result) => {
-    if (result.status === 'fulfilled') {
-      allItems.push(...result.value);
-    }
+    if (result.status === 'fulfilled') allItems.push(...result.value);
   });
 
-  // Ordenar por fecha (más reciente primero)
-  return allItems.sort((a, b) => {
-    const dateA = new Date(a.pubDate).getTime();
-    const dateB = new Date(b.pubDate).getTime();
-    return dateB - dateA;
-  });
+  return allItems.sort(
+    (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+  );
 }
 
 /**
- * Formatea una fecha legible
+ * Formatea una fecha legible.
  */
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
@@ -229,10 +250,11 @@ export function formatDate(dateString: string): string {
   if (diffDays === 1) return 'Ayer';
   if (diffDays < 7) return `Hace ${diffDays} días`;
   if (diffDays < 30) return `Hace ${Math.floor(diffDays / 7)} semanas`;
-  
+
   return date.toLocaleDateString('es-AR', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
 }
+
