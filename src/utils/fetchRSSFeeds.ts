@@ -111,10 +111,25 @@ function parseAtomFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RS
   return results;
 }
 
+function decodeHtmlEntities(text: string): string {
+  const tmp = document.createElement('textarea');
+  tmp.innerHTML = text;
+  return tmp.value;
+}
+
 function stripHtml(html: string): string {
+  // Primer paso: decodificar entidades HTML y eliminar tags
   const tmp = document.createElement('div');
   tmp.innerHTML = html;
-  return tmp.textContent || tmp.innerText || '';
+  let text = tmp.textContent || tmp.innerText || '';
+
+  // Segundo paso: si quedaron entidades residuales (ej: &amp;rsquo; → &rsquo;)
+  // se produce cuando el XML tiene HTML doblemente escapado (caso Ipsos)
+  if (text.includes('&') && text.includes(';')) {
+    text = decodeHtmlEntities(text);
+  }
+
+  return text;
 }
 
 // ─── YouTube Data API v3 ────────────────────────────────────────────────────
