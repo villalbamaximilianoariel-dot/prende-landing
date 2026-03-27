@@ -14,6 +14,7 @@ import Sistema from './pages/Sistema';
 import Consultoria from './pages/Consultoria';
 import SistemaPrueba from './pages/SistemaPrueba';
 import AuditoriaGratis from './pages/AuditoriaGratis';
+import CalculadoraCostos from './pages/CalculadoraCostos';
 
 // Tema personalizado Prende
 const theme = createTheme({
@@ -97,6 +98,7 @@ function App() {
           <Route path="/sistema" element={<Sistema />} />
           <Route path="/consultoria" element={<Consultoria />} />
           <Route path="/blog" element={<RecursosRecomendados />} />
+          <Route path="/calculadora" element={<CalculadoraCostos />} />
           {/* Landing pages específicas para pauta */}
           <Route path="/sistema-prueba" element={<SistemaPrueba />} />
           <Route path="/auditoria-gratis" element={<AuditoriaGratis />} />
