@@ -613,11 +613,19 @@ const CalculadoraCostos = () => {
                   />
                 </Paper>
 
-                {/* Margen */}
+                {/* Recargo */}
                 <Paper elevation={0} sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, bgcolor: '#fff' }}>
-                  <SectionTitle>5. Margen de ganancia deseado</SectionTitle>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                    <SectionTitle>5. ¿Cuánto querés ganar?</SectionTitle>
+                    <Tooltip title="Este porcentaje se suma al costo para calcular el precio de venta. Ej: costo $100 + 50% recargo = precio $150. El margen real resultante (ganancia / precio) siempre será menor que este número." placement="top">
+                      <InfoOutlinedIcon sx={{ fontSize: 16, color: '#999', cursor: 'help', mb: 0.5 }} />
+                    </Tooltip>
+                  </Box>
+                  <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 2 }}>
+                    Recargo sobre el costo · Precio = Costo × (1 + recargo%)
+                  </Typography>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
-                    <Typography variant="body2" sx={{ color: '#333' }}>Margen sobre el costo</Typography>
+                    <Typography variant="body2" sx={{ color: '#333' }}>Recargo</Typography>
                     <Typography variant="body2" sx={{ fontWeight: 700 }}>{margenElaborado}%</Typography>
                   </Box>
                   <Slider value={margenElaborado} onChange={(_, val) => setMargenElaborado(val as number)} min={0} max={200} step={1}
@@ -765,11 +773,19 @@ const CalculadoraCostos = () => {
                   />
                 </Paper>
 
-                {/* Margen */}
+                {/* Recargo */}
                 <Paper elevation={0} sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, bgcolor: '#fff' }}>
-                  <SectionTitle>5. Margen de ganancia deseado</SectionTitle>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                    <SectionTitle>5. ¿Cuánto querés ganar?</SectionTitle>
+                    <Tooltip title="Este porcentaje se suma al costo por unidad para calcular el precio. Ej: costo $100 + 50% recargo = precio $150. El margen real resultante (ganancia / precio) siempre será menor que este número." placement="top">
+                      <InfoOutlinedIcon sx={{ fontSize: 16, color: '#999', cursor: 'help', mb: 0.5 }} />
+                    </Tooltip>
+                  </Box>
+                  <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 2 }}>
+                    Recargo sobre el costo por unidad · Precio = Costo × (1 + recargo%)
+                  </Typography>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
-                    <Typography variant="body2" sx={{ color: '#333' }}>Margen sobre el costo por unidad</Typography>
+                    <Typography variant="body2" sx={{ color: '#333' }}>Recargo</Typography>
                     <Typography variant="body2" sx={{ fontWeight: 700 }}>{margenElaborado}%</Typography>
                   </Box>
                   <Slider value={margenElaborado} onChange={(_, val) => setMargenElaborado(val as number)} min={0} max={200} step={1}
@@ -868,16 +884,20 @@ const CalculadoraCostos = () => {
                   </Button>
                 </Paper>
 
-                {/* Margen */}
+                {/* Recargo */}
                 <Paper elevation={0} sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, bgcolor: '#fff' }}>
-                  <SectionTitle>3. Margen de ganancia deseado</SectionTitle>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                    <SectionTitle>3. ¿Cuánto querés ganar?</SectionTitle>
+                    <Tooltip title="Este porcentaje se suma al costo total para calcular el precio de venta. Ej: costo $100 + 50% recargo = precio $150. El margen real resultante (ganancia / precio) siempre será menor que este número." placement="top">
+                      <InfoOutlinedIcon sx={{ fontSize: 16, color: '#999', cursor: 'help', mb: 0.5 }} />
+                    </Tooltip>
+                  </Box>
+                  <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 2 }}>
+                    Recargo sobre el costo · Precio = Costo × (1 + recargo%)
+                  </Typography>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
-                    <Typography variant="body2" sx={{ color: '#333' }}>
-                      Margen sobre el costo
-                    </Typography>
-                    <Typography variant="body2" sx={{ fontWeight: 700 }}>
-                      {margenReventa}%
-                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#333' }}>Recargo</Typography>
+                    <Typography variant="body2" sx={{ fontWeight: 700 }}>{margenReventa}%</Typography>
                   </Box>
                   <Slider
                     value={margenReventa}
@@ -1046,19 +1066,20 @@ const CalculadoraCostos = () => {
                         Métricas clave
                       </Typography>
                       <Stack sx={{ mt: 1 }}>
-                        <ResultRow
-                          label="Costo total"
-                          value={fmt(resultados.costoTotal)}
-                          bold
-                        />
-                        <ResultRow
-                          label="Ganancia por unidad"
-                          value={fmt(resultados.gananciaPorUnidad)}
-                        />
-                        <ResultRow
-                          label="Margen real"
-                          value={fmtPct(resultados.margenReal)}
-                        />
+                        <ResultRow label="Costo total" value={fmt(resultados.costoTotal)} bold />
+                        <ResultRow label="Ganancia por unidad" value={fmt(resultados.gananciaPorUnidad)} />
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 0.5 }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                            <Typography variant="body2" sx={{ color: '#666' }}>Margen</Typography>
+                            <Tooltip title="Ganancia expresada como % del precio de venta. Ej: vendés $150, ganás $50 → margen = 33%. Así lo mide el mercado." placement="top">
+                              <InfoOutlinedIcon sx={{ fontSize: 14, color: '#bbb', cursor: 'help' }} />
+                            </Tooltip>
+                          </Box>
+                          <Typography variant="body2" sx={{ fontWeight: 500, color: '#333' }}>
+                            {fmtPct(resultados.margenReal)}
+                            <Typography component="span" variant="caption" sx={{ color: '#999', ml: 0.5 }}>sobre precio</Typography>
+                          </Typography>
+                        </Box>
                       </Stack>
 
                       <Divider sx={{ my: 2 }} />
@@ -1083,7 +1104,7 @@ const CalculadoraCostos = () => {
                         </Typography>
                         <Chip
                           size="small"
-                          label={`${fmtPct(resultados.margenReal)} margen real`}
+                          label={`${fmtPct(resultados.margenReal)} margen sobre el precio`}
                           sx={{
                             mt: 1,
                             bgcolor: '#00000015',
