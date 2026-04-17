@@ -21,6 +21,8 @@ import {
   FormLabel,
   Tooltip,
   Chip,
+  Select,
+  MenuItem,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -33,7 +35,6 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -49,11 +50,7 @@ interface MateriaPrima {
   nombre: string;
   cantidad: string;
   costoUnitario: string;
-  // receta mode: unit price calculation
-  usarPrecioUnitario?: boolean;
-  precioCompraUnitario?: string;  // precio del paquete (ej: $4000)
-  cantidadPorPaquete?: string;    // cuánto rinde el paquete (ej: 1000 para 1kg)
-  unidadMedida?: string;          // etiqueta de la unidad (gr, ml, u)
+  unidad?: string; // etiqueta de la unidad (u, gr, ml, kg, L)
 }
 
 interface CostoAdicional {
@@ -225,11 +222,8 @@ const CalculadoraCostos = () => {
   const removeMateria = (id: number) =>
     setMaterias((prev) => prev.filter((m) => m.id !== id));
 
-  const updateMateria = (id: number, field: keyof MateriaPrima, value: string | boolean) =>
+  const updateMateria = (id: number, field: keyof MateriaPrima, value: string) =>
     setMaterias((prev) => prev.map((m) => (m.id === id ? { ...m, [field]: value } : m)));
-
-  const toggleMateriaPrecioUnitario = (id: number) =>
-    setMaterias((prev) => prev.map((m) => (m.id === id ? { ...m, usarPrecioUnitario: !m.usarPrecioUnitario } : m)));
 
   // ── Costos adicionales helpers ──
   const addCostoAdicional = () =>
@@ -294,15 +288,10 @@ const CalculadoraCostos = () => {
 
     } else if (productType === 'receta') {
       const rend = Math.max(parseFloat(rendimiento) || 1, 1);
-      const totalInsumosReceta = materias.reduce((sum, m) => {
-        if (m.usarPrecioUnitario) {
-          const cant = parseFloat(m.cantidad) || 0;
-          const rindePaquete = parseFloat(m.cantidadPorPaquete || '') || 1;
-          const precioPaquete = parseFloat(m.precioCompraUnitario || '') || 0;
-          return sum + (cant / rindePaquete) * precioPaquete;
-        }
-        return sum + (parseFloat(m.cantidad) || 0) * (parseFloat(m.costoUnitario) || 0);
-      }, 0);
+      const totalInsumosReceta = materias.reduce(
+        (sum, m) => sum + (parseFloat(m.cantidad) || 0) * (parseFloat(m.costoUnitario) || 0),
+        0
+      );
       const indirectosTanda =
         indirectosMode === 'porcentaje'
           ? totalInsumosReceta * (indirectosPct / 100)
@@ -781,48 +770,42 @@ const CalculadoraCostos = () => {
                     </Tooltip>
                   </Box>
                   <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 1.5 }}>
-                    Cantidades y costos para <strong>toda la tanda</strong>, no por unidad. Usá{' '}
-                    <SwapHorizIcon sx={{ fontSize: 14, verticalAlign: 'middle', color: '#aaa' }} /> para calcular desde precio de paquete.
+                    Cantidades y costos para <strong>toda la tanda</strong>, no por unidad.
                   </Typography>
                   <Stack spacing={1.5}>
-                    {materias.map((m, idx) => (
-                      <Box key={m.id}>
-                        {m.usarPrecioUnitario ? (
-                          <Box sx={{ border: '1px solid #E0E0E0', borderRadius: 1.5, p: 1.5, bgcolor: '#FAFAFA' }}>
-                            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '2fr 1fr 80px auto auto' }, gap: 1, alignItems: 'center', mb: 1 }}>
-                              <TextField size="small" placeholder={`Insumo ${idx + 1}`} value={m.nombre} onChange={(e) => updateMateria(m.id, 'nombre', e.target.value)} label="Nombre" autoComplete="off" />
-                              <TextField size="small" type="number" label="Cantidad usada" placeholder="500" value={m.cantidad} onChange={(e) => updateMateria(m.id, 'cantidad', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" />
-                              <TextField size="small" label="Unidad" placeholder="gr" value={m.unidadMedida || ''} onChange={(e) => updateMateria(m.id, 'unidadMedida', e.target.value)} autoComplete="off" />
-                              <Tooltip title="Volver a modo directo"><IconButton size="small" onClick={() => toggleMateriaPrecioUnitario(m.id)} sx={{ color: '#555', '&:hover': { color: '#000' } }}><SwapHorizIcon fontSize="small" /></IconButton></Tooltip>
-                              <IconButton size="small" onClick={() => removeMateria(m.id)} disabled={materias.length === 1} sx={{ color: '#999', '&:hover': { color: '#d32f2f' } }}><DeleteOutlineIcon fontSize="small" /></IconButton>
-                            </Box>
-                            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr 1fr', sm: '1fr 1fr auto' }, gap: 1, alignItems: 'center' }}>
-                              <TextField size="small" type="number" label="Precio del paquete" placeholder="4000" value={m.precioCompraUnitario || ''} onChange={(e) => updateMateria(m.id, 'precioCompraUnitario', e.target.value)} inputProps={{ min: 0, step: 'any' }} InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }} autoComplete="off" />
-                              <TextField size="small" type="number" label={`Paquete rinde (${m.unidadMedida || 'u'})`} placeholder="1000" value={m.cantidadPorPaquete || ''} onChange={(e) => updateMateria(m.id, 'cantidadPorPaquete', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" />
-                              {(() => {
-                                const cant = parseFloat(m.cantidad) || 0;
-                                const rinde = parseFloat(m.cantidadPorPaquete || '') || 0;
-                                const precio = parseFloat(m.precioCompraUnitario || '') || 0;
-                                const costoCalc = rinde > 0 ? (cant / rinde) * precio : 0;
-                                return costoCalc > 0 ? (
-                                  <Box sx={{ px: 1.5, py: 0.75, bgcolor: '#fff', border: '1px solid #E0E0E0', borderRadius: 1, whiteSpace: 'nowrap' }}>
-                                    <Typography variant="caption" sx={{ color: '#666' }}>= <strong>{fmt(costoCalc)}</strong></Typography>
-                                  </Box>
-                                ) : null;
-                              })()}
-                            </Box>
-                          </Box>
-                        ) : (
-                          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '2fr 1fr 1fr auto auto' }, gap: 1, alignItems: 'center' }}>
-                            <TextField size="small" placeholder={`Insumo ${idx + 1}`} value={m.nombre} onChange={(e) => updateMateria(m.id, 'nombre', e.target.value)} label="Nombre" autoComplete="off" />
-                            <TextField size="small" type="number" label="Cantidad" placeholder="1" value={m.cantidad} onChange={(e) => updateMateria(m.id, 'cantidad', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" />
-                            <TextField size="small" type="number" label="Costo" placeholder="0" value={m.costoUnitario} onChange={(e) => updateMateria(m.id, 'costoUnitario', e.target.value)} inputProps={{ min: 0, step: 'any' }} InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }} autoComplete="off" />
-                            <Tooltip title="Calcular desde precio de paquete"><IconButton size="small" onClick={() => toggleMateriaPrecioUnitario(m.id)} sx={{ color: '#bbb', '&:hover': { color: '#555' } }}><SwapHorizIcon fontSize="small" /></IconButton></Tooltip>
-                            <IconButton size="small" onClick={() => removeMateria(m.id)} disabled={materias.length === 1} sx={{ color: '#999', '&:hover': { color: '#d32f2f' } }}><DeleteOutlineIcon fontSize="small" /></IconButton>
-                          </Box>
-                        )}
-                      </Box>
-                    ))}
+                    {materias.map((m, idx) => {
+                      const unidad = m.unidad || 'u';
+                      return (
+                        <Box key={m.id} sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '2fr 80px 80px 1fr auto' }, gap: 1, alignItems: 'center' }}>
+                          <TextField size="small" placeholder={`Insumo ${idx + 1}`} value={m.nombre} onChange={(e) => updateMateria(m.id, 'nombre', e.target.value)} label="Ingrediente / insumo" autoComplete="off" />
+                          <TextField size="small" type="number" label="Cantidad" placeholder="500" value={m.cantidad} onChange={(e) => updateMateria(m.id, 'cantidad', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" />
+                          <Select
+                            size="small"
+                            value={unidad}
+                            onChange={(e) => updateMateria(m.id, 'unidad', e.target.value)}
+                            sx={{ fontSize: '0.875rem' }}
+                          >
+                            {['u', 'gr', 'kg', 'ml', 'L', 'porción'].map((u) => (
+                              <MenuItem key={u} value={u} sx={{ fontSize: '0.875rem' }}>{u}</MenuItem>
+                            ))}
+                          </Select>
+                          <TextField
+                            size="small"
+                            type="number"
+                            label={`$ por ${unidad}`}
+                            placeholder="0"
+                            value={m.costoUnitario}
+                            onChange={(e) => updateMateria(m.id, 'costoUnitario', e.target.value)}
+                            inputProps={{ min: 0, step: 'any' }}
+                            InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }}
+                            autoComplete="off"
+                          />
+                          <IconButton size="small" onClick={() => removeMateria(m.id)} disabled={materias.length === 1} sx={{ color: '#999', '&:hover': { color: '#d32f2f' } }}>
+                            <DeleteOutlineIcon fontSize="small" />
+                          </IconButton>
+                        </Box>
+                      );
+                    })}
                   </Stack>
                   <Button startIcon={<AddIcon />} onClick={addMateria} size="small"
                     sx={{ mt: 2, textTransform: 'none', color: '#000', border: '1.5px dashed #CCC', borderRadius: 1.5, px: 2, py: 0.75, '&:hover': { bgcolor: '#F5F5F5', borderColor: '#999' } }}
