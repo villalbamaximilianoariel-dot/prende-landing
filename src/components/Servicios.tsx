@@ -321,25 +321,25 @@ const Servicios = () => {
                 mb: 0.5,
               }}
             >
-              Proyecto · 2-3 meses
+              Proyecto a medida
             </Typography>
             <Typography
               variant="h5"
               sx={{ color: '#FFFFFF', fontWeight: 700, mb: 1 }}
             >
-              ¿Necesitás un sistema a medida para tu negocio?
+              ¿Algo en tu negocio no funciona como debería?
             </Typography>
             <Typography
               variant="body2"
               sx={{ color: '#AAAAAA', lineHeight: 1.6, maxWidth: 520 }}
             >
-              Implementamos Airtable, Notion y las integraciones que necesitás para ordenar tu
-              operación. Sin desarrollos caros ni herramientas complicadas.
+              Analizamos el problema, diseñamos la solución y la ponemos en marcha.
+              En pocas semanas tu equipo opera solo, sin depender de vos.
             </Typography>
           </Box>
           <Box
             component="button"
-            onClick={() => navigate('/implementacion')}
+            onClick={() => handleServicioClick('/implementacion')}
             sx={{
               color: '#FFEB5D',
               border: '2px solid #FFEB5D',

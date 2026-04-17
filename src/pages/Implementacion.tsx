@@ -31,40 +31,91 @@ const Implementacion = () => {
       titulo: 'Diagnóstico',
       duracion: 'Semanas 1-2',
       descripcion:
-        'Analizamos tus procesos actuales: cómo gestionás ventas, reservas, costos, stock o lo que sea relevante para tu negocio. Identificamos brechas y definimos el alcance exacto del sistema.',
+        'Analizamos tus procesos actuales: cómo gestionás ventas, reservas, costos, stock o lo que sea relevante para tu negocio. Identificamos qué falla y definimos el alcance del trabajo.',
     },
     {
       numero: '02',
-      titulo: 'Diseño del sistema',
+      titulo: 'Diseño de la solución',
       duracion: 'Semanas 3-4',
       descripcion:
-        'Diseñamos la arquitectura de la solución: qué herramientas usar, cómo se conectan y qué hace cada parte. Presentamos la propuesta y ajustamos con vos antes de empezar a implementar.',
+        'Diseñamos cómo va a funcionar todo: qué procesos resolvemos, cómo se conectan y qué va a ver cada persona. Presentamos la propuesta y ajustamos con vos antes de arrancar.',
     },
     {
       numero: '03',
       titulo: 'Implementación',
-      duracion: 'Mes 2',
+      duracion: 'Semanas 5-8',
       descripcion:
-        'Configuramos las herramientas, armamos las bases de datos, las vistas y los flujos automatizados. Conectamos integraciones si se necesitan (WhatsApp, Google, etc.). Iteramos hasta que funcione.',
+        'Configuramos todo lo necesario: bases de datos, vistas, automatizaciones e integraciones. Iteramos con vos hasta que funcione tal como lo necesitás.',
     },
     {
       numero: '04',
       titulo: 'Capacitación y entrega',
-      duracion: 'Mes 3',
+      duracion: 'Semanas finales',
       descripcion:
-        'Capacitamos al equipo en el uso del sistema. Verificamos que se cumplen los objetivos del diagnóstico. Entregamos la documentación y queda todo operativo de forma autónoma.',
+        'Capacitamos al equipo para que usen todo sin depender de nosotros. Verificamos que se cumplieron los objetivos del diagnóstico y entregamos la documentación.',
     },
   ];
 
   const incluye = [
     'Relevamiento y análisis de procesos',
-    'Diseño de arquitectura del sistema',
-    'Configuración de Airtable y/o Notion',
-    'Integraciones con herramientas externas',
+    'Diseño de la solución a medida',
+    'Configuración e implementación completa',
+    'Integraciones con otras herramientas',
     'Documentación de uso y procesos',
     'Capacitación del equipo',
     'Verificación de objetivos al cierre',
     'Soporte durante todo el proyecto',
+  ];
+
+  const alcance = [
+    {
+      titulo: 'Seguimiento de clientes y ventas',
+      descripcion:
+        'Un lugar centralizado para gestionar leads, oportunidades y clientes activos. Tu equipo sabe en qué estado está cada relación comercial y qué tiene que hacer.',
+    },
+    {
+      titulo: 'Reservas, turnos y agenda',
+      descripcion:
+        'Gestión de disponibilidad, reservas de espacios o recursos. Sin idas y vueltas por WhatsApp, sin hojas de papel ni planillas que nadie actualiza.',
+    },
+    {
+      titulo: 'Control de costos y rentabilidad',
+      descripcion:
+        'Registro de gastos por proyecto o producto, análisis de márgenes, seguimiento de presupuesto. Sabés cuánto ganás antes de cobrar.',
+    },
+    {
+      titulo: 'Operaciones del equipo',
+      descripcion:
+        'Checklists, tareas y procesos documentados. Tu equipo sabe qué tiene que hacer en cada momento sin que estés presente ni repitas lo mismo siempre.',
+    },
+    {
+      titulo: 'Stock e inventario',
+      descripcion:
+        'Seguimiento de materiales, insumos o productos. Alertas de reposición y consumos por trabajo o período. Dejás de perder plata por desorden.',
+    },
+    {
+      titulo: 'Reportes y tableros de control',
+      descripcion:
+        'Resúmenes automáticos de lo que más importa: ventas, rentabilidad, estado de proyectos. Sin armar planillas a mano ni buscar datos en mil lugares.',
+    },
+  ];
+
+  const modalidades = [
+    {
+      titulo: 'Módulo puntual',
+      descripcion:
+        'Resolvemos un problema específico en pocas semanas. Ideal si ya sabés qué falla y querés atacarlo rápido.',
+    },
+    {
+      titulo: 'Proyecto integral',
+      descripcion:
+        'Ordenamos varios procesos en simultáneo o por etapas. Cada módulo se conecta con el siguiente para que todo funcione como un solo flujo.',
+    },
+    {
+      titulo: 'Con seguimiento',
+      descripcion:
+        'Además de implementar, nos quedamos acompañando por un período. Para los proyectos que necesitan ajustes en movimiento.',
+    },
   ];
 
   const paraQuien = [
@@ -90,23 +141,7 @@ const Implementacion = () => {
     },
   ];
 
-  const herramientas = [
-    {
-      nombre: 'Airtable',
-      descripcion:
-        'Bases de datos flexibles para gestionar reservas, inventario, ventas, CRM o cualquier proceso que necesite estructura.',
-    },
-    {
-      nombre: 'Notion',
-      descripcion:
-        'Documentación operativa, wikis internas, tableros de seguimiento y organización del equipo en un solo lugar.',
-    },
-    {
-      nombre: 'Integraciones',
-      descripcion:
-        'WhatsApp API, Google Sheets, formularios, automatizaciones y más. Lo que el proyecto necesite.',
-    },
-  ];
+
 
   return (
     <Box sx={{ bgcolor: '#FFFFFF' }}>
@@ -139,7 +174,7 @@ const Implementacion = () => {
 
           <Box sx={{ maxWidth: 720 }}>
             <Chip
-              label="Proyecto · 2-3 meses · Airtable + Notion"
+              label="Consultoría operativa · A medida"
               sx={{ bgcolor: '#FFEB5D', color: '#000000', fontWeight: 600, mb: 2 }}
             />
             <Typography
@@ -153,12 +188,12 @@ const Implementacion = () => {
               variant="h5"
               sx={{ mb: 3, color: '#F5F5F5', fontWeight: 300, lineHeight: 1.6 }}
             >
-              Organizamos la operación de tu negocio con herramientas digitales accesibles: Airtable,
-              Notion y las integraciones que necesitás. Sin sistemas caros ni desarrollos a medida.
+              Analizamos lo que no funciona en tu negocio y lo resolvemos de forma práctica.
+              Sin IT complicada, sin proyectos que no terminan, sin depender de nadie.
             </Typography>
             <Typography variant="body1" sx={{ color: '#CCCCCC', mb: 5, lineHeight: 1.8 }}>
-              En 2-3 meses diseñamos e implementamos un sistema hecho para tu negocio específico. Al
-              terminar, tu equipo opera solo — sin depender de nosotros.
+              Cada proyecto empieza con un diagnóstico real. Diseñamos la solución, la ponemos en
+              marcha y capacitamos a tu equipo para que todo funcione solo — en pocas semanas.
             </Typography>
             <Button
               variant="contained"
@@ -295,52 +330,98 @@ const Implementacion = () => {
         </Container>
       </Box>
 
-      {/* Herramientas */}
+      {/* Alcance: qué podemos resolver */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
         <Typography
           variant="h4"
           sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}
         >
-          Herramientas que usamos
+          ¿Qué podemos resolver?
         </Typography>
         <Typography
           variant="body1"
-          sx={{ color: '#666', textAlign: 'center', mb: 6, maxWidth: 600, mx: 'auto' }}
+          sx={{ color: '#666', textAlign: 'center', mb: 6, maxWidth: 640, mx: 'auto' }}
         >
-          No estamos atados a una sola herramienta. Elegimos según el negocio y sus necesidades.
+          Cada proyecto es distinto, pero siempre parte del mismo lugar: hay algo que no funciona y
+          queremos dejarlo funcionando. Algunos ejemplos de lo que podemos trabajar:
         </Typography>
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', sm: 'repeat(3, 1fr)' },
+            gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
             gap: 3,
           }}
         >
-          {herramientas.map((tool) => (
+          {alcance.map((item) => (
             <Paper
-              key={tool.nombre}
+              key={item.titulo}
               elevation={0}
               sx={{
-                p: 4,
-                textAlign: 'center',
+                p: 3,
+                bgcolor: '#F5F5F5',
                 border: '2px solid #E0E0E0',
                 borderRadius: 2,
                 transition: 'all 0.3s',
                 '&:hover': {
                   borderColor: '#FFEB5D',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
                   transform: 'translateY(-4px)',
+                  bgcolor: '#FFFFFF',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
                 },
               }}
             >
-              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
-                {tool.nombre}
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
+                {item.titulo}
               </Typography>
               <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.7 }}>
-                {tool.descripcion}
+                {item.descripcion}
               </Typography>
             </Paper>
           ))}
+        </Box>
+
+        {/* Modalidades */}
+        <Box sx={{ mt: 6 }}>
+          <Typography
+            variant="h5"
+            sx={{ fontWeight: 700, mb: 1, textAlign: 'center' }}
+          >
+            ¿Cómo se estructura el trabajo?
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{ color: '#666', textAlign: 'center', mb: 4, maxWidth: 560, mx: 'auto' }}
+          >
+            Cada proyecto puede tomar distintas formas según lo que necesitás.
+          </Typography>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', sm: 'repeat(3, 1fr)' },
+              gap: 3,
+            }}
+          >
+            {modalidades.map((m) => (
+              <Paper
+                key={m.titulo}
+                elevation={0}
+                sx={{
+                  p: 4,
+                  textAlign: 'center',
+                  border: '2px solid #000000',
+                  borderRadius: 2,
+                  bgcolor: '#FFFFFF',
+                }}
+              >
+                <Typography variant="h6" sx={{ fontWeight: 700, mb: 1.5 }}>
+                  {m.titulo}
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.7 }}>
+                  {m.descripcion}
+                </Typography>
+              </Paper>
+            ))}
+          </Box>
         </Box>
       </Container>
 
