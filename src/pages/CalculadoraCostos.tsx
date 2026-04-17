@@ -55,12 +55,20 @@ interface CostoAdicional {
   valor: string;
 }
 
+interface GastoVenta {
+  id: number;
+  nombre: string;
+  tipo: 'porcentaje' | 'fijo';
+  valor: string;
+}
+
 interface Resultados {
   costoMateriaPrima: number;
   costosIndirectos: number;
   manoDeObra: number;
   packaging: number;
   costoTotal: number;
+  gastosVentaTotal: number;
   precioSugerido: number;
   margenReal: number;
   gananciaPorUnidad: number;
@@ -81,6 +89,26 @@ const fmt = (value: number) =>
   }).format(value);
 
 const fmtPct = (value: number) => `${value.toFixed(1)}%`;
+
+// ─────────────────────────────────────────────
+// Helper: precio final ajustando gastos de venta
+// precio = (costo×(1+recargo) + gastos_fijos) / (1 - gastos_%/100)
+// Garantiza ganancia_neta = costo × recargo sin importar los gastos
+// ─────────────────────────────────────────────
+const calcPrecio = (costoTotal: number, margen: number, gastos: GastoVenta[]) => {
+  const gastosFijos = gastos
+    .filter((g) => g.tipo === 'fijo')
+    .reduce((s, g) => s + (parseFloat(g.valor) || 0), 0);
+  const gastosPctDecimal = gastos
+    .filter((g) => g.tipo === 'porcentaje')
+    .reduce((s, g) => s + (parseFloat(g.valor) || 0), 0) / 100;
+  const divider = Math.max(1 - gastosPctDecimal, 0.01);
+  const precioFinal = costoTotal > 0 ? (costoTotal * (1 + margen / 100) + gastosFijos) / divider : 0;
+  const gastosVentaTotal = gastosFijos + precioFinal * gastosPctDecimal;
+  const gananciaNeta = precioFinal - costoTotal - gastosVentaTotal;
+  const margenNeto = precioFinal > 0 ? (gananciaNeta / precioFinal) * 100 : 0;
+  return { precioFinal, gastosVentaTotal, gananciaNeta, margenNeto };
+};
 
 // ─────────────────────────────────────────────
 // Sub-component: Section title
@@ -200,6 +228,16 @@ const CalculadoraCostos = () => {
       prev.map((c) => (c.id === id ? { ...c, [field]: value } : c))
     );
 
+  // ── Gastos de venta state (compartido entre todos los modos) ──
+  const [gastosVenta, setGastosVenta] = useState<GastoVenta[]>([]);
+
+  const addGastoVenta = () =>
+    setGastosVenta((prev) => [...prev, { id: Date.now(), nombre: '', tipo: 'porcentaje', valor: '' }]);
+  const removeGastoVenta = (id: number) =>
+    setGastosVenta((prev) => prev.filter((g) => g.id !== id));
+  const updateGastoVenta = (id: number, updates: Partial<GastoVenta>) =>
+    setGastosVenta((prev) => prev.map((g) => (g.id === id ? { ...g, ...updates } : g)));
+
   // ── Calculations ──
   const resultados = useMemo((): Resultados => {
     const margen = productType === 'reventa' ? margenReventa : margenElaborado;
@@ -217,11 +255,8 @@ const CalculadoraCostos = () => {
         ((parseFloat(tiempoProduccion) || 0) / 60) * (parseFloat(valorHora) || 0);
       const packaging = parseFloat(packagingCosto) || 0;
       const costoTotal = costoMateriaPrima + costosIndirectos + manoDeObra + packaging;
-      const precioSugerido = costoTotal > 0 ? costoTotal * (1 + margen / 100) : 0;
-      const margenReal =
-        precioSugerido > 0 ? ((precioSugerido - costoTotal) / precioSugerido) * 100 : 0;
-      const gananciaPorUnidad = precioSugerido - costoTotal;
-      return { costoMateriaPrima, costosIndirectos, manoDeObra, packaging, costoTotal, precioSugerido, margenReal, gananciaPorUnidad };
+      const { precioFinal, gastosVentaTotal, gananciaNeta, margenNeto } = calcPrecio(costoTotal, margen, gastosVenta);
+      return { costoMateriaPrima, costosIndirectos, manoDeObra, packaging, costoTotal, gastosVentaTotal, precioSugerido: precioFinal, margenReal: margenNeto, gananciaPorUnidad: gananciaNeta };
 
     } else if (productType === 'receta') {
       const rend = Math.max(parseFloat(rendimiento) || 1, 1);
@@ -241,11 +276,8 @@ const CalculadoraCostos = () => {
       const manoDeObra = manoObraTanda / rend;
       const packaging = parseFloat(packagingCosto) || 0;
       const costoTotal = costoMateriaPrima + costosIndirectos + manoDeObra + packaging;
-      const precioSugerido = costoTotal > 0 ? costoTotal * (1 + margen / 100) : 0;
-      const margenReal =
-        precioSugerido > 0 ? ((precioSugerido - costoTotal) / precioSugerido) * 100 : 0;
-      const gananciaPorUnidad = precioSugerido - costoTotal;
-      return { costoMateriaPrima, costosIndirectos, manoDeObra, packaging, costoTotal, precioSugerido, margenReal, gananciaPorUnidad, costoTanda, rendimientoCalculado: rend };
+      const { precioFinal, gastosVentaTotal, gananciaNeta, margenNeto } = calcPrecio(costoTotal, margen, gastosVenta);
+      return { costoMateriaPrima, costosIndirectos, manoDeObra, packaging, costoTotal, gastosVentaTotal, precioSugerido: precioFinal, margenReal: margenNeto, gananciaPorUnidad: gananciaNeta, costoTanda, rendimientoCalculado: rend };
 
     } else {
       const costoCompra = parseFloat(precioCompra) || 0;
@@ -254,11 +286,8 @@ const CalculadoraCostos = () => {
         0
       );
       const costoTotal = costoCompra + totalAdicionales;
-      const precioSugerido = costoTotal > 0 ? costoTotal * (1 + margen / 100) : 0;
-      const margenReal =
-        precioSugerido > 0 ? ((precioSugerido - costoTotal) / precioSugerido) * 100 : 0;
-      const gananciaPorUnidad = precioSugerido - costoTotal;
-      return { costoMateriaPrima: costoCompra, costosIndirectos: totalAdicionales, manoDeObra: 0, packaging: 0, costoTotal, precioSugerido, margenReal, gananciaPorUnidad };
+      const { precioFinal, gastosVentaTotal, gananciaNeta, margenNeto } = calcPrecio(costoTotal, margen, gastosVenta);
+      return { costoMateriaPrima: costoCompra, costosIndirectos: totalAdicionales, manoDeObra: 0, packaging: 0, costoTotal, gastosVentaTotal, precioSugerido: precioFinal, margenReal: margenNeto, gananciaPorUnidad: gananciaNeta };
     }
   }, [
     productType,
@@ -275,6 +304,7 @@ const CalculadoraCostos = () => {
     precioCompra,
     costosAdicionales,
     margenReventa,
+    gastosVenta,
   ]);
 
   const hayDatos = resultados.costoTotal > 0;
@@ -920,6 +950,105 @@ const CalculadoraCostos = () => {
                 </Paper>
               </Stack>
             )}
+
+            {/* ┅┅ GASTOS DE VENTA (común a todos los modos) ┅┅ */}
+            <Paper elevation={0} sx={{ mt: 2.5, border: '1.5px dashed #BDBDBD', borderRadius: 2, p: 3, bgcolor: '#fff' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                <SectionTitle>Gastos de la venta</SectionTitle>
+                <Tooltip
+                  title="Comisiones y costos que se descuentan cuando vendés: plataformas (MercadoLibre, PedidosYa, Rappi), comisiones bancarias, Mercado Pago, etc. El precio sugerido se ajusta automáticamente para cubrirlos y mantener tu ganancia neta."
+                  placement="top"
+                >
+                  <InfoOutlinedIcon sx={{ fontSize: 16, color: '#999', cursor: 'help', mb: 0.5 }} />
+                </Tooltip>
+              </Box>
+              <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: gastosVenta.length > 0 ? 2 : 1.5 }}>
+                Opcional · El precio se ajusta automáticamente para que tu ganancia sea la indicada arriba
+              </Typography>
+
+              {gastosVenta.length > 0 && (
+                <Stack spacing={1.5} sx={{ mb: 2 }}>
+                  {gastosVenta.map((g) => (
+                    <Box
+                      key={g.id}
+                      sx={{
+                        display: 'grid',
+                        gridTemplateColumns: { xs: '1fr', sm: '2fr 80px 1fr auto' },
+                        gap: 1,
+                        alignItems: 'center',
+                      }}
+                    >
+                      <TextField
+                        size="small"
+                        placeholder="Ej: Comisión ML, Mercado Pago"
+                        value={g.nombre}
+                        onChange={(e) => updateGastoVenta(g.id, { nombre: e.target.value })}
+                        label="Concepto"
+                        autoComplete="off"
+                      />
+                      <ToggleButtonGroup
+                        value={g.tipo}
+                        exclusive
+                        size="small"
+                        onChange={(_, val) => { if (val) updateGastoVenta(g.id, { tipo: val as 'porcentaje' | 'fijo' }); }}
+                        sx={{
+                          height: 40,
+                          '& .MuiToggleButton-root': {
+                            px: 1.5,
+                            fontWeight: 700,
+                            fontSize: '0.8rem',
+                            border: '1.5px solid #E0E0E0 !important',
+                            '&.Mui-selected': { bgcolor: '#000 !important', color: '#fff !important', borderColor: '#000 !important' },
+                          },
+                        }}
+                      >
+                        <ToggleButton value="porcentaje">%</ToggleButton>
+                        <ToggleButton value="fijo">$</ToggleButton>
+                      </ToggleButtonGroup>
+                      <TextField
+                        size="small"
+                        type="number"
+                        label={g.tipo === 'porcentaje' ? '% del precio' : 'Monto fijo'}
+                        placeholder="0"
+                        value={g.valor}
+                        onChange={(e) => updateGastoVenta(g.id, { valor: e.target.value })}
+                        inputProps={{ min: 0, step: 'any' }}
+                        InputProps={
+                          g.tipo === 'fijo'
+                            ? { startAdornment: <InputAdornment position="start">$</InputAdornment> }
+                            : { endAdornment: <InputAdornment position="end">%</InputAdornment> }
+                        }
+                        autoComplete="off"
+                      />
+                      <IconButton
+                        size="small"
+                        onClick={() => removeGastoVenta(g.id)}
+                        sx={{ color: '#999', '&:hover': { color: '#d32f2f' } }}
+                      >
+                        <DeleteOutlineIcon fontSize="small" />
+                      </IconButton>
+                    </Box>
+                  ))}
+                </Stack>
+              )}
+
+              <Button
+                startIcon={<AddIcon />}
+                onClick={addGastoVenta}
+                size="small"
+                sx={{
+                  textTransform: 'none',
+                  color: '#000',
+                  border: '1.5px dashed #CCC',
+                  borderRadius: 1.5,
+                  px: 2,
+                  py: 0.75,
+                  '&:hover': { bgcolor: '#F5F5F5', borderColor: '#999' },
+                }}
+              >
+                Agregar gasto de venta
+              </Button>
+            </Paper>
           </Box>
 
           {/* ── RIGHT: Results ── */}
@@ -1048,6 +1177,12 @@ const CalculadoraCostos = () => {
                             <ResultRow label="Precio de compra" value={fmt(resultados.costoMateriaPrima)} small />
                             <ResultRow label="Costos adicionales" value={fmt(resultados.costosIndirectos)} small />
                           </>
+                        )}
+                        {resultados.gastosVentaTotal > 0 && (
+                          <Box sx={{ mt: 0.5 }}>
+                            <Divider sx={{ mb: 0.5 }} />
+                            <ResultRow label="Gastos de venta" value={`−${fmt(resultados.gastosVentaTotal)}`} small />
+                          </Box>
                         )}
                       </Stack>
 
