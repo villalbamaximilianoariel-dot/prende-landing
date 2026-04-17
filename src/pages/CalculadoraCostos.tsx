@@ -49,8 +49,10 @@ interface MateriaPrima {
   id: number;
   nombre: string;
   cantidad: string;
-  costoUnitario: string;
-  unidad?: string; // etiqueta de la unidad (u, gr, ml, kg, L)
+  costoUnitario: string;  // usado en fabricacion
+  unidad?: string;        // usado en receta (u, gr, ml, kg, L)
+  precioPaquete?: string; // usado en receta: $ total del paquete
+  rendePaquete?: string;  // usado en receta: cuántas unidades rinde ese paquete
 }
 
 interface CostoAdicional {
@@ -288,10 +290,12 @@ const CalculadoraCostos = () => {
 
     } else if (productType === 'receta') {
       const rend = Math.max(parseFloat(rendimiento) || 1, 1);
-      const totalInsumosReceta = materias.reduce(
-        (sum, m) => sum + (parseFloat(m.cantidad) || 0) * (parseFloat(m.costoUnitario) || 0),
-        0
-      );
+      const totalInsumosReceta = materias.reduce((sum, m) => {
+        const cant = parseFloat(m.cantidad) || 0;
+        const precio = parseFloat(m.precioPaquete || '') || 0;
+        const rinde = parseFloat(m.rendePaquete || '') || 1; // default 1: precio = precio unitario
+        return sum + (cant / rinde) * precio;
+      }, 0);
       const indirectosTanda =
         indirectosMode === 'porcentaje'
           ? totalInsumosReceta * (indirectosPct / 100)
@@ -770,39 +774,43 @@ const CalculadoraCostos = () => {
                     </Tooltip>
                   </Box>
                   <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 1.5 }}>
-                    Cantidades y costos para <strong>toda la tanda</strong>, no por unidad.
+                    Cantidades para <strong>toda la tanda</strong>. Ej: uso <strong>500 gr</strong> de harina · el paquete cuesta <strong>$4.000</strong> y rinde <strong>1.000 gr</strong> → costo = $2.000
                   </Typography>
                   <Stack spacing={1.5}>
                     {materias.map((m, idx) => {
                       const unidad = m.unidad || 'u';
+                      const costoCalculado = (() => {
+                        const cant = parseFloat(m.cantidad) || 0;
+                        const precio = parseFloat(m.precioPaquete || '') || 0;
+                        const rinde = parseFloat(m.rendePaquete || '') || 1;
+                        return cant > 0 && precio > 0 ? (cant / rinde) * precio : 0;
+                      })();
                       return (
-                        <Box key={m.id} sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '2fr 80px 80px 1fr auto' }, gap: 1, alignItems: 'center' }}>
-                          <TextField size="small" placeholder={`Insumo ${idx + 1}`} value={m.nombre} onChange={(e) => updateMateria(m.id, 'nombre', e.target.value)} label="Ingrediente / insumo" autoComplete="off" />
-                          <TextField size="small" type="number" label="Cantidad" placeholder="500" value={m.cantidad} onChange={(e) => updateMateria(m.id, 'cantidad', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" />
-                          <Select
-                            size="small"
-                            value={unidad}
-                            onChange={(e) => updateMateria(m.id, 'unidad', e.target.value)}
-                            sx={{ fontSize: '0.875rem' }}
-                          >
-                            {['u', 'gr', 'kg', 'ml', 'L', 'porción'].map((u) => (
-                              <MenuItem key={u} value={u} sx={{ fontSize: '0.875rem' }}>{u}</MenuItem>
-                            ))}
-                          </Select>
-                          <TextField
-                            size="small"
-                            type="number"
-                            label={`$ por ${unidad}`}
-                            placeholder="0"
-                            value={m.costoUnitario}
-                            onChange={(e) => updateMateria(m.id, 'costoUnitario', e.target.value)}
-                            inputProps={{ min: 0, step: 'any' }}
-                            InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }}
-                            autoComplete="off"
-                          />
-                          <IconButton size="small" onClick={() => removeMateria(m.id)} disabled={materias.length === 1} sx={{ color: '#999', '&:hover': { color: '#d32f2f' } }}>
-                            <DeleteOutlineIcon fontSize="small" />
-                          </IconButton>
+                        <Box key={m.id} sx={{ border: '1px solid #E8E8E8', borderRadius: 1.5, p: 1.5, bgcolor: '#FAFAFA' }}>
+                          {/* Fila 1: nombre */}
+                          <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 1 }}>
+                            <TextField size="small" fullWidth placeholder={`Insumo ${idx + 1}`} value={m.nombre} onChange={(e) => updateMateria(m.id, 'nombre', e.target.value)} label="Ingrediente / insumo" autoComplete="off" sx={{ bgcolor: '#fff' }} />
+                            <IconButton size="small" onClick={() => removeMateria(m.id)} disabled={materias.length === 1} sx={{ color: '#bbb', '&:hover': { color: '#d32f2f' }, flexShrink: 0 }}>
+                              <DeleteOutlineIcon fontSize="small" />
+                            </IconButton>
+                          </Box>
+                          {/* Fila 2: cantidad / unidad / precio paquete / rinde / resultado */}
+                          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr 80px', sm: '90px 80px 1fr 1fr' }, gap: 1, alignItems: 'center' }}>
+                            <TextField size="small" type="number" label="Cantidad usada" placeholder="500" value={m.cantidad} onChange={(e) => updateMateria(m.id, 'cantidad', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" sx={{ bgcolor: '#fff' }} />
+                            <Select size="small" value={unidad} onChange={(e) => updateMateria(m.id, 'unidad', e.target.value)} sx={{ fontSize: '0.875rem', bgcolor: '#fff' }}>
+                              {['u', 'gr', 'kg', 'ml', 'L', 'porción'].map((u) => (
+                                <MenuItem key={u} value={u} sx={{ fontSize: '0.875rem' }}>{u}</MenuItem>
+                              ))}
+                            </Select>
+                            <TextField size="small" type="number" label="Precio del paquete" placeholder="4000" value={m.precioPaquete || ''} onChange={(e) => updateMateria(m.id, 'precioPaquete', e.target.value)} inputProps={{ min: 0, step: 'any' }} InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }} autoComplete="off" sx={{ bgcolor: '#fff' }} />
+                            <TextField size="small" type="number" label={`Paquete rinde (${unidad})`} placeholder={unidad === 'u' ? '1' : '1000'} value={m.rendePaquete || ''} onChange={(e) => updateMateria(m.id, 'rendePaquete', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" sx={{ bgcolor: '#fff' }} />
+                          </Box>
+                          {costoCalculado > 0 && (
+                            <Box sx={{ mt: 1, display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                              <Typography variant="caption" sx={{ color: '#999' }}>Costo para esta cantidad:</Typography>
+                              <Typography variant="caption" sx={{ fontWeight: 700, color: '#000' }}>{fmt(costoCalculado)}</Typography>
+                            </Box>
+                          )}
                         </Box>
                       );
                     })}
