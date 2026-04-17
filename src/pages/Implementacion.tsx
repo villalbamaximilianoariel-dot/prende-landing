@@ -182,18 +182,19 @@ const Implementacion = () => {
               variant="h2"
               sx={{ fontWeight: 700, mb: 3, fontSize: { xs: '2rem', md: '3rem' } }}
             >
-              Implementación a medida
+              Proyectos a medida
             </Typography>
             <Typography
               variant="h5"
               sx={{ mb: 3, color: '#F5F5F5', fontWeight: 300, lineHeight: 1.6 }}
             >
-              Analizamos lo que no funciona en tu negocio y lo resolvemos de forma práctica.
-              Sin IT complicada, sin proyectos que no terminan, sin depender de nadie.
+              Llevamos tu operación al siguiente nivel con soluciones prácticas, pensadas
+              para cómo trabajás vos — no para cómo trabaja cualquiera.
             </Typography>
             <Typography variant="body1" sx={{ color: '#CCCCCC', mb: 5, lineHeight: 1.8 }}>
-              Cada proyecto empieza con un diagnóstico real. Diseñamos la solución, la ponemos en
-              marcha y capacitamos a tu equipo para que todo funcione solo — en pocas semanas.
+              Cada proyecto empieza entendiendo tu negocio. Diseñamos juntos la solución,
+              la implementamos y capacitamos a tu equipo para que todo funcione solo —
+              en pocas semanas y sin vueltas.
             </Typography>
             <Button
               variant="contained"
