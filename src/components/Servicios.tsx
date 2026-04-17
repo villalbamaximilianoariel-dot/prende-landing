@@ -295,6 +295,74 @@ const Servicios = () => {
             );
           })}
         </Box>
+
+        {/* Teaser: Implementación a medida */}
+        <Box
+          sx={{
+            mt: { xs: 5, md: 6 },
+            p: { xs: 3, md: 5 },
+            bgcolor: '#000000',
+            borderRadius: 2,
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: { xs: 'flex-start', md: 'center' },
+            justifyContent: 'space-between',
+            gap: 3,
+          }}
+        >
+          <Box>
+            <Typography
+              variant="overline"
+              sx={{
+                color: '#FFEB5D',
+                fontWeight: 700,
+                letterSpacing: 2,
+                display: 'block',
+                mb: 0.5,
+              }}
+            >
+              Proyecto · 2-3 meses
+            </Typography>
+            <Typography
+              variant="h5"
+              sx={{ color: '#FFFFFF', fontWeight: 700, mb: 1 }}
+            >
+              ¿Necesitás un sistema a medida para tu negocio?
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ color: '#AAAAAA', lineHeight: 1.6, maxWidth: 520 }}
+            >
+              Implementamos Airtable, Notion y las integraciones que necesitás para ordenar tu
+              operación. Sin desarrollos caros ni herramientas complicadas.
+            </Typography>
+          </Box>
+          <Box
+            component="button"
+            onClick={() => navigate('/implementacion')}
+            sx={{
+              color: '#FFEB5D',
+              border: '2px solid #FFEB5D',
+              bgcolor: 'transparent',
+              fontWeight: 600,
+              px: 4,
+              py: 1.5,
+              borderRadius: 1,
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+              fontSize: '1rem',
+              transition: 'all 0.2s ease',
+              '&:hover': {
+                bgcolor: '#FFEB5D',
+                color: '#000000',
+              },
+            }}
+          >
+            Ver servicio →
+          </Box>
+        </Box>
       </Container>
     </Box>
   );

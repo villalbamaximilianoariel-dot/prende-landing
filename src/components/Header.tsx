@@ -113,6 +113,22 @@ const Header = () => {
             </Button>
 
             <Button
+              href="/#/implementacion"
+              sx={{
+                color: '#FFFFFF',
+                fontSize: { sm: '0.9375rem', md: '1rem' },
+                fontWeight: 500,
+                textTransform: 'none',
+                '&:hover': {
+                  bgcolor: 'transparent',
+                  color: '#FFEB5D',
+                },
+              }}
+            >
+              Implementación
+            </Button>
+
+            <Button
               href="/#/calculadora"
               sx={{
                 color: '#FFFFFF',
