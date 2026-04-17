@@ -172,46 +172,68 @@ const Implementacion = () => {
             Volver a servicios
           </Button>
 
-          <Box sx={{ maxWidth: 720 }}>
-            <Chip
-              label="Consultoría operativa · A medida"
-              sx={{ bgcolor: '#FFEB5D', color: '#000000', fontWeight: 600, mb: 2 }}
-            />
-            <Typography
-              component="h1"
-              variant="h2"
-              sx={{ fontWeight: 700, mb: 3, fontSize: { xs: '2rem', md: '3rem' } }}
-            >
-              Proyectos a medida
-            </Typography>
-            <Typography
-              variant="h5"
-              sx={{ mb: 3, color: '#F5F5F5', fontWeight: 300, lineHeight: 1.6 }}
-            >
-              Cada negocio es distinto. Por eso diseñamos soluciones concretas,
-              pensadas para cómo trabajás vos.
-            </Typography>
-            <Typography variant="body1" sx={{ color: '#CCCCCC', mb: 5, lineHeight: 1.8 }}>
-              Arrancamos entendiendo tu operación. Diseñamos la solución, la implementamos
-              y capacitamos a tu equipo — en pocas semanas, con resultados concretos.
-            </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              onClick={handleWhatsAppClick}
-              startIcon={<WhatsAppIcon />}
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 4, alignItems: 'center' }}>
+            <Box>
+              <Chip
+                label="Consultoría operativa · A medida"
+                sx={{ bgcolor: '#FFEB5D', color: '#000000', fontWeight: 600, mb: 2 }}
+              />
+              <Typography
+                component="h1"
+                variant="h2"
+                sx={{ fontWeight: 700, mb: 3, fontSize: { xs: '2rem', md: '3rem' } }}
+              >
+                Proyectos a medida
+              </Typography>
+              <Typography
+                variant="h5"
+                sx={{ mb: 3, color: '#F5F5F5', fontWeight: 300, lineHeight: 1.6 }}
+              >
+                Cada negocio es distinto. Por eso diseñamos soluciones concretas,
+                pensadas para cómo trabajás vos.
+              </Typography>
+              <Typography variant="body1" sx={{ color: '#CCCCCC', mb: 5, lineHeight: 1.8 }}>
+                Arrancamos entendiendo tu operación. Diseñamos la solución, la implementamos
+                y capacitamos a tu equipo — en pocas semanas, con resultados concretos.
+              </Typography>
+              <Button
+                variant="contained"
+                size="large"
+                onClick={handleWhatsAppClick}
+                startIcon={<WhatsAppIcon />}
+                sx={{
+                  bgcolor: '#25D366',
+                  color: '#FFFFFF',
+                  fontWeight: 600,
+                  px: 4,
+                  py: 1.5,
+                  fontSize: '1rem',
+                  '&:hover': { bgcolor: '#1ebe57' },
+                }}
+              >
+                Consultá tu proyecto
+              </Button>
+            </Box>
+
+            <Box
               sx={{
-                bgcolor: '#25D366',
-                color: '#FFFFFF',
-                fontWeight: 600,
-                px: 4,
-                py: 1.5,
-                fontSize: '1rem',
-                '&:hover': { bgcolor: '#1ebe57' },
+                borderRadius: 2,
+                overflow: 'hidden',
+                boxShadow: '0 8px 32px rgba(255, 235, 93, 0.15)',
               }}
             >
-              Consultá tu proyecto
-            </Button>
+              <Box
+                component="img"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
+                alt="Panel de gestión de negocio"
+                sx={{
+                  width: '100%',
+                  height: { xs: 240, md: 420 },
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
+              />
+            </Box>
           </Box>
         </Container>
       </Box>
