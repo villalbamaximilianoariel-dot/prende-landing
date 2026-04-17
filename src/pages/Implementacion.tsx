@@ -188,13 +188,12 @@ const Implementacion = () => {
               variant="h5"
               sx={{ mb: 3, color: '#F5F5F5', fontWeight: 300, lineHeight: 1.6 }}
             >
-              Llevamos tu operación al siguiente nivel con soluciones prácticas, pensadas
-              para cómo trabajás vos — no para cómo trabaja cualquiera.
+              Cada negocio es distinto. Por eso diseñamos soluciones concretas,
+              pensadas para cómo trabajás vos.
             </Typography>
             <Typography variant="body1" sx={{ color: '#CCCCCC', mb: 5, lineHeight: 1.8 }}>
-              Cada proyecto empieza entendiendo tu negocio. Diseñamos juntos la solución,
-              la implementamos y capacitamos a tu equipo para que todo funcione solo —
-              en pocas semanas y sin vueltas.
+              Arrancamos entendiendo tu operación. Diseñamos la solución, la implementamos
+              y capacitamos a tu equipo — en pocas semanas, con resultados concretos.
             </Typography>
             <Button
               variant="contained"
