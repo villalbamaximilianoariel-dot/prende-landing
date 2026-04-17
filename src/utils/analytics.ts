@@ -21,54 +21,28 @@ declare global {
  * @param ubicacion - Ubicación del botón (hero, cta-final, contacto, etc.)
  */
 export const trackWhatsAppClick = (servicio: string, ubicacion: string) => {
-  console.log(`[Analytics] trackWhatsAppClick called: ${servicio} - ${ubicacion}`);
-  console.log(`[Analytics] window.fbq available: ${!!window.fbq}`);
-  console.log(`[Analytics] window.gtag available: ${!!window.gtag}`);
-  
   // Google Analytics 4
   if (window.gtag) {
-    // Evento recomendado de GA4 para leads
     window.gtag('event', 'generate_lead', {
       value: 1,
       currency: 'ARS',
     });
-    
-    // También enviar evento personalizado con más detalles
     window.gtag('event', 'whatsapp_click', {
       event_category: 'engagement',
       event_label: `${servicio} - ${ubicacion}`,
       servicio: servicio,
       ubicacion: ubicacion,
     });
-    
-    console.log(`[Analytics] GA4 generate_lead event sent`);
-    console.log(`[Analytics] GA4 whatsapp_click event sent`);
   }
 
   // Meta Pixel
   if (window.fbq) {
-    console.log(`[Analytics] Attempting to send Meta Pixel Lead event...`);
     window.fbq('track', 'Lead', {
       content_name: servicio,
       content_category: 'WhatsApp Click',
-      source: ubicacion,
     });
-    console.log(`[Analytics] Meta Pixel Lead event sent successfully`);
-  } else {
-    console.warn(`[Analytics] Meta Pixel (fbq) not available - event not sent`);
   }
 
-  // Google Ads Conversion (opcional)
-  // TODO: Descomentar y agregar tu AW-CONVERSION_ID cuando configures Google Ads
-  // if (window.gtag) {
-  //   window.gtag('event', 'conversion', {
-  //     'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
-  //     'value': 1.0,
-  //     'currency': 'ARS'
-  //   });
-  // }
-
-  console.log(`[Analytics] Lead tracked: ${servicio} - ${ubicacion}`);
 };
 
 /**
@@ -76,22 +50,13 @@ export const trackWhatsAppClick = (servicio: string, ubicacion: string) => {
  * @param servicio - Nombre del servicio visitado
  */
 export const trackServicePageView = (servicio: string) => {
-  if (window.gtag) {
-    window.gtag('event', 'page_view', {
-      page_title: servicio,
-      page_location: window.location.href,
-      page_path: window.location.pathname,
-    });
-  }
-
+  // Meta Pixel: ViewContent (evento de alto valor para retargeting)
   if (window.fbq) {
     window.fbq('track', 'ViewContent', {
       content_name: servicio,
       content_type: 'service_page',
     });
   }
-
-  console.log(`[Analytics] Service page view: ${servicio}`);
 };
 
 /**
@@ -104,6 +69,4 @@ export const trackServicesScroll = () => {
       event_label: 'Services Section',
     });
   }
-
-  console.log('[Analytics] Scrolled to services section');
 };

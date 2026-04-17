@@ -89,7 +89,7 @@ const Home = () => (
   </Box>
 );
 
-// Tracker de cambios de ruta para HashRouter + GA4
+// Tracker de cambios de ruta para HashRouter + GA4 + Meta Pixel
 const RouteTracker = () => {
   const location = useLocation();
   useEffect(() => {
@@ -99,6 +99,9 @@ const RouteTracker = () => {
         page_location: window.location.href,
         page_path: location.pathname,
       });
+    }
+    if (window.fbq) {
+      window.fbq('track', 'PageView');
     }
   }, [location.pathname]);
   return null;
