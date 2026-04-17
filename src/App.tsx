@@ -1,5 +1,6 @@
 import { ThemeProvider, createTheme, CssBaseline, Box } from '@mui/material';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Dolor from './components/Dolor';
@@ -88,11 +89,27 @@ const Home = () => (
   </Box>
 );
 
+// Tracker de cambios de ruta para HashRouter + GA4
+const RouteTracker = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: location.pathname,
+      });
+    }
+  }, [location.pathname]);
+  return null;
+};
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
+        <RouteTracker />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auditorias" element={<Auditorias />} />

@@ -1,15 +1,22 @@
 import { Box, Button, Container, Typography, Paper, Chip } from '@mui/material';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
 
 const Implementacion = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    trackServicePageView('Proyectos a medida');
+  }, []);
+
   const handleWhatsAppClick = () => {
+    trackWhatsAppClick('Proyectos a medida', 'Hero');
     const whatsappNumber = '5491125453990';
     const message = encodeURIComponent(
       'Hola! Me interesa el servicio de Implementación a medida. ¿Podrían darme más información sobre mi proyecto?'
