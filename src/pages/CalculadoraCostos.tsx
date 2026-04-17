@@ -32,6 +32,8 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -39,7 +41,7 @@ import Footer from '../components/Footer';
 // ─────────────────────────────────────────────
 // Types
 // ─────────────────────────────────────────────
-type ProductType = 'fabricacion' | 'receta' | 'reventa';
+type ProductType = 'fabricacion' | 'receta' | 'reventa' | 'servicio';
 type IndirectosMode = 'porcentaje' | 'fijo';
 
 interface MateriaPrima {
@@ -47,6 +49,11 @@ interface MateriaPrima {
   nombre: string;
   cantidad: string;
   costoUnitario: string;
+  // receta mode: unit price calculation
+  usarPrecioUnitario?: boolean;
+  precioCompraUnitario?: string;  // precio del paquete (ej: $4000)
+  cantidadPorPaquete?: string;    // cuánto rinde el paquete (ej: 1000 para 1kg)
+  unidadMedida?: string;          // etiqueta de la unidad (gr, ml, u)
 }
 
 interface CostoAdicional {
@@ -59,6 +66,12 @@ interface GastoVenta {
   id: number;
   nombre: string;
   tipo: 'porcentaje' | 'fijo';
+  valor: string;
+}
+
+interface CostoDirecto {
+  id: number;
+  nombre: string;
   valor: string;
 }
 
@@ -75,6 +88,8 @@ interface Resultados {
   // extras receta
   costoTanda?: number;
   rendimientoCalculado?: number;
+  // extras servicio
+  tarifaHorariaImplicita?: number;
 }
 
 // ─────────────────────────────────────────────
@@ -210,8 +225,11 @@ const CalculadoraCostos = () => {
   const removeMateria = (id: number) =>
     setMaterias((prev) => prev.filter((m) => m.id !== id));
 
-  const updateMateria = (id: number, field: keyof MateriaPrima, value: string) =>
+  const updateMateria = (id: number, field: keyof MateriaPrima, value: string | boolean) =>
     setMaterias((prev) => prev.map((m) => (m.id === id ? { ...m, [field]: value } : m)));
+
+  const toggleMateriaPrecioUnitario = (id: number) =>
+    setMaterias((prev) => prev.map((m) => (m.id === id ? { ...m, usarPrecioUnitario: !m.usarPrecioUnitario } : m)));
 
   // ── Costos adicionales helpers ──
   const addCostoAdicional = () =>
@@ -238,6 +256,22 @@ const CalculadoraCostos = () => {
   const updateGastoVenta = (id: number, updates: Partial<GastoVenta>) =>
     setGastosVenta((prev) => prev.map((g) => (g.id === id ? { ...g, ...updates } : g)));
 
+  // ── Servicio state ──
+  const [horasServicio, setHorasServicio] = useState('2');
+  const [costosDirectos, setCostosDirectos] = useState<CostoDirecto[]>([
+    { id: 1, nombre: '', valor: '' },
+  ]);
+  const [costoOperativoPct, setCostoOperativoPct] = useState<number>(15);
+  const [margenServicio, setMargenServicio] = useState<number>(30);
+
+  // ── Servicio helpers ──
+  const addCostoDirecto = () =>
+    setCostosDirectos((prev) => [...prev, { id: Date.now(), nombre: '', valor: '' }]);
+  const removeCostoDirecto = (id: number) =>
+    setCostosDirectos((prev) => prev.filter((c) => c.id !== id));
+  const updateCostoDirecto = (id: number, field: keyof CostoDirecto, value: string) =>
+    setCostosDirectos((prev) => prev.map((c) => (c.id === id ? { ...c, [field]: value } : c)));
+
   // ── Calculations ──
   const resultados = useMemo((): Resultados => {
     const margen = productType === 'reventa' ? margenReventa : margenElaborado;
@@ -260,10 +294,15 @@ const CalculadoraCostos = () => {
 
     } else if (productType === 'receta') {
       const rend = Math.max(parseFloat(rendimiento) || 1, 1);
-      const totalInsumosReceta = materias.reduce(
-        (sum, m) => sum + (parseFloat(m.cantidad) || 0) * (parseFloat(m.costoUnitario) || 0),
-        0
-      );
+      const totalInsumosReceta = materias.reduce((sum, m) => {
+        if (m.usarPrecioUnitario) {
+          const cant = parseFloat(m.cantidad) || 0;
+          const rindePaquete = parseFloat(m.cantidadPorPaquete || '') || 1;
+          const precioPaquete = parseFloat(m.precioCompraUnitario || '') || 0;
+          return sum + (cant / rindePaquete) * precioPaquete;
+        }
+        return sum + (parseFloat(m.cantidad) || 0) * (parseFloat(m.costoUnitario) || 0);
+      }, 0);
       const indirectosTanda =
         indirectosMode === 'porcentaje'
           ? totalInsumosReceta * (indirectosPct / 100)
@@ -279,6 +318,17 @@ const CalculadoraCostos = () => {
       const { precioFinal, gastosVentaTotal, gananciaNeta, margenNeto } = calcPrecio(costoTotal, margen, gastosVenta);
       return { costoMateriaPrima, costosIndirectos, manoDeObra, packaging, costoTotal, gastosVentaTotal, precioSugerido: precioFinal, margenReal: margenNeto, gananciaPorUnidad: gananciaNeta, costoTanda, rendimientoCalculado: rend };
 
+    } else if (productType === 'servicio') {
+      const horas = parseFloat(horasServicio) || 0;
+      const vHora = parseFloat(valorHora) || 0;
+      const manoDeObra = horas * vHora;
+      const costosDir = costosDirectos.reduce((s, c) => s + (parseFloat(c.valor) || 0), 0);
+      const subtotal = manoDeObra + costosDir;
+      const costoOperativo = subtotal * (costoOperativoPct / 100);
+      const costoTotal = subtotal + costoOperativo;
+      const { precioFinal, gastosVentaTotal, gananciaNeta, margenNeto } = calcPrecio(costoTotal, margenServicio, gastosVenta);
+      const tarifaHorariaImplicita = horas > 0 ? precioFinal / horas : 0;
+      return { costoMateriaPrima: manoDeObra, costosIndirectos: costoOperativo, manoDeObra, packaging: costosDir, costoTotal, gastosVentaTotal, precioSugerido: precioFinal, margenReal: margenNeto, gananciaPorUnidad: gananciaNeta, tarifaHorariaImplicita };
     } else {
       const costoCompra = parseFloat(precioCompra) || 0;
       const totalAdicionales = costosAdicionales.reduce(
@@ -305,6 +355,10 @@ const CalculadoraCostos = () => {
     costosAdicionales,
     margenReventa,
     gastosVenta,
+    horasServicio,
+    costosDirectos,
+    costoOperativoPct,
+    margenServicio,
   ]);
 
   const hayDatos = resultados.costoTotal > 0;
@@ -412,11 +466,29 @@ const CalculadoraCostos = () => {
               <ShoppingCartIcon fontSize="small" />
               Reventa
             </ToggleButton>
+            <ToggleButton
+              value="servicio"
+              sx={{
+                border: '1.5px solid #E0E0E0 !important',
+                borderRadius: '8px !important',
+                px: 3,
+                py: 1.5,
+                textTransform: 'none',
+                fontWeight: 600,
+                gap: 1,
+                '&.Mui-selected': { bgcolor: '#000 !important', color: '#fff !important', borderColor: '#000 !important' },
+                '&:hover': { bgcolor: '#F5F5F5' },
+              }}
+            >
+              <WorkOutlineIcon fontSize="small" />
+              Servicio / Proyecto
+            </ToggleButton>
           </ToggleButtonGroup>
           <Typography variant="caption" sx={{ display: 'block', mt: 1.5, color: '#999' }}>
             {productType === 'fabricacion' && 'Producís de a una unidad: ropa, carpintería, joyería, electrónica...'}
             {productType === 'receta' && 'Tu preparación rinde varias unidades: gastronomía, velas, cosmética artesanal...'}
             {productType === 'reventa' && 'Comprás el producto terminado a un proveedor y lo revendés sin transformarlo.'}
+            {productType === 'servicio' && 'Prestás un servicio o ejecutás un proyecto: consultoría, diseño, construcción, reparaciones...'}
           </Typography>
         </Paper>
 
@@ -709,17 +781,46 @@ const CalculadoraCostos = () => {
                     </Tooltip>
                   </Box>
                   <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 1.5 }}>
-                    Cantidades y costos para <strong>toda la tanda</strong>, no por unidad.
+                    Cantidades y costos para <strong>toda la tanda</strong>, no por unidad. Usá{' '}
+                    <SwapHorizIcon sx={{ fontSize: 14, verticalAlign: 'middle', color: '#aaa' }} /> para calcular desde precio de paquete.
                   </Typography>
                   <Stack spacing={1.5}>
                     {materias.map((m, idx) => (
-                      <Box key={m.id} sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '2fr 1fr 1fr auto' }, gap: 1, alignItems: 'center' }}>
-                        <TextField size="small" placeholder={`Insumo ${idx + 1}`} value={m.nombre} onChange={(e) => updateMateria(m.id, 'nombre', e.target.value)} label="Nombre" autoComplete="off" />
-                        <TextField size="small" type="number" label="Cantidad" placeholder="1" value={m.cantidad} onChange={(e) => updateMateria(m.id, 'cantidad', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" />
-                        <TextField size="small" type="number" label="Costo" placeholder="0" value={m.costoUnitario} onChange={(e) => updateMateria(m.id, 'costoUnitario', e.target.value)} inputProps={{ min: 0, step: 'any' }} InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }} autoComplete="off" />
-                        <IconButton size="small" onClick={() => removeMateria(m.id)} disabled={materias.length === 1} sx={{ color: '#999', '&:hover': { color: '#d32f2f' } }}>
-                          <DeleteOutlineIcon fontSize="small" />
-                        </IconButton>
+                      <Box key={m.id}>
+                        {m.usarPrecioUnitario ? (
+                          <Box sx={{ border: '1px solid #E0E0E0', borderRadius: 1.5, p: 1.5, bgcolor: '#FAFAFA' }}>
+                            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '2fr 1fr 80px auto auto' }, gap: 1, alignItems: 'center', mb: 1 }}>
+                              <TextField size="small" placeholder={`Insumo ${idx + 1}`} value={m.nombre} onChange={(e) => updateMateria(m.id, 'nombre', e.target.value)} label="Nombre" autoComplete="off" />
+                              <TextField size="small" type="number" label="Cantidad usada" placeholder="500" value={m.cantidad} onChange={(e) => updateMateria(m.id, 'cantidad', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" />
+                              <TextField size="small" label="Unidad" placeholder="gr" value={m.unidadMedida || ''} onChange={(e) => updateMateria(m.id, 'unidadMedida', e.target.value)} autoComplete="off" />
+                              <Tooltip title="Volver a modo directo"><IconButton size="small" onClick={() => toggleMateriaPrecioUnitario(m.id)} sx={{ color: '#555', '&:hover': { color: '#000' } }}><SwapHorizIcon fontSize="small" /></IconButton></Tooltip>
+                              <IconButton size="small" onClick={() => removeMateria(m.id)} disabled={materias.length === 1} sx={{ color: '#999', '&:hover': { color: '#d32f2f' } }}><DeleteOutlineIcon fontSize="small" /></IconButton>
+                            </Box>
+                            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr 1fr', sm: '1fr 1fr auto' }, gap: 1, alignItems: 'center' }}>
+                              <TextField size="small" type="number" label="Precio del paquete" placeholder="4000" value={m.precioCompraUnitario || ''} onChange={(e) => updateMateria(m.id, 'precioCompraUnitario', e.target.value)} inputProps={{ min: 0, step: 'any' }} InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }} autoComplete="off" />
+                              <TextField size="small" type="number" label={`Paquete rinde (${m.unidadMedida || 'u'})`} placeholder="1000" value={m.cantidadPorPaquete || ''} onChange={(e) => updateMateria(m.id, 'cantidadPorPaquete', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" />
+                              {(() => {
+                                const cant = parseFloat(m.cantidad) || 0;
+                                const rinde = parseFloat(m.cantidadPorPaquete || '') || 0;
+                                const precio = parseFloat(m.precioCompraUnitario || '') || 0;
+                                const costoCalc = rinde > 0 ? (cant / rinde) * precio : 0;
+                                return costoCalc > 0 ? (
+                                  <Box sx={{ px: 1.5, py: 0.75, bgcolor: '#fff', border: '1px solid #E0E0E0', borderRadius: 1, whiteSpace: 'nowrap' }}>
+                                    <Typography variant="caption" sx={{ color: '#666' }}>= <strong>{fmt(costoCalc)}</strong></Typography>
+                                  </Box>
+                                ) : null;
+                              })()}
+                            </Box>
+                          </Box>
+                        ) : (
+                          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '2fr 1fr 1fr auto auto' }, gap: 1, alignItems: 'center' }}>
+                            <TextField size="small" placeholder={`Insumo ${idx + 1}`} value={m.nombre} onChange={(e) => updateMateria(m.id, 'nombre', e.target.value)} label="Nombre" autoComplete="off" />
+                            <TextField size="small" type="number" label="Cantidad" placeholder="1" value={m.cantidad} onChange={(e) => updateMateria(m.id, 'cantidad', e.target.value)} inputProps={{ min: 0, step: 'any' }} autoComplete="off" />
+                            <TextField size="small" type="number" label="Costo" placeholder="0" value={m.costoUnitario} onChange={(e) => updateMateria(m.id, 'costoUnitario', e.target.value)} inputProps={{ min: 0, step: 'any' }} InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }} autoComplete="off" />
+                            <Tooltip title="Calcular desde precio de paquete"><IconButton size="small" onClick={() => toggleMateriaPrecioUnitario(m.id)} sx={{ color: '#bbb', '&:hover': { color: '#555' } }}><SwapHorizIcon fontSize="small" /></IconButton></Tooltip>
+                            <IconButton size="small" onClick={() => removeMateria(m.id)} disabled={materias.length === 1} sx={{ color: '#999', '&:hover': { color: '#d32f2f' } }}><DeleteOutlineIcon fontSize="small" /></IconButton>
+                          </Box>
+                        )}
                       </Box>
                     ))}
                   </Stack>
@@ -946,6 +1047,126 @@ const CalculadoraCostos = () => {
                       '& .MuiSlider-thumb': { bgcolor: '#000' },
                       '& .MuiSlider-markLabel': { fontSize: '0.7rem', color: '#999' },
                     }}
+                  />
+                </Paper>
+              </Stack>
+            )}
+
+            {/* ━━ SERVICIO / PROYECTO ━━ */}
+            {productType === 'servicio' && (
+              <Stack spacing={2.5}>
+                {/* Horas y valor hora */}
+                <Paper elevation={0} sx={{ border: '2px solid #000', borderRadius: 2, p: 3, bgcolor: '#FFFDE7' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                    <SectionTitle>1. Tiempo del servicio</SectionTitle>
+                    <Tooltip title="Estimá cuántas horas demanda el servicio o proyecto completo y cuánto vale tu hora de trabajo." placement="top">
+                      <InfoOutlinedIcon sx={{ fontSize: 16, color: '#999', cursor: 'help', mb: 0.5 }} />
+                    </Tooltip>
+                  </Box>
+                  <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2 }}>
+                    <TextField
+                      size="small"
+                      type="number"
+                      label="Horas estimadas"
+                      placeholder="2"
+                      value={horasServicio}
+                      onChange={(e) => setHorasServicio(e.target.value)}
+                      inputProps={{ min: 0, step: 'any' }}
+                      InputProps={{ endAdornment: <InputAdornment position="end">hs</InputAdornment> }}
+                      autoComplete="off"
+                    />
+                    <TextField
+                      size="small"
+                      type="number"
+                      label="Valor hora"
+                      placeholder="0"
+                      value={valorHora}
+                      onChange={(e) => setValorHora(e.target.value)}
+                      inputProps={{ min: 0, step: 'any' }}
+                      InputProps={{ startAdornment: <InputAdornment position="start">$/h</InputAdornment> }}
+                      autoComplete="off"
+                    />
+                  </Box>
+                  {resultados.costoMateriaPrima > 0 && (
+                    <Box sx={{ mt: 1.5, p: 1.5, bgcolor: '#fff', borderRadius: 1.5, border: '1px solid #E0E0E0' }}>
+                      <Typography variant="caption" sx={{ color: '#666' }}>
+                        Costo de mano de obra: <strong>{fmt(resultados.costoMateriaPrima)}</strong>
+                      </Typography>
+                    </Box>
+                  )}
+                </Paper>
+
+                {/* Costos directos del proyecto */}
+                <Paper elevation={0} sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, bgcolor: '#fff' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                    <SectionTitle>2. Costos directos del proyecto</SectionTitle>
+                    <Tooltip title="Materiales, traslados, herramientas, subcontrataciones u otros gastos específicos de este servicio." placement="top">
+                      <InfoOutlinedIcon sx={{ fontSize: 16, color: '#999', cursor: 'help', mb: 0.5 }} />
+                    </Tooltip>
+                  </Box>
+                  <Stack spacing={1.5}>
+                    {costosDirectos.map((c) => (
+                      <Box key={c.id} sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '2fr 1fr auto' }, gap: 1, alignItems: 'center' }}>
+                        <TextField size="small" placeholder="Ej: Materiales, traslado" value={c.nombre} onChange={(e) => updateCostoDirecto(c.id, 'nombre', e.target.value)} label="Concepto" autoComplete="off" />
+                        <TextField size="small" type="number" label="Monto" placeholder="0" value={c.valor} onChange={(e) => updateCostoDirecto(c.id, 'valor', e.target.value)} inputProps={{ min: 0, step: 'any' }} InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }} autoComplete="off" />
+                        <IconButton size="small" onClick={() => removeCostoDirecto(c.id)} disabled={costosDirectos.length === 1} sx={{ color: '#999', '&:hover': { color: '#d32f2f' } }}>
+                          <DeleteOutlineIcon fontSize="small" />
+                        </IconButton>
+                      </Box>
+                    ))}
+                  </Stack>
+                  <Button startIcon={<AddIcon />} onClick={addCostoDirecto} size="small"
+                    sx={{ mt: 2, textTransform: 'none', color: '#000', border: '1.5px dashed #CCC', borderRadius: 1.5, px: 2, py: 0.75, '&:hover': { bgcolor: '#F5F5F5', borderColor: '#999' } }}
+                  >
+                    Agregar costo
+                  </Button>
+                </Paper>
+
+                {/* Gastos operativos (overhead) */}
+                <Paper elevation={0} sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, bgcolor: '#fff' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                    <SectionTitle>3. Gastos operativos (overhead)</SectionTitle>
+                    <Tooltip title="Alquiler, servicios, internet, software, contador, etc. Se prorratean por proyecto como % del costo directo total." placement="top">
+                      <InfoOutlinedIcon sx={{ fontSize: 16, color: '#999', cursor: 'help', mb: 0.5 }} />
+                    </Tooltip>
+                  </Box>
+                  <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 2 }}>
+                    % aplicado sobre (mano de obra + costos directos)
+                  </Typography>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                    <Typography variant="body2" sx={{ color: '#333' }}>Overhead</Typography>
+                    <Typography variant="body2" sx={{ fontWeight: 700 }}>{costoOperativoPct}%</Typography>
+                  </Box>
+                  <Slider
+                    value={costoOperativoPct}
+                    onChange={(_, val) => setCostoOperativoPct(val as number)}
+                    min={0} max={50} step={1}
+                    marks={[{ value: 0, label: '0%' }, { value: 25, label: '25%' }, { value: 50, label: '50%' }]}
+                    sx={{ color: '#000', '& .MuiSlider-thumb': { bgcolor: '#000' }, '& .MuiSlider-markLabel': { fontSize: '0.7rem', color: '#999' } }}
+                  />
+                </Paper>
+
+                {/* Recargo */}
+                <Paper elevation={0} sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, bgcolor: '#fff' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                    <SectionTitle>4. ¿Cuánto querés ganar?</SectionTitle>
+                    <Tooltip title="Recargo sobre el costo total del proyecto para calcular el precio de venta." placement="top">
+                      <InfoOutlinedIcon sx={{ fontSize: 16, color: '#999', cursor: 'help', mb: 0.5 }} />
+                    </Tooltip>
+                  </Box>
+                  <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 2 }}>
+                    Recargo sobre el costo · Precio = Costo × (1 + recargo%)
+                  </Typography>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                    <Typography variant="body2" sx={{ color: '#333' }}>Recargo</Typography>
+                    <Typography variant="body2" sx={{ fontWeight: 700 }}>{margenServicio}%</Typography>
+                  </Box>
+                  <Slider
+                    value={margenServicio}
+                    onChange={(_, val) => setMargenServicio(val as number)}
+                    min={0} max={200} step={1}
+                    marks={[{ value: 0, label: '0%' }, { value: 50, label: '50%' }, { value: 100, label: '100%' }, { value: 200, label: '200%' }]}
+                    sx={{ color: '#000', '& .MuiSlider-thumb': { bgcolor: '#000' }, '& .MuiSlider-markLabel': { fontSize: '0.7rem', color: '#999' } }}
                   />
                 </Paper>
               </Stack>
@@ -1178,6 +1399,13 @@ const CalculadoraCostos = () => {
                             <ResultRow label="Costos adicionales" value={fmt(resultados.costosIndirectos)} small />
                           </>
                         )}
+                        {productType === 'servicio' && (
+                          <>
+                            <ResultRow label="Mano de obra" value={fmt(resultados.costoMateriaPrima)} small />
+                            <ResultRow label="Costos directos" value={fmt(resultados.packaging)} small />
+                            <ResultRow label="Overhead operativo" value={fmt(resultados.costosIndirectos)} small />
+                          </>
+                        )}
                         {resultados.gastosVentaTotal > 0 && (
                           <Box sx={{ mt: 0.5 }}>
                             <Divider sx={{ mb: 0.5 }} />
@@ -1202,7 +1430,7 @@ const CalculadoraCostos = () => {
                       </Typography>
                       <Stack sx={{ mt: 1 }}>
                         <ResultRow label="Costo total" value={fmt(resultados.costoTotal)} bold />
-                        <ResultRow label="Ganancia por unidad" value={fmt(resultados.gananciaPorUnidad)} />
+                        <ResultRow label={productType === 'servicio' ? 'Ganancia por servicio' : 'Ganancia por unidad'} value={fmt(resultados.gananciaPorUnidad)} />
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 0.5 }}>
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                             <Typography variant="body2" sx={{ color: '#666' }}>Margen</Typography>
@@ -1215,6 +1443,21 @@ const CalculadoraCostos = () => {
                             <Typography component="span" variant="caption" sx={{ color: '#999', ml: 0.5 }}>sobre precio</Typography>
                           </Typography>
                         </Box>
+                        {productType === 'servicio' && (resultados.tarifaHorariaImplicita ?? 0) > 0 && (
+                          <Box sx={{ mt: 0.5, p: 1.5, bgcolor: '#FFFDE7', borderRadius: 1.5, border: '1px solid #FFE082' }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                <Typography variant="body2" sx={{ color: '#555', fontWeight: 600 }}>Tarifa hora implícita</Typography>
+                                <Tooltip title="Precio de venta dividido horas estimadas. Es lo que cobrás por hora después de cubrir todos los costos y tu ganancia." placement="top">
+                                  <InfoOutlinedIcon sx={{ fontSize: 14, color: '#bbb', cursor: 'help' }} />
+                                </Tooltip>
+                              </Box>
+                              <Typography variant="body2" sx={{ fontWeight: 700, color: '#000' }}>
+                                {fmt(resultados.tarifaHorariaImplicita ?? 0)}/h
+                              </Typography>
+                            </Box>
+                          </Box>
+                        )}
                       </Stack>
 
                       <Divider sx={{ my: 2 }} />
