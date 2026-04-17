@@ -58,6 +58,16 @@ export const PAISES: PaisConfig[] = [
     preciosCustom: { sistema: 209900, auditorias: 299900, consultoria: 489900 },
   },
   {
+    code: 'CR',
+    nombre: 'Costa Rica',
+    bandera: '🇨🇷',
+    moneda: 'CRC',
+    simbolo: '₡',
+    tasaVsUSD: 520,
+    locale: 'es-CR',
+    preciosCustom: { sistema: 27900, auditorias: 39900, consultoria: 59900 },
+  },
+  {
     code: 'EC',
     nombre: 'Ecuador',
     bandera: '🇪🇨',
@@ -106,16 +116,6 @@ export const PAISES: PaisConfig[] = [
     tasaVsUSD: 43,
     locale: 'es-UY',
     preciosCustom: { sistema: 2290, auditorias: 3390, consultoria: 4990 },
-  },
-  {
-    code: 'CR',
-    nombre: 'Costa Rica',
-    bandera: '🇨🇷',
-    moneda: 'CRC',
-    simbolo: '₡',
-    tasaVsUSD: 520,
-    locale: 'es-CR',
-    preciosCustom: { sistema: 27900, auditorias: 39900, consultoria: 59900 },
   },
 ];
 
