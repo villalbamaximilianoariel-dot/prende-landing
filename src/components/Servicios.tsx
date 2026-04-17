@@ -1,50 +1,72 @@
-import { Box, Container, Typography, Card, CardContent } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { Box, Container, Typography, Card, CardContent, Tooltip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { PAISES, PAIS_DEFAULT, getPrecio } from '../data/countries';
+import type { PaisConfig } from '../data/countries';
+import { detectCountryCode } from '../utils/geo';
+
+type ServicioKey = 'sistema' | 'auditorias' | 'consultoria';
 
 interface Servicio {
   id: number;
+  key: ServicioKey;
   icon: React.ReactNode;
   title: string;
   description: string;
-  price: string;
+  sufijo: string;
   route: string;
 }
 
 const servicios: Servicio[] = [
   {
     id: 1,
+    key: 'sistema',
     icon: <DashboardIcon sx={{ fontSize: 48 }} />,
     title: 'Sistema de Auditoría Prende',
     description:
       'Nuestro sistema de Auditoría Prende te permite relevar, registrar y visualizar lo que pasa en tus locales a través de formularios flexibles, carga simple y reportes automáticos.',
-    price: 'desde $39990 por mes',
+    sufijo: 'por mes',
     route: '/sistema',
   },
   {
     id: 2,
+    key: 'auditorias',
     icon: <AssignmentIcon sx={{ fontSize: 48 }} />,
     title: 'Auditorías Operativas',
     description:
       'Realizamos auditorías apoyadas en nuestro sistema, observando la operacion real para detectar oportunidades de mejora y devolverte información clara y accionable.',
-    price: 'desde $79990 por mes',
+    sufijo: 'por mes',
     route: '/auditorias',
   },
   {
     id: 3,
+    key: 'consultoria',
     icon: <TrendingUpIcon sx={{ fontSize: 48 }} />,
     title: 'Consultoría Personalizada',
     description:
       'No se trata solo de diagnósticos o recomendaciones: trabajamos junto a vos para ordenar procesos, mejorar resultados y encarar nuevos proyectos de manera concreta y realista.',
-    price: 'desde $129990 por proyecto',
+    sufijo: 'por proyecto',
     route: '/consultoria',
   },
 ];
 
 const Servicios = () => {
   const navigate = useNavigate();
+  const [paisSeleccionado, setPaisSeleccionado] = useState<PaisConfig>(PAIS_DEFAULT);
+  const [detectando, setDetectando] = useState(true);
+
+  useEffect(() => {
+    detectCountryCode().then((code) => {
+      if (code) {
+        const match = PAISES.find((p) => p.code === code);
+        if (match) setPaisSeleccionado(match);
+      }
+      setDetectando(false);
+    });
+  }, []);
 
   const handleServicioClick = (route: string) => {
     navigate(route);
@@ -61,7 +83,7 @@ const Servicios = () => {
     >
       <Container maxWidth="lg">
         {/* Encabezado de sección */}
-        <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 5, md: 6 } }}>
           <Typography
             variant="h2"
             sx={{
@@ -80,10 +102,55 @@ const Servicios = () => {
               color: '#666666',
               maxWidth: '600px',
               mx: 'auto',
+              mb: 3,
             }}
           >
             Soluciones prácticas para que tu negocio funcione mejor y venda más
           </Typography>
+
+          {/* Selector de país */}
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
+            {PAISES.map((pais) => {
+              const selected = pais.code === paisSeleccionado.code;
+              return (
+                <Tooltip key={pais.code} title={pais.nombre} placement="top">
+                  <Box
+                    component="button"
+                    onClick={() => setPaisSeleccionado(pais)}
+                    sx={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 0.75,
+                      px: 1.5,
+                      py: 0.6,
+                      borderRadius: 5,
+                      border: selected ? '2px solid #000' : '1.5px solid #bbb',
+                      bgcolor: selected ? '#000' : '#fff',
+                      color: selected ? '#FFEB5D' : '#444',
+                      fontWeight: selected ? 700 : 500,
+                      fontSize: '0.8rem',
+                      cursor: 'pointer',
+                      fontFamily: 'inherit',
+                      transition: 'all 0.15s ease',
+                      opacity: detectando ? 0.6 : 1,
+                      '&:hover': {
+                        borderColor: '#000',
+                        bgcolor: selected ? '#000' : '#F5F5F5',
+                      },
+                    }}
+                  >
+                    <span style={{ fontSize: '1rem', lineHeight: 1 }}>{pais.bandera}</span>
+                    {pais.nombre}
+                  </Box>
+                </Tooltip>
+              );
+            })}
+          </Box>
+          {detectando && (
+            <Typography variant="caption" sx={{ color: '#999', display: 'block', mt: 1 }}>
+              Detectando tu ubicación…
+            </Typography>
+          )}
         </Box>
 
         {/* Grid de servicios */}
@@ -98,8 +165,10 @@ const Servicios = () => {
             mt: 2,
           }}
         >
-          {servicios.map((servicio) => (
-            <Box 
+          {servicios.map((servicio) => {
+            const precioStr = `${getPrecio(paisSeleccionado, servicio.key)} ${servicio.sufijo}`;
+            return (
+            <Box
               key={servicio.id}
               onClick={() => handleServicioClick(servicio.route)}
               sx={{ cursor: 'pointer' }}
@@ -147,7 +216,7 @@ const Servicios = () => {
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    {servicio.price}
+                    {precioStr}
                   </Typography>
                 </Box>
 
@@ -223,10 +292,9 @@ const Servicios = () => {
                 </CardContent>
               </Card>
             </Box>
-          ))}
+            );
+          })}
         </Box>
-
-
       </Container>
     </Box>
   );
