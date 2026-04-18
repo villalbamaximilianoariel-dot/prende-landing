@@ -156,7 +156,7 @@ const Auditorias = () => {
                   lineHeight: 1.6
                 }}
               >
-                Realizamos auditorías apoyadas en nuestro sistema, observando la operacion real para detectar oportunidades de mejora y devolverte información clara y accionable.
+                Realizamos auditorías apoyadas en nuestro sistema, observando la operación real para detectar oportunidades de mejora y devolverte información clara y accionable.
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 3 }}>
                 <Box
@@ -424,7 +424,7 @@ const Auditorias = () => {
                 }
               }}
             >
-              Probar Gratis 15 Días
+              Agendar Primera Auditoría
             </Button>
           </Box>
         </Container>

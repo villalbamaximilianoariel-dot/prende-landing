@@ -37,7 +37,7 @@ const servicios: Servicio[] = [
     icon: <AssignmentIcon sx={{ fontSize: 48 }} />,
     title: 'Auditorías Operativas',
     description:
-      'Realizamos auditorías apoyadas en nuestro sistema, observando la operacion real para detectar oportunidades de mejora y devolverte información clara y accionable.',
+      'Realizamos auditorías apoyadas en nuestro sistema, observando la operación real para detectar oportunidades de mejora y devolverte información clara y accionable.',
     sufijo: 'por mes',
     route: '/auditorias',
   },

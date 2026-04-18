@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -38,6 +38,7 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { trackServicePageView } from '../utils/analytics';
 
 // ─────────────────────────────────────────────
 // Types
@@ -187,6 +188,10 @@ const ResultRow = ({
 // ─────────────────────────────────────────────
 const CalculadoraCostos = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    trackServicePageView('Calculadora de costos');
+  }, []);
 
   // ── Type selector ──
   const [productType, setProductType] = useState<ProductType>('fabricacion');

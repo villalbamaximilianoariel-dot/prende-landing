@@ -1,9 +1,12 @@
-import { AppBar, Toolbar, Container, Button, Box } from '@mui/material';
+import { AppBar, Toolbar, Container, Button, Box, Drawer, List, ListItem, ListItemButton, ListItemText, IconButton, Divider } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,21 +20,27 @@ const Header = () => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    setDrawerOpen(false);
     if (location.pathname !== '/') {
-      // Si no estamos en home, navegar primero
       navigate('/');
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     } else {
-      // Si ya estamos en home, solo hacer scroll
       const element = document.getElementById(sectionId);
       element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
+  const handleNavLink = (href: string) => {
+    setDrawerOpen(false);
+    navigate(href);
+    window.scrollTo(0, 0);
+  };
+
   return (
+    <>
     <AppBar
       position="fixed"
       elevation={scrolled ? 2 : 0}
@@ -71,7 +80,7 @@ const Header = () => {
             />
           </Box>
 
-          {/* Navigation */}
+          {/* Navigation desktop */}
           <Box
             sx={{
               display: { xs: 'none', sm: 'flex' },
@@ -168,34 +177,82 @@ const Header = () => {
             </Button>
           </Box>
 
-          {/* Mobile CTA */}
-          <Button
-            onClick={() => scrollToSection('contacto')}
-            variant="contained"
-            size="small"
+          {/* Mobile: hamburger */}
+          <IconButton
+            onClick={() => setDrawerOpen(true)}
             sx={{
               display: { xs: 'flex', sm: 'none' },
+              color: '#FFFFFF',
+            }}
+            aria-label="Abrir menú"
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </Container>
+    </AppBar>
+
+    {/* Mobile Drawer */}
+    <Drawer
+      anchor="right"
+      open={drawerOpen}
+      onClose={() => setDrawerOpen(false)}
+      PaperProps={{
+        sx: {
+          width: 260,
+          bgcolor: '#000000',
+          color: '#FFFFFF',
+        },
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}>
+        <IconButton onClick={() => setDrawerOpen(false)} sx={{ color: '#FFFFFF' }} aria-label="Cerrar menú">
+          <CloseIcon />
+        </IconButton>
+      </Box>
+      <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)' }} />
+      <List sx={{ pt: 1 }}>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => scrollToSection('servicios')}>
+            <ListItemText primary="Servicios" primaryTypographyProps={{ fontWeight: 500 }} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => handleNavLink('/blog')}>
+            <ListItemText primary="Blog" primaryTypographyProps={{ fontWeight: 500 }} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => handleNavLink('/implementacion')}>
+            <ListItemText primary="A tu medida" primaryTypographyProps={{ fontWeight: 500 }} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => handleNavLink('/calculadora')}>
+            <ListItemText primary="Calculadora" primaryTypographyProps={{ fontWeight: 500 }} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding sx={{ mt: 2, px: 2 }}>
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={() => scrollToSection('contacto')}
+            sx={{
               bgcolor: '#FFEB5D',
               color: '#000000',
-              px: 2,
-              py: 0.75,
-              fontSize: '0.875rem',
               fontWeight: 600,
               borderRadius: 1,
               textTransform: 'none',
               boxShadow: 'none',
-              cursor: 'pointer',
-              '&:hover': {
-                bgcolor: '#FFE135',
-                boxShadow: 'none',
-              },
+              '&:hover': { bgcolor: '#FFE135', boxShadow: 'none' },
             }}
           >
             Contacto
           </Button>
-        </Toolbar>
-      </Container>
-    </AppBar>
+        </ListItem>
+      </List>
+    </Drawer>
+    </>
   );
 };
 
