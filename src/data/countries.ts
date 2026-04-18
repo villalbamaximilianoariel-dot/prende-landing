@@ -38,6 +38,16 @@ export const PAISES: PaisConfig[] = [
     },
   },
   {
+    code: 'BO',
+    nombre: 'Bolivia',
+    bandera: '🇧🇴',
+    moneda: 'BOB',
+    simbolo: 'Bs',
+    tasaVsUSD: 6.9,
+    locale: 'es-BO',
+    preciosCustom: { sistema: 349, auditorias: 499, consultoria: 649 },
+  },
+  {
     code: 'CL',
     nombre: 'Chile',
     bandera: '🇨🇱',
