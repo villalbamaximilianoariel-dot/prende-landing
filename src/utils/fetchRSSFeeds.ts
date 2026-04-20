@@ -33,7 +33,7 @@ function parseRSSFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RSS
   for (let i = 0; i < Math.min(items.length, maxItems); i++) {
     const item = items[i];
 
-    const title = item.querySelector('title')?.textContent || 'Sin título';
+    const title = decodeTitle(item.querySelector('title')?.textContent || 'Sin título');
     const link = item.querySelector('link')?.textContent || '#';
     const description = item.querySelector('description')?.textContent || '';
     const pubDate = item.querySelector('pubDate')?.textContent || new Date().toISOString();
@@ -79,7 +79,7 @@ function parseAtomFeed(xmlDoc: Document, feed: FeedSource, maxItems: number): RS
   for (let i = 0; i < Math.min(entries.length, maxItems); i++) {
     const entry = entries[i];
 
-    const title = entry.querySelector('title')?.textContent || 'Sin título';
+    const title = decodeTitle(entry.querySelector('title')?.textContent || 'Sin título');
     const linkEl = entry.querySelector('link[rel="alternate"], link');
     const link = linkEl?.getAttribute('href') || '#';
     const summary = entry.querySelector('summary, content')?.textContent || '';
@@ -115,6 +115,21 @@ function decodeHtmlEntities(text: string): string {
   const tmp = document.createElement('textarea');
   tmp.innerHTML = text;
   return tmp.value;
+}
+
+/**
+ * Decodifica entidades HTML en títulos RSS/Atom.
+ * A diferencia de stripHtml, no elimina tags (los títulos no suelen tenerlos),
+ * pero sí resuelve named entities (&rsquo;, &ldquo;, &hellip;, etc.) y
+ * entidades doblemente escapadas (&amp;rsquo; → &rsquo; → ').
+ */
+function decodeTitle(text: string): string {
+  let decoded = decodeHtmlEntities(text);
+  // Segunda pasada para entidades doblemente escapeadas
+  if (decoded.includes('&') && decoded.includes(';')) {
+    decoded = decodeHtmlEntities(decoded);
+  }
+  return decoded;
 }
 
 function stripHtml(html: string): string {
