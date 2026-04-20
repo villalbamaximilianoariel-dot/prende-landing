@@ -21,7 +21,8 @@
       "type": "rss",
       "url": "https://www.ipsos.com/es-ar/rss.xml",
       "category": "Insights",
-      "enabled": true
+      "enabled": false,
+      "_nota": "Deshabilitado: ipsos.com bloquea proxies CORS con 403 desde su WAF/CDN"
     }
   ],
   "destacados": [],

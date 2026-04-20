@@ -289,7 +289,6 @@ export async function fetchSingleFeed(feed: FeedSource, maxItems = 5): Promise<R
     // todos fallaron
   }
 
-  console.warn(`Feed "${feed.name}" no disponible temporalmente.`);
   return [];
 }
 
