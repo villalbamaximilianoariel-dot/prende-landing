@@ -100,7 +100,7 @@ const Dolor = () => {
           component="h2"
           textAlign="center"
           gutterBottom
-          sx={{ fontWeight: 'bold', mb: 4 }}
+          sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1.5rem', sm: '1.875rem', md: '2.25rem' } }}
         >
           El crecimiento trae nuevos desafíos
         </Typography>
@@ -154,8 +154,8 @@ const Dolor = () => {
                       textAlign="center"
                       sx={{ 
                         fontWeight: 700,
-                        mb: 5,
-                        fontSize: { xs: '1.5rem', md: '1.85rem' },
+                        mb: { xs: 3, md: 5 },
+                        fontSize: { xs: '1.15rem', sm: '1.35rem', md: '1.85rem' },
                         lineHeight: 1.3,
                         color: '#1a1a1a',
                         px: { xs: 1, md: 2 }
@@ -208,7 +208,7 @@ const Dolor = () => {
                             <Typography
                               variant="body1"
                               sx={{
-                                fontSize: { xs: '1.05rem', md: '1.1rem' },
+                              fontSize: { xs: '0.9375rem', md: '1.1rem' },
                                 lineHeight: 1.7,
                                 color: '#2c2c2c',
                                 fontWeight: 400,
