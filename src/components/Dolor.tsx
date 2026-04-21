@@ -100,7 +100,7 @@ const Dolor = () => {
           component="h2"
           textAlign="center"
           gutterBottom
-          sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1.5rem', sm: '1.875rem', md: '2.25rem' } }}
+          sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1.75rem', sm: '2rem', md: '2.25rem' } }}
         >
           El crecimiento trae nuevos desafíos
         </Typography>
