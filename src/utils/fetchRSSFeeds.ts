@@ -265,8 +265,23 @@ async function fetchViaXmlProxy(proxyBase: string, feed: FeedSource, maxItems: n
 // ─── lógica principal ────────────────────────────────────────────────────────
 
 /**
+ * Lee un feed pre-generado como JSON estático (mismo origen, sin CORS).
+ * Formato esperado: { updatedAt: string, items: RSSItem[] }
+ */
+async function fetchViaCachedJSON(feed: FeedSource): Promise<RSSItem[]> {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), 8000);
+  const response = await fetch(feed.url, { signal: controller.signal });
+  clearTimeout(id);
+  if (!response.ok) throw new Error(`cached JSON HTTP ${response.status}`);
+  const data = await response.json();
+  return Array.isArray(data.items) ? data.items : [];
+}
+
+/**
  * Obtiene items de un feed RSS individual.
  * - Para feeds YouTube: usa YouTube Data API v3 directamente.
+ * - Para feeds cached: lee JSON estático pre-generado (mismo origen).
  * - Para feeds RSS: prueba allorigins/get → allorigins/raw → corsproxy.
  */
 export async function fetchSingleFeed(feed: FeedSource, maxItems = 5): Promise<RSSItem[]> {
@@ -275,6 +290,15 @@ export async function fetchSingleFeed(feed: FeedSource, maxItems = 5): Promise<R
       return await fetchViaYouTubeAPI(feed, maxItems);
     } catch (err) {
       console.warn(`Feed YouTube "${feed.name}" falló:`, err);
+      return [];
+    }
+  }
+
+  if (feed.type === 'cached') {
+    try {
+      const items = await fetchViaCachedJSON(feed);
+      return items.slice(0, maxItems);
+    } catch (_) {
       return [];
     }
   }

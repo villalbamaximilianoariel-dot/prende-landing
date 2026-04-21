@@ -1,0 +1,34 @@
+name: Fetch Ipsos RSS Cache
+
+on:
+  schedule:
+    # Corre diariamente a las 06:00 UTC (03:00 Argentina, 02:00 Chile/Bolivia)
+    - cron: '0 6 * * *'
+  # Permite ejecutar manualmente desde GitHub Actions
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch Ipsos RSS and generate cache
+        run: node scripts/fetch-ipsos.mjs
+
+      - name: Commit and push if cache changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/ipsos-cache.json
+          git diff --staged --quiet || git commit -m "chore: actualizar cache Ipsos RSS [skip ci]"
+          git push

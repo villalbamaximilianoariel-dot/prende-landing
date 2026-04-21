@@ -18,11 +18,11 @@
     },
     {
       "name": "Ipsos Argentina",
-      "type": "rss",
-      "url": "https://www.ipsos.com/es-ar/rss.xml",
+      "type": "cached",
+      "url": "/ipsos-cache.json",
       "category": "Insights",
-      "enabled": false,
-      "_nota": "Deshabilitado: ipsos.com bloquea proxies CORS con 403 desde su WAF/CDN"
+      "enabled": true,
+      "_nota": "Feed pre-generado por GitHub Actions (fetch-ipsos.yml). Ipsos bloquea proxies CORS con su WAF/CDN."
     }
   ],
   "destacados": [],
