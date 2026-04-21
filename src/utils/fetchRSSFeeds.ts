@@ -197,7 +197,7 @@ async function fetchViaYouTubeAPI(feed: FeedSource, maxItems: number): Promise<R
       '';
 
     return {
-      title: snippet.title || 'Sin título',
+      title: decodeTitle(snippet.title || 'Sin título'),
       link: videoId ? `https://www.youtube.com/watch?v=${videoId}` : '#',
       description: (snippet.description || '').substring(0, 200) + ((snippet.description?.length ?? 0) > 200 ? '...' : ''),
       pubDate: snippet.publishedAt || new Date().toISOString(),

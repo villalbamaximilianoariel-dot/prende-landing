@@ -7,17 +7,12 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Auditorias from './Auditorias';
-import { trackServicePageView } from '../utils/analytics';
 
 const AuditoriaGratis = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    // Track específicamente esta landing
-    trackServicePageView('Auditorías - Landing Primera Auditoría');
-    
-    // Por ahora redirigimos a la página principal de Auditorías
-    // TODO: En el futuro, crear una versión específica con oferta de primera auditoría
+    // Redirige a la página principal de Auditorías (que tiene su propio tracking)
     navigate('/auditorias', { replace: true });
   }, [navigate]);
 

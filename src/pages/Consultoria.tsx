@@ -13,14 +13,28 @@ import SchoolIcon from '@mui/icons-material/School';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
+import { PAISES, PAIS_DEFAULT, getPrecio } from '../data/countries';
+import type { PaisConfig } from '../data/countries';
+import { detectCountryCode } from '../utils/geo';
 
 const Consultoria = () => {
   const navigate = useNavigate();
   const [currentImage, setCurrentImage] = useState(0);
-  
+  const [paisSeleccionado, setPaisSeleccionado] = useState<PaisConfig>(PAIS_DEFAULT);
+
   // Track page view on mount
   useEffect(() => {
     trackServicePageView('Consultoría Personalizada');
+  }, []);
+
+  // Detección de país por IP
+  useEffect(() => {
+    detectCountryCode().then((code) => {
+      if (code) {
+        const match = PAISES.find((p) => p.code === code);
+        if (match) setPaisSeleccionado(match);
+      }
+    });
   }, []);
   
   const carouselImages = [
@@ -129,7 +143,7 @@ const Consultoria = () => {
   ];
 
   const resultadosEsperados = [
-    'Aumento del 20-40% en ventas en 6 meses',
+    'Mayor rentabilidad y crecimiento de ventas',
     'Mejora de 5-10 puntos en margen operativo',
     'Procesos comerciales documentados y estandarizados',
     'Equipo capacitado en técnicas de venta',
@@ -264,7 +278,7 @@ const Consultoria = () => {
                   }}
                 >
                   <Typography variant="h6" sx={{ color: '#000000', fontWeight: 700 }}>
-                    desde $129990 por proyecto
+                    {getPrecio(paisSeleccionado, 'consultoria')} por proyecto
                   </Typography>
                 </Box>
                 <Typography variant="body2" sx={{ color: '#F5F5F5' }}>

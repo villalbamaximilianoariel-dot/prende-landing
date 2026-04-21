@@ -7,17 +7,12 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sistema from './Sistema';
-import { trackServicePageView } from '../utils/analytics';
 
 const SistemaPrueba = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    // Track específicamente esta landing
-    trackServicePageView('Sistema - Landing Prueba Gratis');
-    
-    // Por ahora redirigimos a la página principal de Sistema
-    // TODO: En el futuro, crear una versión específica con más énfasis en prueba gratis
+    // Redirige a la página principal de Sistema (que tiene su propio tracking)
     navigate('/sistema', { replace: true });
   }, [navigate]);
 

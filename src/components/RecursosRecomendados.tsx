@@ -20,6 +20,7 @@ import type { RSSItem } from '../utils/fetchRSSFeeds';
 import recursosConfig from '../data/recursos-config.json';
 import Header from './Header';
 import Footer from './Footer';
+import { trackServicePageView } from '../utils/analytics';
 
 interface RecursoDestacado {
   title: string;
@@ -37,6 +38,10 @@ export default function RecursosRecomendados() {
   const [tabValue, setTabValue] = useState(0);
 
   useEffect(() => {
+    trackServicePageView('Blog');
+  }, []);
+
+  useEffect(() => {
     loadRSSFeeds();
   }, []);
 
@@ -48,7 +53,6 @@ export default function RecursosRecomendados() {
       setRssItems(items);
     } catch (err) {
       setError('Error al cargar los recursos. Por favor, intenta más tarde.');
-      console.error(err);
     } finally {
       setLoading(false);
     }

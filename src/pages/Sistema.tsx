@@ -14,14 +14,28 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
+import { PAISES, PAIS_DEFAULT, getPrecio } from '../data/countries';
+import type { PaisConfig } from '../data/countries';
+import { detectCountryCode } from '../utils/geo';
 
 const Sistema = () => {
   const navigate = useNavigate();
   const [currentImage, setCurrentImage] = useState(0);
-  
+  const [paisSeleccionado, setPaisSeleccionado] = useState<PaisConfig>(PAIS_DEFAULT);
+
   // Track page view on mount
   useEffect(() => {
     trackServicePageView('Sistema de Auditoría');
+  }, []);
+
+  // Detección de país por IP
+  useEffect(() => {
+    detectCountryCode().then((code) => {
+      if (code) {
+        const match = PAISES.find((p) => p.code === code);
+        if (match) setPaisSeleccionado(match);
+      }
+    });
   }, []);
   
   const carouselImages = [
@@ -218,7 +232,7 @@ const Sistema = () => {
                   }}
                 >
                   <Typography variant="h6" sx={{ color: '#000000', fontWeight: 700 }}>
-                    desde $39990 por mes
+                    {getPrecio(paisSeleccionado, 'sistema')} por mes
                   </Typography>
                 </Box>
                 <Typography variant="body2" sx={{ color: '#F5F5F5' }}>

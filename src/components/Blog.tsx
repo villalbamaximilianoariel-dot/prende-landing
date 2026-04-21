@@ -59,7 +59,6 @@ export default function Blog() {
       
       setRecursos(todosCombinados.slice(0, 9));
     } catch (error) {
-      console.error('Error cargando recursos:', error);
       setRecursos([]);
     } finally {
       setLoading(false);
