@@ -12,10 +12,10 @@ import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
 import { PAISES, PAIS_DEFAULT, getPrecio } from '../data/countries';
 import type { PaisConfig } from '../data/countries';
 import { detectCountryCode } from '../utils/geo';
+import ImageCarousel from '../components/ImageCarousel';
 
 const Auditorias = () => {
   const navigate = useNavigate();
-  const [currentImage, setCurrentImage] = useState(0);
   const [paisSeleccionado, setPaisSeleccionado] = useState<PaisConfig>(PAIS_DEFAULT);
 
   // Track page view on mount
@@ -41,14 +41,9 @@ const Auditorias = () => {
     'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop'
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % carouselImages.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [carouselImages.length]);
-
-  const handleWhatsAppClick = () => {    trackWhatsAppClick('Auditorías', 'Hero');    const whatsappNumber = '5491125453990';
+  const handleWhatsAppClick = () => {
+    trackWhatsAppClick('Auditorías', 'Hero');
+    const whatsappNumber = '5491125453990';
     const message = encodeURIComponent('Hola! Me interesa el servicio de Auditorías Comerciales y Operativas. ¿Podrían darme más información?');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
@@ -212,49 +207,7 @@ const Auditorias = () => {
               </Button>
             </Box>
             
-            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 2, boxShadow: '0 8px 32px rgba(255, 235, 93, 0.2)' }}>
-              {carouselImages.map((img, index) => (
-                <Box
-                  key={index}
-                  component="img"
-                  src={img}
-                  alt={`Auditoría ${index + 1}`}
-                  sx={{
-                    width: '100%',
-                    height: { xs: 250, md: 400 },
-                    objectFit: 'cover',
-                    position: index === 0 ? 'relative' : 'absolute',
-                    top: 0,
-                    left: 0,
-                    opacity: currentImage === index ? 1 : 0,
-                    transition: 'opacity 1s ease-in-out'
-                  }}
-                />
-              ))}
-              <Box sx={{ 
-                position: 'absolute', 
-                bottom: 16, 
-                left: '50%', 
-                transform: 'translateX(-50%)',
-                display: 'flex',
-                gap: 1
-              }}>
-                {carouselImages.map((_, index) => (
-                  <Box
-                    key={index}
-                    onClick={() => setCurrentImage(index)}
-                    sx={{
-                      width: 10,
-                      height: 10,
-                      borderRadius: '50%',
-                      bgcolor: currentImage === index ? '#FFEB5D' : 'rgba(255,255,255,0.5)',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s'
-                    }}
-                  />
-                ))}
-              </Box>
-            </Box>
+            <ImageCarousel images={carouselImages} altPrefix="Auditoría" />
           </Box>
         </Container>
       </Box>

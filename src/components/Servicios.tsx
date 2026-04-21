@@ -168,30 +168,32 @@ const Servicios = () => {
           {servicios.map((servicio) => {
             const precioStr = `${getPrecio(paisSeleccionado, servicio.key)} ${servicio.sufijo}`;
             return (
-            <Box
+            <Card
               key={servicio.id}
+              component="button"
               onClick={() => handleServicioClick(servicio.route)}
-              sx={{ cursor: 'pointer' }}
+              sx={{
+                cursor: 'pointer',
+                width: '100%',
+                p: 0,
+                textAlign: 'left',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                bgcolor: '#FFFFFF',
+                border: '2px solid #000000',
+                borderRadius: 2,
+                boxShadow: 'none',
+                position: 'relative',
+                overflow: 'visible',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-8px)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+                  borderColor: '#FFEB5D',
+                },
+              }}
             >
-              <Card
-                sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  bgcolor: '#FFFFFF',
-                  border: '2px solid #000000',
-                  borderRadius: 2,
-                  boxShadow: 'none',
-                  position: 'relative',
-                  overflow: 'visible',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: 'translateY(-8px)',
-                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
-                    borderColor: '#FFEB5D',
-                  },
-                }}
-              >
                 {/* Badge de precio en la esquina */}
                 <Box
                   sx={{
@@ -290,8 +292,7 @@ const Servicios = () => {
                     Ver detalles →
                   </Typography>
                 </CardContent>
-              </Card>
-            </Box>
+            </Card>
             );
           })}
         </Box>

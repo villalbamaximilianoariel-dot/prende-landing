@@ -83,7 +83,7 @@ const Header = () => {
           {/* Navigation desktop */}
           <Box
             sx={{
-              display: { xs: 'none', sm: 'flex' },
+              display: { xs: 'none', md: 'flex' },
               gap: { sm: 2, md: 4 },
               alignItems: 'center',
             }}
@@ -181,7 +181,7 @@ const Header = () => {
           <IconButton
             onClick={() => setDrawerOpen(true)}
             sx={{
-              display: { xs: 'flex', sm: 'none' },
+              display: { xs: 'flex', md: 'none' },
               color: '#FFFFFF',
             }}
             aria-label="Abrir menú"
