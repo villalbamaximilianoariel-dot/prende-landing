@@ -36,8 +36,8 @@ export default function Blog() {
     try {
       setLoading(true);
       
-      // Obtener más RSS items (3 items por feed = 9 total)
-      const rssItems = await fetchAllFeeds(recursosConfig.rssFeeds, 3);
+      // Obtener RSS items (5 items por feed, igual que en /blog)
+      const rssItems = await fetchAllFeeds(recursosConfig.rssFeeds, 5);
       
       // Obtener destacados
       const destacados = recursosConfig.destacados as RecursoDestacado[];
@@ -54,10 +54,10 @@ export default function Blog() {
 
       const recursosDestacados = destacados;
       
-      // Mezclar: destacados + RSS (hasta 9 items)
+      // Combinar destacados + RSS
       const todosCombinados = [...recursosDestacados, ...recursosRSS];
       
-      setRecursos(todosCombinados.slice(0, 9));
+      setRecursos(todosCombinados);
     } catch (error) {
       setRecursos([]);
     } finally {
