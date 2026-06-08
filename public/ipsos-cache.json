@@ -1,6 +1,24 @@
 {
-  "updatedAt": "2026-06-07T07:22:02.871Z",
+  "updatedAt": "2026-06-08T07:38:59.359Z",
   "items": [
+    {
+      "title": "IA en Argentina 2026: Una oportunidad para las marcas",
+      "link": "https://www.ipsos.com/es-ar/ia-en-argentina-2026-una-oportunidad-para-las-marcas",
+      "description": "Aunque el 70% de los argentinos dice entender qué es la IA, solo el 43% se muestra entusiasmado, lo que abre una oportunidad para que las marcas transformen tecnología en valor tangible....",
+      "pubDate": "Fri, 05 Jun 2026 17:54:37 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-06/Ipsos%20Monitor%20IA%202026.jpg?itok=Y1EMdPM_",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
+    {
+      "title": "Actitudes globales sobre la IA en 2026: Disminuye la brecha entre el asombro y la preocupación.",
+      "link": "https://www.ipsos.com/es-ar/actitudes-globales-ia-2026-asombro-vs-preocupaci%C3%B3n-la-brecha-se-agudiza",
+      "description": "El quinto informe anual de Ipsos sobre IA revela que la emoción y el nerviosismo son ahora prácticamente iguales en todo el mundo, y a menudo los sienten las mismas personas....",
+      "pubDate": "Fri, 05 Jun 2026 16:33:23 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-06/Ipsos-AI-Monitor_0.png?itok=PCleLRlo",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
     {
       "title": "Confianza del Consumidor: Argentina permanece al final de la tabla de Latinoamérica",
       "link": "https://www.ipsos.com/es-ar/confianza-del-consumidor-argentina-permanece-al-final-de-la-tabla-de-latinoamerica",
@@ -25,24 +43,6 @@
       "description": "Cómo sacar el máximo provecho de cada inversión en patrocinio, antes, durante y después del silbato final....",
       "pubDate": "Thu, 14 May 2026 21:35:31 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-05/sports-sponsorship-athletics-leisure.webp?itok=pYi_eFx5",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "Ipsos Generaciones 2026: Continuidad vs. Ruptura",
-      "link": "https://www.ipsos.com/es-ar/ipsos-generations-report-2026-continuity-vs-rupture",
-      "description": "Descubra el Informe Generaciones 2026 de Ipsos: Continuidad frente a Ruptura. Nuestra cuarta edición analiza el declive demográfico, los cambios en los hitos del desarrollo y las generaciones en el ám...",
-      "pubDate": "Thu, 14 May 2026 21:00:04 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-05/ipsos-generations-2026-report-carousel.webp?itok=9m9yGCqP",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "¿El fin de la propiedad de automóviles?",
-      "link": "https://www.ipsos.com/es-ar/el-fin-de-la-propiedad-de-autom%C3%B3viles",
-      "description": "Los datos indican que aún no. Pero las grietas son reales, y apuntan hacia dónde se dirige el futuro, afirma Alexandre De Saint-Léon....",
-      "pubDate": "Thu, 14 May 2026 20:45:38 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-05/automotive-car-ownership-motoring.webp?itok=1CuNCgKW",
       "source": "Ipsos Argentina",
       "category": "Insights"
     }
