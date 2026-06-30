@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-06-29T07:38:53.048Z",
+  "updatedAt": "2026-06-30T08:59:30.557Z",
   "items": [
+    {
+      "title": "Pruebas de concepto con gemelos digitales",
+      "link": "https://www.ipsos.com/es-ar/humanizaci%C3%B3n-de-la-IA-parte-cuatro-prueba-de-conceptos-gemelos-digitales",
+      "description": "Humanizando la IA, cuarta parte: Cómo los datos sintéticos aceleran la innovación....",
+      "pubDate": "Mon, 29 Jun 2026 22:46:53 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-05/concept-testing-carousel.webp?itok=KyTBPvC3",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
+    {
+      "title": "Ipsos PRIDE ARG 2026",
+      "link": "https://www.ipsos.com/es-ar/ipsos-pride-arg-2026",
+      "description": "Con altos niveles de aceptación social y apoyo a la igualdad, la oportunidad está en transformar la visibilidad en compromiso consistente, creíble y relevante para sus audiencias....",
+      "pubDate": "Fri, 26 Jun 2026 21:08:44 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-06/Ipsos%20Pride%202026_Imagen.jpg?itok=UWVPbSIj",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
+    {
+      "title": "De la pérdida de peso a la ganancia de vida",
+      "link": "https://www.ipsos.com/es-ar/weight-lost-life-gained",
+      "description": "Qué necesitan los pacientes ahora y quién se lo proporcionará....",
+      "pubDate": "Fri, 26 Jun 2026 16:34:49 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-06/HEC160626.png?itok=pK7pWZEX",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
     {
       "title": "ARG 2026: Optimismo prudente, bolsillo inestable",
       "link": "https://www.ipsos.com/es-ar/arg-2026-optimismo-prudente-bolsillo-inestable",
@@ -16,33 +43,6 @@
       "description": "Lo que revela el Mundial de 2026 sobre cómo lograr que la sostenibilidad funcione para las personas....",
       "pubDate": "Thu, 18 Jun 2026 16:36:02 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-06/worldcup.png?itok=ZJUZ068w",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "Argentina reescribe la vida adulta: Menos mandatos, más estabilidad y una independencia en cuotas",
-      "link": "https://www.ipsos.com/es-ar/argentina-reescribe-la-vida-adulta-menos-mandatos-mas-estabilidad-y-una-independencia-en-cuotas",
-      "description": "El estudio Ipsos Generations 2026 muestra que, en Argentina, los grandes hitos de la vida siguen vigentes, pero se alcanzan más tarde, con más tensión económica y con nuevas prioridades emocionales....",
-      "pubDate": "Wed, 17 Jun 2026 17:55:53 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-06/ipsos-generations-2026-report-carousel.webp?itok=b10AiUMo",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "Consumidor ARG 2026: Confianza en pausa y mindset selectivo",
-      "link": "https://www.ipsos.com/es-ar/consumidor-arg-2026-confianza-en-pausa-y-mindset-selectivo",
-      "description": "En mayo de 2026, Argentina registra un Índice de Confianza del Consumidor de 40,8 puntos, por debajo del promedio latinoamericano; aunque con ciertas señales de expectativa futura que abren una ventan...",
-      "pubDate": "Wed, 17 Jun 2026 15:15:51 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-06/ICC_WebImagen_Carrusel_Marzo2026.jpg?itok=OUtrGMNv",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "CX Global Insights 2026: Desbloqueando el futuro de la experiencia del cliente",
-      "link": "https://www.ipsos.com/es-ar/cx-global-insights-2026-desbloqueando-el-futuro-de-la-experiencia-del-cliente",
-      "description": "Obtenga el estudio comparativo más completo del mercado. Transforme los datos en mejoras efectivas de la experiencia del cliente y aumente su retorno de la inversión en experiencia del cliente (ROCXI)...",
-      "pubDate": "Wed, 17 Jun 2026 14:54:08 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/event/2026-06/ipsos-cx-global-insights-report-2026-carousel.webp?itok=6nyIgi1I",
       "source": "Ipsos Argentina",
       "category": "Insights"
     }
