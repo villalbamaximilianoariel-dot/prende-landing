@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-07-01T09:33:16.941Z",
+  "updatedAt": "2026-07-02T08:43:58.152Z",
   "items": [
+    {
+      "title": "El empleo, el bolsillo y la desigualdad social definen el escenario argentino",
+      "link": "https://www.ipsos.com/es-ar/el-empleo-el-bolsillo-y-la-desigualdad-social-definen-el-escenario-argentino",
+      "description": "Argentina muestra más optimismo que el promedio global, pero la agenda social y económica —desempleo, pobreza e inflación— sigue definiendo el ánimo del consumidor....",
+      "pubDate": "Wed, 01 Jul 2026 22:13:40 +0200",
+      "thumbnail": "",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
+    {
+      "title": "CX Global Insights 2026: Desbloqueando el futuro de la experiencia del cliente",
+      "link": "https://www.ipsos.com/es-ar/cx-global-insights-2026-desbloqueando-el-futuro-de-la-experiencia-del-cliente",
+      "description": "Obtenga el estudio comparativo más completo del mercado. Transforme los datos en mejoras efectivas de la experiencia del cliente y aumente su retorno de la inversión en experiencia del cliente (ROCXI)...",
+      "pubDate": "Wed, 01 Jul 2026 21:02:10 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/event/2026-06/ipsos-cx-global-insights-report-2026-carousel.webp?itok=6nyIgi1I",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
+    {
+      "title": "Ipsos PRIDE ARG 2026",
+      "link": "https://www.ipsos.com/es-ar/ipsos-pride-arg-2026",
+      "description": "Con altos niveles de aceptación social y apoyo a la igualdad, la oportunidad está en transformar la visibilidad en compromiso consistente, creíble y relevante para sus audiencias....",
+      "pubDate": "Wed, 01 Jul 2026 18:21:32 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-06/Ipsos%20Pride%202026_Imagen.jpg?itok=UWVPbSIj",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
     {
       "title": "Monitorea y optimiza la visibilidad de tu marca en los resultados de búsqueda con IA gracias a Ipsos Synthesio AI Visibility.",
       "link": "https://www.ipsos.com/es-ar/seguimiento%20y%20optimizaci%C3%B3n%20de%20la%20visibilidad%20de%20la%20marca%20mediante%20IA%20en%20los%20resultados%20de%20b%C3%BAsqueda%20con%20Ipsos%20Synthesio",
@@ -16,33 +43,6 @@
       "description": "En el episodio de nuestro seminario web KEYS, nos preguntaremos si ha llegado el momento de que las organizaciones den mayor importancia a la sostenibilidad en sus iniciativas....",
       "pubDate": "Tue, 30 Jun 2026 21:36:45 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/event/2026-06/keys-webinar-sustainability.webp?itok=lneSjOEP",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "Transforma el comportamiento en negocio: Cómo la información sobre el consumidor en tiempo real impulsa el crecimiento sostenible de la marca.",
-      "link": "https://www.ipsos.com/es-ar/transformar-el-comportamiento-empresarial-c%C3%B3mo-la-informaci%C3%B3n-del-consumidor-en-tiempo-real-impulsa-el-crecimiento-sostenible-de-la-marca",
-      "description": "Accede a nuestro nuevo análisis de Ipsos para descubrir por qué la medición del comportamiento es la nueva ventaja competitiva para las marcas....",
-      "pubDate": "Tue, 30 Jun 2026 21:03:54 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-06/building-blocks.webp?itok=kJ7xYaIw",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "Más allá de la indicación: El caso de la evidencia del mundo real (RWE) obtenida directamente de los pacientes en el sistema de salud de EE. UU.",
-      "link": "https://www.ipsos.com/es-ar/mas-alla-de-la-indicacion-el-caso-de-la-evidencia-del-mundo-real-rwe-obtenida-directamente-de-los",
-      "description": "El sistema de indicaciones sanitarias de EE.UU. es una fuente fiable de datos secundarios del mundo real, pero ¿qué ocurre cuando el paciente deja de estar incluido en el sistema?...",
-      "pubDate": "Tue, 30 Jun 2026 20:56:51 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-06/healthcare-pharma-health-tablet-medicine.webp?itok=InqAlU17",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "Conozca la Nueva América y más allá - Junio 2026",
-      "link": "https://www.ipsos.com/es-ar/conozca-la-nueva-am%C3%A9rica-junio-2026",
-      "description": "Un boletín mensual con los análisis de Ipsos sobre Estados Unidos, adaptados al mundo....",
-      "pubDate": "Tue, 30 Jun 2026 20:44:24 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-06/know-new-america-ultimi-sondaggi-ipsos-america-trump.webp?itok=GuEvuLx9",
       "source": "Ipsos Argentina",
       "category": "Insights"
     }
