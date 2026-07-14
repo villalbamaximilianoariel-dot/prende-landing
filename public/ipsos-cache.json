@@ -1,15 +1,6 @@
 {
-  "updatedAt": "2026-07-13T08:54:26.503Z",
+  "updatedAt": "2026-07-14T07:50:31.901Z",
   "items": [
-    {
-      "title": "Ipsos Update Julio 2026",
-      "link": "https://www.ipsos.com/es-ar/node/1079136",
-      "description": "",
-      "pubDate": "Tue, 07 Jul 2026 11:39:38 +0200",
-      "thumbnail": "",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
     {
       "title": "El empleo, el bolsillo y la desigualdad social definen el escenario argentino",
       "link": "https://www.ipsos.com/es-ar/el-empleo-el-bolsillo-y-la-desigualdad-social-definen-el-escenario-argentino",
@@ -43,6 +34,15 @@
       "description": "La nueva solución Ipsos Synthesio ofrece una monitorización integral de búsquedas mediante IA para ayudar a las marcas a captar visibilidad en este punto de contacto fundamental con el consumidor....",
       "pubDate": "Tue, 30 Jun 2026 21:47:54 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-07/ai-visibility-carousel.webp?itok=LqWnVurK",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
+    {
+      "title": "[REPETICIÓN] CLAVES: Potenciando la S en sostenibilidad",
+      "link": "https://www.ipsos.com/es-ar/repeticion-claves-potenciando-la-s-en-sostenibilidad",
+      "description": "En el episodio de nuestro seminario web KEYS, nos preguntaremos si ha llegado el momento de que las organizaciones den mayor importancia a la sostenibilidad en sus iniciativas....",
+      "pubDate": "Tue, 30 Jun 2026 21:36:45 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/event/2026-06/keys-webinar-sustainability.webp?itok=lneSjOEP",
       "source": "Ipsos Argentina",
       "category": "Insights"
     }
