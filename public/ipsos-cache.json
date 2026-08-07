@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-06T06:52:52.005Z",
+  "updatedAt": "2026-08-07T06:23:07.729Z",
   "items": [
     {
       "title": "El empleo, el bolsillo y la desigualdad social definen el escenario argentino",
@@ -29,20 +29,20 @@
       "category": "Insights"
     },
     {
-      "title": "¿Por qué los oncólogos recetan GLP-1?",
-      "link": "https://www.ipsos.com/es-ar/why-oncologists-are-prescribing-glp-1s",
-      "description": "Cuándo los especialistas en cáncer adoptan —y cuándo evitan— esta revolucionaria clase de fármacos....",
-      "pubDate": "Mon, 03 Aug 2026 20:24:53 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-07/why_oncologists_are_prescribing_glp-1s_pov.webp?itok=BupI4aXq",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
       "title": "Argentina recupera confianza, pero sigue entre los mercados menos optimistas de LATAM",
       "link": "https://www.ipsos.com/es-ar/argentina-recupera-confianza-pero-sigue-entre-los-mercados-menos-optimistas-de-latam",
       "description": "La confianza del consumidor argentino registró el mayor crecimiento mensual de la región en julio de 2026, aunque el país aún se ubica por debajo de todos sus pares regionales en nivel de optimismo...",
       "pubDate": "Mon, 03 Aug 2026 20:12:36 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-08/ICC_WebImagen_Carrusel_Marzo2026.jpg?itok=j76Sxv7G",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
+    {
+      "title": "Argentina 2026: Mejora la percepción económica, pero el empleo gana centralidad",
+      "link": "https://www.ipsos.com/es-ar/argentina-2026-mejora-la-percepcion-economica-pero-el-empleo-gana-centralidad",
+      "description": "Entre junio y julio creció la evaluación positiva de la economía, mientras el desempleo y la pobreza se consolidaron como las mayores inquietudes de los argentinos...",
+      "pubDate": "Mon, 03 Aug 2026 20:07:01 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-08/WWW_WebImagen_Carrusel.jpg?itok=_kziigiz",
       "source": "Ipsos Argentina",
       "category": "Insights"
     }
