@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-13T06:28:56.967Z",
+  "updatedAt": "2026-08-14T06:27:36.254Z",
   "items": [
     {
       "title": "Las actitudes globales hacia los refugiados se mantienen estables, mientras que persisten las dudas sobre la implementación.",
@@ -7,15 +7,6 @@
       "description": "Investigación publicada por Ipsos en colaboración con ACNUR, la Agencia de la ONU para los Refugiados, con motivo del 75 aniversario de la Convención sobre el Estatuto de los Refugiados de 1951....",
       "pubDate": "Tue, 11 Aug 2026 19:01:55 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-07/refugees-migration.webp?itok=TWWhrVZ1",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "Tu próximo auto podría conducir mejor que vos: La percepción de la IA en los vehículos",
-      "link": "https://www.ipsos.com/es-ar/your-next-car-might-drive-better-you-perception-ai-automobiles",
-      "description": "¿Estamos preparados para que la IA tome el control? Mike VanNieuwkuyk analiza las percepciones de los consumidores globales sobre la IA en los automóviles, la confianza en los vehículos autónomos y el...",
-      "pubDate": "Tue, 11 Aug 2026 18:50:19 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-07/automotive-ai-driving-autonomy-motoring-car.webp?itok=IotUxtTE",
       "source": "Ipsos Argentina",
       "category": "Insights"
     },
@@ -43,6 +34,15 @@
       "description": "Refugiados, datos sintéticos, energía… Ipsos Update explora las últimas investigaciones y reflexiones sobre temas clave de los equipos de Ipsos en todo el mundo....",
       "pubDate": "Tue, 11 Aug 2026 14:15:10 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-08/ipsos-update-august-2026.webp?itok=fSC4n6fJ",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
+    {
+      "title": "El empleo, el bolsillo y la desigualdad social definen el escenario argentino",
+      "link": "https://www.ipsos.com/es-ar/el-empleo-el-bolsillo-y-la-desigualdad-social-definen-el-escenario-argentino",
+      "description": "Argentina muestra más optimismo que el promedio global, pero la agenda social y económica —desempleo, pobreza e inflación— sigue definiendo el ánimo del consumidor....",
+      "pubDate": "Wed, 05 Aug 2026 13:57:52 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-08/WWW_WebImagen_Carrusel_1.jpg?itok=fh6Q4KX5",
       "source": "Ipsos Argentina",
       "category": "Insights"
     }
