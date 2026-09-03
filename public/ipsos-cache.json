@@ -1,6 +1,24 @@
 {
-  "updatedAt": "2026-09-02T10:19:00.738Z",
+  "updatedAt": "2026-09-03T10:28:32.458Z",
   "items": [
+    {
+      "title": "Argentina, ante una confianza debilitada pero con expectativas todavía en pie",
+      "link": "https://www.ipsos.com/es-ar/argentina-ante-una-confianza-debilitada-pero-con-expectativas-todavia-en-pie",
+      "description": "El Índice General argentino retrocede y queda penúltimo en la región, aunque las expectativas futuras ofrecen a las marcas un espacio para reconstruir confianza y activar decisiones....",
+      "pubDate": "Wed, 02 Sep 2026 20:22:59 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-09/ICC_WebImagen_Carrusel_Marzo2026.jpg?itok=qFF2cYZd",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
+    {
+      "title": "Argentina: El empleo domina las preocupaciones mientras se mantiene el malestar económico",
+      "link": "https://www.ipsos.com/es-ar/argentina-el-empleo-domina-las-preocupaciones-mientras-se-mantiene-el-malestar-economico",
+      "description": "El desempleo preocupa al 55% y supera por 26 puntos al promedio global, mientras el 75% evalúa negativamente la situación economía argentina....",
+      "pubDate": "Wed, 02 Sep 2026 20:11:52 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-09/WWW_WebImagen_Carrusel.jpg?itok=atRZF6H0",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
     {
       "title": "Agosto 2026: La confianza del consumidor mundial disminuye por primera vez en cuatro meses.",
       "link": "https://www.ipsos.com/es-ar/ipsos-confianza-del-consumidor-agosto-2026",
@@ -25,24 +43,6 @@
       "description": "En el Ipsos Monitor Educación de este año, analizamos la evolución de las actitudes hacia las redes sociales y la IA, el papel que desempeñan las universidades en la configuración del éxito y las expe...",
       "pubDate": "Wed, 26 Aug 2026 18:16:37 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-09/education-schools-students-learning.jpg?itok=_61cURN6",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "El nuevo recurso: La paradoja democrática en el centro de la carrera por los minerales críticos.",
-      "link": "https://www.ipsos.com/es-ar/nueva-paradoja-democr%C3%A1tica-de-los-nuevos-recursos-raza-de-minerales-cr%C3%ADticos-de-la-carrera-de-los-minerales-cr%C3%ADticos",
-      "description": "Los seres humanos somos narradores por naturaleza. Cuando nos topamos con algo nuevo e inquietante, nuestro instinto nos lleva a recurrir al pasado y a rescatar una historia que nos resulte familiar. ...",
-      "pubDate": "Tue, 25 Aug 2026 14:47:33 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-08/critical-minerals-main-carousel-image.jpg?itok=DKOQ1TwN",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "¿Qué significa una vida exitosa en Argentina 2026?",
-      "link": "https://www.ipsos.com/es-ar/que-significa-una-vida-exitosa-en-argentina-2026",
-      "description": "El trabajo estable y la vivienda conservan su poder aspiracional, pero la distancia entre lo deseado y lo alcanzado abre oportunidades para las marcas....",
-      "pubDate": "Mon, 24 Aug 2026 15:28:11 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-08/AspiracionesDeVida2026_ARG%20WEB%20Image.jpg?itok=IxyGSpRB",
       "source": "Ipsos Argentina",
       "category": "Insights"
     }
