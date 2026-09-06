@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-09-05T09:44:57.632Z",
+  "updatedAt": "2026-09-06T10:00:54.681Z",
   "items": [
+    {
+      "title": "La educación argentina conserva valor, pero pierde confianza",
+      "link": "https://www.ipsos.com/es-ar/la-educacion-argentina-conserva-valor-pero-pierde-confianza",
+      "description": "El 24% califica positivamente la calidad del sistema educativo argentino, aunque el 81% todavía considera que un título universitario permite progresar profesionalmente, una tensión clave para las emp...",
+      "pubDate": "Fri, 04 Sep 2026 15:20:49 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-09/education-schools-students-learning_0.jpg?itok=vQzVcS-4",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
     {
       "title": "Argentina, ante una confianza debilitada pero con expectativas todavía en pie",
       "link": "https://www.ipsos.com/es-ar/argentina-ante-una-confianza-debilitada-pero-con-expectativas-todavia-en-pie",
@@ -34,15 +43,6 @@
       "description": "Los expertos de Ipsos analizan cómo las olas de calor y los incendios forestales, junto con las temperaturas récord y los fenómenos meteorológicos extremos, están acercando el cambio climático a nuest...",
       "pubDate": "Thu, 27 Aug 2026 21:34:04 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-08/ipsos-esg-orientate-climate-health-thumb.jpg?itok=TtDz1-lh",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "Monitor Educación 2026: ¿Puede la educación seguir abriendo oportunidades?",
-      "link": "https://www.ipsos.com/es-ar/monitor-educacion-2026-puede-la-educacion-seguir-abriendo-oportunidades",
-      "description": "En el Ipsos Monitor Educación de este año, analizamos la evolución de las actitudes hacia las redes sociales y la IA, el papel que desempeñan las universidades en la configuración del éxito y las expe...",
-      "pubDate": "Wed, 26 Aug 2026 18:16:37 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-09/education-schools-students-learning.jpg?itok=_61cURN6",
       "source": "Ipsos Argentina",
       "category": "Insights"
     }
