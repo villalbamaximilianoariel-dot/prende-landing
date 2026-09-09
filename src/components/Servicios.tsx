@@ -38,7 +38,7 @@ const servicios: Servicio[] = [
     icon: <DashboardIcon sx={{ fontSize: 48 }} />,
     title: 'Sistema de Auditoría Prende',
     description:
-      'Nuestro sistema de Auditoría Prende te permite relevar, registrar y visualizar lo que pasa en tus locales a través de formularios flexibles, carga simple y reportes automáticos.',
+      'Un sistema propio para saber en todo momento cómo está funcionando cada local: se completa en minutos y te devuelve la información ordenada, lista para mirar cuando la necesites.',
     sufijo: 'por mes',
     route: '/sistema',
   },
@@ -48,7 +48,7 @@ const servicios: Servicio[] = [
     icon: <AssignmentIcon sx={{ fontSize: 48 }} />,
     title: 'Auditorías Operativas',
     description:
-      'Realizamos auditorías apoyadas en nuestro sistema, observando la operación real para detectar oportunidades de mejora y devolverte información clara y accionable.',
+      'Visitamos tu negocio y miramos cómo funciona en el día a día, para encontrar lo que se puede mejorar y detallándolo en pasos concretos.',
     sufijo: 'por mes',
     route: '/auditorias',
   },
@@ -58,7 +58,7 @@ const servicios: Servicio[] = [
     icon: <TrendingUpIcon sx={{ fontSize: 48 }} />,
     title: 'Consultoría Personalizada',
     description:
-      'No se trata solo de diagnósticos o recomendaciones: trabajamos junto a vos para ordenar procesos, mejorar resultados y encarar nuevos proyectos de manera concreta y realista.',
+      'No nos quedamos en un diagnóstico en un papel: trabajamos junto a vos para poner orden en cómo se hacen las cosas y llevar adelante los proyectos que tenés pendientes.',
     sufijo: 'por proyecto',
     route: '/consultoria',
   },
