@@ -1,13 +1,14 @@
 import { Box, Container, Typography, Button } from '@mui/material';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { trackWhatsAppClick, trackServicesScroll } from '../utils/analytics';
+import CalculateIcon from '@mui/icons-material/Calculate';
+import { useNavigate } from 'react-router-dom';
+import { trackServicesScroll } from '../utils/analytics';
 
 const Hero = () => {
-  const handleWhatsAppClick = () => {
-    // Track conversion
-    trackWhatsAppClick('Homepage', 'Hero');
-    // Placeholder - actualizar con número real
-    window.open('https://wa.me/5491125453990?text=Hola%20Prende%2C%20quiero%20solicitar%20una%20demo', '_blank');
+  const navigate = useNavigate();
+
+  const handleCalculadoraClick = () => {
+    navigate('/calculadora');
+    window.scrollTo(0, 0);
   };
 
   const scrollToServicios = () => {
@@ -59,7 +60,7 @@ const Hero = () => {
               lineHeight: 1.2,
             }}
           >
-            Entender el negocio cambia la forma de decidir
+            Manejar un negocio a los ponchazos, sale caro
           </Typography>
 
           {/* Subtítulo */}
@@ -75,7 +76,7 @@ const Hero = () => {
               mx: 'auto',
             }}
           >
-            Auditamos, analizamos y ordenamos la información de tu negocio para que decidas con claridad.
+            Sabemos que estás siempre arriba del negocio, pero eso no alcanza. Te ayudamos a ver los números, los procesos y lo que pasa día a día, para que decidas con la cabeza y no a las apuradas.
           </Typography>
 
           {/* CTAs */}
@@ -92,8 +93,8 @@ const Hero = () => {
             <Button
               variant="contained"
               size="large"
-              onClick={handleWhatsAppClick}
-              startIcon={<WhatsAppIcon />}
+              onClick={handleCalculadoraClick}
+              startIcon={<CalculateIcon />}
               sx={{
                 bgcolor: '#FFEB5D',
                 color: '#000000',
@@ -111,7 +112,7 @@ const Hero = () => {
                 },
               }}
             >
-              Probar Gratis 15 Días
+              Calculá tus costos, gratis
             </Button>
 
             {/* CTA Secundario */}

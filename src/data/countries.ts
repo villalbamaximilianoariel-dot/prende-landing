@@ -14,6 +14,7 @@ export interface PaisConfig {
   tasaVsUSD: number;  // cuántas unidades de moneda = 1 USD
   // Si se definen, se usan estos valores en lugar de convertir desde USD
   preciosCustom?: {
+    costos: number;
     sistema: number;
     auditorias: number;
     consultoria: number;
@@ -32,6 +33,7 @@ export const PAISES: PaisConfig[] = [
     tasaVsUSD: 1345,
     locale: 'es-AR',
     preciosCustom: {
+      costos: 59999,
       sistema: 69900,
       auditorias: 99900,
       consultoria: 129900,
@@ -45,7 +47,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: 'Bs.',
     tasaVsUSD: 6.9,
     locale: 'es-BO',
-    preciosCustom: { sistema: 349, auditorias: 499, consultoria: 649 },
+    preciosCustom: { costos: 269, sistema: 349, auditorias: 499, consultoria: 649 },
   },
   {
     code: 'CL',
@@ -55,7 +57,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '$',
     tasaVsUSD: 950,
     locale: 'es-CL',
-    preciosCustom: { sistema: 49900, auditorias: 74900, consultoria: 109900 },
+    preciosCustom: { costos: 36900, sistema: 49900, auditorias: 74900, consultoria: 109900 },
   },
   {
     code: 'CO',
@@ -65,7 +67,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '$',
     tasaVsUSD: 4300,
     locale: 'es-CO',
-    preciosCustom: { sistema: 209900, auditorias: 299900, consultoria: 489900 },
+    preciosCustom: { costos: 167900, sistema: 209900, auditorias: 299900, consultoria: 489900 },
   },
   {
     code: 'CR',
@@ -75,7 +77,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '₡',
     tasaVsUSD: 520,
     locale: 'es-CR',
-    preciosCustom: { sistema: 27900, auditorias: 39900, consultoria: 59900 },
+    preciosCustom: { costos: 19900, sistema: 27900, auditorias: 39900, consultoria: 59900 },
   },
   {
     code: 'EC',
@@ -85,7 +87,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: 'USD',
     tasaVsUSD: 1,
     locale: 'es-EC',
-    preciosCustom: { sistema: 49, auditorias: 69, consultoria: 99 },
+    preciosCustom: { costos: 39, sistema: 49, auditorias: 69, consultoria: 99 },
   },
   {
     code: 'MX',
@@ -95,7 +97,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '$',
     tasaVsUSD: 17,
     locale: 'es-MX',
-    preciosCustom: { sistema: 890, auditorias: 1290, consultoria: 1990 },
+    preciosCustom: { costos: 690, sistema: 890, auditorias: 1290, consultoria: 1990 },
   },
   {
     code: 'PA',
@@ -105,7 +107,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: 'USD',
     tasaVsUSD: 1,
     locale: 'es-PA',
-    preciosCustom: { sistema: 49, auditorias: 79, consultoria: 119 },
+    preciosCustom: { costos: 39, sistema: 49, auditorias: 79, consultoria: 119 },
   },
   {
     code: 'PE',
@@ -115,7 +117,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: 'S/',
     tasaVsUSD: 3.75,
     locale: 'es-PE',
-    preciosCustom: { sistema: 199, auditorias: 299, consultoria: 449 },
+    preciosCustom: { costos: 149, sistema: 199, auditorias: 299, consultoria: 449 },
   },
   {
     code: 'PY',
@@ -125,7 +127,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '₲',
     tasaVsUSD: 7700,
     locale: 'es-PY',
-    preciosCustom: { sistema: 379000, auditorias: 549000, consultoria: 829000 },
+    preciosCustom: { costos: 299000, sistema: 379000, auditorias: 549000, consultoria: 829000 },
   },
   {
     code: 'UY',
@@ -135,7 +137,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '$',
     tasaVsUSD: 43,
     locale: 'es-UY',
-    preciosCustom: { sistema: 2290, auditorias: 3390, consultoria: 4990 },
+    preciosCustom: { costos: 1690, sistema: 2290, auditorias: 3390, consultoria: 4990 },
   },
 ];
 
@@ -146,6 +148,7 @@ export const PAIS_DEFAULT = PAISES.find((p) => p.code === 'AR')!;
 // Precios base en USD
 // ─────────────────────────────────────────────
 export const PRECIOS_USD = {
+  costos: 39,
   sistema: 55,
   auditorias: 80,
   consultoria: 120,

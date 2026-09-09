@@ -31,6 +31,16 @@ const Dolor = () => {
 
   const slides = [
     {
+      nombre: 'Costos y gastos',
+      pregunta: '¿Sabés cuánto te cuesta realmente cada venta?',
+      puntos: [
+        'Comprás y pagás, pero a fin de mes no sabés bien en qué se fue la **plata**.',
+        'Los precios los pusiste hace tiempo y nunca los volviste a **revisar** con los costos de hoy.',
+        'Hay gastos que te **aparecen** sin que los hayas visto venir.',
+        'Sentís que **vendés** todo el tiempo, pero no siempre te queda margen real.'
+      ]
+    },
+    {
       nombre: 'Experiencia del cliente',
       pregunta: '¿Tus clientes reciben siempre la misma experiencia?',
       puntos: [

@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { PAISES, PAIS_DEFAULT, getPrecio } from '../data/countries';
 import type { PaisConfig } from '../data/countries';
 import { detectCountryCode } from '../utils/geo';
 
-type ServicioKey = 'sistema' | 'auditorias' | 'consultoria';
+type ServicioKey = 'costos' | 'sistema' | 'auditorias' | 'consultoria';
 
 interface Servicio {
   id: number;
@@ -23,6 +24,16 @@ interface Servicio {
 const servicios: Servicio[] = [
   {
     id: 1,
+    key: 'costos',
+    icon: <ReceiptLongIcon sx={{ fontSize: 48 }} />,
+    title: 'Diagnóstico de Costos y Gastos',
+    description:
+      'Cruzamos tus compras, tus gastos fijos y tus precios de venta para mostrarte cuánto te cuesta cada cosa y cuánto te queda de verdad. Con seguimiento mes a mes, opcional.',
+    sufijo: 'por proyecto',
+    route: '/costos',
+  },
+  {
+    id: 2,
     key: 'sistema',
     icon: <DashboardIcon sx={{ fontSize: 48 }} />,
     title: 'Sistema de Auditoría Prende',
@@ -32,7 +43,7 @@ const servicios: Servicio[] = [
     route: '/sistema',
   },
   {
-    id: 2,
+    id: 3,
     key: 'auditorias',
     icon: <AssignmentIcon sx={{ fontSize: 48 }} />,
     title: 'Auditorías Operativas',
@@ -42,7 +53,7 @@ const servicios: Servicio[] = [
     route: '/auditorias',
   },
   {
-    id: 3,
+    id: 4,
     key: 'consultoria',
     icon: <TrendingUpIcon sx={{ fontSize: 48 }} />,
     title: 'Consultoría Personalizada',
@@ -159,7 +170,7 @@ const Servicios = () => {
             display: 'grid',
             gridTemplateColumns: {
               xs: '1fr',
-              md: 'repeat(3, 1fr)',
+              md: 'repeat(2, 1fr)',
             },
             gap: { xs: 3, md: 4 },
             mt: 2,

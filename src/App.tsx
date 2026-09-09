@@ -17,6 +17,7 @@ import SistemaPrueba from './pages/SistemaPrueba';
 import AuditoriaGratis from './pages/AuditoriaGratis';
 import CalculadoraCostos from './pages/CalculadoraCostos';
 import Implementacion from './pages/Implementacion';
+import Costos from './pages/Costos';
 
 // Tema personalizado Prende
 const theme = createTheme({
@@ -118,6 +119,7 @@ function App() {
           <Route path="/auditorias" element={<Auditorias />} />
           <Route path="/sistema" element={<Sistema />} />
           <Route path="/consultoria" element={<Consultoria />} />
+          <Route path="/costos" element={<Costos />} />
           <Route path="/blog" element={<RecursosRecomendados />} />
           <Route path="/calculadora" element={<CalculadoraCostos />} />
           <Route path="/implementacion" element={<Implementacion />} />
