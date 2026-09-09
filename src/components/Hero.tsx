@@ -60,7 +60,7 @@ const Hero = () => {
               lineHeight: 1.2,
             }}
           >
-            Manejar un negocio a los ponchazos, sale caro
+            Entender el negocio cambia la forma de decidir
           </Typography>
 
           {/* Subtítulo */}
@@ -76,7 +76,7 @@ const Hero = () => {
               mx: 'auto',
             }}
           >
-            Sabemos que estás siempre arriba del negocio, pero eso no alcanza. Te ayudamos a ver los números, los procesos y lo que pasa día a día, para que decidas con la cabeza y no a las apuradas.
+            Auditamos, analizamos y ordenamos la información de tu negocio para que decidas con claridad.
           </Typography>
 
           {/* CTAs */}
