@@ -2,13 +2,11 @@ import { Box, Container, Typography, Button } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const Contacto = () => {
   const whatsappNumber = '5491125453990';
   const email = 'hola@prende.com.ar';
   const instagramUrl = 'https://instagram.com/prende.ar';
-  const linkedinUrl = 'https://linkedin.com/company/prende.ar'; // Placeholder
 
   const handleWhatsAppClick = () => {
     window.open(
@@ -171,29 +169,6 @@ const Contacto = () => {
               }}
             >
               <InstagramIcon sx={{ fontSize: { xs: 28, md: 32 } }} />
-            </Button>
-
-            {/* LinkedIn */}
-            <Button
-              variant="contained"
-              href={linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                minWidth: { xs: 56, md: 64 },
-                minHeight: { xs: 56, md: 64 },
-                borderRadius: 2,
-                bgcolor: '#FFEB5D',
-                color: '#000000',
-                p: 0,
-                boxShadow: 'none',
-                '&:hover': {
-                  bgcolor: '#FFE135',
-                  boxShadow: '0 4px 12px rgba(255, 235, 93, 0.4)',
-                },
-              }}
-            >
-              <LinkedInIcon sx={{ fontSize: { xs: 28, md: 32 } }} />
             </Button>
           </Box>
         </Box>

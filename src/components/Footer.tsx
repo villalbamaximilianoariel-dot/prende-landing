@@ -55,21 +55,6 @@ const Footer = () => {
             >
               Instagram
             </Link>
-            <Link
-              href="https://linkedin.com/company/prende.ar"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                color: '#CCCCCC',
-                fontSize: { xs: '0.875rem', md: '0.9375rem' },
-                textDecoration: 'none',
-                '&:hover': {
-                  color: '#FFEB5D',
-                },
-              }}
-            >
-              LinkedIn
-            </Link>
           </Box>
         </Box>
       </Container>
