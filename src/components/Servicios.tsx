@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Box, Container, Typography, Card, CardContent, Tooltip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { PAISES, PAIS_DEFAULT, getPrecio } from '../data/countries';
 import type { PaisConfig } from '../data/countries';
 import { detectCountryCode } from '../utils/geo';
 
-type ServicioKey = 'costos' | 'sistema' | 'auditorias' | 'consultoria';
+type ServicioKey = 'consulta' | 'sistema' | 'auditorias' | 'consultoria';
 
 interface Servicio {
   id: number;
@@ -24,13 +24,13 @@ interface Servicio {
 const servicios: Servicio[] = [
   {
     id: 1,
-    key: 'costos',
-    icon: <ReceiptLongIcon sx={{ fontSize: 48 }} />,
-    title: 'Diagnóstico de Costos y Gastos',
+    key: 'consulta',
+    icon: <QuestionAnswerIcon sx={{ fontSize: 48 }} />,
+    title: 'Primera Consulta',
     description:
-      'Cruzamos tus compras, tus gastos fijos y tus precios de venta para mostrarte cuánto te cuesta cada cosa y cuánto te queda de verdad. Con seguimiento mes a mes, opcional.',
-    sufijo: 'por proyecto',
-    route: '/costos',
+      'Una charla de una hora para contarnos qué te pasa en el negocio y saber con claridad qué conviene hacer. Si después avanzás con nosotros, lo que pagaste acá se descuenta.',
+    sufijo: 'la consulta',
+    route: '/primera-consulta',
   },
   {
     id: 2,
