@@ -19,6 +19,7 @@ interface Servicio {
   description: string;
   sufijo: string;
   route: string;
+  sinPrecio?: boolean; // servicios cuyo costo varía tanto que no se muestra precio
 }
 
 const servicios: Servicio[] = [
@@ -61,6 +62,7 @@ const servicios: Servicio[] = [
       'Miramos de cerca qué está pasando en tu negocio, armamos un plan concreto para resolverlo y te acompañamos a llevarlo adelante hasta ver los resultados.',
     sufijo: 'por proyecto',
     route: '/plan-de-accion',
+    sinPrecio: true,
   },
 ];
 
@@ -177,7 +179,9 @@ const Servicios = () => {
           }}
         >
           {servicios.map((servicio) => {
-            const precioStr = `${getPrecio(paisSeleccionado, servicio.key)} ${servicio.sufijo}`;
+            const precioStr = servicio.sinPrecio
+              ? 'A medida'
+              : `${getPrecio(paisSeleccionado, servicio.key)} ${servicio.sufijo}`;
             return (
             <Card
               key={servicio.id}

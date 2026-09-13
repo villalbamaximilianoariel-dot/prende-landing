@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Box, Button, Container, Typography, Chip, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -15,25 +15,12 @@ import PersonOffIcon from '@mui/icons-material/PersonOff';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
-import { PAISES, PAIS_DEFAULT, getPrecio } from '../data/countries';
-import type { PaisConfig } from '../data/countries';
-import { detectCountryCode } from '../utils/geo';
 
 const PlanDeAccion = () => {
   const navigate = useNavigate();
-  const [paisSeleccionado, setPaisSeleccionado] = useState<PaisConfig>(PAIS_DEFAULT);
 
   useEffect(() => {
     trackServicePageView('Plan de Acción');
-  }, []);
-
-  useEffect(() => {
-    detectCountryCode().then((code) => {
-      if (code) {
-        const match = PAISES.find((p) => p.code === code);
-        if (match) setPaisSeleccionado(match);
-      }
-    });
   }, []);
 
   const handleWhatsAppClick = () => {
@@ -163,22 +150,6 @@ const PlanDeAccion = () => {
             en números.
           </Typography>
 
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 3, alignItems: 'flex-start' }}>
-            <Box
-              sx={{
-                bgcolor: '#FFEB5D',
-                color: '#000000',
-                px: 3,
-                py: 1.5,
-                borderRadius: 1,
-              }}
-            >
-              <Typography variant="h6" sx={{ color: '#000000', fontWeight: 700 }}>
-                {getPrecio(paisSeleccionado, 'planAccion')} por proyecto
-              </Typography>
-            </Box>
-          </Box>
-
           <Button
             variant="contained"
             size="large"
@@ -190,6 +161,7 @@ const PlanDeAccion = () => {
               fontWeight: 600,
               px: 4,
               py: 1.5,
+              mt: 1,
               '&:hover': { bgcolor: '#1ebe57' },
             }}
           >
