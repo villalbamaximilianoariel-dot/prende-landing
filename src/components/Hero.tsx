@@ -76,7 +76,7 @@ const Hero = () => {
               mx: 'auto',
             }}
           >
-            Auditamos, analizamos y ordenamos la información de tu negocio para que decidas con claridad.
+            Te acompañamos en cada paso para que tu negocio funcione mejor.
           </Typography>
 
           {/* CTAs */}
