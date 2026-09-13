@@ -6,17 +6,17 @@
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Auditorias from './Auditorias';
+import SupervisionCalidad from './SupervisionCalidad';
 
 const AuditoriaGratis = () => {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    // Redirige a la página principal de Auditorías (que tiene su propio tracking)
-    navigate('/auditorias', { replace: true });
+    // Redirige a la página principal de Supervisión de Calidad (que tiene su propio tracking)
+    navigate('/supervision-calidad', { replace: true });
   }, [navigate]);
 
-  return <Auditorias />;
+  return <SupervisionCalidad />;
 };
 
 export default AuditoriaGratis;

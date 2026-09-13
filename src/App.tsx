@@ -10,8 +10,7 @@ import Contacto from './components/Contacto';
 import Blog from './components/Blog';
 import Footer from './components/Footer';
 import RecursosRecomendados from './components/RecursosRecomendados';
-import Auditorias from './pages/Auditorias';
-import Sistema from './pages/Sistema';
+import SupervisionCalidad from './pages/SupervisionCalidad';
 import SistemaPrueba from './pages/SistemaPrueba';
 import AuditoriaGratis from './pages/AuditoriaGratis';
 import CalculadoraCostos from './pages/CalculadoraCostos';
@@ -116,8 +115,7 @@ function App() {
         <RouteTracker />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/auditorias" element={<Auditorias />} />
-          <Route path="/sistema" element={<Sistema />} />
+          <Route path="/supervision-calidad" element={<SupervisionCalidad />} />
           <Route path="/plan-de-accion" element={<PlanDeAccion />} />
           <Route path="/primera-consulta" element={<PrimeraConsulta />} />
           <Route path="/blog" element={<RecursosRecomendados />} />

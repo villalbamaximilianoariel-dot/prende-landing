@@ -6,17 +6,17 @@
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sistema from './Sistema';
+import SupervisionCalidad from './SupervisionCalidad';
 
 const SistemaPrueba = () => {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    // Redirige a la página principal de Sistema (que tiene su propio tracking)
-    navigate('/sistema', { replace: true });
+    // Redirige a la página principal de Supervisión de Calidad (que tiene su propio tracking)
+    navigate('/supervision-calidad', { replace: true });
   }, [navigate]);
 
-  return <Sistema />;
+  return <SupervisionCalidad />;
 };
 
 export default SistemaPrueba;

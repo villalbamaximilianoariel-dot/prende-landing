@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import { Box, Container, Typography, Card, CardContent, Tooltip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 import { PAISES, PAIS_DEFAULT, getPrecio } from '../data/countries';
 import type { PaisConfig } from '../data/countries';
 import { detectCountryCode } from '../utils/geo';
 
-type ServicioKey = 'consulta' | 'sistema' | 'auditorias' | 'planAccion';
+type ServicioKey = 'consulta' | 'sistema' | 'planAccion';
 
 interface Servicio {
   id: number;
@@ -20,6 +19,7 @@ interface Servicio {
   sufijo: string;
   route: string;
   sinPrecio?: boolean; // servicios cuyo costo varía tanto que no se muestra precio
+  desde?: boolean; // servicios con más de un precio posible: se muestra el más bajo, precedido de "Desde"
 }
 
 const servicios: Servicio[] = [
@@ -35,26 +35,6 @@ const servicios: Servicio[] = [
   },
   {
     id: 2,
-    key: 'sistema',
-    icon: <DashboardIcon sx={{ fontSize: 48 }} />,
-    title: 'Sistema de Auditoría Prende',
-    description:
-      'Un sistema propio para saber en todo momento cómo está funcionando cada local: se completa en minutos y te devuelve la información ordenada, lista para mirar cuando la necesites.',
-    sufijo: 'por mes',
-    route: '/sistema',
-  },
-  {
-    id: 3,
-    key: 'auditorias',
-    icon: <AssignmentIcon sx={{ fontSize: 48 }} />,
-    title: 'Auditorías Operativas',
-    description:
-      'Visitamos tu negocio y miramos cómo funciona en el día a día, para encontrar lo que se puede mejorar y detallándolo en pasos concretos.',
-    sufijo: 'por mes',
-    route: '/auditorias',
-  },
-  {
-    id: 4,
     key: 'planAccion',
     icon: <TrendingUpIcon sx={{ fontSize: 48 }} />,
     title: 'Plan de Acción',
@@ -63,6 +43,17 @@ const servicios: Servicio[] = [
     sufijo: 'por proyecto',
     route: '/plan-de-accion',
     sinPrecio: true,
+  },
+  {
+    id: 3,
+    key: 'sistema',
+    icon: <FactCheckIcon sx={{ fontSize: 48 }} />,
+    title: 'Supervisión de Calidad',
+    description:
+      'Un sistema propio para controlar tu negocio en todo momento — solo, o con nuestro equipo auditando desde afuera (presencial, por cámaras, mystery shopper y más) para sostener el estándar en el tiempo.',
+    sufijo: 'por mes',
+    route: '/supervision-calidad',
+    desde: true,
   },
 ];
 
@@ -181,7 +172,7 @@ const Servicios = () => {
           {servicios.map((servicio) => {
             const precioStr = servicio.sinPrecio
               ? 'A medida'
-              : `${getPrecio(paisSeleccionado, servicio.key)} ${servicio.sufijo}`;
+              : `${servicio.desde ? 'Desde ' : ''}${getPrecio(paisSeleccionado, servicio.key)} ${servicio.sufijo}`;
             return (
             <Card
               key={servicio.id}

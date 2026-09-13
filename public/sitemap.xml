@@ -8,9 +8,9 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- Sistema de Auditoría -->
+  <!-- Supervisión de Calidad -->
   <url>
-    <loc>https://prende.com.ar/sistema</loc>
+    <loc>https://prende.com.ar/supervision-calidad</loc>
     <lastmod>2026-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -19,14 +19,6 @@
   <!-- Primera Consulta -->
   <url>
     <loc>https://prende.com.ar/primera-consulta</loc>
-    <lastmod>2026-04-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Auditorías Operativas -->
-  <url>
-    <loc>https://prende.com.ar/auditorias</loc>
     <lastmod>2026-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
