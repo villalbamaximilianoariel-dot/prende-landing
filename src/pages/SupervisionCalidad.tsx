@@ -16,6 +16,9 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
+import GavelIcon from '@mui/icons-material/Gavel';
+import RuleIcon from '@mui/icons-material/Rule';
+import BuildIcon from '@mui/icons-material/Build';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
@@ -68,8 +71,11 @@ const SupervisionCalidad = () => {
     { icon: <LocationOnIcon sx={{ fontSize: 32 }} />, titulo: 'Presencial', descripcion: 'Vamos a tu local y evaluamos todo en persona: atención, orden, cumplimiento de procesos.' },
     { icon: <VideocamIcon sx={{ fontSize: 32 }} />, titulo: 'Por cámaras', descripcion: 'Revisamos lo que pasa a través de las cámaras que ya tenés instaladas, sin ir físicamente.' },
     { icon: <PersonSearchIcon sx={{ fontSize: 32 }} />, titulo: 'Mystery shopper', descripcion: 'Mandamos a alguien a comprar o consumir como un cliente más, sin que tu equipo lo sepa, para ver cómo atienden de verdad.' },
-    { icon: <WorkspacePremiumIcon sx={{ fontSize: 32 }} />, titulo: 'Evaluación de calidad', descripcion: 'Chequeamos que lo que vendés cumpla con el estándar que prometés.' },
+    { icon: <WorkspacePremiumIcon sx={{ fontSize: 32 }} />, titulo: 'Evaluación de calidad', descripcion: 'Chequeamos que lo que ofrecés cumpla con el estándar que prometés, y medimos la experiencia real de quien lo recibe — sea un comprador, un socio de club o un paciente — más allá de lo que vos creés que están sintiendo.' },
     { icon: <HealthAndSafetyIcon sx={{ fontSize: 32 }} />, titulo: 'Higiene y seguridad', descripcion: 'Revisamos normas de limpieza y seguridad, clave si trabajás con alimentos o atención al público.' },
+    { icon: <GavelIcon sx={{ fontSize: 32 }} />, titulo: 'Cumplimiento normativo', descripcion: 'Revisamos que tengas al día las habilitaciones y normas de tu rubro: bromatología en gastronomía, habilitación sanitaria en un centro médico, seguridad industrial en una fábrica.' },
+    { icon: <RuleIcon sx={{ fontSize: 32 }} />, titulo: 'Procesos y procedimientos', descripcion: 'Verificamos que el equipo siga los protocolos establecidos, sea una línea de producción, la atención de un paciente, o el uso de una cancha o instalación.' },
+    { icon: <BuildIcon sx={{ fontSize: 32 }} />, titulo: 'Mantenimiento de equipos e instalaciones', descripcion: 'Revisamos el estado de máquinas, equipamiento o instalaciones para anticipar una falla antes de que te frene el negocio.' },
   ];
 
   const proceso = [
@@ -143,8 +149,9 @@ const SupervisionCalidad = () => {
               <DashboardIcon sx={{ fontSize: 40 }} />
               <Typography variant="h5" sx={{ fontWeight: 700 }}>Solo el Sistema</Typography>
               <Typography variant="body1" sx={{ color: '#444', lineHeight: 1.6, flexGrow: 1 }}>
-                Tu equipo usa la plataforma de formularios por su cuenta, sin que nadie de Prende
-                vaya a auditar. Ideal si ya tenés quien controle, y solo necesitás la herramienta.
+                Vos y tu equipo controlan el negocio con nuestra herramienta, sin que nadie de
+                Prende vaya a auditar. Ideal si ya tenés quien se encargue de mirar todo, y solo
+                te falta dónde anotarlo.
               </Typography>
               <Typography variant="h6" sx={{ fontWeight: 700 }}>
                 {getPrecio(paisSeleccionado, 'sistema')} por mes
@@ -164,8 +171,9 @@ const SupervisionCalidad = () => {
               <AssignmentIcon sx={{ fontSize: 40, color: '#FFEB5D' }} />
               <Typography variant="h5" sx={{ fontWeight: 700 }}>Sistema + Auditorías Externas</Typography>
               <Typography variant="body1" sx={{ color: '#F5F5F5', lineHeight: 1.6, flexGrow: 1 }}>
-                Además del sistema, alguien de Prende evalúa tu negocio desde afuera — presencial,
-                por cámaras, mystery shopper y más. Ideal si querés una mirada externa periódica.
+                Además de la herramienta, alguien de Prende va a mirar tu negocio desde afuera
+                cada tanto: en persona, por cámara, o como un cliente más. Ideal si querés una
+                mirada de afuera que te diga cómo está tu negocio de verdad.
               </Typography>
               <Typography variant="h6" sx={{ fontWeight: 700, color: '#FFEB5D' }}>
                 {getPrecio(paisSeleccionado, 'auditorias')} por mes

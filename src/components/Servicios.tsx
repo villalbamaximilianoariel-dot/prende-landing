@@ -50,7 +50,7 @@ const servicios: Servicio[] = [
     icon: <FactCheckIcon sx={{ fontSize: 48 }} />,
     title: 'Supervisión de Calidad',
     description:
-      'Un sistema propio para controlar tu negocio en todo momento — solo, o con nuestro equipo auditando desde afuera (presencial, por cámaras, mystery shopper y más) para sostener el estándar en el tiempo.',
+      'Un sistema para tener tu negocio bajo control todo el tiempo — solo, o con nosotros mirándolo desde afuera para que nada se te escape.',
     sufijo: 'por mes',
     route: '/supervision-calidad',
     desde: true,
