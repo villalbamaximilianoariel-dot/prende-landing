@@ -122,7 +122,7 @@ const Header = () => {
             </Button>
 
             <Button
-              href="/#/implementacion"
+              href="/#/tu-sistema-a-medida"
               sx={{
                 color: '#FFFFFF',
                 fontSize: { sm: '0.9375rem', md: '1rem' },
@@ -134,7 +134,7 @@ const Header = () => {
                 },
               }}
             >
-              A tu medida
+              Tu Sistema a Medida
             </Button>
 
             <Button
@@ -223,8 +223,8 @@ const Header = () => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton onClick={() => handleNavLink('/implementacion')}>
-            <ListItemText primary="A tu medida" primaryTypographyProps={{ fontWeight: 500 }} />
+          <ListItemButton onClick={() => handleNavLink('/tu-sistema-a-medida')}>
+            <ListItemText primary="Tu Sistema a Medida" primaryTypographyProps={{ fontWeight: 500 }} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>

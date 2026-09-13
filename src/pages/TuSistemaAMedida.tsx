@@ -1,25 +1,27 @@
-import { Box, Button, Container, Typography, Paper, Chip } from '@mui/material';
+import { Box, Button, Container, Typography, Paper, Chip, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
 
-const Implementacion = () => {
+const TuSistemaAMedida = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    trackServicePageView('Proyectos a medida');
+    trackServicePageView('Tu Sistema a Medida');
   }, []);
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppClick('Proyectos a medida', 'Hero');
+    trackWhatsAppClick('TuSistemaAMedida', 'Hero');
     const whatsappNumber = '5491125453990';
     const message = encodeURIComponent(
-      'Hola! Me interesa el servicio de Implementación a medida. ¿Podrían darme más información sobre mi proyecto?'
+      'Hola! Me interesa Tu Sistema a Medida. ¿Podrían darme más información sobre mi proyecto?'
     );
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
@@ -101,6 +103,16 @@ const Implementacion = () => {
         'Seguimiento de materiales, insumos o productos. Alertas de reposición y consumos por trabajo o período. Dejás de perder plata por desorden.',
     },
     {
+      titulo: 'Compras y proveedores',
+      descripcion:
+        'Pedidos, seguimiento de entregas y condiciones pactadas con cada proveedor, todo en un solo lugar. Sin depender de la memoria o de planillas sueltas.',
+    },
+    {
+      titulo: 'Pagos y cobranzas',
+      descripcion:
+        'Quién te debe, a quién le debés, y cuándo vence cada cosa. Sin perseguir papeles ni perder de vista un pago.',
+    },
+    {
       titulo: 'Reportes y tableros de control',
       descripcion:
         'Resúmenes automáticos de lo que más importa: ventas, rentabilidad, estado de proyectos. Sin armar planillas a mano ni buscar datos en mil lugares.',
@@ -150,6 +162,29 @@ const Implementacion = () => {
 
 
 
+  const faqs = [
+    {
+      pregunta: '¿Necesito saber de tecnología para usarlo?',
+      respuesta: 'No. Lo diseñamos para que lo use tu equipo tal como es hoy, y te capacitamos hasta que quede cómodo.',
+    },
+    {
+      pregunta: '¿Cuánto dura un proyecto?',
+      respuesta: 'Depende del alcance. Un módulo puntual puede resolverse en pocas semanas; un proyecto integral con varios módulos lleva más tiempo, según lo definamos en el diagnóstico.',
+    },
+    {
+      pregunta: '¿Qué pasa si algo falla después de entregado?',
+      respuesta: 'Durante el proyecto hay soporte incluido. Después, según la modalidad elegida, podés sumar seguimiento continuo.',
+    },
+    {
+      pregunta: '¿Dónde queda alojada la información?',
+      respuesta: 'En servidores seguros, con backups. Vos sos dueño de tus datos en todo momento.',
+    },
+    {
+      pregunta: '¿Puedo pedir un solo módulo y sumar otros después?',
+      respuesta: 'Sí, es la modalidad de Módulo puntual. Podés arrancar con lo más urgente y sumar el resto cuando lo necesites.',
+    },
+  ];
+
   return (
     <Box sx={{ bgcolor: '#FFFFFF' }}>
       <Header />
@@ -182,7 +217,7 @@ const Implementacion = () => {
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 4, alignItems: 'center' }}>
             <Box>
               <Chip
-                label="Consultoría operativa · A medida"
+                label="Hecho a tu medida"
                 sx={{ bgcolor: '#FFEB5D', color: '#000000', fontWeight: 600, mb: 2 }}
               />
               <Typography
@@ -190,7 +225,7 @@ const Implementacion = () => {
                 variant="h2"
                 sx={{ fontWeight: 700, mb: 3, fontSize: { xs: '2rem', md: '3rem' } }}
               >
-                Proyectos a medida
+                Tu Sistema a Medida
               </Typography>
               <Typography
                 variant="h5"
@@ -484,6 +519,57 @@ const Implementacion = () => {
         </Container>
       </Box>
 
+      {/* Qué más podés sumar (puerta de entrada, no upsell) */}
+      <Container maxWidth="md" sx={{ py: { xs: 6, md: 8 } }}>
+        <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+          ¿No sabés bien qué necesitás?
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 5, textAlign: 'center', color: '#666', maxWidth: '600px', mx: 'auto' }}>
+          Está bien no tenerlo claro todavía. Podés empezar por acá:
+        </Typography>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
+          <Box sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />
+            <Typography variant="h6" sx={{ fontWeight: 700 }}>Primera Consulta</Typography>
+            <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.6 }}>
+              Una charla de una hora para contarnos qué te pasa y saber con claridad qué conviene hacer
+            </Typography>
+          </Box>
+          <Box sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />
+            <Typography variant="h6" sx={{ fontWeight: 700 }}>Plan de Acción</Typography>
+            <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.6 }}>
+              Investigamos a fondo tu negocio y armamos un plan — si hace falta una herramienta, ahí lo definimos
+            </Typography>
+          </Box>
+        </Box>
+      </Container>
+
+      {/* FAQs */}
+      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+        <Container maxWidth="lg">
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+            Preguntas Frecuentes
+          </Typography>
+          <Box sx={{ maxWidth: 900, mx: 'auto' }}>
+            {faqs.map((faq, index) => (
+              <Accordion
+                key={index}
+                elevation={0}
+                sx={{ mb: 2, bgcolor: '#FFFFFF', border: '1px solid #E0E0E0', '&:before': { display: 'none' }, borderRadius: '8px !important' }}
+              >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ py: 2, '& .MuiAccordionSummary-content': { my: 1 } }}>
+                  <Typography variant="h6" sx={{ fontWeight: 600 }}>{faq.pregunta}</Typography>
+                </AccordionSummary>
+                <AccordionDetails sx={{ pt: 0, pb: 3 }}>
+                  <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.7 }}>{faq.respuesta}</Typography>
+                </AccordionDetails>
+              </Accordion>
+            ))}
+          </Box>
+        </Container>
+      </Box>
+
       {/* CTA Final */}
       <Box sx={{ bgcolor: '#000000', color: '#FFFFFF', py: { xs: 8, md: 12 } }}>
         <Container maxWidth="sm" sx={{ textAlign: 'center' }}>
@@ -519,4 +605,4 @@ const Implementacion = () => {
   );
 };
 
-export default Implementacion;
+export default TuSistemaAMedida;

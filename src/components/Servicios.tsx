@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { PAISES, PAIS_DEFAULT, getPrecio } from '../data/countries';
 import type { PaisConfig } from '../data/countries';
 import { detectCountryCode } from '../utils/geo';
@@ -20,6 +21,7 @@ interface Servicio {
   route: string;
   sinPrecio?: boolean; // servicios cuyo costo varía tanto que no se muestra precio
   desde?: boolean; // servicios con más de un precio posible: se muestra el más bajo, precedido de "Desde"
+  destacado?: boolean; // card con colores invertidos, para el servicio de mayor escala
 }
 
 const servicios: Servicio[] = [
@@ -54,6 +56,18 @@ const servicios: Servicio[] = [
     sufijo: 'por mes',
     route: '/supervision-calidad',
     desde: true,
+  },
+  {
+    id: 4,
+    key: 'consulta',
+    icon: <SettingsIcon sx={{ fontSize: 48 }} />,
+    title: 'Tu Sistema a Medida',
+    description:
+      'Herramientas tecnológicas armadas a tu medida para gestionar ventas, compras, costos, stock, pagos y más — con los módulos que tu negocio necesite.',
+    sufijo: '',
+    route: '/tu-sistema-a-medida',
+    sinPrecio: true,
+    destacado: true,
   },
 ];
 
@@ -186,8 +200,8 @@ const Servicios = () => {
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                bgcolor: '#FFFFFF',
-                border: '2px solid #000000',
+                bgcolor: servicio.destacado ? '#000000' : '#FFFFFF',
+                border: servicio.destacado ? '2px solid #FFEB5D' : '2px solid #000000',
                 borderRadius: 2,
                 boxShadow: 'none',
                 position: 'relative',
@@ -259,7 +273,7 @@ const Servicios = () => {
                     sx={{
                       fontSize: { xs: '1.125rem', md: '1.5rem' },
                       fontWeight: 700,
-                      color: '#000000',
+                      color: servicio.destacado ? '#FFFFFF' : '#000000',
                       mb: { xs: 1.5, md: 2 },
                       minHeight: { md: '60px' },
                       lineHeight: 1.3,
@@ -273,7 +287,7 @@ const Servicios = () => {
                     variant="body2"
                     sx={{
                       fontSize: { xs: '0.875rem', md: '1rem' },
-                      color: '#666666',
+                      color: servicio.destacado ? '#CCCCCC' : '#666666',
                       mb: 2,
                       flexGrow: 1,
                       lineHeight: 1.5,
@@ -288,11 +302,11 @@ const Servicios = () => {
                     sx={{
                       fontSize: { xs: '0.875rem', md: '0.95rem' },
                       fontWeight: 600,
-                      color: '#000000',
+                      color: servicio.destacado ? '#FFEB5D' : '#000000',
                       textAlign: 'center',
                       mt: 'auto',
                       pt: 2,
-                      borderTop: '1px solid #E0E0E0',
+                      borderTop: servicio.destacado ? '1px solid #333333' : '1px solid #E0E0E0',
                     }}
                   >
                     Ver detalles →
@@ -301,74 +315,6 @@ const Servicios = () => {
             </Card>
             );
           })}
-        </Box>
-
-        {/* Teaser: Implementación a medida */}
-        <Box
-          sx={{
-            mt: { xs: 5, md: 6 },
-            p: { xs: 3, md: 5 },
-            bgcolor: '#000000',
-            borderRadius: 2,
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            alignItems: { xs: 'flex-start', md: 'center' },
-            justifyContent: 'space-between',
-            gap: 3,
-          }}
-        >
-          <Box>
-            <Typography
-              variant="overline"
-              sx={{
-                color: '#FFEB5D',
-                fontWeight: 700,
-                letterSpacing: 2,
-                display: 'block',
-                mb: 0.5,
-              }}
-            >
-              Proyecto a medida
-            </Typography>
-            <Typography
-              variant="h5"
-              sx={{ color: '#FFFFFF', fontWeight: 700, mb: 1 }}
-            >
-              ¿Algo en tu negocio no funciona como debería?
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: '#AAAAAA', lineHeight: 1.6, maxWidth: 520 }}
-            >
-              Analizamos el problema, diseñamos la solución y la ponemos en marcha.
-              En pocas semanas tu equipo opera solo, sin depender de vos.
-            </Typography>
-          </Box>
-          <Box
-            component="button"
-            onClick={() => handleServicioClick('/implementacion')}
-            sx={{
-              color: '#FFEB5D',
-              border: '2px solid #FFEB5D',
-              bgcolor: 'transparent',
-              fontWeight: 600,
-              px: 4,
-              py: 1.5,
-              borderRadius: 1,
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-              fontSize: '1rem',
-              transition: 'all 0.2s ease',
-              '&:hover': {
-                bgcolor: '#FFEB5D',
-                color: '#000000',
-              },
-            }}
-          >
-            Ver servicio →
-          </Box>
         </Box>
       </Container>
     </Box>
