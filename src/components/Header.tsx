@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Container, Button, Box, Drawer, List, ListItem, ListItemButton, ListItemText, IconButton, Divider } from '@mui/material';
+import { AppBar, Toolbar, Container, Button, Box, Drawer, List, ListItem, ListItemButton, ListItemText, IconButton, Divider, Chip } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -144,6 +144,9 @@ const Header = () => {
                 fontSize: { sm: '0.9375rem', md: '1rem' },
                 fontWeight: 500,
                 textTransform: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.75,
                 '&:hover': {
                   bgcolor: 'transparent',
                   color: '#FFEB5D',
@@ -151,6 +154,17 @@ const Header = () => {
               }}
             >
               Calculadora
+              <Chip
+                label="Gratis"
+                size="small"
+                sx={{
+                  bgcolor: '#FFEB5D',
+                  color: '#000000',
+                  fontWeight: 700,
+                  fontSize: '0.6875rem',
+                  height: 20,
+                }}
+              />
             </Button>
 
             <Button
@@ -228,8 +242,13 @@ const Header = () => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton onClick={() => handleNavLink('/calculadora')}>
+          <ListItemButton onClick={() => handleNavLink('/calculadora')} sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <ListItemText primary="Calculadora" primaryTypographyProps={{ fontWeight: 500 }} />
+            <Chip
+              label="Gratis"
+              size="small"
+              sx={{ bgcolor: '#FFEB5D', color: '#000000', fontWeight: 700, fontSize: '0.6875rem', height: 20 }}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ mt: 2, px: 2 }}>

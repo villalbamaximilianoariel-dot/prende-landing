@@ -112,7 +112,7 @@ export default function RecursosRecomendados() {
               fontSize: { xs: '2rem', md: '2.5rem' }
             }}
           >
-            Blogs Recomendados
+            Contenidos que suman
           </Typography>
           <Typography
             variant="h6"
@@ -124,8 +124,7 @@ export default function RecursosRecomendados() {
               fontSize: { xs: '1rem', md: '1.25rem' }
             }}
           >
-            Contenidos seleccionados sobre negocios, gestión y emprendimiento
-            para ayudarte a tomar mejores decisiones
+            Ideas y recursos prácticos para el día a día de tu negocio — para leer cuando tengas un rato
           </Typography>
         </Box>
 

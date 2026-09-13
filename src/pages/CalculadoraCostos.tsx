@@ -1513,17 +1513,15 @@ const CalculadoraCostos = () => {
                 }}
               >
                 <Typography variant="body2" sx={{ fontWeight: 600, mb: 0.5 }}>
-                  ¿Necesitás un análisis más profundo?
+                  ¿Querés ir más a fondo?
                 </Typography>
                 <Typography variant="caption" sx={{ color: '#666', display: 'block', mb: 2 }}>
-                  En Prende te ayudamos a estructurar los costos y márgenes de todo tu negocio.
+                  Con una Primera Consulta vemos tu negocio completo y te decimos con claridad qué conviene hacer. Si después avanzás con nosotros, lo que pagaste acá se descuenta.
                 </Typography>
                 <Button
                   variant="contained"
                   fullWidth
-                  href="https://wa.me/5491125453990?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20an%C3%A1lisis%20de%20costos%20de%20mi%20negocio."
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={() => { navigate('/primera-consulta'); window.scrollTo(0, 0); }}
                   sx={{
                     bgcolor: '#000',
                     color: '#FFEB5D',
@@ -1533,7 +1531,7 @@ const CalculadoraCostos = () => {
                     '&:hover': { bgcolor: '#222' },
                   }}
                 >
-                  Hablemos por WhatsApp
+                  Ver Primera Consulta
                 </Button>
               </Paper>
             </Box>

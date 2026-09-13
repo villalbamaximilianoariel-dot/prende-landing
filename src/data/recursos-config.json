@@ -25,7 +25,16 @@
       "_nota": "Feed pre-generado por GitHub Actions (fetch-ipsos.yml). Ipsos bloquea proxies CORS con su WAF/CDN."
     }
   ],
-  "destacados": [],
+  "destacados": [
+    {
+      "title": "Cuánto te cuesta cada producto (y por qué probablemente no lo sepas)",
+      "url": "https://prende.com.ar/#/calculadora",
+      "description": "La mayoría de los dueños de pyme fija precios a ojo, o copiando a la competencia. El problema es que ninguna de las dos formas te dice si ese precio te deja plata o te la saca. Armamos una calculadora gratuita para que en un par de minutos sepas el costo real de lo que vendés y un precio de venta sugerido, sea que fabriques, vendas por receta, revendas mercadería o brindes un servicio.",
+      "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop",
+      "category": "Herramientas Prende",
+      "date": "2026-09-13"
+    }
+  ],
   "_instrucciones": {
     "rssFeeds": "Para AGREGAR un feed RSS: copia un bloque existente, cambia name/url/category y enabled:true. Para DESACTIVAR temporalmente: cambia enabled a false. Para ELIMINAR: borra el bloque completo.",
     "destacados": "Para AGREGAR recurso manual: copia un bloque, cambia todos los campos. Máximo recomendado: 5-6 recursos para mantener la página limpia. Ordena por fecha (más reciente arriba).",
