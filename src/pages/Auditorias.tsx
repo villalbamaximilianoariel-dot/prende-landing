@@ -73,7 +73,7 @@ const Auditorias = () => {
     'Implementación de las mejoras (puede contratarse aparte)',
     'Software o herramientas adicionales',
     'Capacitación al personal (disponible como add-on)',
-    'Consultoría continua (ver servicio de Consultoría)'
+    'Plan de Acción (ver ese servicio)'
   ];
 
   const proceso = [
@@ -104,7 +104,7 @@ const Auditorias = () => {
     },
     {
       pregunta: '¿Incluye la implementación de cambios?',
-      respuesta: 'No, se enfoca en diagnóstico. Si necesitás implementación, te cotizamos Consultoría Personalizada.'
+      respuesta: 'No, se enfoca en diagnóstico. Si necesitás implementación, te cotizamos el Plan de Acción.'
     },
     {
       pregunta: '¿Puedo contratar auditorías recurrentes?',

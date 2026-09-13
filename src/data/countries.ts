@@ -17,7 +17,7 @@ export interface PaisConfig {
     consulta: number;
     sistema: number;
     auditorias: number;
-    consultoria: number;
+    planAccion: number;
   };
   // Formato numérico local
   locale: string;
@@ -36,7 +36,7 @@ export const PAISES: PaisConfig[] = [
       consulta: 59999,
       sistema: 69900,
       auditorias: 99900,
-      consultoria: 129900,
+      planAccion: 129900,
     },
   },
   {
@@ -47,7 +47,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: 'Bs.',
     tasaVsUSD: 6.9,
     locale: 'es-BO',
-    preciosCustom: { consulta: 269, sistema: 349, auditorias: 499, consultoria: 649 },
+    preciosCustom: { consulta: 269, sistema: 349, auditorias: 499, planAccion: 649 },
   },
   {
     code: 'CL',
@@ -57,7 +57,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '$',
     tasaVsUSD: 950,
     locale: 'es-CL',
-    preciosCustom: { consulta: 36900, sistema: 49900, auditorias: 74900, consultoria: 109900 },
+    preciosCustom: { consulta: 36900, sistema: 49900, auditorias: 74900, planAccion: 109900 },
   },
   {
     code: 'CO',
@@ -67,7 +67,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '$',
     tasaVsUSD: 4300,
     locale: 'es-CO',
-    preciosCustom: { consulta: 167900, sistema: 209900, auditorias: 299900, consultoria: 489900 },
+    preciosCustom: { consulta: 167900, sistema: 209900, auditorias: 299900, planAccion: 489900 },
   },
   {
     code: 'CR',
@@ -77,7 +77,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '₡',
     tasaVsUSD: 520,
     locale: 'es-CR',
-    preciosCustom: { consulta: 19900, sistema: 27900, auditorias: 39900, consultoria: 59900 },
+    preciosCustom: { consulta: 19900, sistema: 27900, auditorias: 39900, planAccion: 59900 },
   },
   {
     code: 'EC',
@@ -87,7 +87,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: 'USD',
     tasaVsUSD: 1,
     locale: 'es-EC',
-    preciosCustom: { consulta: 39, sistema: 49, auditorias: 69, consultoria: 99 },
+    preciosCustom: { consulta: 39, sistema: 49, auditorias: 69, planAccion: 99 },
   },
   {
     code: 'MX',
@@ -97,7 +97,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '$',
     tasaVsUSD: 17,
     locale: 'es-MX',
-    preciosCustom: { consulta: 690, sistema: 890, auditorias: 1290, consultoria: 1990 },
+    preciosCustom: { consulta: 690, sistema: 890, auditorias: 1290, planAccion: 1990 },
   },
   {
     code: 'PA',
@@ -107,7 +107,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: 'USD',
     tasaVsUSD: 1,
     locale: 'es-PA',
-    preciosCustom: { consulta: 39, sistema: 49, auditorias: 79, consultoria: 119 },
+    preciosCustom: { consulta: 39, sistema: 49, auditorias: 79, planAccion: 119 },
   },
   {
     code: 'PE',
@@ -117,7 +117,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: 'S/',
     tasaVsUSD: 3.75,
     locale: 'es-PE',
-    preciosCustom: { consulta: 149, sistema: 199, auditorias: 299, consultoria: 449 },
+    preciosCustom: { consulta: 149, sistema: 199, auditorias: 299, planAccion: 449 },
   },
   {
     code: 'PY',
@@ -127,7 +127,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '₲',
     tasaVsUSD: 7700,
     locale: 'es-PY',
-    preciosCustom: { consulta: 299000, sistema: 379000, auditorias: 549000, consultoria: 829000 },
+    preciosCustom: { consulta: 299000, sistema: 379000, auditorias: 549000, planAccion: 829000 },
   },
   {
     code: 'UY',
@@ -137,7 +137,7 @@ export const PAISES: PaisConfig[] = [
     simbolo: '$',
     tasaVsUSD: 43,
     locale: 'es-UY',
-    preciosCustom: { consulta: 1690, sistema: 2290, auditorias: 3390, consultoria: 4990 },
+    preciosCustom: { consulta: 1690, sistema: 2290, auditorias: 3390, planAccion: 4990 },
   },
 ];
 
@@ -151,7 +151,7 @@ export const PRECIOS_USD = {
   consulta: 39,
   sistema: 55,
   auditorias: 80,
-  consultoria: 120,
+  planAccion: 120,
 };
 
 // ─────────────────────────────────────────────

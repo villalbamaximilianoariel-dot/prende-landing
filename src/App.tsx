@@ -12,12 +12,12 @@ import Footer from './components/Footer';
 import RecursosRecomendados from './components/RecursosRecomendados';
 import Auditorias from './pages/Auditorias';
 import Sistema from './pages/Sistema';
-import Consultoria from './pages/Consultoria';
 import SistemaPrueba from './pages/SistemaPrueba';
 import AuditoriaGratis from './pages/AuditoriaGratis';
 import CalculadoraCostos from './pages/CalculadoraCostos';
 import Implementacion from './pages/Implementacion';
 import PrimeraConsulta from './pages/PrimeraConsulta';
+import PlanDeAccion from './pages/PlanDeAccion';
 
 // Tema personalizado Prende
 const theme = createTheme({
@@ -118,7 +118,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/auditorias" element={<Auditorias />} />
           <Route path="/sistema" element={<Sistema />} />
-          <Route path="/consultoria" element={<Consultoria />} />
+          <Route path="/plan-de-accion" element={<PlanDeAccion />} />
           <Route path="/primera-consulta" element={<PrimeraConsulta />} />
           <Route path="/blog" element={<RecursosRecomendados />} />
           <Route path="/calculadora" element={<CalculadoraCostos />} />

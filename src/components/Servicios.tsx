@@ -9,7 +9,7 @@ import { PAISES, PAIS_DEFAULT, getPrecio } from '../data/countries';
 import type { PaisConfig } from '../data/countries';
 import { detectCountryCode } from '../utils/geo';
 
-type ServicioKey = 'consulta' | 'sistema' | 'auditorias' | 'consultoria';
+type ServicioKey = 'consulta' | 'sistema' | 'auditorias' | 'planAccion';
 
 interface Servicio {
   id: number;
@@ -54,13 +54,13 @@ const servicios: Servicio[] = [
   },
   {
     id: 4,
-    key: 'consultoria',
+    key: 'planAccion',
     icon: <TrendingUpIcon sx={{ fontSize: 48 }} />,
-    title: 'Consultoría Personalizada',
+    title: 'Plan de Acción',
     description:
-      'No nos quedamos en un diagnóstico en un papel: trabajamos junto a vos para poner orden en cómo se hacen las cosas y llevar adelante los proyectos que tenés pendientes.',
+      'Miramos de cerca qué está pasando en tu negocio, armamos un plan concreto para resolverlo y te acompañamos a llevarlo adelante hasta ver los resultados.',
     sufijo: 'por proyecto',
-    route: '/consultoria',
+    route: '/plan-de-accion',
   },
 ];
 

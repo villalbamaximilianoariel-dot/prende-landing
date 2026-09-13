@@ -89,7 +89,7 @@ const Sistema = () => {
     'Usuarios adicionales (se cotizan aparte)',
     'Soporte telefónico 24/7 (disponible en plan Premium)',
     'Auditorías presenciales (ver servicio de Auditorías)',
-    'Consultoría estratégica (ver servicio de Consultoría)',
+    'Plan de Acción (ver ese servicio)',
     'Personalización avanzada de código',
     'Integración con otros sistemas externos'
   ];
