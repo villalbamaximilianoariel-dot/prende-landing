@@ -11,14 +11,18 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import CloudOffIcon from '@mui/icons-material/CloudOff';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import VideocamIcon from '@mui/icons-material/Videocam';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import GavelIcon from '@mui/icons-material/Gavel';
 import RuleIcon from '@mui/icons-material/Rule';
 import BuildIcon from '@mui/icons-material/Build';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import Inventory2Icon from '@mui/icons-material/Inventory2';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import GroupsIcon from '@mui/icons-material/Groups';
+import DescriptionIcon from '@mui/icons-material/Description';
+import PublicIcon from '@mui/icons-material/Public';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { trackWhatsAppClick, trackServicePageView } from '../utils/analytics';
@@ -67,15 +71,19 @@ const SupervisionCalidad = () => {
     { icon: <CheckCircleOutlineIcon />, titulo: 'Gestión de roles', descripcion: 'Administradores, auditores y clientes con permisos específicos' },
   ];
 
-  const tiposAuditoria = [
-    { icon: <LocationOnIcon sx={{ fontSize: 32 }} />, titulo: 'Presencial', descripcion: 'Vamos a tu local y evaluamos todo en persona: atención, orden, cumplimiento de procesos.' },
-    { icon: <VideocamIcon sx={{ fontSize: 32 }} />, titulo: 'Por cámaras', descripcion: 'Revisamos lo que pasa a través de las cámaras que ya tenés instaladas, sin ir físicamente.' },
-    { icon: <PersonSearchIcon sx={{ fontSize: 32 }} />, titulo: 'Mystery shopper', descripcion: 'Mandamos a alguien a comprar o consumir como un cliente más, sin que tu equipo lo sepa, para ver cómo atienden de verdad.' },
-    { icon: <WorkspacePremiumIcon sx={{ fontSize: 32 }} />, titulo: 'Evaluación de calidad', descripcion: 'Chequeamos que lo que ofrecés cumpla con el estándar que prometés, y medimos la experiencia real de quien lo recibe — sea un comprador, un socio de club o un paciente — más allá de lo que vos creés que están sintiendo.' },
-    { icon: <HealthAndSafetyIcon sx={{ fontSize: 32 }} />, titulo: 'Higiene y seguridad', descripcion: 'Revisamos normas de limpieza y seguridad, clave si trabajás con alimentos o atención al público.' },
-    { icon: <GavelIcon sx={{ fontSize: 32 }} />, titulo: 'Cumplimiento normativo', descripcion: 'Revisamos que tengas al día las habilitaciones y normas de tu rubro: bromatología en gastronomía, habilitación sanitaria en un centro médico, seguridad industrial en una fábrica.' },
-    { icon: <RuleIcon sx={{ fontSize: 32 }} />, titulo: 'Procesos y procedimientos', descripcion: 'Verificamos que el equipo siga los protocolos establecidos, sea una línea de producción, la atención de un paciente, o el uso de una cancha o instalación.' },
-    { icon: <BuildIcon sx={{ fontSize: 32 }} />, titulo: 'Mantenimiento de equipos e instalaciones', descripcion: 'Revisamos el estado de máquinas, equipamiento o instalaciones para anticipar una falla antes de que te frene el negocio.' },
+  const aspectosRelevables = [
+    { icon: <PersonSearchIcon sx={{ fontSize: 32 }} />, titulo: 'Atención y experiencia del cliente', descripcion: 'Mandamos a alguien a comprar, comer o usar tu servicio como un cliente más, sin que tu equipo lo sepa, para evaluar la atención real que reciben.' },
+    { icon: <HealthAndSafetyIcon sx={{ fontSize: 32 }} />, titulo: 'Higiene y seguridad', descripcion: 'Revisamos que la limpieza y las condiciones de seguridad se cumplan siempre, no solo cuando saben que los estamos evaluando — clave en una cocina, un consultorio o una planta de producción.' },
+    { icon: <GavelIcon sx={{ fontSize: 32 }} />, titulo: 'Cumplimiento normativo', descripcion: 'Verificamos que tengas en regla lo que tu rubro exige: habilitación bromatológica si cocinás, habilitación sanitaria si atendés pacientes, certificaciones si fabricás.' },
+    { icon: <RuleIcon sx={{ fontSize: 32 }} />, titulo: 'Procesos y procedimientos', descripcion: 'Evaluamos si tu equipo sigue los procedimientos establecidos, ya sea armar un pedido, atender un turno médico o preparar una instalación para su uso.' },
+    { icon: <BuildIcon sx={{ fontSize: 32 }} />, titulo: 'Mantenimiento de equipos e instalaciones', descripcion: 'Revisamos el estado de máquinas, equipamiento e instalaciones, para anticipar una falla antes de que te interrumpa la operación.' },
+    { icon: <WorkspacePremiumIcon sx={{ fontSize: 32 }} />, titulo: 'Calidad de producto o servicio', descripcion: 'Comparamos lo que ofrecés con lo que prometés: que el producto salga como corresponde, que el servicio cumpla el estándar esperado, en cualquier rubro.' },
+    { icon: <StorefrontIcon sx={{ fontSize: 32 }} />, titulo: 'Imagen y presentación del local', descripcion: 'Evaluamos cómo se ve tu negocio por dentro y por fuera: la fachada, el orden, la exhibición — la primera impresión que se lleva cualquiera que entra.' },
+    { icon: <Inventory2Icon sx={{ fontSize: 32 }} />, titulo: 'Stock e inventario', descripcion: 'Contamos la mercadería o los insumos físicos y los comparamos con lo que indica el sistema, para detectar faltantes o errores de carga.' },
+    { icon: <PaymentsIcon sx={{ fontSize: 32 }} />, titulo: 'Manejo de caja y valores', descripcion: 'Verificamos el efectivo contra lo que debería haber, para detectar diferencias a tiempo.' },
+    { icon: <GroupsIcon sx={{ fontSize: 32 }} />, titulo: 'Desempeño del personal', descripcion: 'Evaluamos puntualidad, cumplimiento de tareas y trato hacia quien tiene enfrente, sea un cliente, un paciente o un socio.' },
+    { icon: <DescriptionIcon sx={{ fontSize: 32 }} />, titulo: 'Documentación y registros', descripcion: 'Verificamos que los registros obligatorios estén completos y al día: legajos, certificados, controles — esenciales en rubros como salud o industria.' },
+    { icon: <PublicIcon sx={{ fontSize: 32 }} />, titulo: 'Presencia digital', descripcion: 'Revisamos cómo se presenta tu negocio en internet — reseñas, redes, respuesta a comentarios — y si coincide con la experiencia real.' },
   ];
 
   const proceso = [
@@ -92,7 +100,7 @@ const SupervisionCalidad = () => {
 
   const faqs = [
     { pregunta: '¿Puedo empezar solo con el sistema y sumar auditorías después?', respuesta: 'Sí, podés cambiar de modalidad cuando quieras, sin perder la información que ya cargaste.' },
-    { pregunta: '¿Puedo combinar tipos de auditoría?', respuesta: 'Sí, elegís los que tengan sentido para tu negocio — por ejemplo, cámaras todos los meses y mystery shopper cada tanto.' },
+    { pregunta: '¿Puedo combinar varios aspectos a relevar?', respuesta: 'Sí, elegís los que tengan sentido para tu negocio — por ejemplo, atención al cliente todos los meses y documentación cada tanto.' },
     { pregunta: '¿Con qué frecuencia se hacen las auditorías externas?', respuesta: 'Lo definimos juntos según tu negocio — lo habitual es cada 3-6 meses, dentro de tu cuota mensual.' },
     { pregunta: '¿El sistema funciona sin internet?', respuesta: 'Sí, tiene modo offline completo. Completás revisiones sin conexión y cuando vuelve internet, se sincroniza solo.' },
     { pregunta: '¿Puedo personalizar los formularios?', respuesta: 'Totalmente. Tenés 8 tipos de preguntas disponibles y formularios ilimitados adaptados a tus procesos.' },
@@ -191,20 +199,23 @@ const SupervisionCalidad = () => {
         </Container>
       </Box>
 
-      {/* Tipos de auditoría externa */}
+      {/* Aspectos que podés relevar */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
         <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
-          Tipos de auditoría externa
+          Aspectos que podés relevar
         </Typography>
-        <Typography variant="body1" sx={{ mb: 6, textAlign: 'center', color: '#666', maxWidth: '650px', mx: 'auto' }}>
+        <Typography variant="body1" sx={{ mb: 1, textAlign: 'center', color: '#666', maxWidth: '650px', mx: 'auto' }}>
           Disponibles con la modalidad Sistema + Auditorías Externas — combinalos según lo que tu negocio necesite
         </Typography>
+        <Typography variant="body2" sx={{ mb: 6, textAlign: 'center', color: '#999', maxWidth: '650px', mx: 'auto' }}>
+          Cada relevamiento se hace de la forma que corresponda: en persona, por cámara, o de incógnito como un cliente más.
+        </Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, gap: 3 }}>
-          {tiposAuditoria.map((tipo, index) => (
+          {aspectosRelevables.map((aspecto, index) => (
             <Box key={index} sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-              <Box sx={{ color: '#000' }}>{tipo.icon}</Box>
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>{tipo.titulo}</Typography>
-              <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.6 }}>{tipo.descripcion}</Typography>
+              <Box sx={{ color: '#000' }}>{aspecto.icon}</Box>
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>{aspecto.titulo}</Typography>
+              <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.6 }}>{aspecto.descripcion}</Typography>
             </Box>
           ))}
         </Box>
