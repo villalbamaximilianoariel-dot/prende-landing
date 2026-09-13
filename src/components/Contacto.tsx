@@ -50,7 +50,7 @@ const Contacto = () => {
               mx: 'auto',
             }}
           >
-            Contactanos para recibir más información sobre nuestros servicios
+            Escribinos y te ayudamos a encontrar el servicio que tu negocio necesita
           </Typography>
         </Box>
 

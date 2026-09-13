@@ -97,8 +97,7 @@ export default function Blog() {
               fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.25rem' }
             }}
           >
-            Contenidos seleccionados sobre negocios, gestión y emprendimiento
-            para ayudarte a tomar mejores decisiones
+            Ideas y recursos prácticos para el día a día de tu negocio — para leer cuando tengas un rato
           </Typography>
         </Box>
 
