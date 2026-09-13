@@ -55,9 +55,9 @@ const PrimeraConsulta = () => {
   ];
 
   const otrosServicios = [
-    { titulo: 'Plan de Acción', descripcion: 'Una investigación a fondo de tu negocio y un plan para resolverlo' },
-    { titulo: 'Supervisión de Calidad', descripcion: 'Supervisión periódica para sostener el estándar de tu negocio' },
-    { titulo: 'Tu Sistema a Medida', descripcion: 'Un sistema a medida para gestionar ventas, costos, stock y más' },
+    { titulo: 'Plan de Acción', descripcion: 'Una investigación a fondo de tu negocio y un plan para resolverlo', route: '/plan-de-accion' },
+    { titulo: 'Supervisión de Calidad', descripcion: 'Supervisión periódica para sostener el estándar de tu negocio', route: '/supervision-calidad' },
+    { titulo: 'Tu Sistema a Medida', descripcion: 'Un sistema a medida para gestionar ventas, costos, stock y más', route: '/tu-sistema-a-medida' },
   ];
 
   const proceso = [
@@ -205,6 +205,7 @@ const PrimeraConsulta = () => {
           {otrosServicios.map((item, index) => (
             <Box
               key={index}
+              onClick={() => { navigate(item.route); window.scrollTo(0, 0); }}
               sx={{
                 border: '1.5px solid #E0E0E0',
                 borderRadius: 2,
@@ -212,6 +213,13 @@ const PrimeraConsulta = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 1.5,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  borderColor: '#FFEB5D',
+                  transform: 'translateY(-4px)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+                },
               }}
             >
               <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />

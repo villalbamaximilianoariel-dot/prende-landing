@@ -88,8 +88,8 @@ const PlanDeAccion = () => {
   ];
 
   const otrosServicios = [
-    { titulo: 'Supervisión de Calidad', descripcion: 'Supervisión periódica para sostener lo logrado' },
-    { titulo: 'Tu Sistema a Medida', descripcion: 'Un sistema a medida para gestionar lo que definimos en el plan' },
+    { titulo: 'Supervisión de Calidad', descripcion: 'Supervisión periódica para sostener lo logrado', route: '/supervision-calidad' },
+    { titulo: 'Tu Sistema a Medida', descripcion: 'Un sistema a medida para gestionar lo que definimos en el plan', route: '/tu-sistema-a-medida' },
   ];
 
   const faqs = [
@@ -295,6 +295,7 @@ const PlanDeAccion = () => {
           {otrosServicios.map((item, index) => (
             <Box
               key={index}
+              onClick={() => { navigate(item.route); window.scrollTo(0, 0); }}
               sx={{
                 border: '1.5px solid #E0E0E0',
                 borderRadius: 2,
@@ -302,6 +303,13 @@ const PlanDeAccion = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 1.5,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  borderColor: '#FFEB5D',
+                  transform: 'translateY(-4px)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+                },
               }}
             >
               <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />

@@ -528,14 +528,40 @@ const TuSistemaAMedida = () => {
           Está bien no tenerlo claro todavía. Podés empezar por acá:
         </Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
-          <Box sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+          <Box
+            onClick={() => { navigate('/primera-consulta'); window.scrollTo(0, 0); }}
+            sx={{
+              border: '1.5px solid #E0E0E0',
+              borderRadius: 2,
+              p: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 1.5,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              '&:hover': { borderColor: '#FFEB5D', transform: 'translateY(-4px)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)' },
+            }}
+          >
             <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />
             <Typography variant="h6" sx={{ fontWeight: 700 }}>Primera Consulta</Typography>
             <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.6 }}>
               Una charla de una hora para contarnos qué te pasa y saber con claridad qué conviene hacer
             </Typography>
           </Box>
-          <Box sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+          <Box
+            onClick={() => { navigate('/plan-de-accion'); window.scrollTo(0, 0); }}
+            sx={{
+              border: '1.5px solid #E0E0E0',
+              borderRadius: 2,
+              p: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 1.5,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              '&:hover': { borderColor: '#FFEB5D', transform: 'translateY(-4px)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)' },
+            }}
+          >
             <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />
             <Typography variant="h6" sx={{ fontWeight: 700 }}>Plan de Acción</Typography>
             <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.6 }}>
