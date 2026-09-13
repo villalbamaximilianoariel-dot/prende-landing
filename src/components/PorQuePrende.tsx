@@ -27,7 +27,7 @@ const PorQuePrende = () => {
               lineHeight: 1.4,
             }}
           >
-            No se trata solo de la plata. Se trata de todo lo que pasa en tu negocio y que hoy manejás de memoria.
+            ¿Te sentiste identificado con alguno de estos? Estás en el lugar correcto.
           </Typography>
 
           <Typography
@@ -41,7 +41,7 @@ const PorQuePrende = () => {
               lineHeight: 1.7,
             }}
           >
-            Te ayudamos a ver los costos, a medir cómo anda tu operación y a tomar mejores decisiones — con un sistema propio y con alguien de afuera que te dice las cosas claras.
+            No importa cuál de estos sea tu caso: tenemos el servicio justo para arrancar, y te acompañamos hasta que el cambio se note.
           </Typography>
 
           <Typography
