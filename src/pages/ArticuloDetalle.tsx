@@ -51,6 +51,21 @@ const ArticuloDetalle = () => {
     window.scrollTo(0, 0);
   };
 
+  // Función para renderizar texto con negritas (**texto**)
+  const renderTextWithBold = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return (
+          <Box key={index} component="span" sx={{ fontWeight: 700 }}>
+            {part.slice(2, -2)}
+          </Box>
+        );
+      }
+      return part;
+    });
+  };
+
   const handleWhatsAppClick = () => {
     const whatsappNumber = '5491125453990';
     const message = encodeURIComponent('Hola! Quiero agendar una Primera Consulta con Prende.');
@@ -157,7 +172,7 @@ const ArticuloDetalle = () => {
                 variant="body1"
                 sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, lineHeight: 1.8, color: '#222', mb: 3 }}
               >
-                {bloque}
+                {renderTextWithBold(bloque)}
               </Typography>
             );
           }
@@ -184,7 +199,7 @@ const ArticuloDetalle = () => {
               variant="body1"
               sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, lineHeight: 1.8, color: '#222', mb: 3 }}
             >
-              {bloque.texto}
+              {renderTextWithBold(bloque.texto)}
             </Typography>
           );
         })}
