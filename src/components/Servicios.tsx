@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Container, Typography, Card, CardContent, Tooltip } from '@mui/material';
+import { Box, Container, Typography, Card, CardContent } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -74,7 +74,6 @@ const servicios: Servicio[] = [
 const Servicios = () => {
   const navigate = useNavigate();
   const [paisSeleccionado, setPaisSeleccionado] = useState<PaisConfig>(PAIS_DEFAULT);
-  const [detectando, setDetectando] = useState(true);
 
   useEffect(() => {
     detectCountryCode().then((code) => {
@@ -82,7 +81,6 @@ const Servicios = () => {
         const match = PAISES.find((p) => p.code === code);
         if (match) setPaisSeleccionado(match);
       }
-      setDetectando(false);
     });
   }, []);
 
@@ -125,50 +123,6 @@ const Servicios = () => {
           >
             Soluciones prácticas para que tu negocio funcione mejor y venda más
           </Typography>
-
-          {/* Selector de país */}
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
-            {PAISES.map((pais) => {
-              const selected = pais.code === paisSeleccionado.code;
-              return (
-                <Tooltip key={pais.code} title={pais.nombre} placement="top">
-                  <Box
-                    component="button"
-                    onClick={() => setPaisSeleccionado(pais)}
-                    sx={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 0.75,
-                      px: 1.5,
-                      py: 0.6,
-                      borderRadius: 5,
-                      border: selected ? '2px solid #000' : '1.5px solid #bbb',
-                      bgcolor: selected ? '#000' : '#fff',
-                      color: selected ? '#FFEB5D' : '#444',
-                      fontWeight: selected ? 700 : 500,
-                      fontSize: '0.8rem',
-                      cursor: 'pointer',
-                      fontFamily: 'inherit',
-                      transition: 'all 0.15s ease',
-                      opacity: detectando ? 0.6 : 1,
-                      '&:hover': {
-                        borderColor: '#000',
-                        bgcolor: selected ? '#000' : '#F5F5F5',
-                      },
-                    }}
-                  >
-                    <span style={{ fontSize: '1rem', lineHeight: 1 }}>{pais.bandera}</span>
-                    {pais.nombre}
-                  </Box>
-                </Tooltip>
-              );
-            })}
-          </Box>
-          {detectando && (
-            <Typography variant="caption" sx={{ color: '#999', display: 'block', mt: 1 }}>
-              Detectando tu ubicación…
-            </Typography>
-          )}
         </Box>
 
         {/* Grid de servicios */}
