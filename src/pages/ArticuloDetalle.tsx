@@ -8,12 +8,27 @@ import Footer from '../components/Footer';
 import { trackServicePageView } from '../utils/analytics';
 import recursosConfig from '../data/recursos-config.json';
 
+interface BloqueTexto {
+  tipo: 'parrafo';
+  texto: string;
+}
+
+interface BloqueImagen {
+  tipo: 'imagen';
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+type BloqueCuerpo = BloqueTexto | BloqueImagen | string; // string = formato legado (solo párrafo)
+
 interface Destacado {
   slug: string;
   title: string;
   url: string;
   description: string;
-  cuerpo?: string[];
+  cuerpo?: BloqueCuerpo[];
+  video?: string; // URL de embed de YouTube, para sumar a futuro
   image: string;
   category: string;
   date: string;
@@ -99,17 +114,80 @@ const ArticuloDetalle = () => {
         sx={{ width: '100%', maxHeight: 420, objectFit: 'cover', display: 'block' }}
       />
 
+      {/* Video (opcional, a futuro) */}
+      {articulo.video && (
+        <Box sx={{ bgcolor: '#000', py: { xs: 4, md: 6 } }}>
+          <Container maxWidth="md">
+            <Box
+              sx={{
+                position: 'relative',
+                paddingTop: '56.25%',
+                borderRadius: 2,
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                component="iframe"
+                src={articulo.video}
+                title={articulo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  border: 0,
+                }}
+              />
+            </Box>
+          </Container>
+        </Box>
+      )}
+
       {/* Cuerpo del artículo */}
       <Container maxWidth="md" sx={{ py: { xs: 6, md: 8 } }}>
-        {(articulo.cuerpo ?? [articulo.description]).map((parrafo, index) => (
-          <Typography
-            key={index}
-            variant="body1"
-            sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, lineHeight: 1.8, color: '#222', mb: 3 }}
-          >
-            {parrafo}
-          </Typography>
-        ))}
+        {(articulo.cuerpo ?? [articulo.description]).map((bloque, index) => {
+          // Formato legado: string suelto = párrafo
+          if (typeof bloque === 'string') {
+            return (
+              <Typography
+                key={index}
+                variant="body1"
+                sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, lineHeight: 1.8, color: '#222', mb: 3 }}
+              >
+                {bloque}
+              </Typography>
+            );
+          }
+          if (bloque.tipo === 'imagen') {
+            return (
+              <Box key={index} sx={{ my: 5 }}>
+                <Box
+                  component="img"
+                  src={bloque.src}
+                  alt={bloque.alt}
+                  sx={{ width: '100%', borderRadius: 2, display: 'block' }}
+                />
+                {bloque.caption && (
+                  <Typography variant="caption" sx={{ display: 'block', textAlign: 'center', color: '#999', mt: 1.5 }}>
+                    {bloque.caption}
+                  </Typography>
+                )}
+              </Box>
+            );
+          }
+          return (
+            <Typography
+              key={index}
+              variant="body1"
+              sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, lineHeight: 1.8, color: '#222', mb: 3 }}
+            >
+              {bloque.texto}
+            </Typography>
+          );
+        })}
       </Container>
 
       {/* CTA final */}

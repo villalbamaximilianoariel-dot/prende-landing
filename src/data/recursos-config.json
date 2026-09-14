@@ -42,11 +42,107 @@
       "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop",
       "category": "Herramientas Prende",
       "date": "2026-09-13"
+    },
+    {
+      "slug": "atencion-experiencia-cliente",
+      "title": "Por qué tus clientes se van sin decir nada",
+      "url": "https://prende.com.ar/#/supervision-calidad",
+      "description": "La mayoría de los clientes que tienen una mala experiencia no se quejan: simplemente no vuelven, y no te enterás por qué. Te contamos cómo saber de verdad cómo atiende tu negocio, y qué hacer para que la buena atención no dependa de que vos estés mirando.",
+      "cuerpo": [
+        { "tipo": "parrafo", "texto": "Un cliente que tuvo una mala experiencia casi nunca te lo dice. Lo más común es que se vaya, no vuelva, y como mucho lo comente con alguien más — pero no con vos. Por eso, si medís la atención solo por las quejas que llegan, estás viendo una parte mínima del problema." },
+        { "tipo": "parrafo", "texto": "Buena atención no es sinónimo de ser simpático. Es sinónimo de ser consistente — que la experiencia sea la misma un lunes a la mañana que un sábado a la noche, con vos presente o sin estar. Ahí es donde la mayoría de los negocios se cae: atienden bien cuando el dueño mira, y de cualquier manera cuando no." },
+        { "tipo": "imagen", "src": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=600&fit=crop", "alt": "Dos personas dándose la mano", "caption": "La confianza se construye en cada interacción, no solo en la venta." },
+        { "tipo": "parrafo", "texto": "Algunas señales de que hay un problema real, aunque nadie se queje directamente: cada vez menos clientes repiten, las reseñas online bajan de a poco, o simplemente no tenés forma de saber cómo atiende tu equipo cuando no estás. Ese último punto es el más común — y el más fácil de resolver." },
+        { "tipo": "parrafo", "texto": "Una forma de saberlo de verdad, sin depender de lo que te cuenten, es que alguien evalúe la atención como lo haría un cliente cualquiera, sin avisar. Es uno de los aspectos que se pueden relevar dentro de Supervisión de Calidad, y suele ser el que más sorprende a los dueños cuando ven el resultado." }
+      ],
+      "image": "https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=800&h=600&fit=crop",
+      "category": "Buenas prácticas",
+      "date": "2026-09-12"
+    },
+    {
+      "slug": "procesos-y-procedimientos",
+      "title": "Si solo vos sabés cómo se hace, no tenés un proceso",
+      "url": "https://prende.com.ar/#/supervision-calidad",
+      "description": "Cuando cada tarea se hace 'como siempre se hizo', sin nada escrito, el negocio depende de la memoria de unas pocas personas. Te contamos por qué poner los procesos por escrito no es burocracia, sino la forma más simple de dejar de improvisar todos los días.",
+      "cuerpo": [
+        { "tipo": "parrafo", "texto": "Todo negocio tiene procesos, los tenga escritos o no. La diferencia es que, si no están escritos en ningún lado, existen solo en la cabeza de las personas que los hacen — y si esa persona falta un día, se va de vacaciones, o deja el trabajo, el proceso se va con ella." },
+        { "tipo": "parrafo", "texto": "Esto no es exclusivo de fábricas o líneas de producción. Pasa igual en un consultorio (cómo se prepara un turno), en un club (cómo se arma una cancha antes de un partido), o en una tienda (cómo se recibe una mercadería nueva). Cualquier tarea que se repite es, en el fondo, un proceso — esté escrito o no." },
+        { "tipo": "imagen", "src": "https://images.unsplash.com/photo-1533749871411-5e21e14bcc7d?w=800&h=600&fit=crop", "alt": "Persona escribiendo en un pizarrón", "caption": "Escribir un proceso no tiene que ser complicado: alcanza con los pasos, en orden." },
+        { "tipo": "parrafo", "texto": "No hace falta un manual enorme. Alcanza con escribir, para cada tarea importante, los pasos en orden — lo suficiente para que alguien nuevo pueda seguirlo sin tener que preguntarte a cada rato. Eso ya te saca de depender de la memoria de una sola persona." },
+        { "tipo": "parrafo", "texto": "El beneficio se nota rápido: menos errores por olvido, capacitaciones más cortas para gente nueva, y la tranquilidad de que las cosas se hacen igual las haga quien las haga. Si querés saber qué tan parejo está funcionando hoy tu equipo, evaluar procesos y procedimientos es uno de los aspectos que cubrimos en Supervisión de Calidad." }
+      ],
+      "image": "https://images.unsplash.com/photo-1503551723145-6c040742065b-v2?w=800&h=600&fit=crop",
+      "category": "Buenas prácticas",
+      "date": "2026-09-11"
+    },
+    {
+      "slug": "calidad-de-producto-o-servicio",
+      "title": "Lo que prometés tiene que salir igual todas las veces",
+      "url": "https://prende.com.ar/#/supervision-calidad",
+      "description": "Un cliente vuelve porque confía en que va a recibir lo mismo que la vez anterior. Te contamos por qué la calidad no se trata de tener el mejor producto, sino el más consistente, y cómo empezar a controlarlo sin volverte loco.",
+      "cuerpo": [
+        { "tipo": "parrafo", "texto": "Cuando pensamos en 'calidad', solemos pensar en tener el mejor producto posible. Pero para un cliente que vuelve, lo que más importa no es que sea el mejor — es que sea igual la próxima vez. La inconsistencia es lo que más rápido rompe la confianza." },
+        { "tipo": "parrafo", "texto": "Esto aplica sin importar qué vendas: que el plato tenga siempre el mismo sabor y la misma porción, que la prenda no tenga fallas de costura, que la pieza fabricada cumpla siempre la misma medida, o que el servicio que brindás tenga el mismo estándar lo atienda quien lo atienda." },
+        { "tipo": "imagen", "src": "https://images.unsplash.com/photo-1754039985008-a15410211b67?w=800&h=600&fit=crop", "alt": "Persona marcando un checklist", "caption": "Un checklist simple detecta el problema antes de que llegue al cliente." },
+        { "tipo": "parrafo", "texto": "El control no tiene que ser complicado. Con una lista corta de puntos clave — los que más impactan en la experiencia del cliente — y revisarla con cierta frecuencia, ya reducís gran parte de los errores que hoy pasan desapercibidos hasta que alguien se queja." },
+        { "tipo": "parrafo", "texto": "Lo ideal es que ese control no dependa solo de vos mirando. Calidad de producto o servicio es uno de los aspectos que podés relevar con Supervisión de Calidad — así el estándar se sostiene, estés presente o no." }
+      ],
+      "image": "https://images.unsplash.com/photo-1758873263563-5ba4aa330799?w=800&h=600&fit=crop",
+      "category": "Buenas prácticas",
+      "date": "2026-09-10"
+    },
+    {
+      "slug": "imagen-y-presentacion-del-local",
+      "title": "Tenés unos segundos para que confíen en tu negocio",
+      "url": "https://prende.com.ar/#/supervision-calidad",
+      "description": "Antes de probar lo que vendés, un cliente nuevo ya se formó una opinión de tu negocio con lo que vio al entrar. Te contamos por qué la imagen y el orden no son un detalle estético, sino parte de lo que estás vendiendo.",
+      "cuerpo": [
+        { "tipo": "parrafo", "texto": "Antes de probar tu producto o hablar con tu equipo, un cliente nuevo ya se formó una primera impresión — con la fachada, la vidriera, el orden de los estantes, o la sala de espera. Esa impresión pesa más de lo que parece a la hora de decidir si confía en vos." },
+        { "tipo": "parrafo", "texto": "No hace falta un local lujoso. Hace falta que esté prolijo, limpio, y que lo que se ve refleje lo que el negocio realmente ofrece. Un local desordenado genera dudas, aunque el producto o el servicio adentro sea excelente." },
+        { "tipo": "imagen", "src": "https://images.unsplash.com/photo-1519520104014-df63821cb6f9?w=800&h=600&fit=crop", "alt": "Interior de una tienda con productos exhibidos", "caption": "El orden de la exhibición también comunica — o resta — confianza." },
+        { "tipo": "parrafo", "texto": "Con el tiempo, es fácil dejar de ver el propio negocio con ojos frescos — un cartel gastado, un estante desordenado, una mancha que ya nadie nota porque está ahí hace meses. Por eso conviene que alguien de afuera lo mire de vez en cuando, con la misma mirada que tendría un cliente nuevo." },
+        { "tipo": "parrafo", "texto": "Imagen y presentación del local es uno de los aspectos que evaluamos en Supervisión de Calidad — justamente porque a los dueños, de tanto verlo todos los días, les cuesta notar lo que un cliente nuevo ve de entrada." }
+      ],
+      "image": "https://images.unsplash.com/photo-1523368749929-6b2bf370dbf8?w=800&h=600&fit=crop",
+      "category": "Buenas prácticas",
+      "date": "2026-09-09"
+    },
+    {
+      "slug": "manejo-de-caja-y-valores",
+      "title": "Un faltante chico, si no se controla, se vuelve costumbre",
+      "url": "https://prende.com.ar/#/supervision-calidad",
+      "description": "Un faltante de caja aislado puede ser un error. Si se repite y nadie lo controla, deja de ser un error y se convierte en una pérdida constante. Te contamos cómo empezar a controlar el manejo de efectivo sin generar desconfianza con tu equipo.",
+      "cuerpo": [
+        { "tipo": "parrafo", "texto": "Un faltante de caja de vez en cuando puede pasar — un vuelto mal dado, un error de conteo. El problema empieza cuando nadie lo controla de forma sistemática: ahí un error aislado se puede convertir, sin que nadie se dé cuenta, en una pérdida constante mes tras mes." },
+        { "tipo": "parrafo", "texto": "Controlar la caja no tiene que sentirse como desconfiar de tu equipo. Se trata de comparar, con cierta frecuencia, lo que hay físicamente contra lo que debería haber según lo vendido — un chequeo simple que protege tanto al negocio como a la persona que maneja la caja, dejando todo registrado y claro." },
+        { "tipo": "imagen", "src": "https://images.unsplash.com/photo-1564986410613-97e0b371efe5?w=800&h=600&fit=crop", "alt": "Calculadora sobre un escritorio", "caption": "Comparar lo que hay contra lo que debería haber, de forma regular, marca la diferencia." },
+        { "tipo": "parrafo", "texto": "Cuanto más tiempo pasa sin este control, más difícil es encontrar el origen de una diferencia cuando aparece. Hacerlo seguido, en cambio, permite detectar un problema apenas empieza — antes de que se vuelva costumbre." },
+        { "tipo": "parrafo", "texto": "Manejo de caja y valores es uno de los aspectos que se pueden relevar dentro de Supervisión de Calidad, con una mirada externa que suma tranquilidad tanto para el dueño como para el equipo." }
+      ],
+      "image": "https://images.unsplash.com/photo-1617188293897-c42f7a74a316?w=800&h=600&fit=crop",
+      "category": "Buenas prácticas",
+      "date": "2026-09-08"
+    },
+    {
+      "slug": "desempeno-del-personal",
+      "title": "Tu equipo rinde distinto cuando vos no estás mirando",
+      "url": "https://prende.com.ar/#/supervision-calidad",
+      "description": "Es humano: todos rendimos un poco distinto según quién nos esté mirando. Te contamos por qué medir el desempeño de tu equipo de forma objetiva, y no solo por impresión, es clave para un negocio que quiere crecer sin depender siempre del dueño.",
+      "cuerpo": [
+        { "tipo": "parrafo", "texto": "Es humano: todos rendimos un poco distinto según quién nos esté mirando. Por eso, si tu única forma de evaluar al equipo es la impresión que te llevás cuando estás presente, es probable que tengas una foto incompleta de cómo funciona tu negocio la mayor parte del tiempo." },
+        { "tipo": "parrafo", "texto": "Evaluar el desempeño no tiene que sentirse como vigilar. Se trata de tener criterios claros y objetivos — puntualidad, cumplimiento de tareas, trato hacia el cliente o paciente — para que todos sepan qué se espera, y vos puedas ver quién lo está cumpliendo sin tener que estar encima todo el día." },
+        { "tipo": "imagen", "src": "https://images.unsplash.com/photo-1583321500900-82807e458f3c?w=800&h=600&fit=crop", "alt": "Equipo celebrando con un choque de puños", "caption": "Reconocer lo que funciona es tan importante como corregir lo que no." },
+        { "tipo": "parrafo", "texto": "Cuando el desempeño se mide con criterios claros, también es más fácil reconocer a quien lo está haciendo bien — no solo corregir a quien no. Eso mejora el clima de trabajo, y en el mediano plazo, reduce la rotación de personal." },
+        { "tipo": "parrafo", "texto": "Desempeño del personal es uno de los aspectos que se pueden relevar dentro de Supervisión de Calidad — una forma de tener una mirada objetiva y pareja, sin que dependa de estar ahí para verlo." }
+      ],
+      "image": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&h=600&fit=crop",
+      "category": "Buenas prácticas",
+      "date": "2026-09-07"
     }
   ],
   "_instrucciones": {
     "rssFeeds": "Para AGREGAR un feed RSS: copia un bloque existente, cambia name/url/category y enabled:true. Para DESACTIVAR temporalmente: cambia enabled a false. Para ELIMINAR: borra el bloque completo.",
-    "destacados": "Para AGREGAR recurso manual: copia un bloque, cambia todos los campos. Máximo recomendado: 5-6 recursos para mantener la página limpia. Ordena por fecha (más reciente arriba).",
+    "destacados": "Para AGREGAR recurso manual: copia un bloque, cambia todos los campos. El campo 'cuerpo' acepta párrafos simples (string) o bloques enriquecidos {tipo: 'parrafo'|'imagen', ...}. Para agregar video a futuro, sumar un campo 'video' con la URL de embed de YouTube. Máximo recomendado: 10-12 recursos para mantener la página manejable. Ordena por fecha (más reciente arriba).",
     "youtube": "Para YouTube necesitas el Channel ID (no el @handle). Una vez lo tengas, usa: https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID"
   }
 }
