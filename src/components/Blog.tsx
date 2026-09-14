@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Box, Container, Typography, Card, CardContent, CardMedia, CardActionArea, Chip, Button } from '@mui/material';
 import { ArrowForward, ChevronLeft, ChevronRight } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, Pagination } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
@@ -15,6 +16,7 @@ import type { RSSItem } from '../utils/fetchRSSFeeds';
 import recursosConfig from '../data/recursos-config.json';
 
 interface RecursoDestacado {
+  slug?: string;
   title: string;
   url: string;
   description: string;
@@ -24,6 +26,7 @@ interface RecursoDestacado {
 }
 
 export default function Blog() {
+  const navigate = useNavigate();
   const [recursos, setRecursos] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
@@ -152,9 +155,9 @@ export default function Blog() {
                     }}
                   >
                     <CardActionArea
-                      href={recurso.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      {...(recurso.slug
+                        ? { onClick: () => { navigate(`/recursos/${recurso.slug}`); window.scrollTo(0, 0); } }
+                        : { href: recurso.url, target: '_blank', rel: 'noopener noreferrer' })}
                       sx={{
                         height: '100%',
                         display: 'flex',

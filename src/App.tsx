@@ -15,6 +15,7 @@ import SistemaPrueba from './pages/SistemaPrueba';
 import AuditoriaGratis from './pages/AuditoriaGratis';
 import CalculadoraCostos from './pages/CalculadoraCostos';
 import TuSistemaAMedida from './pages/TuSistemaAMedida';
+import ArticuloDetalle from './pages/ArticuloDetalle';
 import PrimeraConsulta from './pages/PrimeraConsulta';
 import PlanDeAccion from './pages/PlanDeAccion';
 
@@ -121,6 +122,7 @@ function App() {
           <Route path="/blog" element={<RecursosRecomendados />} />
           <Route path="/calculadora" element={<CalculadoraCostos />} />
           <Route path="/tu-sistema-a-medida" element={<TuSistemaAMedida />} />
+          <Route path="/recursos/:slug" element={<ArticuloDetalle />} />
           {/* Landing pages específicas para pauta */}
           <Route path="/sistema-prueba" element={<SistemaPrueba />} />
           <Route path="/auditoria-gratis" element={<AuditoriaGratis />} />

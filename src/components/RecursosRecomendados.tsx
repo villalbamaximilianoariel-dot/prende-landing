@@ -15,6 +15,7 @@ import {
   Alert,
 } from '@mui/material';
 import { RssFeed, Star } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 import { fetchAllFeeds, formatDate } from '../utils/fetchRSSFeeds';
 import type { RSSItem } from '../utils/fetchRSSFeeds';
 import recursosConfig from '../data/recursos-config.json';
@@ -23,6 +24,7 @@ import Footer from './Footer';
 import { trackServicePageView } from '../utils/analytics';
 
 interface RecursoDestacado {
+  slug?: string;
   title: string;
   url: string;
   description: string;
@@ -32,6 +34,7 @@ interface RecursoDestacado {
 }
 
 export default function RecursosRecomendados() {
+  const navigate = useNavigate();
   const [rssItems, setRssItems] = useState<RSSItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -200,9 +203,9 @@ export default function RecursosRecomendados() {
                         }}
                       >
                         <CardActionArea
-                          href={recurso.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          {...(recurso.slug
+                            ? { onClick: () => { navigate(`/recursos/${recurso.slug}`); window.scrollTo(0, 0); } }
+                            : { href: recurso.url, target: '_blank', rel: 'noopener noreferrer' })}
                           sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
                         >
                           {recurso.image && (

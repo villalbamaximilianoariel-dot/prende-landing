@@ -27,9 +27,18 @@
   ],
   "destacados": [
     {
+      "slug": "cuanto-cuesta-cada-producto",
       "title": "Cuánto te cuesta cada producto (y por qué probablemente no lo sepas)",
       "url": "https://prende.com.ar/#/calculadora",
       "description": "La mayoría de los dueños de pyme fija precios a ojo, o copiando a la competencia. El problema es que ninguna de las dos formas te dice si ese precio te deja plata o te la saca. Armamos una calculadora gratuita para que en un par de minutos sepas el costo real de lo que vendés y un precio de venta sugerido, sea que fabriques, vendas por receta, revendas mercadería o brindes un servicio.",
+      "cuerpo": [
+        "Es una escena muy común: alguien pone un precio el día que abre el negocio, mira lo que cobra la competencia, y listo. Con el tiempo suben los insumos, sube el alquiler, sube todo — menos ese precio, que nadie volvió a revisar.",
+        "El problema no es poner un precio a ojo. El problema es no saber si ese precio te deja plata. Podés estar vendiendo mucho y, aun así, ganando poco o nada por cada venta — y no enterarte hasta fin de mes, cuando ya es tarde para hacer algo.",
+        "Para saber el costo real de lo que vendés hay que sumar más de lo que parece a simple vista: no es solo el insumo o el producto que comprás, sino también los costos indirectos (alquiler, sueldos, servicios) prorrateados en cada unidad, y los gastos de venta (comisiones, envíos, impuestos). Recién ahí el número que te queda es el costo real — no una estimación.",
+        "Hacer esa cuenta a mano, en un cuaderno o cruzando datos sueltos en la cabeza, es tedioso y fácil de errar. Por eso armamos una calculadora gratuita: en un par de minutos, completás algunos datos de tu negocio y te devuelve el costo real de tu producto o servicio, y un precio de venta sugerido para que sepas si estás ganando o perdiendo.",
+        "Sirve para cuatro tipos de negocio: si fabricás algo, si trabajás con receta (como gastronomía), si revendés mercadería, o si brindás un servicio. No importa el rubro — la lógica de fondo es la misma: saber cuánto te cuesta de verdad, antes de decidir cuánto cobrar.",
+        "Si después de usarla te das cuenta de que hace falta mirar el negocio completo — no solo un producto — el siguiente paso natural es una Primera Consulta: una charla de una hora donde vemos juntos la situación y te decimos con claridad qué conviene hacer."
+      ],
       "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop",
       "category": "Herramientas Prende",
       "date": "2026-09-13"
