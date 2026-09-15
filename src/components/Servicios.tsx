@@ -20,7 +20,6 @@ interface Servicio {
   sufijo: string;
   route: string;
   sinPrecio?: boolean; // servicios cuyo costo varía tanto que no se muestra precio
-  desde?: boolean; // servicios con más de un precio posible: se muestra el más bajo, precedido de "Desde"
   destacado?: boolean; // card con colores invertidos, para el servicio de mayor escala
 }
 
@@ -55,7 +54,6 @@ const servicios: Servicio[] = [
       'Un sistema para tener tu negocio bajo control todo el tiempo — solo, o con nosotros mirándolo desde afuera para que nada se te escape.',
     sufijo: 'por mes',
     route: '/supervision-calidad',
-    desde: true,
   },
   {
     id: 4,
@@ -140,7 +138,7 @@ const Servicios = () => {
           {servicios.map((servicio) => {
             const precioStr = servicio.sinPrecio
               ? 'A medida'
-              : `${servicio.desde ? 'Desde ' : ''}${getPrecio(paisSeleccionado, servicio.key)} ${servicio.sufijo}`;
+              : `${getPrecio(paisSeleccionado, servicio.key)} ${servicio.sufijo}`;
             return (
             <Card
               key={servicio.id}

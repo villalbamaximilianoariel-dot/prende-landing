@@ -164,7 +164,7 @@ const TuSistemaAMedida = () => {
 
   const faqs = [
     {
-      pregunta: '¿Necesito saber de tecnología para usarlo?',
+      pregunta: '¿Necesitás saber de tecnología para usarlo?',
       respuesta: 'No. Lo diseñamos para que lo use tu equipo tal como es hoy, y te capacitamos hasta que quede cómodo.',
     },
     {
