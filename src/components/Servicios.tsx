@@ -119,7 +119,7 @@ const Servicios = () => {
               mb: 3,
             }}
           >
-            Soluciones prácticas para que tu negocio funcione mejor y venda más
+            Cuatro formas de ayudarte a ordenar tu negocio — de la más simple a la más completa
           </Typography>
         </Box>
 
