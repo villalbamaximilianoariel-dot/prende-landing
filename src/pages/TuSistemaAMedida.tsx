@@ -280,56 +280,6 @@ const TuSistemaAMedida = () => {
         </Container>
       </Box>
 
-      {/* Para quién */}
-      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography
-          variant="h4"
-          sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}
-        >
-          ¿Para quién es esto?
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: '#666', textAlign: 'center', mb: 6, maxWidth: 600, mx: 'auto' }}
-        >
-          Pensado para negocios pequeños y medianos que necesitan orden operativo sin complejidad técnica.
-        </Typography>
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
-            gap: 3,
-          }}
-        >
-          {paraQuien.map((item, index) => (
-            <Paper
-              key={index}
-              elevation={0}
-              sx={{
-                p: 3,
-                bgcolor: '#F5F5F5',
-                border: '2px solid #E0E0E0',
-                borderRadius: 2,
-                transition: 'all 0.3s',
-                '&:hover': {
-                  borderColor: '#FFEB5D',
-                  transform: 'translateY(-4px)',
-                  bgcolor: '#FFFFFF',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-                },
-              }}
-            >
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
-                {item.perfil}
-              </Typography>
-              <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.7 }}>
-                {item.descripcion}
-              </Typography>
-            </Paper>
-          ))}
-        </Box>
-      </Container>
-
       {/* Fases */}
       <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
@@ -518,6 +468,56 @@ const TuSistemaAMedida = () => {
           </Box>
         </Container>
       </Box>
+
+      {/* Para quién */}
+      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+        <Typography
+          variant="h4"
+          sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}
+        >
+          ¿Para quién es esto?
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ color: '#666', textAlign: 'center', mb: 6, maxWidth: 600, mx: 'auto' }}
+        >
+          Pensado para negocios pequeños y medianos que necesitan orden operativo sin complejidad técnica.
+        </Typography>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
+            gap: 3,
+          }}
+        >
+          {paraQuien.map((item, index) => (
+            <Paper
+              key={index}
+              elevation={0}
+              sx={{
+                p: 3,
+                bgcolor: '#F5F5F5',
+                border: '2px solid #E0E0E0',
+                borderRadius: 2,
+                transition: 'all 0.3s',
+                '&:hover': {
+                  borderColor: '#FFEB5D',
+                  transform: 'translateY(-4px)',
+                  bgcolor: '#FFFFFF',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
+                },
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
+                {item.perfil}
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.7 }}>
+                {item.descripcion}
+              </Typography>
+            </Paper>
+          ))}
+        </Box>
+      </Container>
 
       {/* Qué más podés sumar (puerta de entrada, no upsell) */}
       <Container maxWidth="md" sx={{ py: { xs: 6, md: 8 } }}>

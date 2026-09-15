@@ -193,47 +193,6 @@ const PrimeraConsulta = () => {
         </Container>
       </Box>
 
-      {/* Qué más podés sumar */}
-      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
-        <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
-          ¿Qué más podés sumar?
-        </Typography>
-        <Typography variant="body1" sx={{ mb: 5, textAlign: 'center', color: '#666', maxWidth: '600px', mx: 'auto' }}>
-          Según lo que hablemos en la consulta, estos son los pasos que podés seguir
-        </Typography>
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 3 }}>
-          {otrosServicios.map((item, index) => (
-            <Box
-              key={index}
-              onClick={() => { navigate(item.route); window.scrollTo(0, 0); }}
-              sx={{
-                border: '1.5px solid #E0E0E0',
-                borderRadius: 2,
-                p: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 1.5,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                '&:hover': {
-                  borderColor: '#FFEB5D',
-                  transform: 'translateY(-4px)',
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
-                },
-              }}
-            >
-              <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                {item.titulo}
-              </Typography>
-              <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.6 }}>
-                {item.descripcion}
-              </Typography>
-            </Box>
-          ))}
-        </Box>
-      </Container>
-
       {/* Cómo funciona */}
       <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
@@ -297,6 +256,47 @@ const PrimeraConsulta = () => {
           </Typography>
         </Container>
       </Box>
+
+      {/* Qué más podés sumar */}
+      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
+        <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
+          ¿Qué más podés sumar?
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 5, textAlign: 'center', color: '#666', maxWidth: '600px', mx: 'auto' }}>
+          Según lo que hablemos en la consulta, estos son los pasos que podés seguir
+        </Typography>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 3 }}>
+          {otrosServicios.map((item, index) => (
+            <Box
+              key={index}
+              onClick={() => { navigate(item.route); window.scrollTo(0, 0); }}
+              sx={{
+                border: '1.5px solid #E0E0E0',
+                borderRadius: 2,
+                p: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1.5,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  borderColor: '#FFEB5D',
+                  transform: 'translateY(-4px)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+                },
+              }}
+            >
+              <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                {item.titulo}
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.6 }}>
+                {item.descripcion}
+              </Typography>
+            </Box>
+          ))}
+        </Box>
+      </Container>
 
       {/* FAQs */}
       <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
