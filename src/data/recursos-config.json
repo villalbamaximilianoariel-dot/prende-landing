@@ -41,7 +41,11 @@
       ],
       "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop",
       "category": "Herramientas Prende",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "servicioRelacionado": {
+        "label": "Calculadora de Costos",
+        "route": "/calculadora"
+      }
     },
     {
       "slug": "atencion-experiencia-cliente",
@@ -74,7 +78,11 @@
       ],
       "image": "https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=800&h=600&fit=crop",
       "category": "Atención y experiencia del cliente",
-      "date": "2026-09-12"
+      "date": "2026-09-12",
+      "servicioRelacionado": {
+        "label": "Supervisión de Calidad",
+        "route": "/supervision-calidad"
+      }
     },
     {
       "slug": "procesos-y-procedimientos",
@@ -107,7 +115,11 @@
       ],
       "image": "https://images.unsplash.com/photo-1503551723145-6c040742065b-v2?w=800&h=600&fit=crop",
       "category": "Procesos y procedimientos",
-      "date": "2026-09-11"
+      "date": "2026-09-11",
+      "servicioRelacionado": {
+        "label": "Supervisión de Calidad",
+        "route": "/supervision-calidad"
+      }
     },
     {
       "slug": "calidad-de-producto-o-servicio",
@@ -140,7 +152,11 @@
       ],
       "image": "https://images.unsplash.com/photo-1758873263563-5ba4aa330799?w=800&h=600&fit=crop",
       "category": "Calidad de producto o servicio",
-      "date": "2026-09-10"
+      "date": "2026-09-10",
+      "servicioRelacionado": {
+        "label": "Supervisión de Calidad",
+        "route": "/supervision-calidad"
+      }
     },
     {
       "slug": "imagen-y-presentacion-del-local",
@@ -173,7 +189,11 @@
       ],
       "image": "https://images.unsplash.com/photo-1523368749929-6b2bf370dbf8?w=800&h=600&fit=crop",
       "category": "Imagen y presentación del local",
-      "date": "2026-09-09"
+      "date": "2026-09-09",
+      "servicioRelacionado": {
+        "label": "Supervisión de Calidad",
+        "route": "/supervision-calidad"
+      }
     },
     {
       "slug": "manejo-de-caja-y-valores",
@@ -206,7 +226,11 @@
       ],
       "image": "https://images.unsplash.com/photo-1617188293897-c42f7a74a316?w=800&h=600&fit=crop",
       "category": "Manejo de caja y valores",
-      "date": "2026-09-08"
+      "date": "2026-09-08",
+      "servicioRelacionado": {
+        "label": "Supervisión de Calidad",
+        "route": "/supervision-calidad"
+      }
     },
     {
       "slug": "desempeno-del-personal",
@@ -239,7 +263,11 @@
       ],
       "image": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&h=600&fit=crop",
       "category": "Desempeño del personal",
-      "date": "2026-09-07"
+      "date": "2026-09-07",
+      "servicioRelacionado": {
+        "label": "Supervisión de Calidad",
+        "route": "/supervision-calidad"
+      }
     }
   ],
   "_instrucciones": {

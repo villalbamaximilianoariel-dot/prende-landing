@@ -90,10 +90,14 @@ const Home = () => (
   </Box>
 );
 
-// Tracker de cambios de ruta para HashRouter + GA4 + Meta Pixel
+// Tracker de cambios de ruta para HashRouter + GA4 + Meta Pixel + scroll al inicio
 const RouteTracker = () => {
   const location = useLocation();
   useEffect(() => {
+    // Siempre arrancar arriba de la página al cambiar de ruta,
+    // sin importar cómo se llegó (link, botón, atrás/adelante del navegador).
+    window.scrollTo(0, 0);
+
     if (window.gtag) {
       window.gtag('event', 'page_view', {
         page_title: document.title,

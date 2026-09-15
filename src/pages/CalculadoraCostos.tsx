@@ -1533,6 +1533,28 @@ const CalculadoraCostos = () => {
                 >
                   Ver Primera Consulta
                 </Button>
+                <Typography
+                  component="button"
+                  onClick={() => { navigate('/recursos/cuanto-cuesta-cada-producto'); window.scrollTo(0, 0); }}
+                  sx={{
+                    display: 'block',
+                    width: '100%',
+                    mt: 1.5,
+                    pt: 1.5,
+                    borderTop: '1px solid #E0E0E0',
+                    bgcolor: 'transparent',
+                    border: 'none',
+                    borderTopStyle: 'solid',
+                    cursor: 'pointer',
+                    fontFamily: 'inherit',
+                    fontSize: '0.8125rem',
+                    color: '#666',
+                    textDecoration: 'underline',
+                    '&:hover': { color: '#000' },
+                  }}
+                >
+                  📖 Leé por qué esto importa tanto
+                </Typography>
               </Paper>
             </Box>
           </Box>

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Box, Button, Container, Typography, Chip } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -29,6 +30,7 @@ interface Destacado {
   description: string;
   cuerpo?: BloqueCuerpo[];
   video?: string; // URL de embed de YouTube, para sumar a futuro
+  servicioRelacionado?: { label: string; route: string };
   image: string;
   category: string;
   date: string;
@@ -204,6 +206,41 @@ const ArticuloDetalle = () => {
           );
         })}
       </Container>
+
+      {/* Servicio o herramienta relacionada */}
+      {articulo.servicioRelacionado && (
+        <Container maxWidth="md" sx={{ pb: { xs: 4, md: 6 } }}>
+          <Box
+            onClick={() => { navigate(articulo.servicioRelacionado!.route); window.scrollTo(0, 0); }}
+            sx={{
+              border: '1.5px solid #E0E0E0',
+              borderRadius: 2,
+              p: 3,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 2,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              '&:hover': {
+                borderColor: '#FFEB5D',
+                transform: 'translateY(-4px)',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+              },
+            }}
+          >
+            <Box>
+              <Typography variant="caption" sx={{ color: '#999', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                Relacionado con este artículo
+              </Typography>
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                {articulo.servicioRelacionado.label}
+              </Typography>
+            </Box>
+            <ArrowForwardIcon sx={{ color: '#000', fontSize: 28, flexShrink: 0 }} />
+          </Box>
+        </Container>
+      )}
 
       {/* CTA final */}
       <Box sx={{ bgcolor: '#FFEB5D', py: { xs: 6, md: 8 } }}>
