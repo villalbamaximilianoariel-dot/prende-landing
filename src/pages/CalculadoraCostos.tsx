@@ -1533,11 +1533,14 @@ const CalculadoraCostos = () => {
                 >
                   Ver Primera Consulta
                 </Button>
-                <Typography
+                <Box
                   component="button"
                   onClick={() => { navigate('/recursos/cuanto-cuesta-cada-producto'); window.scrollTo(0, 0); }}
                   sx={{
-                    display: 'block',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 1,
                     width: '100%',
                     mt: 1.5,
                     pt: 1.5,
@@ -1547,14 +1550,15 @@ const CalculadoraCostos = () => {
                     borderTopStyle: 'solid',
                     cursor: 'pointer',
                     fontFamily: 'inherit',
-                    fontSize: '0.8125rem',
-                    color: '#666',
-                    textDecoration: 'underline',
-                    '&:hover': { color: '#000' },
+                    color: '#000',
+                    '&:hover': { opacity: 0.7 },
                   }}
                 >
-                  📖 Leé por qué esto importa tanto
-                </Typography>
+                  <Typography sx={{ fontSize: '0.9375rem', fontWeight: 700 }}>
+                    📖 Leé por qué esto importa tanto
+                  </Typography>
+                  <Typography sx={{ fontSize: '0.9375rem', fontWeight: 700 }}>→</Typography>
+                </Box>
               </Paper>
             </Box>
           </Box>
