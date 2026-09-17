@@ -24,7 +24,7 @@ const PlanDeAccion = () => {
   }, []);
 
   const handleWhatsAppClick = (ubicacion: string) => {
-    trackWhatsAppClick('PlanDeAccion', ubicacion);
+    trackWhatsAppClick('Plan de Accion', ubicacion);
     const whatsappNumber = '5491125453990';
     const message = encodeURIComponent('Hola! Me interesa el Plan de Acción de Prende. ¿Podrían darme más información?');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
@@ -153,7 +153,7 @@ const PlanDeAccion = () => {
           <Button
             variant="contained"
             size="large"
-            onClick={() => handleWhatsAppClick('Hero')}
+            onClick={() => handleWhatsAppClick('Arriba')}
             startIcon={<WhatsAppIcon />}
             sx={{
               bgcolor: '#25D366',
@@ -372,7 +372,7 @@ const PlanDeAccion = () => {
             <Button
               variant="contained"
               size="large"
-              onClick={() => handleWhatsAppClick('CTA-Final')}
+              onClick={() => handleWhatsAppClick('Abajo')}
               startIcon={<WhatsAppIcon />}
               sx={{
                 bgcolor: '#000000',

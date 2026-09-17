@@ -10,7 +10,7 @@ const Contacto = () => {
   const instagramUrl = 'https://instagram.com/prende.ar';
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppClick('Home', 'Contacto');
+    trackWhatsAppClick('Inicio', 'Contacto');
     window.open(
       `https://wa.me/${whatsappNumber}?text=Hola%20Prende%2C%20quiero%20saber%20más%20sobre%20sus%20servicios`,
       '_blank'

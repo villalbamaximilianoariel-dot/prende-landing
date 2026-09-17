@@ -48,7 +48,7 @@ const SupervisionCalidad = () => {
   }, []);
 
   const handleWhatsAppClick = (modalidad: string) => {
-    trackWhatsAppClick('SupervisionCalidad', modalidad);
+    trackWhatsAppClick('Supervision Calidad', modalidad);
     const whatsappNumber = '5491125453990';
     const message = encodeURIComponent(`Hola! Me interesa Supervisión de Calidad (${modalidad}). ¿Podrían darme más información?`);
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');

@@ -32,7 +32,7 @@ const PrimeraConsulta = () => {
   }, []);
 
   const handleWhatsAppClick = (ubicacion: string) => {
-    trackWhatsAppClick('PrimeraConsulta', ubicacion);
+    trackWhatsAppClick('Primera Consulta', ubicacion);
     const whatsappNumber = '5491125453990';
     const message = encodeURIComponent('Hola! Quiero agendar una Primera Consulta con Prende.');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
@@ -142,7 +142,7 @@ const PrimeraConsulta = () => {
           <Button
             variant="contained"
             size="large"
-            onClick={() => handleWhatsAppClick('Hero')}
+            onClick={() => handleWhatsAppClick('Arriba')}
             startIcon={<WhatsAppIcon />}
             sx={{
               bgcolor: '#25D366',
@@ -346,7 +346,7 @@ const PrimeraConsulta = () => {
             <Button
               variant="contained"
               size="large"
-              onClick={() => handleWhatsAppClick('CTA-Final')}
+              onClick={() => handleWhatsAppClick('Abajo')}
               startIcon={<WhatsAppIcon />}
               sx={{
                 bgcolor: '#000000',

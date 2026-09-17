@@ -368,7 +368,7 @@ const CalculadoraCostos = () => {
       setCalculoTrackeado(true);
       if (window.gtag) {
         window.gtag('event', 'calculo_completado', {
-          event_category: 'engagement',
+          event_category: 'interaccion',
           event_label: productType,
           tipo_producto: productType,
         });
@@ -1542,8 +1542,8 @@ const CalculadoraCostos = () => {
                   fullWidth
                   onClick={() => {
                     if (window.gtag) {
-                      window.gtag('event', 'calculadora_click_primera_consulta', {
-                        event_category: 'engagement',
+                      window.gtag('event', 'calculadora_click_consulta', {
+                        event_category: 'interaccion',
                         event_label: productType,
                       });
                     }
@@ -1566,7 +1566,7 @@ const CalculadoraCostos = () => {
                   onClick={() => {
                     if (window.gtag) {
                       window.gtag('event', 'calculadora_click_articulo', {
-                        event_category: 'engagement',
+                        event_category: 'interaccion',
                         event_label: 'cuanto-cuesta-cada-producto',
                       });
                     }

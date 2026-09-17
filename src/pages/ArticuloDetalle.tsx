@@ -69,7 +69,7 @@ const ArticuloDetalle = () => {
   };
 
   const handleWhatsAppClick = () => {
-    trackWhatsAppClick('Articulo', articulo?.title ?? 'Desconocido');
+    trackWhatsAppClick('Articulo Blog', articulo?.title ?? 'Sin titulo');
     const whatsappNumber = '5491125453990';
     const message = encodeURIComponent('Hola! Quiero agendar una Primera Consulta con Prende.');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');

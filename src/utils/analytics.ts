@@ -27,8 +27,8 @@ export const trackWhatsAppClick = (servicio: string, ubicacion: string) => {
       value: 1,
       currency: 'ARS',
     });
-    window.gtag('event', 'whatsapp_click', {
-      event_category: 'engagement',
+    window.gtag('event', 'click_whatsapp', {
+      event_category: 'interaccion',
       event_label: `${servicio} - ${ubicacion}`,
       servicio: servicio,
       ubicacion: ubicacion,
@@ -39,7 +39,7 @@ export const trackWhatsAppClick = (servicio: string, ubicacion: string) => {
   if (window.fbq) {
     window.fbq('track', 'Lead', {
       content_name: servicio,
-      content_category: 'WhatsApp Click',
+      content_category: 'Click WhatsApp',
     });
   }
 
@@ -54,7 +54,7 @@ export const trackServicePageView = (servicio: string) => {
   if (window.fbq) {
     window.fbq('track', 'ViewContent', {
       content_name: servicio,
-      content_type: 'service_page',
+      content_type: 'pagina_servicio',
     });
   }
 };
@@ -64,9 +64,9 @@ export const trackServicePageView = (servicio: string) => {
  */
 export const trackServicesScroll = () => {
   if (window.gtag) {
-    window.gtag('event', 'scroll_to_services', {
-      event_category: 'Engagement',
-      event_label: 'Services Section',
+    window.gtag('event', 'scroll_a_servicios', {
+      event_category: 'interaccion',
+      event_label: 'Seccion Servicios',
     });
   }
 };

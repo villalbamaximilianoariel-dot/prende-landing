@@ -18,7 +18,7 @@ const TuSistemaAMedida = () => {
   }, []);
 
   const handleWhatsAppClick = (ubicacion: string) => {
-    trackWhatsAppClick('TuSistemaAMedida', ubicacion);
+    trackWhatsAppClick('Tu Sistema a Medida', ubicacion);
     const whatsappNumber = '5491125453990';
     const message = encodeURIComponent(
       'Hola! Me interesa Tu Sistema a Medida. ¿Podrían darme más información sobre mi proyecto?'
@@ -241,7 +241,7 @@ const TuSistemaAMedida = () => {
               <Button
                 variant="contained"
                 size="large"
-                onClick={() => handleWhatsAppClick('Hero')}
+                onClick={() => handleWhatsAppClick('Arriba')}
                 startIcon={<WhatsAppIcon />}
                 sx={{
                   bgcolor: '#25D366',
@@ -609,7 +609,7 @@ const TuSistemaAMedida = () => {
           <Button
             variant="contained"
             size="large"
-            onClick={() => handleWhatsAppClick('CTA-Final')}
+            onClick={() => handleWhatsAppClick('Abajo')}
             startIcon={<WhatsAppIcon />}
             sx={{
               bgcolor: '#25D366',
