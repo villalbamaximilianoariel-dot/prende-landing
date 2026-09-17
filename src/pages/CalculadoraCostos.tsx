@@ -360,6 +360,25 @@ const CalculadoraCostos = () => {
   ]);
 
   const hayDatos = resultados.costoTotal > 0;
+
+  // Trackear cuando el usuario llega a un resultado válido por primera vez (señal real de uso de la herramienta)
+  const [calculoTrackeado, setCalculoTrackeado] = useState(false);
+  useEffect(() => {
+    if (hayDatos && !calculoTrackeado) {
+      setCalculoTrackeado(true);
+      if (window.gtag) {
+        window.gtag('event', 'calculo_completado', {
+          event_category: 'engagement',
+          event_label: productType,
+          tipo_producto: productType,
+        });
+      }
+      if (window.fbq) {
+        window.fbq('trackCustom', 'CalculoCompletado', { tipo_producto: productType });
+      }
+    }
+  }, [hayDatos, calculoTrackeado, productType]);
+
   const margenBajo = hayDatos && resultados.margenReal < 20;
   const margenMedio = hayDatos && resultados.margenReal >= 20 && resultados.margenReal < 30;
   const margenBueno = hayDatos && resultados.margenReal >= 30;
@@ -1521,7 +1540,16 @@ const CalculadoraCostos = () => {
                 <Button
                   variant="contained"
                   fullWidth
-                  onClick={() => { navigate('/primera-consulta'); window.scrollTo(0, 0); }}
+                  onClick={() => {
+                    if (window.gtag) {
+                      window.gtag('event', 'calculadora_click_primera_consulta', {
+                        event_category: 'engagement',
+                        event_label: productType,
+                      });
+                    }
+                    navigate('/primera-consulta');
+                    window.scrollTo(0, 0);
+                  }}
                   sx={{
                     bgcolor: '#000',
                     color: '#FFEB5D',
@@ -1535,7 +1563,16 @@ const CalculadoraCostos = () => {
                 </Button>
                 <Box
                   component="button"
-                  onClick={() => { navigate('/recursos/cuanto-cuesta-cada-producto'); window.scrollTo(0, 0); }}
+                  onClick={() => {
+                    if (window.gtag) {
+                      window.gtag('event', 'calculadora_click_articulo', {
+                        event_category: 'engagement',
+                        event_label: 'cuanto-cuesta-cada-producto',
+                      });
+                    }
+                    navigate('/recursos/cuanto-cuesta-cada-producto');
+                    window.scrollTo(0, 0);
+                  }}
                   sx={{
                     display: 'flex',
                     alignItems: 'center',

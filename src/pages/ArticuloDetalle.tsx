@@ -6,7 +6,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { trackServicePageView } from '../utils/analytics';
+import { trackServicePageView, trackWhatsAppClick } from '../utils/analytics';
 import recursosConfig from '../data/recursos-config.json';
 
 interface BloqueTexto {
@@ -69,6 +69,7 @@ const ArticuloDetalle = () => {
   };
 
   const handleWhatsAppClick = () => {
+    trackWhatsAppClick('Articulo', articulo?.title ?? 'Desconocido');
     const whatsappNumber = '5491125453990';
     const message = encodeURIComponent('Hola! Quiero agendar una Primera Consulta con Prende.');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');

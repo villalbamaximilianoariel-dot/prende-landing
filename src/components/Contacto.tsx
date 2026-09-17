@@ -2,6 +2,7 @@ import { Box, Container, Typography, Button } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 const Contacto = () => {
   const whatsappNumber = '5491125453990';
@@ -9,6 +10,7 @@ const Contacto = () => {
   const instagramUrl = 'https://instagram.com/prende.ar';
 
   const handleWhatsAppClick = () => {
+    trackWhatsAppClick('Home', 'Contacto');
     window.open(
       `https://wa.me/${whatsappNumber}?text=Hola%20Prende%2C%20quiero%20saber%20más%20sobre%20sus%20servicios`,
       '_blank'
