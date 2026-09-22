@@ -5,7 +5,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import { trackWhatsAppClick } from '../utils/analytics';
 
 const Contacto = () => {
-  const whatsappNumber = '5491125453990';
+  const whatsappNumber = '5491168492921';
   const email = 'hola@prende.com.ar';
   const instagramUrl = 'https://instagram.com/prende.ar';
 

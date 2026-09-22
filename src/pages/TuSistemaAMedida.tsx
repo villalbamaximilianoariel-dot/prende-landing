@@ -19,7 +19,7 @@ const TuSistemaAMedida = () => {
 
   const handleWhatsAppClick = (ubicacion: string) => {
     trackWhatsAppClick('Tu Sistema a Medida', ubicacion);
-    const whatsappNumber = '5491125453990';
+    const whatsappNumber = '5491168492921';
     const message = encodeURIComponent(
       'Hola! Me interesa Tu Sistema a Medida. ¿Podrían darme más información sobre mi proyecto?'
     );

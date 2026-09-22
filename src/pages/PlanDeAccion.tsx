@@ -25,7 +25,7 @@ const PlanDeAccion = () => {
 
   const handleWhatsAppClick = (ubicacion: string) => {
     trackWhatsAppClick('Plan de Accion', ubicacion);
-    const whatsappNumber = '5491125453990';
+    const whatsappNumber = '5491168492921';
     const message = encodeURIComponent('Hola! Me interesa el Plan de Acción de Prende. ¿Podrían darme más información?');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
