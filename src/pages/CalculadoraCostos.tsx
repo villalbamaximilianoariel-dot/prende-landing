@@ -371,6 +371,8 @@ const CalculadoraCostos = () => {
           event_category: 'interaccion',
           event_label: productType,
           tipo_producto: productType,
+          servicio: 'Calculadora',
+          ubicacion: 'Resultado',
         });
       }
       if (window.fbq) {

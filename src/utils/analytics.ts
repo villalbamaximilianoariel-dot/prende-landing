@@ -26,6 +26,8 @@ export const trackWhatsAppClick = (servicio: string, ubicacion: string) => {
     window.gtag('event', 'generate_lead', {
       value: 1,
       currency: 'ARS',
+      servicio: servicio,
+      ubicacion: ubicacion,
     });
     window.gtag('event', 'click_whatsapp', {
       event_category: 'interaccion',
@@ -67,6 +69,8 @@ export const trackServicesScroll = () => {
     window.gtag('event', 'scroll_a_servicios', {
       event_category: 'interaccion',
       event_label: 'Seccion Servicios',
+      servicio: 'Inicio',
+      ubicacion: 'Hero',
     });
   }
 };
