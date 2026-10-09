@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-10-08T12:34:21.343Z",
+  "updatedAt": "2026-10-09T12:22:13.585Z",
   "items": [
+    {
+      "title": "Ipsos Servicios de Salud 2026",
+      "link": "https://www.ipsos.com/es-ar/ipsos-health-service-report-2026",
+      "description": "Desde 2018, Ipsos ha estado realizando un seguimiento de las percepciones sobre la calidad de los sistemas de atención médica, las principales preocupaciones de salud y los mayores problemas de salud ...",
+      "pubDate": "Thu, 08 Oct 2026 19:42:42 +0200",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-10/health-doctor-nurse-medical-carousel.webp?itok=JQczQfHR",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
     {
       "title": "La confianza cambia de manos: Nuevas señales para las marcas en Argentina",
       "link": "https://www.ipsos.com/es-ar/la-confianza-cambia-de-manos-nuevas-senales-para-las-marcas-en-argentina",
@@ -34,15 +43,6 @@
       "description": "En la séptima edición del Índice Global de Confiabilidad de Ipsos, se incorporan al índice los chatbots de IA, los emprendedores tecnológicos y los entrenadores personales....",
       "pubDate": "Thu, 01 Oct 2026 20:36:18 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/news_and_polls/2026-09/trust-trustworthiness-professions-veracity-carousel.webp?itok=XksDtO_8",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "Análisis de la realidad de la sustentabilidad: ¿Por qué los consumidores están replanteándose la sustentabilidad en 2026?",
-      "link": "https://www.ipsos.com/es-ar/analisis-%20de-la-realidad-de-la-sostenibilidad-por-que-los-consumidores-estan-replanteandose-la-sustentabilidad-en-2026",
-      "description": "Una nueva investigación de Ipsos revela una creciente tensión entre la preocupación por el cambio climático y la realidad cotidiana....",
-      "pubDate": "Thu, 01 Oct 2026 20:09:15 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-09/the-state-of-sustainability-2026.webp?itok=DWzJJaQI",
       "source": "Ipsos Argentina",
       "category": "Insights"
     }
