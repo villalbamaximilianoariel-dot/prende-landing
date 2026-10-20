@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
-const SYSTEM_URL = 'https://auditoria-frontend-9mgf.onrender.com';
+const SYSTEM_URL = 'https://prende.site';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -182,7 +182,7 @@ const Header = () => {
                 },
               }}
             >
-              Ingresar
+              Sistema de auditorías
             </Button>
 
             <Button
@@ -271,7 +271,7 @@ const Header = () => {
         </ListItem>
         <ListItem disablePadding>
           <ListItemButton component="a" href={SYSTEM_URL}>
-            <ListItemText primary="Ingresar" primaryTypographyProps={{ fontWeight: 500 }} />
+            <ListItemText primary="Sistema de auditorías" primaryTypographyProps={{ fontWeight: 500 }} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ mt: 2, px: 2 }}>
