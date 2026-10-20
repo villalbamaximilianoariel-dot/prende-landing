@@ -54,7 +54,7 @@ export default function RecursosRecomendados() {
       setError(null);
       const items = await fetchAllFeeds(recursosConfig.rssFeeds, 5);
       setRssItems(items);
-    } catch (err) {
+    } catch {
       setError('Error al cargar los recursos. Por favor, intenta más tarde.');
     } finally {
       setLoading(false);

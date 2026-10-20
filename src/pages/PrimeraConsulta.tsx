@@ -130,7 +130,7 @@ const PrimeraConsulta = () => {
                 color: '#000000',
                 px: 3,
                 py: 1.5,
-                borderRadius: 1,
+                borderRadius: '14px',
               }}
             >
               <Typography variant="h6" sx={{ color: '#000000', fontWeight: 700 }}>
@@ -159,13 +159,13 @@ const PrimeraConsulta = () => {
       </Box>
 
       {/* Qué incluye */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 6, justifyContent: 'center' }}>
             <Box
               sx={{
                 bgcolor: '#000000',
-                borderRadius: 2,
+                borderRadius: '20px',
                 width: 64,
                 height: 64,
                 display: 'flex',
@@ -194,7 +194,7 @@ const PrimeraConsulta = () => {
       </Box>
 
       {/* Cómo funciona */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             ¿Cómo funciona?
@@ -271,8 +271,8 @@ const PrimeraConsulta = () => {
               key={index}
               onClick={() => { navigate(item.route); window.scrollTo(0, 0); }}
               sx={{
-                border: '1.5px solid #E0E0E0',
-                borderRadius: 2,
+                border: '2px solid transparent',
+                borderRadius: '20px',
                 p: 3,
                 display: 'flex',
                 flexDirection: 'column',
@@ -282,7 +282,7 @@ const PrimeraConsulta = () => {
                 '&:hover': {
                   borderColor: '#FFEB5D',
                   transform: 'translateY(-4px)',
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+                  boxShadow: 'none',
                 },
               }}
             >
@@ -299,7 +299,7 @@ const PrimeraConsulta = () => {
       </Container>
 
       {/* FAQs */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             Preguntas Frecuentes
@@ -314,7 +314,7 @@ const PrimeraConsulta = () => {
                   bgcolor: '#FFFFFF',
                   border: '1px solid #E0E0E0',
                   '&:before': { display: 'none' },
-                  borderRadius: '8px !important',
+                  borderRadius: '16px !important',
                 }}
               >
                 <AccordionSummary

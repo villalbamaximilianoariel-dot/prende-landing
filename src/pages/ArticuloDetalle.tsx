@@ -140,7 +140,7 @@ const ArticuloDetalle = () => {
               sx={{
                 position: 'relative',
                 paddingTop: '56.25%',
-                borderRadius: 2,
+                borderRadius: '20px',
                 overflow: 'hidden',
               }}
             >
@@ -186,7 +186,7 @@ const ArticuloDetalle = () => {
                   component="img"
                   src={bloque.src}
                   alt={bloque.alt}
-                  sx={{ width: '100%', borderRadius: 2, display: 'block' }}
+                  sx={{ width: '100%', borderRadius: '20px', display: 'block' }}
                 />
                 {bloque.caption && (
                   <Typography variant="caption" sx={{ display: 'block', textAlign: 'center', color: '#999', mt: 1.5 }}>
@@ -214,8 +214,8 @@ const ArticuloDetalle = () => {
           <Box
             onClick={() => { navigate(articulo.servicioRelacionado!.route); window.scrollTo(0, 0); }}
             sx={{
-              border: '1.5px solid #E0E0E0',
-              borderRadius: 2,
+              border: '2px solid transparent',
+              borderRadius: '20px',
               p: 3,
               display: 'flex',
               alignItems: 'center',
@@ -226,7 +226,7 @@ const ArticuloDetalle = () => {
               '&:hover': {
                 borderColor: '#FFEB5D',
                 transform: 'translateY(-4px)',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+                boxShadow: 'none',
               },
             }}
           >

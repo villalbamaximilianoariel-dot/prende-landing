@@ -153,6 +153,17 @@ function stripHtml(html: string): string {
  * Obtiene los últimos videos de un canal usando YouTube Data API v3.
  * Requiere VITE_YOUTUBE_API_KEY en el archivo .env.local
  */
+/** Parte de la respuesta de YouTube Data API que se usa acá. */
+interface YouTubeSearchItem {
+  id?: { videoId?: string };
+  snippet?: {
+    title?: string;
+    description?: string;
+    publishedAt?: string;
+    thumbnails?: { high?: { url?: string }; medium?: { url?: string }; default?: { url?: string } };
+  };
+}
+
 async function fetchViaYouTubeAPI(feed: FeedSource, maxItems: number): Promise<RSSItem[]> {
   const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
   if (!apiKey) {
@@ -187,7 +198,7 @@ async function fetchViaYouTubeAPI(feed: FeedSource, maxItems: number): Promise<R
 
   if (!Array.isArray(data.items)) throw new Error('YouTube API: formato inesperado');
 
-  return data.items.map((item: any) => {
+  return (data.items as YouTubeSearchItem[]).map((item) => {
     const snippet = item.snippet || {};
     const videoId = item.id?.videoId || '';
     const thumbnail =
@@ -298,7 +309,7 @@ export async function fetchSingleFeed(feed: FeedSource, maxItems = 5): Promise<R
     try {
       const items = await fetchViaCachedJSON(feed);
       return items.slice(0, maxItems);
-    } catch (_) {
+    } catch {
       return [];
     }
   }
@@ -308,7 +319,7 @@ export async function fetchSingleFeed(feed: FeedSource, maxItems = 5): Promise<R
   try {
     const items = await fetchViaAlloriginsGet(feed, maxItems);
     if (items.length > 0) return items;
-  } catch (_) {
+  } catch {
     // continuar
   }
 
@@ -316,7 +327,7 @@ export async function fetchSingleFeed(feed: FeedSource, maxItems = 5): Promise<R
   try {
     const items = await fetchViaXmlProxy('https://api.allorigins.win/raw?url=', feed, maxItems);
     if (items.length > 0) return items;
-  } catch (_) {
+  } catch {
     // continuar
   }
 
@@ -324,7 +335,7 @@ export async function fetchSingleFeed(feed: FeedSource, maxItems = 5): Promise<R
   try {
     const items = await fetchViaXmlProxy('https://corsproxy.io/?', feed, maxItems);
     if (items.length > 0) return items;
-  } catch (_) {
+  } catch {
     // todos fallaron
   }
 

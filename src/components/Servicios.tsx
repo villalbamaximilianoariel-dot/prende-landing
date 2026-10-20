@@ -27,7 +27,7 @@ const servicios: Servicio[] = [
   {
     id: 1,
     key: 'consulta',
-    icon: <QuestionAnswerIcon sx={{ fontSize: 48 }} />,
+    icon: <QuestionAnswerIcon sx={{ fontSize: 32 }} />,
     title: 'Primera Consulta',
     description:
       'Una charla de una hora para contarnos qué te pasa en el negocio y saber con claridad qué conviene hacer. Si después avanzás con nosotros, lo que pagaste acá se descuenta.',
@@ -37,7 +37,7 @@ const servicios: Servicio[] = [
   {
     id: 2,
     key: 'planAccion',
-    icon: <TrendingUpIcon sx={{ fontSize: 48 }} />,
+    icon: <TrendingUpIcon sx={{ fontSize: 32 }} />,
     title: 'Plan de Acción',
     description:
       'Miramos de cerca qué está pasando en tu negocio, armamos un plan concreto para resolverlo y te acompañamos a llevarlo adelante hasta ver los resultados.',
@@ -48,7 +48,7 @@ const servicios: Servicio[] = [
   {
     id: 3,
     key: 'sistema',
-    icon: <FactCheckIcon sx={{ fontSize: 48 }} />,
+    icon: <FactCheckIcon sx={{ fontSize: 32 }} />,
     title: 'Supervisión de Calidad',
     description:
       'Un sistema para tener tu negocio bajo control todo el tiempo — solo, o con nosotros mirándolo desde afuera para que nada se te escape.',
@@ -58,7 +58,7 @@ const servicios: Servicio[] = [
   {
     id: 4,
     key: 'consulta',
-    icon: <SettingsIcon sx={{ fontSize: 48 }} />,
+    icon: <SettingsIcon sx={{ fontSize: 32 }} />,
     title: 'Tu Sistema a Medida',
     description:
       'Herramientas tecnológicas armadas a tu medida para gestionar ventas, compras, costos, stock, pagos y más — con los módulos que tu negocio necesite.',
@@ -91,8 +91,9 @@ const Servicios = () => {
     <Box
       id="servicios"
       sx={{
-        bgcolor: '#E0E0E0',
-        py: { xs: 8, md: 12 },
+        bgcolor: '#F5F5F5',
+        pt: { xs: 2, md: 2 },
+        pb: { xs: 8, md: 12 },
       }}
     >
       <Container maxWidth="lg">
@@ -105,6 +106,7 @@ const Servicios = () => {
               fontWeight: 700,
               color: '#000000',
               mb: 2,
+              letterSpacing: '-0.02em',
             }}
           >
             Servicios
@@ -131,7 +133,7 @@ const Servicios = () => {
               xs: '1fr',
               md: 'repeat(2, 1fr)',
             },
-            gap: { xs: 3, md: 4 },
+            gap: { xs: 2, md: 3 },
             mt: 2,
           }}
         >
@@ -153,15 +155,14 @@ const Servicios = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 bgcolor: servicio.destacado ? '#000000' : '#FFFFFF',
-                border: servicio.destacado ? '2px solid #FFEB5D' : '2px solid #000000',
-                borderRadius: 2,
+                border: servicio.destacado ? '2px solid #FFEB5D' : '2px solid transparent',
+                borderRadius: '24px',
                 boxShadow: 'none',
                 position: 'relative',
-                overflow: 'visible',
-                transition: 'all 0.3s ease',
+                overflow: 'hidden',
+                transition: 'transform 0.2s ease, border-color 0.2s ease',
                 '&:hover': {
-                  transform: 'translateY(-8px)',
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+                  transform: 'translateY(-4px)',
                   borderColor: '#FFEB5D',
                 },
               }}
@@ -170,23 +171,21 @@ const Servicios = () => {
                 <Box
                   sx={{
                     position: 'absolute',
-                    top: -12,
-                    right: 16,
-                    bgcolor: '#FFEB5D',
+                    top: { xs: 20, md: 28 },
+                    right: { xs: 20, md: 28 },
+                    bgcolor: servicio.destacado ? '#FFEB5D' : '#F5F5F5',
                     color: '#000000',
-                    px: 2,
-                    py: 0.75,
-                    borderRadius: 1,
-                    border: '2px solid #000000',
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                    px: 1.75,
+                    py: 0.5,
+                    borderRadius: '999px',
                     zIndex: 1,
                   }}
                 >
                   <Typography
                     variant="body2"
                     sx={{
-                      fontSize: { xs: '0.75rem', md: '0.875rem' },
-                      fontWeight: 700,
+                      fontSize: { xs: '0.75rem', md: '0.8125rem' },
+                      fontWeight: 600,
                       whiteSpace: 'nowrap',
                     }}
                   >
@@ -196,7 +195,7 @@ const Servicios = () => {
 
                 <CardContent
                   sx={{
-                    p: { xs: 2.5, md: 4 },
+                    p: { xs: 3, md: 4.5 },
                     display: 'flex',
                     flexDirection: 'column',
                     flexGrow: 1,
@@ -208,10 +207,10 @@ const Servicios = () => {
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      width: { xs: 64, md: 80 },
-                      height: { xs: 64, md: 80 },
+                      width: { xs: 56, md: 64 },
+                      height: { xs: 56, md: 64 },
                       bgcolor: '#FFEB5D',
-                      borderRadius: 2,
+                      borderRadius: '16px',
                       mb: { xs: 2, md: 3 },
                       color: '#000000',
                     }}
@@ -223,12 +222,12 @@ const Servicios = () => {
                   <Typography
                     variant="h3"
                     sx={{
-                      fontSize: { xs: '1.125rem', md: '1.5rem' },
+                      fontSize: { xs: '1.125rem', md: '1.375rem' },
                       fontWeight: 700,
                       color: servicio.destacado ? '#FFFFFF' : '#000000',
                       mb: { xs: 1.5, md: 2 },
-                      minHeight: { md: '60px' },
                       lineHeight: 1.3,
+                      letterSpacing: '-0.01em',
                     }}
                   >
                     {servicio.title}
@@ -239,10 +238,10 @@ const Servicios = () => {
                     variant="body2"
                     sx={{
                       fontSize: { xs: '0.875rem', md: '1rem' },
-                      color: servicio.destacado ? '#CCCCCC' : '#666666',
-                      mb: 2,
+                      color: servicio.destacado ? '#CCCCCC' : '#6b6b70',
+                      mb: 3,
                       flexGrow: 1,
-                      lineHeight: 1.5,
+                      lineHeight: 1.6,
                     }}
                   >
                     {servicio.description}
@@ -255,10 +254,10 @@ const Servicios = () => {
                       fontSize: { xs: '0.875rem', md: '0.95rem' },
                       fontWeight: 600,
                       color: servicio.destacado ? '#FFEB5D' : '#000000',
-                      textAlign: 'center',
+                      textAlign: 'left',
                       mt: 'auto',
                       pt: 2,
-                      borderTop: servicio.destacado ? '1px solid #333333' : '1px solid #E0E0E0',
+                      borderTop: servicio.destacado ? '1px solid #333333' : '1px solid #ECECF0',
                     }}
                   >
                     Ver detalles →

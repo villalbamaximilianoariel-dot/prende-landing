@@ -39,6 +39,7 @@ const Contacto = () => {
               fontWeight: 700,
               color: '#FFFFFF',
               mb: 2,
+              letterSpacing: '-0.02em',
             }}
           >
             Hablemos de tu negocio
@@ -81,12 +82,12 @@ const Contacto = () => {
               py: { xs: 2, md: 2.5 },
               fontSize: { xs: '1rem', md: '1.125rem' },
               fontWeight: 600,
-              borderRadius: 2,
+              borderRadius: '16px',
               textTransform: 'none',
               boxShadow: 'none',
               '&:hover': {
                 bgcolor: '#20BA5A',
-                boxShadow: '0 4px 12px rgba(37, 211, 102, 0.4)',
+                boxShadow: 'none',
               },
             }}
           >
@@ -106,12 +107,12 @@ const Contacto = () => {
               py: { xs: 2, md: 2.5 },
               fontSize: { xs: '1rem', md: '1.125rem' },
               fontWeight: 600,
-              borderRadius: 2,
+              borderRadius: '16px',
               textTransform: 'none',
               boxShadow: 'none',
               '&:hover': {
                 bgcolor: '#F5F5F5',
-                boxShadow: '0 4px 12px rgba(255, 255, 255, 0.3)',
+                boxShadow: 'none',
               },
             }}
           >
@@ -159,14 +160,14 @@ const Contacto = () => {
               sx={{
                 minWidth: { xs: 56, md: 64 },
                 minHeight: { xs: 56, md: 64 },
-                borderRadius: 2,
+                borderRadius: '16px',
                 bgcolor: '#FFEB5D',
                 color: '#000000',
                 p: 0,
                 boxShadow: 'none',
                 '&:hover': {
                   bgcolor: '#FFE135',
-                  boxShadow: '0 4px 12px rgba(255, 235, 93, 0.4)',
+                  boxShadow: 'none',
                 },
               }}
             >

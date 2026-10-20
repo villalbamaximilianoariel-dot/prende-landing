@@ -1,18 +1,22 @@
-import { Box, Container, Typography, Card, CardContent, Button } from '@mui/material';
-import { ChevronLeft, ChevronRight, CheckCircle } from '@mui/icons-material';
+import { Box, Container, Typography, Button, IconButton } from '@mui/material';
+import { ChevronLeft, ChevronRight, KeyboardArrowDown } from '@mui/icons-material';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
-// @ts-ignore
 import 'swiper/css';
-// @ts-ignore
-import 'swiper/css/navigation';
-// @ts-ignore
-import 'swiper/css/pagination';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Dolor = () => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const [activo, setActivo] = useState(0);
+  const tabsRef = useRef<HTMLDivElement>(null);
+
+  // En celular la fila de temas se desliza: mantener visible el tema activo
+  useEffect(() => {
+    const row = tabsRef.current;
+    const el = row?.children[activo] as HTMLElement | undefined;
+    if (row && el) row.scrollTo({ left: el.offsetLeft - (row.clientWidth - el.clientWidth) / 2, behavior: 'smooth' });
+  }, [activo]);
   
   // Función para renderizar texto con negritas
   const renderTextWithBold = (text: string) => {
@@ -94,243 +98,209 @@ const Dolor = () => {
 
   const handleVerComoAyuda = () => {
     const element = document.getElementById('por-que-prende-bloque-2');
-    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
-  return (
-    <Box
-      sx={{
-        py: 6,
-        backgroundColor: '#F5F5F5'
-      }}
-    >
-      <Container maxWidth="lg">
-        <Box sx={{ position: 'relative', mb: 4 }}>
-          <Swiper
-            modules={[Autoplay, Pagination]}
-            spaceBetween={30}
-            slidesPerView={1}
-            autoplay={{
-              delay: 10000,
-              disableOnInteraction: false,
-            }}
-            pagination={{ 
-              clickable: true,
-              dynamicBullets: true
-            }}
-            loop={true}
-            onSwiper={setSwiperInstance}
-            style={{
-              paddingBottom: '50px'
-            }}
-            className="problemas-carousel"
-          >
-            {slides.map((slide, index) => (
-              <SwiperSlide key={index}>
-                <Card
-                  sx={{
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: 4,
-                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
-                    p: { xs: 4, md: 5 },
-                    transition: 'all 0.3s ease',
-                    opacity: 0,
-                    animation: 'fadeIn 0.6s ease-in-out forwards',
-                    '@keyframes fadeIn': {
-                      from: { opacity: 0, transform: 'translateY(10px)' },
-                      to: { opacity: 1, transform: 'translateY(0)' }
-                    },
-                    '&:hover': {
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                      transform: 'translateY(-4px)',
-                    },
-                  }}
-                >
-                  <CardContent sx={{ p: 0 }}>
-                    {/* Pregunta interpeladora como título */}
-                    <Typography 
-                      variant="h4" 
-                      component="h3" 
-                      textAlign="center"
-                      sx={{ 
-                        fontWeight: 700,
-                        mb: { xs: 3, md: 5 },
-                        fontSize: { xs: '1.15rem', sm: '1.35rem', md: '1.85rem' },
-                        lineHeight: 1.3,
-                        color: '#1a1a1a',
-                        px: { xs: 1, md: 2 }
-                      }}
-                    >
-                      {slide.pregunta}
-                    </Typography>
+  const irA = (i: number) => swiperInstance?.slideToLoop(i);
+  const pad = (n: number) => String(n).padStart(2, '0');
 
-                    {/* Lista con iconos modernos en 2 columnas */}
+  return (
+    <Box sx={{ pt: { xs: 8, md: 12 }, pb: 0, backgroundColor: '#F5F5F5' }}>
+      <Container maxWidth="lg">
+        {/* Temas: sirven de navegación y dicen de qué trata cada pantalla */}
+        <Box
+          ref={tabsRef}
+          role="tablist"
+          aria-label="Temas"
+          sx={{
+            position: 'relative',
+            display: 'flex',
+            gap: 1,
+            mb: 2.5,
+            overflowX: 'auto',
+            pb: 0.5,
+            scrollbarWidth: 'none',
+            '&::-webkit-scrollbar': { display: 'none' },
+            justifyContent: { md: 'center' },
+          }}
+        >
+          {slides.map((slide, i) => (
+            <Box
+              key={slide.nombre}
+              component="button"
+              role="tab"
+              aria-selected={i === activo}
+              onClick={() => irA(i)}
+              sx={{
+                flexShrink: 0,
+                border: 'none',
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+                fontSize: '0.875rem',
+                fontWeight: 600,
+                px: 2,
+                py: 1,
+                borderRadius: '999px',
+                bgcolor: i === activo ? '#111111' : '#FFFFFF',
+                color: i === activo ? '#FFFFFF' : '#6b6b70',
+                transition: 'background-color 0.2s, color 0.2s',
+                '&:hover': { color: i === activo ? '#FFFFFF' : '#111111' },
+              }}
+            >
+              {slide.nombre}
+            </Box>
+          ))}
+        </Box>
+
+        <Swiper
+          modules={[Autoplay]}
+          spaceBetween={24}
+          slidesPerView={1}
+          autoplay={{ delay: 10000, disableOnInteraction: true }}
+          loop
+          onSwiper={setSwiperInstance}
+          onSlideChange={(sw) => setActivo(sw.realIndex)}
+        >
+          {slides.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <Box
+                sx={{
+                  bgcolor: '#FFFFFF',
+                  borderRadius: '28px',
+                  p: { xs: 3, sm: 4, md: 6 },
+                  display: 'grid',
+                  gridTemplateColumns: { xs: '1fr', md: '5fr 7fr' },
+                  gap: { xs: 3, md: 7 },
+                  alignItems: 'center',
+                  minHeight: { md: 340 },
+                }}
+              >
+                {/* Pregunta */}
+                <Box>
+                  <Typography
+                    sx={{
+                      fontSize: '0.8125rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      color: '#6b6b70',
+                      mb: 2,
+                    }}
+                  >
+                    <Box component="span" sx={{ bgcolor: '#FFEB5D', color: '#111', px: 1, py: 0.25, borderRadius: '6px', mr: 1 }}>
+                      {pad(index + 1)}
+                    </Box>
+                    {slide.nombre}
+                  </Typography>
+                  <Typography
+                    variant="h3"
+                    component="h3"
+                    sx={{
+                      fontWeight: 700,
+                      fontSize: { xs: '1.5rem', sm: '1.875rem', md: '2.25rem' },
+                      lineHeight: 1.2,
+                      letterSpacing: '-0.02em',
+                      color: '#111111',
+                    }}
+                  >
+                    {slide.pregunta}
+                  </Typography>
+                </Box>
+
+                {/* Señales: lista simple con separadores, sin cajas */}
+                <Box component="ul" sx={{ listStyle: 'none', m: 0, p: 0 }}>
+                  {slide.puntos.map((item, idx) => (
                     <Box
+                      component="li"
+                      key={idx}
                       sx={{
-                        maxWidth: '900px',
-                        mx: 'auto',
-                        px: { xs: 1, md: 2 },
+                        display: 'flex',
+                        gap: 2,
+                        alignItems: 'baseline',
+                        py: { xs: 1.75, md: 2 },
+                        borderTop: idx === 0 ? 'none' : '1px solid #ECECF0',
                       }}
                     >
-                      <Box 
-                        sx={{ 
-                          display: 'grid',
-                          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-                          gap: { xs: 2.5, md: 3 },
+                      <Box
+                        component="span"
+                        sx={{
+                          width: 10,
+                          height: 10,
+                          borderRadius: '50%',
+                          bgcolor: '#FFEB5D',
+                          border: '2px solid #111',
+                          flexShrink: 0,
+                          transform: 'translateY(1px)',
+                        }}
+                      />
+                      <Typography
+                        sx={{
+                          fontSize: { xs: '1rem', md: '1.125rem' },
+                          lineHeight: 1.55,
+                          color: '#3a3a3f',
                         }}
                       >
-                        {slide.puntos.map((item, idx) => (
-                          <Box
-                            key={idx}
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'flex-start',
-                              gap: 2,
-                              p: 2.5,
-                              borderRadius: 2,
-                              backgroundColor: 'rgba(255, 235, 93, 0.08)',
-                              transition: 'all 0.25s ease',
-                              '&:hover': {
-                                backgroundColor: 'rgba(255, 235, 93, 0.15)',
-                                transform: 'translateY(-4px)',
-                                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
-                              }
-                            }}
-                          >
-                            <CheckCircle
-                              sx={{
-                                fontSize: '1.5rem',
-                                flexShrink: 0,
-                                color: '#FFEB5D',
-                                mt: 0.1,
-                              }}
-                            />
-                            <Typography
-                              variant="body1"
-                              sx={{
-                              fontSize: { xs: '0.9375rem', md: '1.1rem' },
-                                lineHeight: 1.7,
-                                color: '#2c2c2c',
-                                fontWeight: 400,
-                              }}
-                            >
-                              {renderTextWithBold(item)}
-                            </Typography>
-                          </Box>
-                        ))}
-                      </Box>
+                        {renderTextWithBold(item)}
+                      </Typography>
                     </Box>
-                  </CardContent>
-                </Card>
-              </SwiperSlide>
+                  ))}
+                </Box>
+              </Box>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Controles debajo de la tarjeta (ya no tapan el contenido) */}
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 3 }}>
+          <Typography aria-live="polite" sx={{ fontSize: '0.9375rem', fontWeight: 600, color: '#6b6b70', fontVariantNumeric: 'tabular-nums' }}>
+            <Box component="span" sx={{ color: '#111111' }}>{pad(activo + 1)}</Box> / {pad(slides.length)}
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            {[
+              { label: 'Anterior', icon: <ChevronLeft />, onClick: () => swiperInstance?.slidePrev() },
+              { label: 'Siguiente', icon: <ChevronRight />, onClick: () => swiperInstance?.slideNext() },
+            ].map((b) => (
+              <IconButton
+                key={b.label}
+                aria-label={b.label}
+                onClick={b.onClick}
+                sx={{ bgcolor: '#111111', color: '#FFFFFF', width: 44, height: 44, '&:hover': { bgcolor: '#333333' } }}
+              >
+                {b.icon}
+              </IconButton>
             ))}
-          </Swiper>
-          {/* Flechas custom como en Blog */}
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '40%',
-              left: { xs: -10, md: -20 },
-              transform: 'translateY(-50%)',
-              zIndex: 10,
-            }}
-          >
-            <Box
-              onClick={() => swiperInstance?.slidePrev()}
-              sx={{
-                width: { xs: 40, md: 50 },
-                height: { xs: 40, md: 50 },
-                borderRadius: '50%',
-                bgcolor: '#FFEB5D',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                border: '1px solid #E0E0E0',
-                transition: 'all 0.2s',
-                '&:hover': {
-                  bgcolor: '#FFE135',
-                  transform: 'scale(1.05)',
-                },
-              }}
-            >
-              <ChevronLeft sx={{ color: '#000000', fontSize: { xs: 24, md: 30 } }} />
-            </Box>
           </Box>
+        </Box>
 
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '40%',
-              right: { xs: -10, md: -20 },
-              transform: 'translateY(-50%)',
-              zIndex: 10,
-            }}
-          >
-            <Box
-              onClick={() => swiperInstance?.slideNext()}
-              sx={{
-                width: { xs: 40, md: 50 },
-                height: { xs: 40, md: 50 },
-                borderRadius: '50%',
-                bgcolor: '#FFEB5D',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                border: '1px solid #E0E0E0',
-                transition: 'all 0.2s',
-                '&:hover': {
-                  bgcolor: '#FFE135',
-                  transform: 'scale(1.05)',
-                },
-              }}
-            >
-              <ChevronRight sx={{ color: '#000000', fontSize: { xs: 24, md: 30 } }} />
-            </Box>
-          </Box>        </Box>
-
-        <Box sx={{ textAlign: 'center', mt: 4 }}>
+        {/* Puente hacia el bloque siguiente: la línea baja hasta la tarjeta negra */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: { xs: 5, md: 6 } }}>
+          <Box sx={{ width: 2, height: { xs: 28, md: 36 }, bgcolor: '#111111', opacity: 0.18 }} />
           <Button
             variant="contained"
-            size="large"
             onClick={handleVerComoAyuda}
+            endIcon={<KeyboardArrowDown />}
             sx={{
               backgroundColor: '#FFEB5D',
               color: '#000',
-              fontWeight: 'bold',
-              px: 4,
-              py: 1.5,
-              fontSize: '1.1rem',
-              '&:hover': {
-                backgroundColor: '#FFE030',
+              fontWeight: 600,
+              px: 3,
+              py: 1.25,
+              fontSize: '1rem',
+              borderRadius: '999px',
+              boxShadow: 'none',
+              '& .MuiButton-endIcon': { animation: 'bajar 1.6s ease-in-out infinite' },
+              '@keyframes bajar': {
+                '0%, 100%': { transform: 'translateY(-2px)' },
+                '50%': { transform: 'translateY(3px)' },
               },
+              '&:hover': { backgroundColor: '#FFE135', boxShadow: 'none' },
             }}
           >
             ¿Cómo podemos ayudarte?
           </Button>
+          <Box sx={{ width: 2, height: { xs: 44, md: 64 }, background: 'linear-gradient(180deg, rgba(17,17,17,0.18), #FFEB5D)' }} />
         </Box>
       </Container>
-
-      <style>
-        {`
-          .problemas-carousel .swiper-pagination-bullet {
-            background: #000;
-            opacity: 0.3;
-            width: 12px;
-            height: 12px;
-          }
-
-          .problemas-carousel .swiper-pagination-bullet-active {
-            opacity: 1;
-            background: #FFEB5D;
-          }
-
-          .problemas-carousel .swiper-slide {
-            transition: all 0.3s ease;
-          }
-        `}
-      </style>
     </Box>
   );
 };
