@@ -100,7 +100,7 @@ const Dolor = () => {
   return (
     <Box
       sx={{
-        py: 6,
+        py: { xs: 8, md: 12 },
         backgroundColor: '#F5F5F5'
       }}
     >
@@ -130,8 +130,8 @@ const Dolor = () => {
                 <Card
                   sx={{
                     backgroundColor: '#FFFFFF',
-                    borderRadius: 4,
-                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+                    borderRadius: '24px',
+                    boxShadow: 'none',
                     p: { xs: 4, md: 5 },
                     transition: 'all 0.3s ease',
                     opacity: 0,
@@ -139,10 +139,6 @@ const Dolor = () => {
                     '@keyframes fadeIn': {
                       from: { opacity: 0, transform: 'translateY(10px)' },
                       to: { opacity: 1, transform: 'translateY(0)' }
-                    },
-                    '&:hover': {
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                      transform: 'translateY(-4px)',
                     },
                   }}
                 >
@@ -154,9 +150,10 @@ const Dolor = () => {
                       textAlign="center"
                       sx={{ 
                         fontWeight: 700,
-                        mb: { xs: 3, md: 5 },
+                        mb: { xs: 4, md: 6 },
                         fontSize: { xs: '1.15rem', sm: '1.35rem', md: '1.85rem' },
                         lineHeight: 1.3,
+                        letterSpacing: '-0.01em',
                         color: '#1a1a1a',
                         px: { xs: 1, md: 2 }
                       }}
@@ -176,7 +173,7 @@ const Dolor = () => {
                         sx={{ 
                           display: 'grid',
                           gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-                          gap: { xs: 2.5, md: 3 },
+                          gap: { xs: 2, md: 2.5 },
                         }}
                       >
                         {slide.puntos.map((item, idx) => (
@@ -187,21 +184,15 @@ const Dolor = () => {
                               alignItems: 'flex-start',
                               gap: 2,
                               p: 2.5,
-                              borderRadius: 2,
-                              backgroundColor: 'rgba(255, 235, 93, 0.08)',
-                              transition: 'all 0.25s ease',
-                              '&:hover': {
-                                backgroundColor: 'rgba(255, 235, 93, 0.15)',
-                                transform: 'translateY(-4px)',
-                                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
-                              }
+                              borderRadius: '16px',
+                              backgroundColor: '#F7F7F8',
                             }}
                           >
                             <CheckCircle
                               sx={{
                                 fontSize: '1.5rem',
                                 flexShrink: 0,
-                                color: '#FFEB5D',
+                                color: '#111111',
                                 mt: 0.1,
                               }}
                             />
@@ -298,12 +289,15 @@ const Dolor = () => {
             sx={{
               backgroundColor: '#FFEB5D',
               color: '#000',
-              fontWeight: 'bold',
+              fontWeight: 600,
               px: 4,
               py: 1.5,
               fontSize: '1.1rem',
+              borderRadius: '14px',
+              boxShadow: 'none',
               '&:hover': {
-                backgroundColor: '#FFE030',
+                backgroundColor: '#FFE135',
+                boxShadow: 'none',
               },
             }}
           >

@@ -73,7 +73,7 @@ export default function Blog() {
       id="blog"
       sx={{
         bgcolor: '#F5F5F5',
-        py: 8,
+        py: { xs: 8, md: 12 },
       }}
     >
       <Container maxWidth="lg">
@@ -144,10 +144,10 @@ export default function Blog() {
                       height: '480px',
                       display: 'flex',
                       flexDirection: 'column',
-                      borderRadius: 2,
+                      borderRadius: '24px',
                       overflow: 'hidden',
                       boxShadow: 'none',
-                      border: '1px solid #E0E0E0',
+                      border: 'none',
                       transition: 'transform 0.2s',
                       '&:hover': {
                         transform: 'translateY(-4px)',
@@ -316,11 +316,12 @@ export default function Blog() {
               py: 1.5,
               fontSize: '1rem',
               fontWeight: 600,
-              borderRadius: 2,
+              borderRadius: '14px',
               textTransform: 'none',
+              boxShadow: 'none',
               '&:hover': {
                 bgcolor: '#FFE135',
-                transform: 'translateY(-2px)',
+                boxShadow: 'none',
               },
               transition: 'all 0.2s',
             }}

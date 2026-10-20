@@ -10,12 +10,22 @@ const PorQuePrende = () => {
     <Box
       id="por-que-prende-bloque-2"
       sx={{
-        bgcolor: '#000000',
-        py: { xs: 6, md: 8 },
+        bgcolor: '#F5F5F5',
+        pb: { xs: 8, md: 12 },
+        px: { xs: 2, md: 0 },
       }}
     >
-      <Container maxWidth="md">
-        <Box sx={{ textAlign: 'center' }}>
+      <Container maxWidth="md" disableGutters>
+        <Box
+          sx={{
+            textAlign: 'center',
+            bgcolor: '#000000',
+            border: '2px solid #FFEB5D',
+            borderRadius: '24px',
+            px: { xs: 3, md: 8 },
+            py: { xs: 5, md: 8 },
+          }}
+        >
           <Typography
             component="h2"
             variant="h4"
@@ -23,8 +33,9 @@ const PorQuePrende = () => {
               fontSize: { xs: '1.375rem', sm: '1.75rem', md: '2rem' },
               fontWeight: 700,
               color: '#FFFFFF',
-              mb: 2,
-              lineHeight: 1.4,
+              mb: 2.5,
+              lineHeight: 1.35,
+              letterSpacing: '-0.01em',
             }}
           >
             ¿Te sentiste identificado con alguno de estos? Estás en el lugar correcto.
@@ -67,12 +78,12 @@ const PorQuePrende = () => {
               py: { xs: 1.5, md: 2 },
               fontSize: { xs: '1rem', md: '1.125rem' },
               fontWeight: 600,
-              borderRadius: 1,
+              borderRadius: '14px',
               textTransform: 'none',
               boxShadow: 'none',
               '&:hover': {
                 bgcolor: '#FFE135',
-                boxShadow: '0 4px 12px rgba(255, 235, 93, 0.4)',
+                boxShadow: 'none',
               },
             }}
           >

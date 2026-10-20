@@ -35,7 +35,7 @@ const Hero = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          bgcolor: 'rgba(0, 0, 0, 0.7)',
+          background: 'linear-gradient(180deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.62) 100%)',
           zIndex: 1,
         },
       }}
@@ -56,8 +56,9 @@ const Hero = () => {
               fontSize: { xs: '2rem', sm: '2.75rem', md: '3.5rem' },
               fontWeight: 700,
               color: '#FFFFFF',
-              mb: { xs: 2, md: 3 },
-              lineHeight: 1.2,
+              mb: { xs: 2.5, md: 3.5 },
+              lineHeight: 1.15,
+              letterSpacing: '-0.02em',
             }}
           >
             Entender el negocio cambia la forma de decidir
@@ -70,7 +71,7 @@ const Hero = () => {
               fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem' },
               fontWeight: 400,
               color: '#F5F5F5',
-              mb: { xs: 4, md: 5 },
+              mb: { xs: 5, md: 6 },
               lineHeight: 1.6,
               maxWidth: '800px',
               mx: 'auto',
@@ -102,13 +103,13 @@ const Hero = () => {
                 py: { xs: 1.5, md: 2 },
                 fontSize: { xs: '1rem', md: '1.125rem' },
                 fontWeight: 600,
-                borderRadius: 1,
+                borderRadius: '14px',
                 textTransform: 'none',
                 boxShadow: 'none',
                 minWidth: { xs: '280px', sm: 'auto' },
                 '&:hover': {
                   bgcolor: '#FFE135',
-                  boxShadow: '0 4px 12px rgba(255, 235, 93, 0.4)',
+                  boxShadow: 'none',
                 },
               }}
             >
@@ -121,20 +122,21 @@ const Hero = () => {
               size="large"
               onClick={scrollToServicios}
               sx={{
-                bgcolor: '#000000',
                 color: '#FFFFFF',
                 px: { xs: 4, md: 6 },
                 py: { xs: 1.5, md: 2 },
                 fontSize: { xs: '1rem', md: '1.125rem' },
                 fontWeight: 600,
-                borderRadius: 1,
+                borderRadius: '14px',
                 textTransform: 'none',
+                boxShadow: 'none',
                 minWidth: { xs: '280px', sm: 'auto' },
-                border: '2px solid #FFFFFF',
+                bgcolor: 'rgba(255,255,255,0.12)',
+                border: '1px solid rgba(255,255,255,0.35)',
                 cursor: 'pointer',
                 '&:hover': {
-                  bgcolor: '#333333',
-                  borderColor: '#FFEB5D',
+                  bgcolor: 'rgba(255,255,255,0.2)',
+                  boxShadow: 'none',
                 },
               }}
             >
