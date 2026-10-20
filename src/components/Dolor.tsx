@@ -3,7 +3,6 @@ import { ChevronLeft, ChevronRight, KeyboardArrowDown } from '@mui/icons-materia
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
-// @ts-ignore
 import 'swiper/css';
 import { useEffect, useRef, useState } from 'react';
 

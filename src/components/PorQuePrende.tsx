@@ -3,19 +3,19 @@ import { Box, Container, Typography, Button } from '@mui/material';
 
 const PorQuePrende = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  // Con menos movimiento (o sin IntersectionObserver) la tarjeta ya está visible desde el inicio
+  const [visible, setVisible] = useState(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)
+  );
 
   // La tarjeta aparece suavemente al llegar a ella (si el navegador pide menos movimiento, ya está visible)
   useEffect(() => {
     const el = ref.current;
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-      setVisible(true);
-      return;
-    }
+    if (!el || visible) return;
     const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); io.disconnect(); } }, { threshold: 0.25 });
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [visible]);
 
   const scrollToServicios = () => {
     const element = document.getElementById('servicios');

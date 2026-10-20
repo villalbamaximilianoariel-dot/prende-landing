@@ -5,11 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, Pagination } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
-// @ts-ignore
 import 'swiper/css';
-// @ts-ignore
 import 'swiper/css/navigation';
-// @ts-ignore
 import 'swiper/css/pagination';
 import { fetchAllFeeds, formatDate } from '../utils/fetchRSSFeeds';
 import type { RSSItem } from '../utils/fetchRSSFeeds';
@@ -27,7 +24,7 @@ interface RecursoDestacado {
 
 export default function Blog() {
   const navigate = useNavigate();
-  const [recursos, setRecursos] = useState<any[]>([]);
+  const [recursos, setRecursos] = useState<RecursoDestacado[]>([]);
   const [loading, setLoading] = useState(true);
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
 
@@ -61,7 +58,7 @@ export default function Blog() {
       const todosCombinados = [...recursosDestacados, ...recursosRSS];
       
       setRecursos(todosCombinados);
-    } catch (error) {
+    } catch {
       setRecursos([]);
     } finally {
       setLoading(false);

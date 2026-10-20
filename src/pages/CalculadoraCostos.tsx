@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import {
   Box,
   Container,
@@ -362,10 +362,10 @@ const CalculadoraCostos = () => {
   const hayDatos = resultados.costoTotal > 0;
 
   // Trackear cuando el usuario llega a un resultado válido por primera vez (señal real de uso de la herramienta)
-  const [calculoTrackeado, setCalculoTrackeado] = useState(false);
+  const calculoTrackeado = useRef(false);
   useEffect(() => {
-    if (hayDatos && !calculoTrackeado) {
-      setCalculoTrackeado(true);
+    if (hayDatos && !calculoTrackeado.current) {
+      calculoTrackeado.current = true;
       if (window.gtag) {
         window.gtag('event', 'calculo_completado', {
           event_category: 'interaccion',
@@ -379,7 +379,7 @@ const CalculadoraCostos = () => {
         window.fbq('trackCustom', 'CalculoCompletado', { tipo_producto: productType });
       }
     }
-  }, [hayDatos, calculoTrackeado, productType]);
+  }, [hayDatos, productType]);
 
   const margenBajo = hayDatos && resultados.margenReal < 20;
   const margenMedio = hayDatos && resultados.margenReal >= 20 && resultados.margenReal < 30;
