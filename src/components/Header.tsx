@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
+const SYSTEM_URL = 'https://auditoria-frontend-9mgf.onrender.com';
+
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -168,6 +170,22 @@ const Header = () => {
             </Button>
 
             <Button
+              href={SYSTEM_URL}
+              sx={{
+                color: '#FFFFFF',
+                fontSize: { sm: '0.9375rem', md: '1rem' },
+                fontWeight: 500,
+                textTransform: 'none',
+                '&:hover': {
+                  bgcolor: 'transparent',
+                  color: '#FFEB5D',
+                },
+              }}
+            >
+              Ingresar
+            </Button>
+
+            <Button
               onClick={() => scrollToSection('contacto')}
               variant="contained"
               sx={{
@@ -249,6 +267,11 @@ const Header = () => {
               size="small"
               sx={{ bgcolor: '#FFEB5D', color: '#000000', fontWeight: 700, fontSize: '0.6875rem', height: 20 }}
             />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component="a" href={SYSTEM_URL}>
+            <ListItemText primary="Ingresar" primaryTypographyProps={{ fontWeight: 500 }} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ mt: 2, px: 2 }}>
