@@ -259,7 +259,7 @@ const TuSistemaAMedida = () => {
 
             <Box
               sx={{
-                borderRadius: 2,
+                borderRadius: '20px',
                 overflow: 'hidden',
                 boxShadow: '0 8px 32px rgba(255, 235, 93, 0.15)',
               }}
@@ -281,7 +281,7 @@ const TuSistemaAMedida = () => {
       </Box>
 
       {/* Fases */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography
             variant="h4"
@@ -306,7 +306,7 @@ const TuSistemaAMedida = () => {
               <Paper
                 key={fase.numero}
                 elevation={0}
-                sx={{ p: 4, bgcolor: '#FFFFFF', borderRadius: 2, border: '2px solid #E0E0E0' }}
+                sx={{ p: 4, bgcolor: '#FFFFFF', borderRadius: '20px', border: '2px solid transparent' }}
               >
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
                   <Box
@@ -373,8 +373,8 @@ const TuSistemaAMedida = () => {
               sx={{
                 p: 3,
                 bgcolor: '#F5F5F5',
-                border: '2px solid #E0E0E0',
-                borderRadius: 2,
+                border: '2px solid transparent',
+                borderRadius: '20px',
                 transition: 'all 0.3s',
                 '&:hover': {
                   borderColor: '#FFEB5D',
@@ -423,7 +423,7 @@ const TuSistemaAMedida = () => {
                   p: 4,
                   textAlign: 'center',
                   border: '2px solid #000000',
-                  borderRadius: 2,
+                  borderRadius: '20px',
                   bgcolor: '#FFFFFF',
                 }}
               >
@@ -440,7 +440,7 @@ const TuSistemaAMedida = () => {
       </Container>
 
       {/* Qué incluye */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography
             variant="h4"
@@ -497,8 +497,8 @@ const TuSistemaAMedida = () => {
               sx={{
                 p: 3,
                 bgcolor: '#F5F5F5',
-                border: '2px solid #E0E0E0',
-                borderRadius: 2,
+                border: '2px solid transparent',
+                borderRadius: '20px',
                 transition: 'all 0.3s',
                 '&:hover': {
                   borderColor: '#FFEB5D',
@@ -531,15 +531,15 @@ const TuSistemaAMedida = () => {
           <Box
             onClick={() => { navigate('/primera-consulta'); window.scrollTo(0, 0); }}
             sx={{
-              border: '1.5px solid #E0E0E0',
-              borderRadius: 2,
+              border: '2px solid transparent',
+              borderRadius: '20px',
               p: 3,
               display: 'flex',
               flexDirection: 'column',
               gap: 1.5,
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              '&:hover': { borderColor: '#FFEB5D', transform: 'translateY(-4px)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)' },
+              '&:hover': { borderColor: '#FFEB5D', transform: 'translateY(-4px)', boxShadow: 'none' },
             }}
           >
             <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />
@@ -551,15 +551,15 @@ const TuSistemaAMedida = () => {
           <Box
             onClick={() => { navigate('/plan-de-accion'); window.scrollTo(0, 0); }}
             sx={{
-              border: '1.5px solid #E0E0E0',
-              borderRadius: 2,
+              border: '2px solid transparent',
+              borderRadius: '20px',
               p: 3,
               display: 'flex',
               flexDirection: 'column',
               gap: 1.5,
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              '&:hover': { borderColor: '#FFEB5D', transform: 'translateY(-4px)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)' },
+              '&:hover': { borderColor: '#FFEB5D', transform: 'translateY(-4px)', boxShadow: 'none' },
             }}
           >
             <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />
@@ -572,7 +572,7 @@ const TuSistemaAMedida = () => {
       </Container>
 
       {/* FAQs */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             Preguntas Frecuentes
@@ -582,7 +582,7 @@ const TuSistemaAMedida = () => {
               <Accordion
                 key={index}
                 elevation={0}
-                sx={{ mb: 2, bgcolor: '#FFFFFF', border: '1px solid #E0E0E0', '&:before': { display: 'none' }, borderRadius: '8px !important' }}
+                sx={{ mb: 2, bgcolor: '#FFFFFF', border: 'none', '&:before': { display: 'none' }, borderRadius: '16px !important' }}
               >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ py: 2, '& .MuiAccordionSummary-content': { my: 1 } }}>
                   <Typography variant="h6" sx={{ fontWeight: 600 }}>{faq.pregunta}</Typography>

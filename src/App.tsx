@@ -60,16 +60,19 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
+          borderRadius: 14,
           fontWeight: 600,
           textTransform: 'none',
+          boxShadow: 'none',
+          '&:hover': { boxShadow: 'none' },
         },
       },
     },
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 12,
+          borderRadius: 20,
+          boxShadow: 'none',
         },
       },
     },

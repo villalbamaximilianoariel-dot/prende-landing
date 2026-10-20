@@ -149,11 +149,11 @@ const SupervisionCalidad = () => {
       </Box>
 
       {/* Elegí tu modalidad */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
             {/* Modalidad 1 */}
-            <Box sx={{ bgcolor: '#FFFFFF', borderRadius: 2, border: '2px solid #000000', p: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <Box sx={{ bgcolor: '#FFFFFF', borderRadius: '20px', border: '2px solid transparent', p: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
               <DashboardIcon sx={{ fontSize: 40 }} />
               <Typography variant="h5" sx={{ fontWeight: 700 }}>Solo el Sistema</Typography>
               <Typography variant="body1" sx={{ color: '#444', lineHeight: 1.6, flexGrow: 1 }}>
@@ -175,7 +175,7 @@ const SupervisionCalidad = () => {
             </Box>
 
             {/* Modalidad 2 */}
-            <Box sx={{ bgcolor: '#000000', color: '#FFFFFF', borderRadius: 2, border: '2px solid #FFEB5D', p: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <Box sx={{ bgcolor: '#000000', color: '#FFFFFF', borderRadius: '20px', border: '2px solid #FFEB5D', p: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
               <AssignmentIcon sx={{ fontSize: 40, color: '#FFEB5D' }} />
               <Typography variant="h5" sx={{ fontWeight: 700 }}>Sistema + Auditorías Externas</Typography>
               <Typography variant="body1" sx={{ color: '#F5F5F5', lineHeight: 1.6, flexGrow: 1 }}>
@@ -212,7 +212,7 @@ const SupervisionCalidad = () => {
         </Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, gap: 3 }}>
           {aspectosRelevables.map((aspecto, index) => (
-            <Box key={index} sx={{ border: '1.5px solid #E0E0E0', borderRadius: 2, p: 3, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            <Box key={index} sx={{ border: '2px solid transparent', borderRadius: '20px', p: 3, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               <Box sx={{ color: '#000' }}>{aspecto.icon}</Box>
               <Typography variant="h6" sx={{ fontWeight: 700 }}>{aspecto.titulo}</Typography>
               <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.6 }}>{aspecto.descripcion}</Typography>
@@ -222,7 +222,7 @@ const SupervisionCalidad = () => {
       </Container>
 
       {/* Qué incluye el sistema */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             ¿Qué incluye el sistema?
@@ -299,15 +299,15 @@ const SupervisionCalidad = () => {
               key={index}
               onClick={() => { navigate(item.route); window.scrollTo(0, 0); }}
               sx={{
-                border: '1.5px solid #E0E0E0',
-                borderRadius: 2,
+                border: '2px solid transparent',
+                borderRadius: '20px',
                 p: 3,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 1.5,
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
-                '&:hover': { borderColor: '#FFEB5D', transform: 'translateY(-4px)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)' },
+                '&:hover': { borderColor: '#FFEB5D', transform: 'translateY(-4px)', boxShadow: 'none' },
               }}
             >
               <ArrowForwardIcon sx={{ color: '#000', fontSize: 24 }} />
@@ -319,7 +319,7 @@ const SupervisionCalidad = () => {
       </Container>
 
       {/* FAQs */}
-      <Box sx={{ bgcolor: '#E0E0E0', py: { xs: 6, md: 10 } }}>
+      <Box sx={{ bgcolor: '#F5F5F5', py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography variant="h4" sx={{ fontWeight: 700, mb: 6, textAlign: 'center', fontSize: { xs: '1.5rem', md: '1.75rem' } }}>
             Preguntas Frecuentes
@@ -329,7 +329,7 @@ const SupervisionCalidad = () => {
               <Accordion
                 key={index}
                 elevation={0}
-                sx={{ mb: 2, bgcolor: '#FFFFFF', border: '1px solid #E0E0E0', '&:before': { display: 'none' }, borderRadius: '8px !important' }}
+                sx={{ mb: 2, bgcolor: '#FFFFFF', border: 'none', '&:before': { display: 'none' }, borderRadius: '16px !important' }}
               >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ py: 2, '& .MuiAccordionSummary-content': { my: 1 } }}>
                   <Typography variant="h6" sx={{ fontWeight: 600 }}>{faq.pregunta}</Typography>
