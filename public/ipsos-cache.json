@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-10-26T12:00:11.502Z",
+  "updatedAt": "2026-10-27T11:21:05.078Z",
   "items": [
+    {
+      "title": "La vida bien vivida es un tema delicado para las cámaras.",
+      "link": "https://www.ipsos.com/es-ar/la-vida-bien-vivida-es-un-tema-delicado-para-las-camaras",
+      "description": "Ipsos Views: Cómo las marcas pueden ir más allá del bienestar performativo para fomentar una conexión humana real....",
+      "pubDate": "Tue, 27 Oct 2026 11:49:07 +0100",
+      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-10/the-life-well-lived-is-camera-shy-carousel.webp?itok=Zd5IiwHh",
+      "source": "Ipsos Argentina",
+      "category": "Insights"
+    },
     {
       "title": "La nueva competencia: Sumar bienestar sin agregar esfuerzo",
       "link": "https://www.ipsos.com/es-ar/la-nueva-competencia-sumar-bienestar-sin-agregar-esfuerzo",
@@ -34,15 +43,6 @@
       "description": "Cómo los elementos distintivos de una marca generan reconocimiento e impulsan la elección de marca, por Gillian Drewett, Directora Global de Oferta, Brand Health Tracking...",
       "pubDate": "Fri, 02 Oct 2026 14:17:40 +0200",
       "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-09/city-urban-traffic-life.webp?itok=BViLsTxx",
-      "source": "Ipsos Argentina",
-      "category": "Insights"
-    },
-    {
-      "title": "Cómo la confianza impulsa la adopción de la IA en la experiencia del cliente.",
-      "link": "https://www.ipsos.com/es-ar/como-la-confianza-impulsa-la-adopcion-de-la-IA-y-la-experiencia-del-cliente",
-      "description": "Un nuevo estudio de Ipsos revela por qué la confianza del cliente y la conexión emocional son fundamentales para la adopción exitosa de la IA en la experiencia del cliente....",
-      "pubDate": "Thu, 01 Oct 2026 20:48:12 +0200",
-      "thumbnail": "https://www.ipsos.com/sites/default/files/styles/rss_216x144/public/ct/publication/2026-09/ipsos-cx-and-trust-woman-smartphone-technology-ai.webp?itok=3OlZ8t1F",
       "source": "Ipsos Argentina",
       "category": "Insights"
     }
